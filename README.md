@@ -16,9 +16,9 @@ Al Mamud        | Saif            | TBD                  | TBDScrum Master
 Wigington       | Tyler           | TBD                  | TBDProduct Owner
 Carmona         | Joey            | TBD                  | TBD
 Mikel           | Zach            | TBD                  | TBD
-Bakyono         | Daniel          | ???
-Bower           | Melissa         | ???
-Mcnew           | Nicholas        | ???
+Bakyono         | Daniel          | ???                  |
+Bower           | Melissa         | ???                  |
+McNew           | Nicholas        | ThreeFold            | TBD
 
 ## Team Velocity:
 
