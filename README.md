@@ -14,7 +14,7 @@ Last Name       | First Name      | GitHub User Name     | Scrum Role
 Smith           | Matt            | mattsmith111         | Product Owner
 Al Mamud        | Saif            | TBD                  | TBDScrum Master
 Wigington       | Tyler           | TBD                  | TBDProduct Owner
-Carmona         | Joey            | TBD                  | TBD
+Carmona         | Joey            | Joey Carmona         | TBD
 Mikel           | Zach            | TBD                  | TBD
 Bakyono         | Daniel          | ???                  |
 Bower           | Melissa         | ???                  |
