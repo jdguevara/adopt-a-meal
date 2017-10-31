@@ -11,14 +11,18 @@ Create a web application that assists with organizing volunteers for weekend mea
 
 Last Name       | First Name      | GitHub User Name     | Scrum Role
 --------------- | --------------- | -------------------- | ---------------
-Smith           | Matt            | mattsmith111         | Product Owner
-Al Mamud        | Saif            | saifalmahmud         | Developer
-Wigington       | Tyler           | tywig                | Developer
-Carmona         | Joey            | joeycarmona          | Developer
-Mikel           | Zach            | zacharymikel         | Developer
+Al Mahmud       | Saif            | saifalmahmud         | Developer
 Bakyono         | Daniel          | danielbak            | Developer
 Bower           | Melissa         | mertlebeach          | Scrum Master
+Carmona         | Joey            | joeycarmona          | Developer
 McNew           | Nicholas        | ThreeFold            | Developer
+Mikel           | Zach            | zacharymikel         | Developer
+Smith           | Matt            | mattsmith111         | Product Owner
+Wigington       | Tyler           | tywig                | Developer
+
+
+
+
 
 ## Team Velocity:
 
