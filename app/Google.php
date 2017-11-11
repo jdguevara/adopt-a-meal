@@ -5,10 +5,10 @@ use Google_Client;
 use Google_Service_Calendar;
 
 define('APPLICATION_NAME', 'Google Calendar API PHP Quickstart');
-define('CREDENTIALS_PATH', '~/.credentials/calendar-php-quickstart.json');
+define('CREDENTIALS_PATH', storage_path('/app/token.json'));
 define('CLIENT_SECRET_PATH', storage_path('/app/client_secret.json'));
 // If modifying these scopes, delete your previously saved credentials
-// at ~/.credentials/calendar-php-quickstart.json
+// at ~/.credentials/token.json
 define('SCOPES', implode(' ', array(
         Google_Service_Calendar::CALENDAR_READONLY)
 ));
