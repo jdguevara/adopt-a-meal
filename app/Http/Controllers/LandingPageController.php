@@ -27,7 +27,6 @@ class LandingPageController extends Controller
 
         $results = $service->events->listEvents($calendarId, $options);
         $events = $results->getItems();
-
         return view('welcome', ['events' => $events]);
     }
 

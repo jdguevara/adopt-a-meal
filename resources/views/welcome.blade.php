@@ -56,6 +56,17 @@
                 </div>
 
             </nav>
+            <div>
+                @foreach($events as $event)
+
+                    <div>{{$event->start->dateTime}}</div>
+
+
+                @endforeach
+
+
+
+            </div>
 
 
         </div>
