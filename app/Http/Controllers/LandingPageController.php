@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Google;
-use Google_Service_Calendar;
+use App\Calendar;
 
 class LandingPageController extends Controller
 {
@@ -12,22 +11,9 @@ class LandingPageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Google $google)
+    public function index(Calendar $calendar)
     {
-        $client = $google->getClient();
-        $service = new Google_Service_Calendar($client);
-
-        $calendarId = 'primary';
-        $options = array(
-            'maxResults' => 10,
-            'orderBy' => 'startTime',
-            'singleEvents' => TRUE,
-            'timeMin' => date('c'),
-        );
-
-        $results = $service->events->listEvents($calendarId, $options);
-        $events = $results->getItems();
-
+        $events = $calendar->findAll();
         return view('welcome', ['events' => $events]);
     }
 
