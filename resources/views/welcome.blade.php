@@ -5,11 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Adopt-A-Meal</title>
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
 
         <body>
@@ -24,12 +22,11 @@
             {{--@endauth--}}
             {{--</div>--}}
             {{--@endif--}}
-            <nav class="navbar navbar-default">
+            <nav class="navbar top-menu">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="{{url('http://interfaithsanctuary.org/')}}">
-                            {{--<img alt="Brand" src="...">--}}
-                            <div>Logo</div>
+                        <a class="navbar-left" href="{{url('http://interfaithsanctuary.org/')}}">
+                            <img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png">
                         </a>
 
 
@@ -56,16 +53,16 @@
                 </div>
 
             </nav>
-            <div>
-                @foreach($events as $event)
+            <div class="container">
+                <div class="col-md-8 col-md-offset-2 calender">
+                    Place Calender Here
+                    @foreach($events as $event)
 
-                    <div>{{$event->start->dateTime}}</div>
-
-
-                @endforeach
-
+                        <div>{{$event->start->dateTime}}</div>
 
 
+                    @endforeach
+                </div>
             </div>
 
 
