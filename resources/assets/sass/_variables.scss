@@ -18,7 +18,6 @@ $brand-danger: #bf5329;
 
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-family-sans-serif: "Raleway", sans-serif;
 $font-size-base: 14px;
 $line-height-base: 1.6;
 $text-color: #636b6f;
@@ -36,3 +35,41 @@ $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
 $panel-default-heading-bg: #fff;
+
+//Interfaith Brand Colors
+$interfaith-red: #ef3c5a;
+$interfaith-blue: #36b0bF;
+$interfaith-green: #e8f3df;
+$interfaith-yellow: #f4a71d;
+$interfaith-turquoise:#63c8cd;
+
+//Interfaith Typography
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+$interfaith-open-sans : 'Open Sans', sans-serif;
+
+.top-menu {
+    background-color: $interfaith-blue;
+}
+
+.brand {
+    max-height: 75px;
+    max-width: 75px;
+    height: auto;
+    width: auto;
+}
+
+.navbar-brand, .navbar-nav li a {
+    color: white;
+}
+nav {
+    font-family: $interfaith-open-sans;
+}
+body{
+    background-color: $interfaith-yellow; 
+}
+// This is a temp place holder
+.calender{
+    background-color: $interfaith-red;
+    height: 60vh;
+}
+
