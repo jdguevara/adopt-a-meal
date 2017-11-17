@@ -5,17 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<<<<<<< HEAD
-        <title>Laravel</title>
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-=======
         <title>Adopt-A-Meal</title>
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
->>>>>>> master
     </head>
 
         <body>
@@ -30,20 +22,11 @@
             {{--@endauth--}}
             {{--</div>--}}
             {{--@endif--}}
-<<<<<<< HEAD
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="{{url('http://interfaithsanctuary.org/')}}">
-                            {{--<img alt="Brand" src="...">--}}
-                            <div>Logo</div>
-=======
             <nav class="navbar top-menu">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a class="navbar-left" href="{{url('http://interfaithsanctuary.org/')}}">
                             <img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png">
->>>>>>> master
                         </a>
 
 
@@ -66,9 +49,6 @@
                         </ul>
 
                     </div><!-- /.navbar-collapse -->
-<<<<<<< HEAD
-
-=======
 
                 </div>
 
@@ -82,7 +62,6 @@
 
 
                     @endforeach
->>>>>>> master
                 </div>
 
             </nav>
