@@ -13,12 +13,12 @@ Last Name       | First Name      | GitHub User Name     | Scrum Role
 --------------- | --------------- | -------------------- | ---------------
 Al Mahmud       | Saif            | saifalmahmud         | Developer
 Bakyono         | Daniel          | danielbak            | Developer
-Bower           | Melissa         | mertlebeach          | Scrum Master
+Bower           | Melissa         | mertlebeach          | Product Owner
 Carmona         | Joey            | joeycarmona          | Developer
 McNew           | Nicholas        | ThreeFold            | Developer
 Mikel           | Zach            | zacharymikel         | Developer
-Smith           | Matt            | mattsmith111         | Product Owner
-Wigington       | Tyler           | tywig                | Developer
+Smith           | Matt            | mattsmith111         | Developer
+Wigington       | Tyler           | tywig                | Scrum Master
 
 
 
@@ -28,7 +28,7 @@ Wigington       | Tyler           | tywig                | Developer
 
 Sprint | Estimated Velocity | Actual Velocity
 ------ | ------------------ | ---------------
-1      | 34                 | TBD
-2      | TBD                | TBD
+1      | 34                 | 34
+2      | 42                 | TBD
 3      | TBD                | TBD
 4      | TBD                | TBD
