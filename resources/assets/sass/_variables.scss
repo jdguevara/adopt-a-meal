@@ -65,11 +65,14 @@ nav {
     font-family: $interfaith-open-sans;
 }
 body{
-    background-color: $interfaith-yellow; 
+    background-color: $interfaith-red; 
 }
 // This is a temp place holder
-.calender{
-    background-color: $interfaith-red;
-    height: 60vh;
+.calendar{
+    background-color: $interfaith-yellow;
+    
 }
-
+#calendar {
+    margin: 25px;
+    background-color: white;
+}
