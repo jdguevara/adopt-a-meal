@@ -12,3 +12,7 @@
 */
 
 Route::get('/', 'LandingPageController@index');
+
+Auth::routes();
+
+Route::get('/admin', 'AdminController@index')->name('home');
