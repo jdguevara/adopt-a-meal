@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Calendar;
-use App\Mail\VolunteerForm;
+use App\Mail\VolunteerFormEmail;
 use Illuminate\Support\Facades\Mail;
 
 class LandingPageController extends Controller
@@ -24,7 +24,7 @@ class LandingPageController extends Controller
     public function testEmail()
     {
         Mail::to('mattsmith11@u.boisestate.edu')
-        ->send(new VolunteerForm());
+        ->send(new VolunteerFormEmail());
 
         return redirect('/');
     }

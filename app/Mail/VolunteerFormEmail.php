@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class VolunteerForm extends Mailable
+class VolunteerFormEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,6 @@ class VolunteerForm extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.volunteerform');
+        return $this->view('emails.volunteerformemail');
     }
 }
