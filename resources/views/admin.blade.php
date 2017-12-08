@@ -15,6 +15,7 @@
                     @endif
 
                     You are logged in!
+                    <a href="/testEmail">Click here to send a test email</a>
                 </div>
             </div>
         </div>
