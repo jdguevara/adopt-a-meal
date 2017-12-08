@@ -11,6 +11,7 @@ class VolunteerFormEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $appURL;
     /**
      * Create a new message instance.
      *
@@ -18,7 +19,7 @@ class VolunteerFormEmail extends Mailable
      */
     public function __construct()
     {
-        //
+        $this->appURL = ""; //Somehowget the environment data and look up the URL
     }
 
     /**

@@ -15,10 +15,7 @@
 
 @endsection
 
+//TODO add link
 @section('content')
-<div class="container">
-    <div class="col-md-10 col-md-offset-2 calendar">
-        <div id="calendar"></div>
-    </div>
-</div>
+
 @endsection
