@@ -28,7 +28,6 @@ class VolunteerForm extends Mailable
      */
     public function build()
     {
-        return $this->from('mattsmith11@u.boisestate.edu')
-                    ->view('emails.volunteerform');
+        return $this->view('emails.volunteerform');
     }
 }

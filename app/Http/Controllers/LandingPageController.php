@@ -20,15 +20,12 @@ class LandingPageController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function testEmail()
     {
         Mail::to('mattsmith11@u.boisestate.edu')
         ->send(new VolunteerForm());
 
-        return view(new VolunteerForm());
+        return redirect('/');
     }
 }
