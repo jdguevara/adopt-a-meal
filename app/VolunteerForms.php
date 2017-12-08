@@ -13,7 +13,7 @@ class VolunteerForms
         'id', 'organization', 'phone', 'email', 'notes'
     ];
 
-    function findAll() {
+    function getNewVolunteerForms() {
 
         $results = array();
 

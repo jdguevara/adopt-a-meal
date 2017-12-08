@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\VolunteerForms;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -21,8 +21,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(VolunteerForms $volunteerForms)
     {
-        return view('admin');
+        $forms = $volunteerForms->getNewVolunteerForms();
+        return view('admin', ['forms' => $forms]);
     }
 }
