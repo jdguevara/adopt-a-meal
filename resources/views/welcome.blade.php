@@ -17,7 +17,7 @@
 
 @section('content')
 <div class="container">
-    <div class="col-md-10 col-md-offset-2 calendar">
+    <div class="calendar">
         <div id="calendar"></div>
     </div>
 </div>
