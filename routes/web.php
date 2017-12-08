@@ -12,7 +12,9 @@
 */
 
 Route::get('/', 'LandingPageController@index');
+Route::get('/testEmail', 'LandingPageController@testEmail');
 
 Auth::routes();
 
 Route::get('/admin', 'AdminController@index')->name('home');
+

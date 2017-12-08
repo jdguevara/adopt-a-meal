@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Calendar;
+use App\Mail\VolunteerForm;
+use Illuminate\Support\Facades\Mail;
 
 class LandingPageController extends Controller
 {
@@ -17,4 +19,16 @@ class LandingPageController extends Controller
         return view('welcome', ['events' => $events]);
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function testEmail()
+    {
+        Mail::to('mattsmith11@u.boisestate.edu')
+        ->send(new VolunteerForm());
+
+        return view(new VolunteerForm());
+    }
 }
