@@ -43,10 +43,27 @@ $brand-success: $interfaith-blue;
 $brand-warning: $interfaith-yellow;
 $brand-danger: $interfaith-red;
 
+
 //Interfaith Typography
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 $interfaith-open-sans : 'Open Sans', sans-serif;
-
+a:hover{
+    background-color:$brand-danger;
+}
+.btn-primary{
+    background-color:$brand-primary;
+    border-color:$brand-primary;
+}
+.btn-warning{
+    background-color:$brand-warning;
+    border-color:$brand-warning;
+}
+.btn-danger{
+    background-color:$brand-danger;
+}
+.btn-success{
+    background-color:$brand-success;
+}
 .top-menu {
     background-color: $interfaith-blue;
 }
