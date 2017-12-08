@@ -9,13 +9,6 @@ $navbar-default-border: $laravel-border-color;
 $panel-default-border: $laravel-border-color;
 $panel-inner-border: $laravel-border-color;
 
-// Brands
-$brand-primary: #3097D1;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
-
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $font-size-base: 14px;
@@ -43,6 +36,13 @@ $interfaith-green: #e8f3df;
 $interfaith-yellow: #f4a71d;
 $interfaith-turquoise:#63c8cd;
 
+// Brands
+$brand-primary: $interfaith-blue;
+$brand-info: $interfaith-turquoise;
+$brand-success: $interfaith-blue;
+$brand-warning: $interfaith-yellow;
+$brand-danger: $interfaith-red;
+
 //Interfaith Typography
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 $interfaith-open-sans : 'Open Sans', sans-serif;
@@ -65,11 +65,11 @@ nav {
     font-family: $interfaith-open-sans;
 }
 body{
-    background-color: $interfaith-red; 
+    background-color: $interfaith-turquoise; 
 }
 // This is a temp place holder
 .calendar{
-    background-color: $interfaith-yellow;
+    background-color: $interfaith-green;
     
 }
 #calendar {
