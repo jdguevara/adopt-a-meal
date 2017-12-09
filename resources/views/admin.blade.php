@@ -51,12 +51,12 @@
                 <ul  class="list-group">
                     <li class="list-group-item "><div class="row">
                             <div class= "col-sm-6">
-                                <h5>{{json_decode($form,true)['organization']}}</h5>
+                                <h5>{{json_encode($form['organization'],true)}}</h5>
                             </div>
                             <div class="btn-toolbar col-sm-6">
-                                <button type="button" class="btn btn-danger pull-right " data-toggle="modal" :data-organization="{{json_encode(json_decode($form,true)['organization'],true)}}" :data-email="{{json_encode(json_decode($form,true)['email'],true)}}" :data-notes="{{json_encode(json_decode($form,true)['notes'],true)}}"  data-target="#myModal">Delete</button>
-                                <button type="button" class="btn btn-warning pull-right " data-toggle="modal" :data-organization="{{json_encode(json_decode($form,true)['organization'],true)}}" :data-email="{{json_encode(json_decode($form,true)['email'],true)}}" :data-notes="{{json_encode(json_decode($form,true)['notes'],true)}}" data-target="#myModal">Edit</button>
-                                <button type="button" class="btn btn-info pull-right " data-toggle="modal" :data-organization="{{json_encode(json_decode($form,true)['organization'],true)}}" :data-email="{{json_encode(json_decode($form,true)['email'],true)}}" :data-notes="{{json_encode(json_decode($form,true)['notes'],true)}}" data-target="#myModal">Accept</button>
+                                <button type="button" class="btn btn-danger pull-right " data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}"  data-target="#myModal">Delete</button>
+                                <button type="button" class="btn btn-warning pull-right " data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Edit</button>
+                                <button type="button" class="btn btn-info pull-right " data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Accept</button>
 
                             </div>
                         </div>

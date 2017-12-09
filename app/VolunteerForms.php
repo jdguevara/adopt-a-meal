@@ -22,32 +22,32 @@ class VolunteerForms
             "email" => "test@test.com",
             "notes" => "Test"
         );
-        array_push($results, json_encode($result));
+        array_push($results, $result);
         $result = array(
             "organization" => "Computer Science Dept",
             "email" => "test@csboisestate.com",
             "notes" => "TestTest"
         );
-        array_push($results, json_encode($result));
+        array_push($results, $result);
         $result = array(
             "organization" => "Test Organization",
             "email" => "test@idaho.gov",
             "notes" => "TestTestTest"
         );
-        array_push($results, json_encode($result));
+        array_push($results, $result);
         $result = array(
             "organization" => "Interfaith Sanctuary",
             "email" => "test@interfaith.com",
             "notes" => "TestTestTestTest"
         );
-        array_push($results, json_encode($result));
+        array_push($results, $result);
 
         $result = array(
             "organization" => "City Of Boise",
             "email" => "test@idaho.boise.gov",
             "notes" => "TestTestTestTestTest"
         );
-        array_push($results, json_encode($result));
+        array_push($results, $result);
 
         return $results;
 
