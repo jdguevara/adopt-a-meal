@@ -8,17 +8,28 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
+<body class="email-template">
+    <!--<div class="container">
         <div class="jumbotron email-logo-container">
-            <div class="container">
-                <a href="{{url('http://interfaithsanctuary.org/')}}">
-                    <img src="images/Interfaith-Temp-Logo.png">
+            <h1>
+                <a class="email-logo" href="{{url('http://interfaithsanctuary.org/')}}">
+                    <img class="" src="images/Interfaith-Temp-Logo.png">
                 </a>
-            </div>
+                Adopt-A-Meal Program
+            </h1>
         </div>
-        @yield('content')
+    </div>-->
+    <div class="container">
+        <div class="page-header email-logo-container">
+            <h1>
+                <a class="email-logo" href="{{url('http://interfaithsanctuary.org/')}}">
+                    <img class="img-responsive" src="images/Interfaith-Temp-Logo.png">
+                </a>
+                Adopt-A-Meal Program
+            </h1>
+        </div>
     </div>
+    @yield('content')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

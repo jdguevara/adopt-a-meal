@@ -19,7 +19,7 @@ class VolunteerFormEmail extends Mailable
      */
     public function __construct()
     {
-        $this->appURL = env('URL_ADMIN', '/error'); //Somehowget the environment data and look up the URL
+        $this->appURL = env('URL_ADMIN', '/error');
     }
 
     /**
