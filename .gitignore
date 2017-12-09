@@ -12,3 +12,6 @@ npm-debug.log
 yarn-error.log
 .env
 storage/app/service_account_creds.json
+composer.lock
+package-lock.json
+yarn.lock
