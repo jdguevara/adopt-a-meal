@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use DateTime;
 
 class VolunteerForms
 {
@@ -16,36 +17,45 @@ class VolunteerForms
     function getNewVolunteerForms() {
 
         $results = array();
-
+        $dateTime = new DateTime();
+        $dateTime->setTime($dateTime->format('h'), 0, 0);
         $result = array(
             "organization" =>"Boise State",
             "email" => "test@test.com",
-            "notes" => "Test"
+            "notes" => "Test",
+            "date" => $dateTime->format('m/d/Y h:i')
         );
         array_push($results, $result);
+        $dateTime->add(new \DateInterval("P0Y1DT8H0M"));
         $result = array(
             "organization" => "Computer Science Dept",
             "email" => "test@csboisestate.com",
-            "notes" => "TestTest"
+            "notes" => "TestTest",
+            "date" => $dateTime->format('m/d/Y h:i')
         );
         array_push($results, $result);
+        $dateTime->add(new \DateInterval("P0Y3DT6H0M"));
         $result = array(
             "organization" => "Test Organization",
             "email" => "test@idaho.gov",
-            "notes" => "TestTestTest"
+            "notes" => "TestTestTest",
+            "date" => $dateTime->format('m/d/Y h:i')
         );
         array_push($results, $result);
+        $dateTime->add(new \DateInterval("P0Y3DT6H0M"));
         $result = array(
             "organization" => "Interfaith Sanctuary",
             "email" => "test@interfaith.com",
-            "notes" => "TestTestTestTest"
+            "notes" => "TestTestTestTest",
+            "date" => $dateTime->format('m/d/Y h:i')
         );
         array_push($results, $result);
-
+        $dateTime->add(new \DateInterval("P0Y1M8DT6H0M"));
         $result = array(
             "organization" => "City Of Boise",
             "email" => "test@idaho.boise.gov",
-            "notes" => "TestTestTestTestTest"
+            "notes" => "TestTestTestTestTest",
+            "date" => $dateTime->format('m/d/Y h:i')
         );
         array_push($results, $result);
 
