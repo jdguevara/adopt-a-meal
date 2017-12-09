@@ -102,7 +102,9 @@ thead.fc-head{
 }
 .fc-toolbar.fc-header-toolbar{
     padding:10px;
-    baclground-color:$brand-warning;
+    background-color:$brand-warning;
+    color:white;
+    margin:0px;
 }
 .brand {
     max-height: 75px;
