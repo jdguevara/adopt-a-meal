@@ -50,14 +50,15 @@
             @foreach($forms as $form)
                 <ul  class="list-group">
                     <li class="list-group-item "><div class="row">
-                            <div class= "col-sm-8">
-                                <h5>Organization: {{$form['organization']}}, Date:  </h5>
+                            <div class= "col-sm-6">
+                                <h5>Organization: {{$form['organization']}}</h5>
+                                <h5 >Date:</h5>
 
                             </div>
-                            <div class="btn-toolbar col-sm-4">
+                            <div class="btn-toolbar col-sm-6">
                                 <button type="button" class="btn btn-danger pull-right " data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}"  data-target="#myModal">Delete</button>
-                                <button type="button" class="btn btn-warning pull-right " data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Edit</button>
-                                <button type="button" class="btn btn-info pull-right " data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Accept</button>
+                                <button type="button" class="btn btn-warning pull-right" data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Edit</button>
+                                <button type="button" class="btn btn-info pull-right" data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Accept</button>
 
                             </div>
                         </div>
