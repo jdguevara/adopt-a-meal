@@ -31,15 +31,15 @@
                             <h4 class="modal-title"></h4>
                         </div>
                         <div class="modal-body">
+                            <p class="date"></p>
                             <p class="email"></p>
                             <p class="notes"></p>
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-info pull-left" v-if="" data-dismiss="modal">Accept</button>
-                            <button type="button" class="btn btn-warning pull-left" v-if="" data-dismiss="modal">Edit</button>
-                            <button type="button" class="btn btn-danger pull-left" v-if="" data-dismiss="modal">Delete</button>
-
+                            <button type="button" class="btn btn-warning pull-left" v-if="" data-dismiss="modal">Details</button>
+                            <button type="button" class="btn btn-danger pull-left" v-if="" data-dismiss="modal">Decline</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -55,9 +55,9 @@
                                 <h6>Date: {{$form['date']}}</h6>
                             </div>
                             <div class="btn-toolbar col-sm-6">
-                                <button type="button" class="btn btn-danger pull-right " data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}"  data-target="#myModal">Delete</button>
-                                <button type="button" class="btn btn-warning pull-right" data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Edit</button>
-                                <button type="button" class="btn btn-info pull-right" data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Accept</button>
+                                <button type="button" class="btn btn-danger pull-right " data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-date="{{json_encode($form['date'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}"  data-target="#myModal">Decline</button>
+                                <button type="button" class="btn btn-warning pull-right" data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-date="{{json_encode($form['date'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Details</button>
+                                <button type="button" class="btn btn-info pull-right" data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-date="{{json_encode($form['date'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Accept</button>
 
                             </div>
                         </div>
@@ -81,13 +81,13 @@
                     var organization = button.data('organization')
                     var email = button.data('email')
                     var notes = button.data('notes')
-                    var type = button.data('yo')
+                    var date = button.data('date')
 
                     var modal = $(this)
                     modal.find('.modal-title').text(organization)
                     modal.find('.email').text("Email: " + email)
                     modal.find('.notes').text("Notes: " + notes)
-                    modal.find('.type').text(type)
+                    modal.find('.date').text("Date: "+date)
                 })
 
             });
