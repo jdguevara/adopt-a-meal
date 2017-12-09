@@ -23,7 +23,7 @@ class LandingPageController extends Controller
      */
     public function testEmail()
     {
-        Mail::to('mattsmith11@u.boisestate.edu')
+        Mail::to('mergeconflictscs471-group@u.boisestate.edu')
         ->send(new VolunteerFormEmail());
 
         return redirect('/');
