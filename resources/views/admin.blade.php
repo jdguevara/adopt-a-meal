@@ -51,7 +51,8 @@
                 <ul  class="list-group">
                     <li class="list-group-item "><div class="row">
                             <div class= "col-sm-6">
-                                <h5>{{$form['organization']}}</h5>
+                                <h5>Organization: {{$form['organization']}}, Date </h5>
+
                             </div>
                             <div class="btn-toolbar col-sm-6">
                                 <button type="button" class="btn btn-danger pull-right " data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}"  data-target="#myModal">Delete</button>
@@ -71,25 +72,26 @@
 </div>
 
 @endsection
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        //call your script.js function from here
 
-        $('#myModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var organization = button.data('organization') // Extract info from data-* attributes
-            var email = button.data('email') // Extract info from data-* attributes
-            var notes = button.data('notes') // Extract info from data-* attributes
-            var type = button.data('yo')
+@section('scripts')
+    <script>
+            $(document).ready(function(){
+                $('#myModal').on('show.bs.modal',function(event) {
+                    var button = $(event.relatedTarget)
+                    var organization = button.data('organization')
+                    var email = button.data('email')
+                    var notes = button.data('notes')
+                    var type = button.data('yo')
 
-            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this)
-            modal.find('.modal-title').text( organization)
-            modal.find('.email').text("Email: " + email)
-            modal.find('.notes').text("Notes: " + notes)
-            modal.find('.type').text(type)
-        })
-    });
-</script>
+                    var modal = $(this)
+                    modal.find('.modal-title').text(organization)
+                    modal.find('.email').text("Email: " + email)
+                    modal.find('.notes').text("Notes: " + notes)
+                    modal.find('.type').text(type)
+                })
+
+            });
+
+
+    </script>
+@endsection
