@@ -51,7 +51,7 @@
                 <ul  class="list-group">
                     <li class="list-group-item "><div class="row">
                             <div class= "col-sm-6">
-                                <h5>{{json_encode($form['organization'],true)}}</h5>
+                                <h5>{{$form['organization']}}</h5>
                             </div>
                             <div class="btn-toolbar col-sm-6">
                                 <button type="button" class="btn btn-danger pull-right " data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}"  data-target="#myModal">Delete</button>
