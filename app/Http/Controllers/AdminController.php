@@ -24,6 +24,7 @@ class AdminController extends Controller
     public function index(VolunteerForms $volunteerForms)
     {
         $forms = $volunteerForms->getNewVolunteerForms();
+//        dd($forms);
         return view('admin', ['forms' => $forms]);
     }
 }
