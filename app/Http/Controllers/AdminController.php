@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\VolunteerForms;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,7 +13,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('guest');
     }
 
     /**
@@ -21,8 +21,10 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(VolunteerForms $volunteerForms)
     {
-        return view('admin');
+        $forms = $volunteerForms->getNewVolunteerForms();
+//        dd($forms);
+        return view('admin', ['forms' => $forms]);
     }
 }
