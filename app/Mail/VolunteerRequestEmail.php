@@ -7,9 +7,11 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class VolunteerFormEmail extends Mailable
+class VolunteerRequestEmail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $appURL;
     /**
      * Create a new message instance.
      *
@@ -17,6 +19,7 @@ class VolunteerFormEmail extends Mailable
      */
     public function __construct()
     {
+        $this->appURL = env("APP_URL") . env('URL_ADMIN', '/error');
     }
 
     /**
@@ -26,6 +29,6 @@ class VolunteerFormEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.volunteerformemail');
+        return $this->view('emails.volunteerrequestemail', ['appUrl' => $this->appURL]);
     }
 }
