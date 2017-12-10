@@ -12,9 +12,9 @@ class MasterAdminSeeder extends Seeder
     public function run()
     {
         // Adds the master user to the User table
-        $user = env('MASTER_USER');
-        $pass = env('MASTER_PASS');
-        $email = env('MASTER_EMAIL');
+        $user = env('MASTER_USER', '');
+        $pass = env('MASTER_PASS', '');
+        $email = env('MASTER_EMAIL', '');
 
         if(!(empty($user) || empty($pass) || empty($email))) {
             DB::table('users')->insert([
