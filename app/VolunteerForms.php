@@ -17,6 +17,8 @@ class VolunteerForms
     function getNewVolunteerForms() {
 
         $results = array();
+
+        // These will be removed by database items
         $dateTime = new DateTime();
         $dateTime->setTime($dateTime->format('h'), 0, 0);
         $result = array(

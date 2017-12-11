@@ -3,6 +3,7 @@
 /public/storage
 /public/css
 /public/js
+/public/fonts
 /vendor
 /.idea
 /.vagrant
@@ -15,3 +16,4 @@ storage/app/service_account_creds.json
 composer.lock
 package-lock.json
 yarn.lock
+mix-manifest.json
