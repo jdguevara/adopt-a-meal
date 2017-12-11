@@ -9,13 +9,6 @@ $navbar-default-border: $laravel-border-color;
 $panel-default-border: $laravel-border-color;
 $panel-inner-border: $laravel-border-color;
 
-// Brands
-$brand-primary: #3097D1;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
-
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $font-size-base: 14px;
@@ -34,7 +27,6 @@ $input-border-focus: lighten($brand-primary, 25%);
 $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
-$panel-default-heading-bg: #fff;
 
 //Interfaith Brand Colors
 $interfaith-red: #ef3c5a;
@@ -43,33 +35,131 @@ $interfaith-green: #e8f3df;
 $interfaith-yellow: #f4a71d;
 $interfaith-turquoise:#63c8cd;
 
+// Brands
+$brand-primary: $interfaith-blue;
+$brand-info: $interfaith-turquoise;
+$brand-success: $interfaith-blue;
+$brand-warning: $interfaith-yellow;
+$brand-danger: $interfaith-red;
+
+$panel-default-heading-bg: $brand-warning;
+
+
+
 //Interfaith Typography
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 $interfaith-open-sans : 'Open Sans', sans-serif;
+a:hover{
+    background-color:$brand-warning;
+    color:white;
+}
+.calendar-panel{
+    background-color: $brand-info;
 
+}
+.panel{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.panel-default{
+    .panel-heading{
+        background-color:$brand-danger;
+
+        border-color:$brand-warning;
+        color:white;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+}
+thead.fc-head{
+    background-color:$brand-warning;
+}
+.panel-default{
+}
+.list-group-item{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.btn-primary{
+    background-color:$brand-primary;
+    border-color:$brand-primary;
+}
+.btn-warning{
+    background-color:$brand-warning;
+    border-color:$brand-warning;
+}
+.btn-danger{
+    background-color:$brand-danger;
+}
+.btn-success{
+    background-color:$brand-success;
+}
 .top-menu {
     background-color: $interfaith-blue;
 }
-
+.modal-header{
+    background-color:$brand-danger;
+    color:white;
+}
+.fc-toolbar.fc-header-toolbar{
+    padding:10px;
+    background-color:$brand-warning;
+    color:white;
+    margin:0px;
+}
 .brand {
     max-height: 75px;
     max-width: 75px;
     height: auto;
     width: auto;
 }
-
+.container{
+    padding-bottom: 10px;
+}
 .navbar-brand, .navbar-nav li a {
     color: white;
+
+}
+.navbar-brand, .navbar-nav li a:hover{
+    color:$brand-success;
+
 }
 nav {
     font-family: $interfaith-open-sans;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+table{
+    background-color:white;
 }
 body{
-    background-color: $interfaith-yellow; 
+    background-color:  $interfaith-green;
 }
 // This is a temp place holder
-.calender{
-    background-color: $interfaith-red;
-    height: 60vh;
+.calendar{
+    background-color: $interfaith-turquoise;
+    //padding:0.3px;
+    //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    
+}
+#calendar {
+    margin: 25px;
+    background-color: white;
 }
 
+
+/** Email CSS **/
+.email-template {
+    background-color: white;
+}
+.email-logo-container .email-logo{
+    display: inline-block;
+    width: 225px;
+}
+.email-logo:hover {
+    background-color: inherit;
+}
+.email-logo img {
+    display: inline-block;
+}

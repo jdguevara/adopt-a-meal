@@ -1,73 +1,35 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Adopt-A-Meal</title>
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    </head>
+@section('scripts')
+    <script>
+      $(document).ready(function() {
+        $('#calendar').fullCalendar({
+          showNonCurrentDates: false,
+          contentHeight : "auto",
+          height: 'parent' +80 ,
+          aspectRatio: 1.5,
+          themeSystem: 'bootstrap3'
+        });
+      });
+    </script>
 
-        <body>
-        <div class="">
-            {{--@if (Route::has('login'))--}}
-            {{--<div class="top-right links">--}}
-            {{--@auth--}}
-            {{--<a href="{{ url('/home') }}">Home</a>--}}
-            {{--@else--}}
-            {{--<a href="{{ route('login') }}">Login</a>--}}
-            {{--<a href="{{ route('register') }}">Register</a>--}}
-            {{--@endauth--}}
-            {{--</div>--}}
-            {{--@endif--}}
-            <nav class="navbar top-menu">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-left" href="{{url('http://interfaithsanctuary.org/')}}">
-                            <img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png">
-                        </a>
+@endsection
 
-
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                        <ul class="nav navbar-nav navbar-center">
-
-                            <li><a class="navbar-brand" href="#">Adopt-a-Meal</a></li>
-
-                        </ul>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-
-                            <li><a href="#">Calendar View</a></li>
-
-                            <li><a href="#">Meal Ideas</a></li>
-
-                        </ul>
-
-                    </div><!-- /.navbar-collapse -->
-
-                </div>
-
-            </nav>
-            <div class="container">
-                <div class="col-md-8 col-md-offset-2 calender">
-                    Place Calender Here
-                    @foreach($events as $event)
-
-                        <div>{{$event->start->dateTime}}</div>
-
-
-                    @endforeach
-                </div>
-            </div>
-
-
+@section('content')
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <h3>Adopt-a-Meal Calendar</h3>
+            <p>Select a meal you would like to adopt.</p>
         </div>
-        </body>
-</html>
+        <div class="panel-body calendar-panel text-center">
+            <div class="calendar">
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@endsection
 
 
