@@ -22,7 +22,7 @@
             <h3>Adopt-a-Meal Calendar</h3>
             <p>Select a meal you would like to adopt.</p>
         </div>
-        <div class="panel-body text-center">
+        <div class="panel-body calendar-panel text-center">
             <div class="calendar">
                 <div id="calendar"></div>
             </div>

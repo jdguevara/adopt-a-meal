@@ -53,8 +53,9 @@ a:hover{
     background-color:$brand-warning;
     color:white;
 }
-.admin-panel{
-    background-color:white;
+.calendar-panel{
+    background-color: $brand-info;
+
 }
 .panel{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -63,6 +64,7 @@ a:hover{
 .panel-default{
     .panel-heading{
         background-color:$brand-danger;
+
         border-color:$brand-warning;
         color:white;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -73,7 +75,6 @@ thead.fc-head{
     background-color:$brand-warning;
 }
 .panel-default{
-    background-color: $brand-info;
 }
 .list-group-item{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
