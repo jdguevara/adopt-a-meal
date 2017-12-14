@@ -6,48 +6,19 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading text-center text-capitalize"><h3>Admin Dashboard</h3></div>
-
                 <div class="panel-body text-center">
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
                     @endif
-
                     You are logged in!
                     <a href="/testEmail">Click here to send a test email</a>
                     Accept, Edit and Delete Adopt-a-Meal requests here.
                 </div>
-
             </div>
-
-            <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"></h4>
-                        </div>
-                        <div class="modal-body">
-                            <p class="date"></p>
-                            <p class="email"></p>
-                            <p class="notes"></p>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info pull-left" v-if="" data-dismiss="modal">Accept</button>
-                            <button type="button" class="btn btn-warning pull-left" v-if="" data-dismiss="modal">Details</button>
-                            <button type="button" class="btn btn-danger pull-left" v-if="" data-dismiss="modal">Decline</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            @foreach($forms as $form)
+            
+             @foreach($forms as $form)
                 <ul  class="list-group">
                     <li class="list-group-item "><div class="row">
                             <div class= "col-sm-6">
@@ -63,14 +34,34 @@
                         </div>
                     </li>
                 </ul>
-
             @endforeach
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="date"></p>
+                            <p class="email"></p>
+                            <p class="notes"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info pull-left" v-if="" data-dismiss="modal">Accept</button>
+                            <button type="button" class="btn btn-warning pull-left" v-if="" data-dismiss="modal">Details</button>
+                            <button type="button" class="btn btn-danger pull-left" v-if="" data-dismiss="modal">Decline</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-
-
     </div>
 </div>
-
 @endsection
 
 @section('scripts')
