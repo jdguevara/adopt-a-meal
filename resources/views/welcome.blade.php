@@ -2,8 +2,11 @@
 
 @section('scripts')
     <script>
+      var events = {!! json_encode($events) !!};
+        
       $(document).ready(function() {
         $('#calendar').fullCalendar({
+          events: events,
           showNonCurrentDates: false,
           contentHeight : "auto",
           height: 'parent' +80 ,
