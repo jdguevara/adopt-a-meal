@@ -41,8 +41,7 @@ class Calendar
         $optParams = array(
             'maxResults' => 100,
             'orderBy' => 'startTime',
-            'singleEvents' => TRUE,
-            'timeMin' => date('c'),
+            'singleEvents' => TRUE
         );
 
         $results = $this->calendarService->events->listEvents($this->calendarId, $optParams)->getItems();

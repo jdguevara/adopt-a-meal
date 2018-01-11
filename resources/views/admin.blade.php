@@ -38,7 +38,6 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-info pull-left" v-if="" data-dismiss="modal">Accept</button>
-                            <button type="button" class="btn btn-warning pull-left" v-if="" data-dismiss="modal">Details</button>
                             <button type="button" class="btn btn-danger pull-left" v-if="" data-dismiss="modal">Decline</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
@@ -55,9 +54,9 @@
                                 <h6>Date: {{$form['date']}}</h6>
                             </div>
                             <div class="btn-toolbar col-sm-6">
-                                <button type="button" class="btn btn-danger pull-right " data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-date="{{json_encode($form['date'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}"  data-target="#myModal">Decline</button>
+                                <button type="button" class="btn btn-danger pull-right " :data-organization="{{json_encode($form['organization'],true)}}" :data-date="{{json_encode($form['date'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}">Decline</button>
                                 <button type="button" class="btn btn-warning pull-right" data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-date="{{json_encode($form['date'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Details</button>
-                                <button type="button" class="btn btn-info pull-right" data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-date="{{json_encode($form['date'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Accept</button>
+                                <button type="button" class="btn btn-info pull-right" :data-organization="{{json_encode($form['organization'],true)}}" :data-date="{{json_encode($form['date'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}">Accept</button>
 
                             </div>
                         </div>
