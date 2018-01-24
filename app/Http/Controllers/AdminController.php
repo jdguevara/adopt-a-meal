@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\VolunteerForms;
+use App\VolunteerForm;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -21,7 +21,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(VolunteerForms $volunteerForms)
+    public function index(VolunteerForm $volunteerForms)
     {
         $forms = $volunteerForms->getNewVolunteerForms();
 //        dd($forms);

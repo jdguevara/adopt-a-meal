@@ -2,9 +2,13 @@
 
 namespace App;
 use DateTime;
+use Illuminate\Database\Eloquent\Model;
 
-class VolunteerForms
+class VolunteerForm extends Model
 {
+    // TODO: get the actual table name...
+    //protected $table = 'volunteer_forms';
+
     /**
      * The attributes that are mass assignable.
      *
