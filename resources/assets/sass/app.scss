@@ -3,3 +3,19 @@
 
 // Variables
 @import "variables";
+
+
+.volunteer-form > * > span {
+    width: 150px;
+    text-align: left;
+}
+
+.volunteer-form > div {
+    width: 100%;
+    padding: 5px 0;
+}
+
+textarea {
+    border-radius: 4px !important;
+    resize: none;
+}
