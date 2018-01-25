@@ -14,27 +14,8 @@
       });
 
       var eventClicked = function(calEvent, jsEvent, view) {
-          
           var modal = $("#volunteer-modal").modal();
           modal.find('#title').text("Volunteer - " + calEvent.title);
-          
-        //   console.log("calEvent: ");
-        //   console.log(calEvent);
-
-        //   console.log("jsEvent: ");
-        //   console.log(jsEvent);
-
-        //   console.log("viewEvent: ");
-        //   console.log(view);
-
-        //   if(calEvent.start <= Date.now())
-        //       return;
-        //   alert('Event: ' + calEvent.title);
-        //   //alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-        //   //alert('View: ' + view.name);
-
-        //   // change the border color just for fun
-        //   $(this).css('border-color', 'red');
       };
 
       $('#volunteer-modal').on('show.bs.modal', function(event) {
@@ -110,12 +91,30 @@
                         </div>
 
                         <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Meal Description</span>
+                            <input id="mealDescription" name="mealDescription" type="text" class="form-control" placeholder="Meal Description">
+                        </div>
+
+                        <div class="input-group">
                             <textarea id="notes" name="notes" type="text" class="form-control" placeholder="Notes"></textarea>
                         </div>
 
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">Meal Description</span>
-                            <input id="mealDescription" name="mealDescription" type="text" class="form-control" placeholder="Meal Description">
+                            <div style="margin: 10px 15px 10px 60%;">
+                                <label class="checkbox-group"> Bringing Food
+                                    <input id="foodConfirmation" type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div style="margin: 10px 15px 10px 60%;">
+                                <label class="checkbox-group"> Bringing Utensils
+                                    <input id="foodConfirmation" type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
                         </div>
 
                         <div id="eventId" name="eventId" class="hidden"></div>
