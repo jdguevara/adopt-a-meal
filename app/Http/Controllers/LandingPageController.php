@@ -16,11 +16,7 @@ class LandingPageController extends Controller
      */
     public function index(Calendar $calendar)
     {
-        $events = $calendar->findAll();
-        $accepted = $calendar->findAllAccepted();
-        echo('<pre>');
-        print_r($accepted);
-        echo('</pre>');
+        $events = array_merge($calendar->findAll(), $calendar->findAllAccepted());
         return view('welcome', ['events' => $events]);
     }
 
