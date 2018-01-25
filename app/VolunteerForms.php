@@ -29,7 +29,7 @@ class VolunteerForms
             "email" => "test@test.com",
             "phone" => "9998887776",
             "notes" => "Test",
-            "date" => $dateTime->format('m/d/Y h:i')
+            "event_date_time" => $dateTime->format('m/d/Y h:i')
         );
         array_push($results, $result);
         $dateTime->add(new \DateInterval("P0Y1DT8H0M"));
@@ -37,7 +37,7 @@ class VolunteerForms
             "organization_name" => "Computer Science Dept",
             "email" => "test@csboisestate.com",
             "notes" => "TestTest",
-            "date" => $dateTime->format('m/d/Y h:i')
+            "event_date_time" => $dateTime->format('m/d/Y h:i')
         );
         array_push($results, $result);
         $dateTime->add(new \DateInterval("P0Y3DT6H0M"));
@@ -45,7 +45,7 @@ class VolunteerForms
             "organization_name" => "Test Organization",
             "email" => "test@idaho.gov",
             "notes" => "TestTestTest",
-            "date" => $dateTime->format('m/d/Y h:i')
+            "event_date_time" => $dateTime->format('m/d/Y h:i')
         );
         array_push($results, $result);
         $dateTime->add(new \DateInterval("P0Y3DT6H0M"));
@@ -53,7 +53,7 @@ class VolunteerForms
             "organization_name" => "Interfaith Sanctuary",
             "email" => "test@interfaith.com",
             "notes" => "TestTestTestTest",
-            "date" => $dateTime->format('m/d/Y h:i')
+            "event_date_time" => $dateTime->format('m/d/Y h:i')
         );
         array_push($results, $result);
         $dateTime->add(new \DateInterval("P0Y1M8DT6H0M"));
@@ -61,7 +61,7 @@ class VolunteerForms
             "organization_name" => "City Of Boise",
             "email" => "test@idaho.boise.gov",
             "notes" => "TestTestTestTestTest",
-            "date" => $dateTime->format('m/d/Y h:i')
+            "event_date_time" => $dateTime->format('m/d/Y h:i')
         );
         array_push($results, $result);
 
