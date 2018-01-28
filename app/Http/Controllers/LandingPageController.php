@@ -16,8 +16,12 @@ class LandingPageController extends Controller
      */
     public function index(Calendar $calendar)
     {
-        $events = array_merge($calendar->findAll(), $calendar->findAllAccepted());
-        return view('welcome', ['events' => $events]);
+       // $events = array_merge($calendar->findVolunteerEvents(), $calendar->findAllAccepted());
+
+        $volunteerEvents = $calendar->findVolunteerEvents();
+        $acceptedEvents = $calendar->findAllAccepted();
+
+        return view('welcome', ['volunteerEvents' => $volunteerEvents, 'acceptedEvents' => $acceptedEvents]);
     }
 
     /**

@@ -2,20 +2,35 @@
 
 @section('scripts')
     <script>
-      var events = {!! json_encode($events) !!};
-      console.log(events);
+      var volunteerEvents = {!! json_encode($volunteerEvents) !!};
 
-      var encodedEvents = events.map(e => {
+      var acceptedEvents = {!! json_encode($acceptedEvents) !!};
+      
+
+      var transformedVolunteerEvents = volunteerEvents.map(e => {
           return {
               "title": e.summary,
               "start": e.start.dateTime,
-              "end": e.end.dateTime
+              "end": e.end.dateTime,
+              "color": "#36b0bF"
           }
       });
+
+
+      var transformedAcceptedEvents = acceptedEvents.map(e => {
+          return {
+              "title": e.summary,
+              "start": e.start.dateTime,
+              "end": e.end.dateTime,
+              "color": "green"
+          }
+      });
+
+      var events = transformedVolunteerEvents.concat(transformedAcceptedEvents);
         
       $(document).ready(function() {
         $('#calendar').fullCalendar({
-          events: encodedEvents,
+          events: events,
           eventClick: function(calEvent, jsEvent, view) {
             if(calEvent.start <= Date.now())
                 return;
