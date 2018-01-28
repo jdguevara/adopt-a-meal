@@ -3,6 +3,8 @@ namespace App;
 
 use Google_Client;
 use Google_Service_Calendar;
+use DateTime;
+use DateInterval;
 
 define('APPLICATION_NAME', env('APP_NAME'));
 define('CREDENTIALS_PATH', storage_path('app/service_account_creds.json'));
@@ -33,7 +35,10 @@ class Calendar
         $this->acceptedCalendarId = DEV_CALENDAR_ACCEPTED_ID;
     }
 
-    function findAll() {
+    function findVolunteerEvents() {
+
+        $time = new DateTime();
+        $time->sub(new DateInterval('P1M'));
 
         // TODO: Need to figure out how to properly do dependency injection/singletons in laravel, this is work-in-progress
         if(!$this->calendarService) {
@@ -43,7 +48,8 @@ class Calendar
         $optParams = array(
             'maxResults' => 100,
             'orderBy' => 'startTime',
-            'singleEvents' => TRUE
+            'singleEvents' => TRUE,
+            'timeMin' => $time->format("Y-m-d\TH:i:sP")
         );
 
         $results = $this->calendarService->events->listEvents($this->calendarId, $optParams)->getItems();
