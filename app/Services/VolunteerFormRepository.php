@@ -1,21 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tyler
- * Date: 1/23/18
- * Time: 7:29 PM
- */
 
-namespace App\Http\Services;
+namespace App\Services;
 
-use App\VolunteerForm as Form;
+use App\Contracts\IVolunteerFormRepository;
+use App\VolunteerForms;
 
 class VolunteerFormRepository implements IVolunteerFormRepository
 {
-
     private $form;
 
-    public function __construct(Form $form)
+    public function __construct(VolunteerForms $form)
     {
         $this->form = $form;
     }
@@ -27,26 +21,39 @@ class VolunteerFormRepository implements IVolunteerFormRepository
 
     public function get($id)
     {
-        $this->form->findOrFail($id);
+        return $this->form->findOrFail($id);
     }
 
     public function create($input)
     {
-        // TODO: Implement create() method.
+        $this->form->fill([
+            'organization_name' => $input['organization_name'],
+            'phone' => $input['phone'],
+            'email' => $input['email'],
+            'meal_description' => $input['meal_description'],
+            'notes' => $input['notes'] ?? '',
+            'food_confirmation' => $input['food_confirmation'] ?? 0,
+            'tableware_confirmation' => $input['tableware_confirmation'] ?? 0,
+            'form_status' => 0,
+        ]);
+
+        $this->form->save();
     }
 
     public function update($input)
     {
-        // TODO: Implement update() method.
+        // TODO
     }
 
-    public function delete($input)
+    public function delete($id)
     {
-        // TODO: Implement delete() method.
+        $form = $this->form->find($id);
+        $form->delete();
     }
 
     public function find($id)
     {
-        // TODO: Implement find() method.
+        $form = $this->form->find($id);
+        return $form;
     }
 }

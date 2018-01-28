@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tyler
- * Date: 1/23/18
- * Time: 7:28 PM
- */
 
-namespace App\Http\Services;
+
+namespace App\Contracts;
 
 
 interface IVolunteerFormRepository

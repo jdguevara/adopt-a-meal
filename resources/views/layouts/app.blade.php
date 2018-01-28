@@ -60,11 +60,16 @@
                 </div>
             </div>
         </nav>
+        @include('flash::message')
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
+    <script>
+      $('div.alert').not('.alert-important').delay(1500).fadeOut(350);
+      $('#flash-overlay-modal').modal();
+    </script>
 </body>
 </html>

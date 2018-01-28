@@ -4,13 +4,13 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Services\IVolunteerFormRepository;
+use App\Http\Requests;
+use App\Contracts\IVolunteerFormRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class VolunteerFormController extends Controller
 {
-    private $formRepository;
+    protected $formRepository;
 
     public function __construct(IVolunteerFormRepository $formRepository)
     {
@@ -21,16 +21,14 @@ class VolunteerFormController extends Controller
     public function submit(Request $request)
     {
         $this->validate($request, [
-            'orgName' => 'required',
+            'organization_name' => 'required',
+            'phone' => 'required',
             'email' => 'required',
-            'phoneNumber' => 'required',
-            'mealDescription' => 'required',
-            'bringingFood' => 'required',
-            'bringingUtensils' => 'required',
+            'meal_description' => 'required',
         ]);
 
         $this->formRepository->create($request->all());
-
+        flash('Volunteer form submitted successfully', 'success');
         return redirect('/');
     }
 }
