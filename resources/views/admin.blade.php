@@ -80,13 +80,13 @@
                 var organization = button.data('organization')
                 var email = button.data('email')
                 var notes = button.data('notes')
-                var event_date_time = button.data('date')
+                var date = button.data('date')
 
                 var modal = $(this)
                 modal.find('.modal-title').text(organization)
                 modal.find('.email').text("Email: " + email)
                 modal.find('.notes').text("Notes: " + notes)
-                modal.find('.date').text("Date: "+ event_date_time)
+                modal.find('.date').text("Date: "+ date)
             })
 
         });
