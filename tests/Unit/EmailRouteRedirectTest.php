@@ -14,7 +14,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class EmailRouteRedirectTest extends TestCase
 {
 
-    public function VolunteerFormRedirectTest()
+    public function test_volunteer_form_redirect()
     {
         $response = $this->get('/testEmail');
         $response->assertStatus(301);

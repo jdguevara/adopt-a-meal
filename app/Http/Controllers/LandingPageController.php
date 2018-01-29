@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Calendar;
 use App\Mail\VolunteerFormEmail;
 use App\Mail\VolunteerRequestEmail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class LandingPageController extends Controller
