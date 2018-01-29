@@ -74,46 +74,46 @@
                 themeSystem: 'bootstrap3'
             });
 
-
-            /**
-             * Submit the volunteer's info for reviewing
-             */
-            function submitVolunteerForm() {
-
-                var $volunteerForm = $('#volunteer-form');
-
-                // if the form isn't valid, "click" the submit button which will force html5 validation
-                // else, send it!
-                if (!$volunteerForm[0].checkValidity() || !validateVolunteerForm()) {
-                    $volunteerForm.find(':submit').click();
-                } else {
-
-                    var bringingFood = !!$("#food:checked").length;
-                    $("#food").val(bringingFood);
-
-                    var bringingUtensils = !!$("#utensils:checked").length;
-                    $("#utensils").val(bringingUtensils);
-
-                    $("#inputs").hide();
-                    $("#loading-info").show();
-                    $volunteerForm.submit();
-
-                }
-            }
-
-
-            /**
-             * Everytime the bringing food confirmation is clicked, make sure that the
-             * submit button is appropriately disabled
-             * @returns {boolean}
-             */
-            function validateVolunteerForm() {
-                var bringingFood = !!$("#food:checked").length;
-                $("#submit-form").prop('disabled', !bringingFood);
-                return bringingFood;
-            }
-
         });
+
+        
+        /**
+         * Submit the volunteer's info for reviewing
+         */
+        function submitVolunteerForm() {
+
+            var $volunteerForm = $('#volunteer-form');
+
+            // if the form isn't valid, "click" the submit button which will force html5 validation
+            // else, send it!
+            if (!$volunteerForm[0].checkValidity() || !validateVolunteerForm()) {
+                $volunteerForm.find(':submit').click();
+            } else {
+
+                var bringingFood = !!$("#food:checked").length;
+                $("#food").val(bringingFood);
+
+                var bringingUtensils = !!$("#utensils:checked").length;
+                $("#utensils").val(bringingUtensils);
+
+                $("#inputs").hide();
+                $("#loading-info").show();
+                $volunteerForm.submit();
+
+            }
+        }
+
+
+        /**
+         * Everytime the bringing food confirmation is clicked, make sure that the
+         * submit button is appropriately disabled
+         * @returns {boolean}
+         */
+        function validateVolunteerForm() {
+            var bringingFood = !!$("#food:checked").length;
+            $("#submit-form").prop('disabled', !bringingFood);
+            return bringingFood;
+        }
 
     </script>
 
