@@ -225,7 +225,7 @@
                                 </div>
 
                                 <!-- rendered from event id stored in calendar -->
-                                <input id="event-id" name="eventId" type="text" hidden></input>
+                                <input id="event-id" name="open_event_id" type="text" hidden></input>
                             </div>
 
                             <!-- loading spinner -->
