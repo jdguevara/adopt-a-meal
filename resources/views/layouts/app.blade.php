@@ -61,6 +61,12 @@
             </div>
         </nav>
         <div class="container">
+            @if(isset($errors) && $errors->any())
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {!! implode('<br />', $errors->all()) !!}
+                </div>
+            @endif
             @include('flash::message')
         </div>
         @yield('content')
