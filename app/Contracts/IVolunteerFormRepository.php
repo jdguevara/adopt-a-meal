@@ -10,6 +10,8 @@ interface IVolunteerFormRepository
 
     public function get($id);
 
+    public function getAllNewForms();
+
     public function create($input);
 
     public function update($form, $input);

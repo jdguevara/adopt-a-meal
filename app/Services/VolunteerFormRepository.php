@@ -24,6 +24,11 @@ class VolunteerFormRepository implements IVolunteerFormRepository
         return $this->form->find($id);
     }
 
+    public function getAllNewForms()
+    {
+        return $this->form->where('status', '=', '0');
+    }
+
     public function create($input)
     {
         $this->form->fill([
