@@ -12,9 +12,7 @@ interface IVolunteerFormRepository
 
     public function create($input);
 
-    public function update($input);
+    public function update($form, $input);
 
     public function delete($input);
-
-    public function find($id);
 }

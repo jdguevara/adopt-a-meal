@@ -25,6 +25,7 @@ class VolunteerFormController extends Controller
             'phone' => 'required',
             'email' => 'required',
             'meal_description' => 'required',
+            'notes' => 'required'
         ]);
 
         $this->formRepository->create($request->all());

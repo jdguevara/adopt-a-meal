@@ -21,7 +21,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
 
     public function get($id)
     {
-        return $this->form->findOrFail($id);
+        return $this->form->find($id);
     }
 
     public function create($input)
@@ -32,28 +32,38 @@ class VolunteerFormRepository implements IVolunteerFormRepository
             'email' => $input['email'],
             'meal_description' => $input['meal_description'],
             'notes' => $input['notes'] ?? '',
-            'food_confirmation' => $input['food_confirmation'] ?? 0,
-            'tableware_confirmation' => $input['tableware_confirmation'] ?? 0,
+            'food_confirmation' => $input['food_confirmation'] ?? false,
+            'tableware_confirmation' => $input['tableware_confirmation'] ?? false,
+            'open_event_id' => $input['open_event_id'],
+            'form_status' => 0,
+        ]);
+
+        $this->form->save();
+
+        return $this->form->id;
+    }
+
+    public function update($form, $input)
+    {
+        $form = $this->form->find();
+        $form->fill([
+            'organization_name' => $input['organization_name'],
+            'phone' => $input['phone'],
+            'email' => $input['email'],
+            'meal_description' => $input['meal_description'],
+            'notes' => $input['notes'] ?? '',
+            'food_confirmation' => $input['food_confirmation'] ?? false,
+            'tableware_confirmation' => $input['tableware_confirmation'] ?? false,
+            'open_event_id' => $input['open_event_id'],
             'form_status' => 0,
         ]);
 
         $this->form->save();
     }
 
-    public function update($input)
-    {
-        // TODO
-    }
-
     public function delete($id)
     {
         $form = $this->form->find($id);
         $form->delete();
-    }
-
-    public function find($id)
-    {
-        $form = $this->form->find($id);
-        return $form;
     }
 }
