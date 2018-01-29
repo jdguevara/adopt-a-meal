@@ -29,7 +29,7 @@ class VolunteerFormController extends Controller
         ]);
 
         $this->formRepository->create($request->all());
-        flash('Volunteer form submitted successfully', 'success');
+        flash('Volunteer form submitted successfully')->success();
         return redirect('/');
     }
 }
