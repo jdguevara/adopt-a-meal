@@ -180,7 +180,7 @@
 
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Organization Name</span>
-                                    <input id="organizationName" name="organizationName" type="text"
+                                    <input id="organization_name" name="organization_name" type="text"
                                            class="form-control" placeholder="Organization Name" required>
                                 </div>
 
@@ -192,13 +192,13 @@
 
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Phone Number</span>
-                                    <input id="phoneNumber" name="phoneNumber" type="text" class="form-control"
+                                    <input id="phone" name="phone" type="text" class="form-control"
                                            placeholder="Phone Number" required>
                                 </div>
 
                                 <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Meal Description</span>
-                                    <input id="mealDescription" name="mealDescription" type="text" class="form-control"
+                                    <input id="meal_description" name="meal_description" type="text" class="form-control"
                                            placeholder="Meal Description">
                                 </div>
 
@@ -212,12 +212,12 @@
                                     <div class="checkbox-group">
                                         <label class="checkbox" style="margin-right: 15px;"> Food <span
                                                     class="text-light"> (required) </span>
-                                            <input id="food" name="bringingFood" type="checkbox"
+                                            <input id="food" name="bringing_food" type="checkbox"
                                                    onClick="validateVolunteerForm();">
                                             <span class="checkmark"></span>
                                         </label>
                                         <label class="checkbox"> Utensils
-                                            <input id="utensils" name="bringingUtensils" type="checkbox"
+                                            <input id="utensils" name="bringing_utensils" type="checkbox"
                                                    onClick="validateVolunteerForm();">
                                             <span class="checkmark"></span>
                                         </label>
