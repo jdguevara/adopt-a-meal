@@ -3,52 +3,69 @@
 @section('scripts')
     <script>
 
-        
-        var events = {!! json_encode($events) !!};
-        var encodedEvents = events.map(e => {
+        var volunteerEvents = {!! json_encode($volunteerEvents) !!};
+        var acceptedEvents = {!! json_encode($acceptedEvents) !!};
+
+
+        var transformedVolunteerEvents = volunteerEvents.map(e => {
             return {
+
                 "id": e.id,
                 "title": e.summary,
                 "start": e.start.dateTime,
-                "end": e.end.dateTime
+                "end": e.end.dateTime,
+                "color": "#36b0bF"
             }
         });
 
 
+        var transformedAcceptedEvents = acceptedEvents.map(e => {
+            return {
 
-        /**
-         * Load up a calendar event in the modal view so that a user can fill out their
-         * info and submit it for review.
-         * @param calEvent - the event data from Google Calendar API
-         */
-        var eventClicked = function (calEvent) {
-
-            var today = moment().startOf('day');
-            var eventDate = moment(calEvent.start);
-
-            // think of this operation like eventDate - today, negative is past, positive is future
-            if(eventDate.diff(today) < 0) {
-                $("#past-event-modal").modal();
+                "id": e.id,
+                "title": e.summary,
+                "start": e.start.dateTime,
+                "end": e.end.dateTime,
+                "color": "green"
             }
-            else {
-                // clear form fields from previous events
-                $("#volunteer-form").trigger("reset");
+        });
 
-                var eventTitle = (calEvent.title && calEvent.title.length > 0) ?
-                    calEvent.title : "Volunteer For Event";
 
-                var modal = $("#volunteer-modal").modal();
-                modal.find('#title').text(eventTitle);
-                modal.find('#event-id').val(calEvent.id);
-            }
-        };
+        var events = transformedVolunteerEvents.concat(transformedAcceptedEvents);
 
-        /**
-         * Load the calendar with events from server
-         */
+
         $(document).ready(function () {
+
+            /**
+             * Load up a calendar event in the modal view so that a user can fill out their
+             * info and submit it for review.
+             * @param calEvent - the event data from Google Calendar API
+             */
+            var eventClicked = function (calEvent) {
+
+                var today = moment().startOf('day');
+                var eventDate = moment(calEvent.start);
+
+                // think of this operation like eventDate - today, negative is past, positive is future
+                if (eventDate.diff(today) < 0) {
+                    $("#past-event-modal").modal();
+                }
+                else {
+                    // clear form fields from previous events
+                    $("#volunteer-form").trigger("reset");
+
+                    var eventTitle = (calEvent.title && calEvent.title.length > 0) ?
+                        calEvent.title : "Volunteer For Event";
+
+                    var modal = $("#volunteer-modal").modal();
+                    modal.find('#title').text(eventTitle);
+                    modal.find('#event-id').val(calEvent.id);
+                }
+            };
+
+
             $('#calendar').fullCalendar({
-                events: encodedEvents,
+                events: events,
                 eventClick: eventClicked,
                 showNonCurrentDates: false,
                 contentHeight: "auto",
@@ -56,48 +73,47 @@
                 aspectRatio: 1.5,
                 themeSystem: 'bootstrap3'
             });
-        });
 
 
+            /**
+             * Submit the volunteer's info for reviewing
+             */
+            function submitVolunteerForm() {
 
-        /**
-         * Submit the volunteer's info for reviewing
-         */
-        function submitVolunteerForm() {
+                var $volunteerForm = $('#volunteer-form');
 
-            var $volunteerForm = $('#volunteer-form');
+                // if the form isn't valid, "click" the submit button which will force html5 validation
+                // else, send it!
+                if (!$volunteerForm[0].checkValidity() || !validateVolunteerForm()) {
+                    $volunteerForm.find(':submit').click();
+                } else {
 
-            // if the form isn't valid, "click" the submit button which will force html5 validation
-            // else, send it!
-            if (!$volunteerForm[0].checkValidity() || !validateVolunteerForm()) {
-                $volunteerForm.find(':submit').click();
-            } else {
+                    var bringingFood = !!$("#food:checked").length;
+                    $("#food").val(bringingFood);
 
-                var bringingFood = !!$("#food:checked").length;
-                $("#food").val(bringingFood);
+                    var bringingUtensils = !!$("#utensils:checked").length;
+                    $("#utensils").val(bringingUtensils);
 
-                var bringingUtensils = !!$("#utensils:checked").length;
-                $("#utensils").val(bringingUtensils);
+                    $("#inputs").hide();
+                    $("#loading-info").show();
+                    $volunteerForm.submit();
 
-                $("#inputs").hide();
-                $("#loading-info").show();
-                $volunteerForm.submit();
-
+                }
             }
-        }
 
 
+            /**
+             * Everytime the bringing food confirmation is clicked, make sure that the
+             * submit button is appropriately disabled
+             * @returns {boolean}
+             */
+            function validateVolunteerForm() {
+                var bringingFood = !!$("#food:checked").length;
+                $("#submit-form").prop('disabled', !bringingFood);
+                return bringingFood;
+            }
 
-        /**
-         * Everytime the bringing food confirmation is clicked, make sure that the
-         * submit button is appropriately disabled
-         * @returns {boolean}
-         */
-        function validateVolunteerForm() {
-            var bringingFood = !!$("#food:checked").length;
-            $("#submit-form").prop('disabled', !bringingFood);
-            return bringingFood;
-        }
+        });
 
     </script>
 
@@ -130,7 +146,8 @@
 
                     <!-- list of text field inputs and check boxes  -->
                     <div class="modal-body">
-                        Sorry, but this event has already happened. Please check some of the current events to adopt a meal!
+                        Sorry, but this event has already happened. Please check some of the current events to adopt a
+                        meal!
                     </div>
 
                     <div class="modal-footer"></div>
@@ -138,7 +155,7 @@
 
             </div>
 
-            </div>
+        </div>
 
 
         <!-- Volunteer form modal that is displayed when an event is clicked -->

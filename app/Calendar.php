@@ -3,18 +3,21 @@ namespace App;
 
 use Google_Client;
 use Google_Service_Calendar;
+use DateTime;
+use DateInterval;
 
 define('APPLICATION_NAME', env('APP_NAME'));
 define('CREDENTIALS_PATH', storage_path('app/service_account_creds.json'));
 define('SCOPES', implode(' ', array(Google_Service_Calendar::CALENDAR)));
 define('DEV_CALENDAR_ID', env('DEV_CALENDAR_ID'));
+define('DEV_CALENDAR_ACCEPTED_ID', env('DEV_CALENDAR_ACCEPTED_ID'));
 
 class Calendar
 {
 
     protected $calendarService;
     protected $calendarId;
-
+    protected $acceptedCalendarId;
     /**
      * Authorizes an API client and adds a calendar object as a singleton.
      */
@@ -29,11 +32,33 @@ class Calendar
         $cal = new Google_Service_Calendar($client);
         $this->calendarService = $cal;
         $this->calendarId = DEV_CALENDAR_ID;
+        $this->acceptedCalendarId = DEV_CALENDAR_ACCEPTED_ID;
     }
 
-    function findAll() {
+    function findVolunteerEvents() {
+
+        $time = new DateTime();
+        $time->sub(new DateInterval('P1M'));
 
         // TODO: Need to figure out how to properly do dependency injection/singletons in laravel, this is work-in-progress
+        if(!$this->calendarService) {
+            $this->setupCalendar();
+        }
+
+        $optParams = array(
+            'maxResults' => 100,
+            'orderBy' => 'startTime',
+            'singleEvents' => TRUE,
+            'timeMin' => $time->format("Y-m-d\TH:i:sP")
+        );
+
+        $results = $this->calendarService->events->listEvents($this->calendarId, $optParams)->getItems();
+
+        return $results;
+
+    }
+    function findAllAccepted(){
+
         if(!$this->calendarService) {
             $this->setupCalendar();
         }
@@ -44,9 +69,9 @@ class Calendar
             'singleEvents' => TRUE
         );
 
-        $results = $this->calendarService->events->listEvents($this->calendarId, $optParams)->getItems();
-        return $results;
+        $results = $this->calendarService->events->listEvents($this->acceptedCalendarId, $optParams)->getItems();
 
+        return $results;
     }
 
 }
