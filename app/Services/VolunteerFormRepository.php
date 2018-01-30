@@ -38,7 +38,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
             'meal_description' => $input['meal_description'],
             'notes' => $input['notes'] ?? '',
             'food_confirmation' => $input['bringing_food'] ?? false,
-            'tableware_confirmation' => $input['bringing_utensils'] ?? false,
+            'tableware_confirmation' => $input['bringing_tableware'] ?? false,
             'open_event_id' => $input['open_event_id'],
             'form_status' => 0,
         ]);

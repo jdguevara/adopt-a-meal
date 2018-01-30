@@ -3,3 +3,15 @@
 
 // Variables
 @import "variables";
+@import "checkbox";
+@import "volunteer-form";
+@import "loading-spinner";
+
+textarea {
+    border-radius: 4px !important;
+    resize: none;
+}
+
+.text-light {
+    color: #aaa;
+}
