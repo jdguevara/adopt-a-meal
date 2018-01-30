@@ -90,7 +90,7 @@
                 $volunteerForm.find(':submit').click();
             } else {
 
-                var bringingFood = !!$("#food:checked").length;
+                var bringingFood = $("#food:checked").length;
                 $("#food").val(bringingFood);
 
                 var bringingUtensils = !!$("#utensils:checked").length;
