@@ -60,11 +60,24 @@
                 </div>
             </div>
         </nav>
+        <div class="container">
+            @if(isset($errors) && $errors->any())
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {!! implode('<br />', $errors->all()) !!}
+                </div>
+            @endif
+            @include('flash::message')
+        </div>
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
+    <script>
+      $('div.alert').not('.alert-important').delay(1500).fadeOut(350);
+      $('#flash-overlay-modal').modal();
+    </script>
 </body>
 </html>
