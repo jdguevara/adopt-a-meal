@@ -93,8 +93,8 @@
                 var bringingFood = $("#food:checked").length;
                 $("#food").val(bringingFood);
 
-                var bringingUtensils = !!$("#utensils:checked").length;
-                $("#utensils").val(bringingUtensils);
+                var bringingTableware = $("#tableware:checked").length;
+                $("#tableware").val(bringingTableware);
 
                 $("#inputs").hide();
                 $("#loading-info").show();
@@ -216,8 +216,8 @@
                                                    onClick="validateVolunteerForm();">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <label class="checkbox"> Utensils
-                                            <input id="utensils" name="bringing_utensils" type="checkbox"
+                                        <label class="checkbox"> Tableware
+                                            <input id="tableware" name="bringing_tableware" type="checkbox"
                                                    onClick="validateVolunteerForm();">
                                             <span class="checkmark"></span>
                                         </label>
