@@ -29,6 +29,6 @@ Wigington       | Tyler           | tywig                | Scrum Master
 Sprint | Estimated Velocity | Actual Velocity
 ------ | ------------------ | ---------------
 1      | 34                 | 34
-2      | 42                 | TBD
+2      | 42                 | 29
 3      | TBD                | TBD
 4      | TBD                | TBD
