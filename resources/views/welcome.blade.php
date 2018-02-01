@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('scripts')
+
+
     <script>
 
         var volunteerEvents = {!! json_encode($volunteerEvents) !!};
@@ -26,7 +28,8 @@
                 "title": e.summary,
                 "start": e.start.dateTime,
                 "end": e.end.dateTime,
-                "color": "green"
+                "color": "green",
+                "description": e.description
             }
         });
 
@@ -65,8 +68,33 @@
 
 
             $('#calendar').fullCalendar({
+
+                // List of events being showed in the calendar
                 events: events,
+
+                // Attaching a tooltip for each event showing the description when event is hover with mouse.
+                eventRender: function(event, element) {
+                    if(event.description == undefined)
+                        return;
+                    // Modifying the DOM containing the event to allow "tooltip"
+                    // Showing the description of an event when mouse hover it.
+                   element.attr("data-toggle","tooltip");
+                   element.attr("title", "Description: " + event.description );
+
+
+                   // Initialization of tooltip()
+                    $(function () {
+                        $('[data-toggle="tooltip"]').tooltip()
+                    })
+
+                    //Executing tooltip for each event.
+                    element.tooltip();
+
+                },
+                
+                // Action when an event is clicked
                 eventClick: eventClicked,
+
                 showNonCurrentDates: false,
                 contentHeight: "auto",
                 height: 'parent' + 80,
@@ -76,7 +104,7 @@
 
         });
 
-        
+
         /**
          * Submit the volunteer's info for reviewing
          */
@@ -116,6 +144,7 @@
         }
 
     </script>
+
 
 @endsection
 
