@@ -11,7 +11,6 @@
 
         var transformedVolunteerEvents = volunteerEvents.map(e => {
             return {
-
                 "id": e.id,
                 "title": e.summary,
                 "start": e.start.dateTime,
@@ -23,7 +22,6 @@
 
         var transformedAcceptedEvents = acceptedEvents.map(e => {
             return {
-
                 "id": e.id,
                 "title": e.summary,
                 "start": e.start.dateTime,
@@ -32,11 +30,8 @@
                 "description": e.description
             }
         });
-
-
         var events = transformedVolunteerEvents.concat(transformedAcceptedEvents);
-
-
+        
         $(document).ready(function () {
 
             /**
@@ -101,9 +96,7 @@
                 aspectRatio: 1.5,
                 themeSystem: 'bootstrap3'
             });
-
         });
-
 
         /**
          * Submit the volunteer's info for reviewing
