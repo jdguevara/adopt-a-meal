@@ -7,6 +7,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Contracts\IVolunteerFormRepository;
 use Illuminate\Http\Request;
+use App\Mail\VolunteerFormEmail;
+use App\Mail\VolunteerRequestEmail;
+use Illuminate\Support\Facades\Mail;
 
 class VolunteerFormController extends Controller
 {
@@ -28,9 +31,23 @@ class VolunteerFormController extends Controller
             'open_event_id' => 'required',
             'bringing_food' => 'required'
         ]);
-
+         
+        $this->sendEmail($request->all());
         $this->formRepository->create($request->all());
         flash('Volunteer form submitted successfully')->success();
+        return redirect('/');
+    }
+    
+    public function sendEmail($form)
+    {
+          // To the Volunteer
+          Mail::to($form["email"])
+          ->send(new VolunteerFormEmail());
+
+          // To the Interfaith
+          Mail::to($form["email"])
+         ->send(new VolunteerRequestEmail($form));
+
         return redirect('/');
     }
 }

@@ -23,18 +23,9 @@ class LandingPageController extends Controller
         $acceptedEvents = $calendar->findAllAccepted();
 
         return view('welcome', ['volunteerEvents' => $volunteerEvents, 'acceptedEvents' => $acceptedEvents]);
+
     }
 
     /**
      */
-    public function testEmail()
-    {
-        Mail::to('mergeconflictscs471-group@u.boisestate.edu')
-        ->send(new VolunteerFormEmail());
-
-        Mail::to('mergeconflictscs471-group@u.boisestate.edu')
-        ->send(new VolunteerRequestEmail());
-
-        return redirect('/');
-    }
 }
