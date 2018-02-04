@@ -54,9 +54,9 @@
                                     <h6>Date: {{$form->event_date_time}}</h6>
                                 </div>
                                 <div class="btn-toolbar col-sm-6">
-                                    <button type="button" class="btn btn-danger pull-right " :data-organization="{{json_encode($form['organization_name'],true)}}" :data-date="{{json_encode($form['event_date_time'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['meal_description'],true)}}">Decline</button>
-                                    <button type="button" class="btn btn-warning pull-right" data-toggle="modal" :data-organization="{{json_encode($form['organization_name'],true)}}" :data-date="{{json_encode($form['event_date_time'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['meal_description'],true)}}" data-target="#myModal">Details</button>
-                                    <button type="button" class="btn btn-info pull-right" :data-organization="{{json_encode($form['organization_name'],true)}}" :data-date="{{json_encode($form['event_date_time'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['meal_description'],true)}}">Accept</button>
+                                    <button type="button" class="btn btn-danger pull-right "  >Decline</button>
+                                    <button type="button" class="btn btn-warning pull-right" data-toggle="modal" :data-organization="{{json_encode($form['organization_name'],true)}}" :data-organization="{{json_encode($form['organization_name'],true)}}" :data-date="{{json_encode($form['event_date_time'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['meal_description'],true)}}" data-target="#myModal">Details</button>
+                                    <button type="button" class="btn btn-info pull-right" >Accept</button>
 
                                 </div>
                             </div>
