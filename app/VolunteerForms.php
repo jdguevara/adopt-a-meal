@@ -4,7 +4,7 @@ namespace App;
 use DateTime;
 use Illuminate\Database\Eloquent\Model;
 
-class VolunteerForm extends Model
+class VolunteerForms extends Model
 {
     protected $table = 'volunteer_forms';
     /**

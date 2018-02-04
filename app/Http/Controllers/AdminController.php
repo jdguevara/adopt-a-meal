@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\VolunteerForm;
+use App\Services\VolunteerFormRepository;
+use App\VolunteerForms;
 use App\Calendar;
+
 
 use Illuminate\Http\Request;
 
@@ -23,9 +25,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Calendar $volunteerForms)
+    public function index(VolunteerFormRepository  $volunteerForms)
     {
-        $forms = $volunteerForms->findVolunteerEvents();
+        $forms = $volunteerForms->getAllNewForms();
       //  dd($forms);
         return view('admin', ['forms' => $forms]);
     }
