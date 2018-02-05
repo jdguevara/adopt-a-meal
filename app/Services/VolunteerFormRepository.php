@@ -3,13 +3,13 @@
 namespace App\Services;
 
 use App\Contracts\IVolunteerFormRepository;
-use App\VolunteerForms;
+use App\VolunteerForm;
 
 class VolunteerFormRepository implements IVolunteerFormRepository
 {
     private $form;
 
-    public function __construct(VolunteerForms $form)
+    public function __construct(VolunteerForm $form)
     {
         $this->form = $form;
     }
