@@ -40,6 +40,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
             'food_confirmation' => $input['bringing_food'] ?? false,
             'tableware_confirmation' => $input['bringing_tableware'] ?? false,
             'open_event_id' => $input['open_event_id'],
+            'event_date_time' => $input['open_event_date_time'],
             'form_status' => 0,
         ]);
 
@@ -60,6 +61,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
             'food_confirmation' => $input['food_confirmation'] ?? false,
             'tableware_confirmation' => $input['tableware_confirmation'] ?? false,
             'open_event_id' => $input['open_event_id'],
+            'event_date_time' => $input['open_event_date_time'],
             'form_status' => 0,
         ]);
 
