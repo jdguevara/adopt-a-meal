@@ -62,13 +62,13 @@
                                 <div class="btn-toolbar col-sm-4">
                                     {{--<button type="button" class="btn btn-danger pull-right "  >Decline</button>--}}
                                     <button type="button" class="btn btn-warning pull-right" data-toggle="modal"
-                                            :data-mealdescription="{{json_encode($form['meal_description'],true)}}"
-                                            :data-organization="{{json_encode($form['organization_name'],true)}}"
-                                            :data-date="{{json_encode($form['event_date_time'],true)}}"
-                                            :data-email="{{json_encode($form['email'],true)}}"
-                                            :data-notes="{{json_encode($form['notes'],true)}}"
-                                            :data-tablewareconfirmation="{{json_encode($form['tableware_confirmation'],true)}}"
-                                            :data-phone="{{json_encode($form['phone'],true)}}"
+                                            data-mealdescription="{{ $form['meal_description'] }}"
+                                            data-organization="{{ $form['organization_name'] }}"
+                                            data-date="{{ $form['event_date_time'] }}"
+                                            data-email="{{ $form['email'] }}"
+                                            data-notes="{{ $form['notes'] }}"
+                                            data-tablewareconfirmation="{{ $form['tableware_confirmation'] }}"
+                                            data-phone="{{ $form['phone'] }}"
                                             data-target="#myModal">Details</button>
                                     {{--<button type="button" class="btn btn-info pull-right" >Accept</button>--}}
 
@@ -89,19 +89,22 @@
     <script>
         $(document).ready(function(){
             $('#myModal').on('show.bs.modal',function(event) {
-                var button = $(event.relatedTarget)
-                var mealDescription = button.data('mealdescription')
-                var organization = button.data('organization')
-                var email = button.data('email')
-                var notes = button.data('notes')
-                var phone = button.data('phone')
-                var date = button.data('date')
+                console.log(event.relatedTarget);
+                var button = $(event.relatedTarget);
+                var notes = button.data('notes');
+                console.log(button);
+                console.log(notes);
+                
+                var mealDescription = button.data('mealdescription');
+                var organization = button.data('organization');
+                var email = button.data('email');
+                var notes = button.data('notes');
+                var phone = button.data('phone');
+                var date = button.data('date');
 
-                var tablewareConfirmation = button.data('tablewareconfirmation')
-                console.log(tablewareConfirmation)
+                var tablewareConfirmation = button.data('tablewareconfirmation');
+                console.log('test tableware:', tablewareConfirmation);
                 var bringtableware = "They will provide the tableware"
-
-
 
                 var modal = $(this)
                 modal.find('.organization').text(organization)
@@ -116,7 +119,6 @@
                     modal.find('.notes').text("Notes: "+ notes)
                 if(tablewareConfirmation == '1')
                     modal.find('.tablewareconfirmation').text("Other Details: They are planning to provide tableware")
-
             })
 
         });
