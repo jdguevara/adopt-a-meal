@@ -58,6 +58,7 @@
                     var modal = $("#volunteer-modal").modal();
                     modal.find('#title').text(eventTitle);
                     modal.find('#event-id').val(calEvent.id);
+                    modal.find('#event-time').val(calEvent.start);
                 }
             };
 
@@ -248,6 +249,7 @@
 
                                 <!-- rendered from event id stored in calendar -->
                                 <input id="event-id" name="open_event_id" type="text" hidden></input>
+                                <input id="event-time" name="open_event_date_time" type="text" hidden></input>
                             </div>
 
                             <!-- loading spinner -->

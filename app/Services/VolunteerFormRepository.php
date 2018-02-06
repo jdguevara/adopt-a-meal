@@ -3,13 +3,14 @@
 namespace App\Services;
 
 use App\Contracts\IVolunteerFormRepository;
-use App\VolunteerForms;
+use App\VolunteerForm;
+use DateTime;
 
 class VolunteerFormRepository implements IVolunteerFormRepository
 {
     private $form;
 
-    public function __construct(VolunteerForms $form)
+    public function __construct(VolunteerForm $form)
     {
         $this->form = $form;
     }
@@ -26,7 +27,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
 
     public function getAllNewForms()
     {
-        return $this->form->where('status', '=', '0');
+        return $this->form->where('form_status', '=', 0)->get();
     }
 
     public function create($input)
@@ -40,6 +41,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
             'food_confirmation' => $input['bringing_food'] ?? false,
             'tableware_confirmation' => $input['bringing_tableware'] ?? false,
             'open_event_id' => $input['open_event_id'],
+            'event_date_time' => new DateTime($input['open_event_date_time']),
             'form_status' => 0,
         ]);
 
@@ -60,6 +62,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
             'food_confirmation' => $input['food_confirmation'] ?? false,
             'tableware_confirmation' => $input['tableware_confirmation'] ?? false,
             'open_event_id' => $input['open_event_id'],
+            'event_date_time' => new DateTime($input['open_event_date_time']),
             'form_status' => 0,
         ]);
 
