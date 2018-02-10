@@ -42,7 +42,7 @@ class VolunteerFormController extends Controller
     {
           // To the Volunteer
           Mail::to($form["email"])
-          ->send(new VolunteerFormEmail());
+          ->send(new VolunteerFormEmail($form));
 
           // To the Interfaith
           Mail::to($form["email"])

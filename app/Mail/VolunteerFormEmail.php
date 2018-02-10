@@ -15,8 +15,9 @@ class VolunteerFormEmail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($form)
     {
+        $this->form = $form;
     }
 
     /**
@@ -26,6 +27,6 @@ class VolunteerFormEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.volunteerformemail');
+        return $this->view('emails.volunteerformemail', ['form' => $this->form]);
     }
 }
