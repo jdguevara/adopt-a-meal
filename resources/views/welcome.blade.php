@@ -59,6 +59,7 @@
                     modal.find('#title').text(eventTitle);
                     modal.find('#event-id').val(calEvent.id);
                     modal.find('#event-time').val(calEvent.start);
+                    modal.find('#event-date').val(calEvent.start.format('MMMM Do YYYY, h:mma'));
                 }
             };
 
@@ -90,7 +91,6 @@
                 
                 // Action when an event is clicked
                 eventClick: eventClicked,
-
                 showNonCurrentDates: false,
                 contentHeight: "auto",
                 height: 'parent' + 80,
@@ -108,7 +108,7 @@
 
             // if the form isn't valid, "click" the submit button which will force html5 validation
             // else, send it!
-            if (!$volunteerForm[0].checkValidity() || !validateVolunteerForm()) {
+            if (!$volunteerForm[0].checkValidity()) {
                 $volunteerForm.find(':submit').click();
             } else {
 
@@ -124,19 +124,6 @@
 
             }
         }
-
-
-        /**
-         * Everytime the bringing food confirmation is clicked, make sure that the
-         * submit button is appropriately disabled
-         * @returns {boolean}
-         */
-        function validateVolunteerForm() {
-            var bringingFood = !!$("#food:checked").length;
-            $("#submit-form").prop('disabled', !bringingFood);
-            return bringingFood;
-        }
-
     </script>
 
 
@@ -202,6 +189,11 @@
                             <div id="inputs" class="volunteer-inputs">
 
                                 <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1">Event Date</span>
+                                    <input id="event-date" name="event_date" type="text"  
+                                           class="form-control" disabled>
+                                </div>
+                                <div class="input-group">
                                     <span class="input-group-addon" id="basic-addon1">Organization Name</span>
                                     <input id="organization_name" name="organization_name" type="text"
                                            class="form-control" placeholder="Organization Name" required>
@@ -231,17 +223,16 @@
                                 </div>
 
                                 <div class="input-group">
-                                    <span>I will provide: </span>
+                                    <span>
+                                        <strong>
+                                            By volunteering for this meal I acknowledge that I am responsible
+                                            for bringing 200+ servings to this event.
+                                        </strong>
+                                        Meals should be deliverd by 5:00PM
+                                    </span>
                                     <div class="checkbox-group">
-                                        <label class="checkbox" style="margin-right: 15px;"> Food <span
-                                                    class="text-light"> (required) </span>
-                                            <input id="food" name="bringing_food" type="checkbox"
-                                                   onClick="validateVolunteerForm();">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <label class="checkbox"> Tableware
-                                            <input id="tableware" name="bringing_tableware" type="checkbox"
-                                                   onClick="validateVolunteerForm();">
+                                        <label class="checkbox"> I can provide paper goods
+                                            <input id="tableware" name="bringing_tableware" type="checkbox">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -267,7 +258,7 @@
                         <div class="modal-footer">
                             <div class="input-group pull-right">
                                 <button id="submit-form" type="button" class="btn btn-success"
-                                        onClick="submitVolunteerForm();" disabled>Volunteer
+                                        onClick="submitVolunteerForm();">Volunteer
                                 </button>
                                 <button id="cancel-form" type="button" class="btn btn-default" data-dismiss="modal">
                                     Cancel
