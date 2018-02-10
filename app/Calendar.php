@@ -67,7 +67,8 @@ class Calendar
         $optParams = array(
             'maxResults' => 100,
             'orderBy' => 'startTime',
-            'singleEvents' => TRUE
+            'singleEvents' => TRUE,
+            'timeMax' => Carbon::now()->addMonths(3)->toIso8601String()
         );
 
         $results = $this->calendarService->events->listEvents($this->acceptedCalendarId, $optParams)->getItems();
