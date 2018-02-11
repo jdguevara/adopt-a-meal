@@ -25,9 +25,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(VolunteerFormRepository  $volunteerForms)
+    public function index(VolunteerFormRepository  $forms)
     {
-        $forms = $volunteerForms->getAllNewForms();
-        return view('admin', ['forms' => $forms]);
+        $volunteerForms = $forms->getAllNewForms();
+        return view('admin', ['volunteerForms' => $volunteerForms]);
     }
 }

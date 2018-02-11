@@ -108,7 +108,7 @@
 
             // if the form isn't valid, "click" the submit button which will force html5 validation
             // else, send it!
-            if (!$volunteerForm[0].checkValidity()) {
+            if(!$volunteerForm[0].checkValidity()) {
                 $volunteerForm.find(':submit').click();
             } else {
                 
