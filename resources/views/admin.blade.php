@@ -27,12 +27,7 @@
         function submitEvent (approval) {
             // send the form, value set in jquery is async apparently?
             $('#approve-event').val(approval);
-            console.log($('#approve-event').val());
-
-            setTimeout(function() {
-                $('#event-form').submit();
-            }, 2000);
-            
+            $('#event-form').submit();
         }
 
         // make sure that boolean values show yes/no
@@ -122,14 +117,14 @@
 
                                     <div class="input-group pull-right">
 
-                                        <button id="approve-event"
+                                        <button id="approve"
                                                 type="button"
                                                 class="btn btn-success"
                                                 onClick="submitEvent(1);">
                                             Approve
                                         </button>
 
-                                        <button id="deny-event"
+                                        <button id="deny"
                                                 type="button"
                                                 class="btn btn-default"
                                                 onClick="submitEvent(0);">
@@ -137,7 +132,7 @@
                                         </button>
 
                                         <input type="text" id="event-id" name="event_id" hidden>
-                                        <input type="text" id="approve-event" name="approve_event" hidden value="0">
+                                        <input type="text" id="approve-event" name="approve_event" hidden>
 
                                     </div>
 
