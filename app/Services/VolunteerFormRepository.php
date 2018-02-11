@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Contracts\ICalendarRepository;
 use App\Contracts\IVolunteerFormRepository;
 use App\VolunteerForm;
 use DateTime;
@@ -9,9 +10,11 @@ use DateTime;
 class VolunteerFormRepository implements IVolunteerFormRepository
 {
     private $form;
+    protected $calendarRepository;
 
-    public function __construct(VolunteerForm $form)
+    public function __construct(VolunteerForm $form, ICalendarRepository $ICalendarRepository)
     {
+        $this->calendarRepository = $ICalendarRepository;
         $this->form = $form;
     }
 
@@ -74,4 +77,20 @@ class VolunteerFormRepository implements IVolunteerFormRepository
         $form = $this->form->find($id);
         $form->delete();
     }
+
+    public function approve($volunteerId, $openEventId)
+    {
+
+        // grab the event from the open events calendar, add it to accepted
+        $event = $this->calendarRepository->getOpenEvent($openEventId);
+        $this->calendarRepository->addAcceptedEvent($event);
+
+        // remove the event from open_events google calendar
+        $this->calendarRepository->deleteOpenEvent($openEventId);
+
+        // remove any volunteers that have registered for this event
+        $this->form->where('open_event_id', $openEventId)->delete;
+
+    }
+
 }

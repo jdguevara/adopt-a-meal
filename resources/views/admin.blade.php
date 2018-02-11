@@ -19,7 +19,8 @@
             $('#notes').val(event.notes);
             $('#phone').val(event.phone);
             $('#paper-goods').val(event.paper_goods);
-            $('#event-id').val(event.open_event_id);
+            $('#open-event-id').val(event.open_event_id);
+            $('#volunteer-id').val(event.id);
             $("#event-modal").modal();
 
         }
@@ -131,7 +132,8 @@
                                             Deny
                                         </button>
 
-                                        <input type="text" id="event-id" name="event_id" hidden>
+                                        <input type="text" id="open-event-id" name="open_event_id" hidden>
+                                        <input type="text" id="volunteer-id" name="volunteer_id" hidden>
                                         <input type="text" id="approve-event" name="approve_event" hidden>
 
                                     </div>

@@ -1,23 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Services\VolunteerFormRepository;
-use App\VolunteerForm;
-use App\Calendar;
 
-
+use App\Contracts\IVolunteerFormRepository;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+
+    protected $formRepository;
+
+    public function __construct(IVolunteerFormRepository $formRepository)
     {
-        $this->middleware('auth');
+        $this->formRepository = $formRepository;
+        $this->middleware('guest');
     }
 
     /**
@@ -25,9 +21,30 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(VolunteerFormRepository  $forms)
+    public function index()
     {
-        $volunteerForms = $forms->getAllNewForms();
-        return view('admin', ['volunteerForms' => $volunteerForms]);
+        return view('admin', ['volunteerForms' => $this->formRepository->getAllNewForms()]);
+    }
+
+    public function submit(Request $request)
+    {
+
+        $this->validate($request, [
+            'open_event_id' => 'required',
+            'volunteer_id' => 'required',
+            'approve_event' => 'required'
+        ]);
+
+        if($request->approve_event)
+        {
+            $this->formRepository->approve($request->volunteer_id, $request->event_id);
+        }
+
+        else
+        {
+            $this->formRepository->delete($request->event_id);
+        }
+
+        return view('admin', ['volunteerForms' => $this->formRepository->getAllNewForms()]);
     }
 }

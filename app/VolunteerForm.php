@@ -3,9 +3,12 @@
 namespace App;
 use DateTime;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VolunteerForm extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'volunteer_forms';
     /**
      * The attributes that are mass assignable.
