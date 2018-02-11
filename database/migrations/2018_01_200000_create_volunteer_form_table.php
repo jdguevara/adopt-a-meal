@@ -20,14 +20,12 @@ class VolunteerFormTable extends Migration
             $table->string('phone');
             $table->text('meal_description');
             $table->text('notes');
-            $table->boolean('food_confirmation');
-            $table->boolean('tableware_confirmation');
+            $table->boolean('paper_goods');
             $table->smallInteger('form_status')->nullable()->comment('0=new,1=confirmed,2=rejected');
             $table->string('open_event_id');
             $table->dateTime('event_date_time')->nullable();
             $table->dateTime('confirmed_event_id')->nullable();
             $table->timestamps();
-
             $table->unique('confirmed_event_id');
         });
     }

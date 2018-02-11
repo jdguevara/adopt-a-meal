@@ -111,12 +111,9 @@
             if (!$volunteerForm[0].checkValidity()) {
                 $volunteerForm.find(':submit').click();
             } else {
-
-                var bringingFood = $("#food:checked").length;
-                $("#food").val(bringingFood);
-
-                var bringingTableware = $("#tableware:checked").length;
-                $("#tableware").val(bringingTableware);
+                
+                var bringingTableware = $("#paper-goods:checked").length;
+                $("#paper-goods").val(bringingTableware);
 
                 $("#inputs").hide();
                 $("#loading-info").show();
@@ -189,30 +186,30 @@
                             <div id="inputs" class="volunteer-inputs">
 
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">Event Date</span>
+                                    <span class="input-group-addon">Event Date</span>
                                     <input id="event-date" name="event_date" type="text"  
                                            class="form-control" disabled>
                                 </div>
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">Organization Name</span>
+                                    <span class="input-group-addon">Organization Name</span>
                                     <input id="organization_name" name="organization_name" type="text"
                                            class="form-control" placeholder="Organization Name" required>
                                 </div>
 
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">Email</span>
+                                    <span class="input-group-addon">Email</span>
                                     <input id="email" name="email" type="text" class="form-control" placeholder="Email"
                                            required>
                                 </div>
 
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">Phone Number</span>
+                                    <span class="input-group-addon">Phone Number</span>
                                     <input id="phone" name="phone" type="text" class="form-control"
                                            placeholder="Phone Number" required>
                                 </div>
 
                                 <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">Meal Description</span>
+                                    <span class="input-group-addon">Meal Description</span>
                                     <input id="meal_description" name="meal_description" type="text" class="form-control"
                                            placeholder="Meal Description">
                                 </div>
@@ -232,7 +229,7 @@
                                     </span>
                                     <div class="checkbox-group">
                                         <label class="checkbox"> I can provide paper goods
-                                            <input id="tableware" name="bringing_tableware" type="checkbox">
+                                            <input id="paper-goods" name="paper_goods" type="checkbox">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
