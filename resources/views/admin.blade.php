@@ -8,10 +8,6 @@
 
             var volunteerEvents = {!! json_encode($volunteerForms) !!};
 
-            function viewEvent(eventId) {
-                console.log(eventId);
-            }
-
 
             {{--<span id="meal-description">{{ $form['meal_description'] }}</span>--}}
             {{--<span id="organization-name">{{ $form['organization_name'] }}</span>--}}
@@ -56,6 +52,10 @@
 
         });
 
+
+    function viewEvent(eventId) {
+        console.log(eventId);
+    }
 
     </script>
 @endsection
@@ -145,7 +145,7 @@
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <button id="view-event" onclick="viewEvent({{$form['open_event_id']}});"> Details </button>
+                                    <button id="view-event" onclick="viewEvent('{{$form['open_event_id']}}');"> Details </button>
                                 </div>
 
                             </div>
