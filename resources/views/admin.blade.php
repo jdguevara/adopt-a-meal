@@ -3,59 +3,42 @@
 @section('scripts')
     <script>
 
-        $(document).ready(function(){
+        var volunteerEvents = {!! json_encode($volunteerForms) !!};
 
+        function viewEvent (eventId) {
 
-            var volunteerEvents = {!! json_encode($volunteerForms) !!};
+            // find the event in our events list
+            var event = volunteerEvents.find(function(event) { return event.open_event_id === eventId; });
 
+            // open the modal with event info
+            $("#title").text(event.title);
+            $('#meal-description').val(event.meal_description);
+            $('#organization-name').val(event.organization_name);
+            $('#event-date-time').val(event.event_date_time);
+            $('#email').val(event.email);
+            $('#notes').val(event.notes);
+            $('#phone').val(event.phone);
+            $('#paper-goods').val(event.paper_goods);
+            $('#event-id').val(event.open_event_id);
+            $("#event-modal").modal();
 
-            {{--<span id="meal-description">{{ $form['meal_description'] }}</span>--}}
-            {{--<span id="organization-name">{{ $form['organization_name'] }}</span>--}}
-            {{--<span id="event_date_time">{{ $form['event_date_time'] }}</span>--}}
-            {{--<span id="email">{{ $form['email'] }}</span>--}}
-            {{--<span id="notes">{{ $form['notes'] }}</span>--}}
-            {{--<span id="phone">{{ $form['phone'] }}</span>--}}
-            {{--<span id="paper_goods">{{ $form['paper_goods'] }}</span>--}}
+        }
 
-            $('#myModal').on('show.bs.modal',function(event) {
-                console.log(event.relatedTarget);
-                var button = $(event.relatedTarget);
-                var notes = button.data('notes');
-                console.log(button);
-                console.log(notes);
+        function submitEvent (approval) {
+            // send the form, value set in jquery is async apparently?
+            $('#approve-event').val(approval);
+            console.log($('#approve-event').val());
 
-                var mealDescription = button.data('mealdescription');
-                var organization = button.data('organization');
-                var email = button.data('email');
-                var notes = button.data('notes');
-                var phone = button.data('phone');
-                var date = button.data('date');
+            setTimeout(function() {
+                $('#event-form').submit();
+            }, 2000);
+            
+        }
 
-                var tablewareConfirmation = button.data('tablewareconfirmation');
-                console.log('test tableware:', tablewareConfirmation);
-                var bringtableware = "They will provide the tableware"
-
-                var modal = $(this)
-                modal.find('.organization').text(organization)
-                if(email)
-                    modal.find('.email').text("Email: " + email)
-                if(phone)
-                    modal.find('.phone').text("Phone: "+ phone)
-                if(mealDescription)
-                    modal.find('.mealdescription').text("Meal Description: " + mealDescription)
-                modal.find('.modal-title').text("Adopt-a-Meal request for: "+ date)
-                if(notes)
-                    modal.find('.notes').text("Notes: "+ notes)
-                if(tablewareConfirmation == '1')
-                    modal.find('.tablewareconfirmation').text("Other Details: They are planning to provide tableware")
-            })
-
+        // make sure that boolean values show yes/no
+        $(document).ready(function() {
+           volunteerEvents.forEach(event => event.paper_goods = (event.paper_goods ? "Yes" : "No"));
         });
-
-
-    function viewEvent(eventId) {
-        console.log(eventId);
-    }
 
     </script>
 @endsection
@@ -81,9 +64,9 @@
 
                 </div>
 
-                <form id="volunteer-info-form" class="volunteer-info-form" method="POST" action="/api/admin/submit">
+                <form id="event-form" method="POST" action="/api/admin/submit">
 
-                    <div class="modal fade" id="volunteer-info-modal" role="dialog">
+                    <div class="modal fade" id="event-modal" role="dialog">
 
                         <div class="modal-dialog">
 
@@ -94,33 +77,67 @@
                                     <h3 id="title" style="margin-top: 15px;"></h3>
                                 </div>
 
-
                                 <!-- list of text field inputs and check boxes  -->
-                                <div class="modal-body">
-                                    <div id="volunteer-information" class="volunteer-info"></div>
-                                </div>
+                                <div class="modal-body event-info">
 
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Meal Description</span>
+                                        <input id="meal-description" class="form-control" disabled />
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Organization Name</span>
+                                        <input id="organization-name" class="form-control" disabled />
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Date/Time</span>
+                                        <input id="event-date-time" class="form-control" disabled />
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Email</span>
+                                        <input id="email" class="form-control" disabled />
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Phone</span>
+                                        <input id="phone" class="form-control" disabled />
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Notes</span>
+                                        <input id="notes" class="form-control" disabled />
+                                    </div>
+
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Paper Goods</span>
+                                        <input id="paper-goods" class="form-control" disabled />
+                                    </div>
+
+                                </div>
 
                                 <div class="modal-footer">
 
                                     <div class="input-group pull-right">
 
-                                        <button id="submit-form"
+                                        <button id="approve-event"
                                                 type="button"
                                                 class="btn btn-success"
-                                                onClick="approveVolunteer();">
+                                                onClick="submitEvent(1);">
                                             Approve
                                         </button>
 
-                                        <button id="deny-form"
+                                        <button id="deny-event"
                                                 type="button"
                                                 class="btn btn-default"
-                                                onClick="denyVolunteer();">
+                                                onClick="submitEvent(0);">
                                             Deny
                                         </button>
 
-                                        <input type="number" id="approve-volunteer" name="approve_volunteer" hidden>
-                                        <button type="submit" hidden></button>
+                                        <input type="text" id="event-id" name="event_id" hidden>
+                                        <input type="text" id="approve-event" name="approve_event" hidden value="0">
 
                                     </div>
 
@@ -137,18 +154,15 @@
                 @foreach($volunteerForms as $form)
                     <ul class="list-group">
 
-                        <li class="list-group-item "><div class="row">
+                        <li class="list-group-item ">
 
-                                <div class= "col-sm-8">
-                                    <h5>Adopt-a-Meal Request for: {{$form->event_date_time}}</h5>
-                                    <h6>From: {{$form->organization_name}}</h6>
-                                </div>
+                            <h5>{{$form->title}}</h5>
+                            <h6>From: {{$form->organization_name}}</h6>
 
-                                <div class="col-sm-4">
-                                    <button id="view-event" onclick="viewEvent('{{$form['open_event_id']}}');"> Details </button>
-                                </div>
+                            <button id="view-event" onclick="viewEvent('{{$form['open_event_id']}}');" class="btn btn-warning event-info-details">
+                                Details
+                            </button>
 
-                            </div>
                         </li>
                     </ul>
 

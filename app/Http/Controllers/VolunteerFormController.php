@@ -26,6 +26,7 @@ class VolunteerFormController extends Controller
     public function submit(Request $request)
     {
         $this->validate($request, [
+            'title' => 'required',
             'organization_name' => 'required',
             'phone' => 'required',
             'email' => 'required',

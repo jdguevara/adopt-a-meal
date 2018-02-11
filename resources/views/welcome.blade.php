@@ -55,11 +55,12 @@
                     var eventTitle = (calEvent.title && calEvent.title.length > 0) ?
                         calEvent.title : "Volunteer For Event";
 
-                    var modal = $("#volunteer-modal").modal();
-                    modal.find('#title').text(eventTitle);
-                    modal.find('#event-id').val(calEvent.id);
-                    modal.find('#event-time').val(calEvent.start);
-                    modal.find('#event-date').val(calEvent.start.format('MMMM Do YYYY, h:mma'));
+                    $('#title').text(eventTitle);
+                    $('#event-id').val(calEvent.id);
+                    $('#event-time').val(calEvent.start);
+                    $('#event-date').val(calEvent.start.format('MMMM Do YYYY, h:mma'));
+                    $('#event-title').val(eventTitle);
+                    $("#volunteer-modal").modal();
                 }
             };
 
@@ -236,8 +237,9 @@
                                 </div>
 
                                 <!-- rendered from event id stored in calendar -->
-                                <input id="event-id" name="open_event_id" type="text" hidden></input>
-                                <input id="event-time" name="open_event_date_time" type="text" hidden></input>
+                                <input id="event-id" name="open_event_id" type="text" hidden />
+                                <input id="event-time" name="open_event_date_time" type="text" hidden />
+                                <input id="event-title" name="title" type="text" hidden />
                             </div>
 
                             <!-- loading spinner -->
