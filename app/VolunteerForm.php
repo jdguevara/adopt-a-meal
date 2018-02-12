@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VolunteerForm extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
 
     protected $table = 'volunteer_forms';
     /**

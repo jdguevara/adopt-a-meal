@@ -28,16 +28,16 @@ class AdminController extends Controller
 
     public function submit(Request $request)
     {
-
+        
         $this->validate($request, [
             'open_event_id' => 'required',
             'volunteer_id' => 'required',
             'approve_event' => 'required'
         ]);
-
         if($request->approve_event)
         {
-            $this->formRepository->approve($request->volunteer_id, $request->event_id);
+            $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
+            
         }
 
         else

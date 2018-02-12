@@ -80,17 +80,9 @@ class VolunteerFormRepository implements IVolunteerFormRepository
 
     public function approve($volunteerId, $openEventId)
     {
-
-        // grab the event from the open events calendar, add it to accepted
-        $event = $this->calendarRepository->getOpenEvent($openEventId);
-        $this->calendarRepository->addAcceptedEvent($event);
-
-        // remove the event from open_events google calendar
-        $this->calendarRepository->deleteOpenEvent($openEventId);
-
-        // remove any volunteers that have registered for this event
-        $this->form->where('open_event_id', $openEventId)->delete;
-
+        // dd($volunteerId, $openEventId);
+        $this->form->where('id', $volunteerId)->update(['form_status' => 1]);
+        // dd('fuk');
     }
 
 }

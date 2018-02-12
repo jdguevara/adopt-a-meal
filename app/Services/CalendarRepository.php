@@ -1,7 +1,12 @@
 <?php
+namespace App\Services;
 
 use App\Contracts\ICalendarRepository;
 use Illuminate\Support\Carbon;
+use Google_Client;
+use Google_Service_Calendar;
+use DateTime;
+use DateInterval;;
 
 /**
  * Created by PhpStorm.
@@ -73,17 +78,17 @@ class CalendarRepository implements ICalendarRepository {
         return $results;
     }
 
-    public function create()
+    public function create($event, $eventType)
     {
         // TODO: Implement create() method.
     }
 
-    public function update()
+    public function update($id, $eventType)
     {
         // TODO: Implement update() method.
     }
 
-    public function delete()
+    public function delete($id, $eventType)
     {
         // TODO: Implement delete() method.
     }
