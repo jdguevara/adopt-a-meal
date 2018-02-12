@@ -2,11 +2,14 @@
 namespace App\Services;
 
 use App\Contracts\ICalendarRepository;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 use Google_Client;
 use Google_Service_Calendar;
 use DateTime;
-use DateInterval;;
+use DateInterval;
+use Google_Service_Calendar_Event;
+
+;
 
 /**
  * Created by PhpStorm.
@@ -24,7 +27,7 @@ define('DEV_CALENDAR_ACCEPTED_ID', env('DEV_CALENDAR_ACCEPTED_ID'));
 class CalendarRepository implements ICalendarRepository {
 
     protected $googleCalendarService;
-    protected $calendarId;
+    protected $openCalendarId;
     protected $acceptedCalendarId;
 
     public function __construct()
@@ -37,7 +40,7 @@ class CalendarRepository implements ICalendarRepository {
 
         $cal = new Google_Service_Calendar($client);
         $this->googleCalendarService = $cal;
-        $this->calendarId = DEV_CALENDAR_ID;
+        $this->openCalendarId = DEV_CALENDAR_ID;
         $this->acceptedCalendarId = DEV_CALENDAR_ACCEPTED_ID;
     }
 
@@ -45,10 +48,6 @@ class CalendarRepository implements ICalendarRepository {
     {
         $time = new DateTime();
         $time->sub(new DateInterval('P1M'));
-
-        if(!$this->googleCalendarService) {
-            $this->setupCalendar();
-        }
 
         $optParams = array(
             'maxResults' => 100,
@@ -58,7 +57,7 @@ class CalendarRepository implements ICalendarRepository {
             'timeMax' => Carbon::now()->addMonths(3)->toIso8601String()
         );
 
-        $results = $this->googleCalendarService->events->listEvents($this->calendarId, $optParams)->getItems();
+        $results = $this->googleCalendarService->events->listEvents($this->openCalendarId, $optParams)->getItems();
 
         return $results;
     }
@@ -78,10 +77,28 @@ class CalendarRepository implements ICalendarRepository {
         return $results;
     }
 
+
+
     public function create($event, $eventType)
     {
-        // TODO: Implement create() method.
+
+        $calendarId = $eventType == 'accepted' ? $this->acceptedCalendarId : $this->openCalendarId;
+
+        $calendar_event = new Google_Service_Calendar_Event(array(
+            'summary' => $event->title,
+            'description' => $event->meal_description,
+            'start' => array(
+                'date' => Carbon::parse($event->event_date_time)->format('Y-m-d')
+            ),
+            'end' => array(
+                'date' => Carbon::parse($event->event_date_time)->format('Y-m-d')
+            )
+        ));
+
+        return $this->googleCalendarService->events->insert($this->acceptedCalendarId, $calendar_event);
     }
+
+
 
     public function update($id, $eventType)
     {
@@ -90,7 +107,8 @@ class CalendarRepository implements ICalendarRepository {
 
     public function delete($id, $eventType)
     {
-        // TODO: Implement delete() method.
+        $calendarId = $eventType == 'accepted' ? $this->acceptedCalendarId : $this->openCalendarId;
+        return $this->googleCalendarService->events->delete($this->openCalendarId, $id);
     }
 
     public function all($eventType)

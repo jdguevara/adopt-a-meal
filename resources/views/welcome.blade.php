@@ -13,8 +13,8 @@
             return {
                 "id": e.id,
                 "title": e.summary,
-                "start": e.start.dateTime,
-                "end": e.end.dateTime,
+                "start": e.start.dateTime || e.start.date,
+                "end": e.end.dateTime || e.end.date,
                 "color": "#36b0bF"
             }
         });
@@ -24,8 +24,8 @@
             return {
                 "id": e.id,
                 "title": e.summary,
-                "start": e.start.dateTime,
-                "end": e.end.dateTime,
+                "start": e.start.dateTime || e.start.date,
+                "end": e.end.dateTime || e.end.date,
                 "color": "green",
                 "description": e.description
             }
