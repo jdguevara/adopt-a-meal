@@ -33,20 +33,21 @@
         var events = transformedVolunteerEvents.concat(transformedAcceptedEvents);
         
         $(document).ready(function () {
-
             /**
              * Load up a calendar event in the modal view so that a user can fill out their
              * info and submit it for review.
              * @param calEvent - the event data from Google Calendar API
              */
             var eventClicked = function (calEvent) {
-
                 var today = moment().startOf('day');
                 var eventDate = moment(calEvent.start);
 
                 // think of this operation like eventDate - today, negative is past, positive is future
                 if (eventDate.diff(today) < 0) {
                     $("#past-event-modal").modal();
+                }
+                if(calEvent.color === 'green'){
+                    return;
                 }
                 else {
                     // clear form fields from previous events
@@ -63,32 +64,43 @@
                     $("#volunteer-modal").modal();
                 }
             };
+            
+            var eventRender = function(event, element){
+                if(event.description == undefined) return;
+                
+                // Modifying the DOM containing the event to allow "tooltip"
+                // Showing the description of an event when mouse hover it.
+                element.attr("data-toggle","tooltip");
+                element.attr("title", "Description: " + event.description );
 
+                // Initialization of tooltip()
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
 
+                //Executing tooltip for each event.
+                element.tooltip();
+            }
+
+            $('#listCalendar').fullCalendar({
+                defaultView: 'listWeek',
+                events: events,
+
+                // Attaching a tooltip for each event showing the description when event is hover with mouse.
+                eventRender: eventRender, 
+                
+                // Action when an event is clicked
+                eventClick: eventClicked,
+                showNonCurrentDates: false,
+                themeSystem: 'bootstrap3'
+            });
+                    
             $('#calendar').fullCalendar({
-
                 // List of events being showed in the calendar
                 events: events,
 
                 // Attaching a tooltip for each event showing the description when event is hover with mouse.
-                eventRender: function(event, element) {
-                    if(event.description == undefined)
-                        return;
-                    // Modifying the DOM containing the event to allow "tooltip"
-                    // Showing the description of an event when mouse hover it.
-                   element.attr("data-toggle","tooltip");
-                   element.attr("title", "Description: " + event.description );
-
-
-                   // Initialization of tooltip()
-                    $(function () {
-                        $('[data-toggle="tooltip"]').tooltip()
-                    })
-
-                    //Executing tooltip for each event.
-                    element.tooltip();
-
-                },
+                eventRender: eventRender,
                 
                 // Action when an event is clicked
                 eventClick: eventClicked,
@@ -136,7 +148,8 @@
             </div>
             <div class="panel-body calendar-panel text-center">
                 <div class="calendar">
-                    <div id="calendar"></div>
+                    <div id="calendar" class="desktop"></div>
+                    <div id="listCalendar" class="mobile"></div>
                 </div>
             </div>
         </div>
