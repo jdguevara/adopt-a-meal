@@ -22,13 +22,13 @@ class VolunteerFormsSeeder extends Seeder
         for ($i = 0; $i < $max; $i++) {
             $event = $events[mt_rand(0, count($events) - 1)];
             DB::table('volunteer_forms')->insert([
+                'title' => 'Seeded title',
                 'organization_name' => 'Seeded Organization',
                 'email' => 'seed@seed.seed',
                 'phone' => '9998887776',
                 'meal_description' => 'Soylent green is people.',
                 'notes' => 'Seed notes',
-                'food_confirmation' => true, // Must be true 
-                'tableware_confirmation' => false, // Can be false
+                'paper_goods' => false, // Can be false
                 'form_status' => 0, // integer, 0=new or 1=confirmed or 2=rejected
                 'open_event_id' => $event['id'], // not sure how to get this field
                 'event_date_time' => new DateTime($event['start']['dateTime']), // not sure how to get this field

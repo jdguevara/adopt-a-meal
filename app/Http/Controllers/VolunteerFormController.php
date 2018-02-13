@@ -11,6 +11,8 @@ use App\Mail\VolunteerFormEmail;
 use App\Mail\VolunteerRequestEmail;
 use Illuminate\Support\Facades\Mail;
 
+define('INTERFAITH_ADMINS', env('INTERFAITH_ADMINS'));
+
 class VolunteerFormController extends Controller
 {
     protected $formRepository;
@@ -24,13 +26,13 @@ class VolunteerFormController extends Controller
     public function submit(Request $request)
     {
         $this->validate($request, [
+            'title' => 'required',
             'organization_name' => 'required',
             'phone' => 'required',
             'email' => 'required',
             'meal_description' => 'required',
             'open_event_id' => 'required',
             'open_event_date_time' => 'required',
-            'bringing_food' => 'required'
         ]);
          
         $this->sendEmail($request->all());
@@ -41,13 +43,17 @@ class VolunteerFormController extends Controller
     
     public function sendEmail($form)
     {
-          // To the Volunteer
-          Mail::to($form["email"])
-          ->send(new VolunteerFormEmail());
-
-          // To the Interfaith
-          Mail::to($form["email"])
-         ->send(new VolunteerRequestEmail($form));
+        $admin_emails = explode(',', INTERFAITH_ADMINS);
+        
+        // To Interfaith
+        foreach($admin_emails as $email){
+            Mail::to($email)
+            ->send(new VolunteerRequestEmail($form));
+        }
+        
+        // To the Volunteer
+        Mail::to($form["email"])
+        ->send(new VolunteerFormEmail($form));
 
         return redirect('/');
     }

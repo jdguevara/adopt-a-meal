@@ -21,9 +21,9 @@
         <nav class="navbar top-menu">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-left" href="{{url('http://interfaithsanctuary.org/')}}">
-                        <img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png">
-                    </a>
+                    <!-- <a class="navbar-left" href="{{url('http://interfaithsanctuary.org/')}}"> -->
+                        <!-- <img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png"> -->
+                    <!-- </a> -->
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

@@ -5,6 +5,7 @@ use Google_Client;
 use Google_Service_Calendar;
 use DateTime;
 use DateInterval;
+use Carbon\Carbon;
 
 define('APPLICATION_NAME', env('APP_NAME'));
 define('CREDENTIALS_PATH', storage_path('app/service_account_creds.json'));
@@ -40,7 +41,6 @@ class Calendar
         $time = new DateTime();
         $time->sub(new DateInterval('P1M'));
 
-        // TODO: Need to figure out how to properly do dependency injection/singletons in laravel, this is work-in-progress
         if(!$this->calendarService) {
             $this->setupCalendar();
         }
@@ -49,8 +49,9 @@ class Calendar
             'maxResults' => 100,
             'orderBy' => 'startTime',
             'singleEvents' => TRUE,
-            'timeMin' => $time->format("Y-m-d\TH:i:sP")
-        );
+            'timeMin' => Carbon::now()->toIso8601String(),
+            'timeMax' => Carbon::now()->addMonths(3)->toIso8601String()
+        ); 
 
         $results = $this->calendarService->events->listEvents($this->calendarId, $optParams)->getItems();
 
@@ -66,7 +67,8 @@ class Calendar
         $optParams = array(
             'maxResults' => 100,
             'orderBy' => 'startTime',
-            'singleEvents' => TRUE
+            'singleEvents' => TRUE,
+            'timeMax' => Carbon::now()->addMonths(3)->toIso8601String()
         );
 
         $results = $this->calendarService->events->listEvents($this->acceptedCalendarId, $optParams)->getItems();

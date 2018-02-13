@@ -16,5 +16,8 @@ interface IVolunteerFormRepository
 
     public function update($form, $input);
 
-    public function delete($input);
+    public function delete($id);
+
+    public function approve($id, $eventId);
+
 }

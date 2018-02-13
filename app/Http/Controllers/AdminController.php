@@ -1,23 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Services\VolunteerFormRepository;
-use App\VolunteerForm;
-use App\Calendar;
 
-
+use App\Contracts\IVolunteerFormRepository;
+use App\Contracts\ICalendarRepository;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+
+    protected $formRepository;
+    protected $calendarRepository;
+
+    public function __construct(IVolunteerFormRepository $formRepository, ICalendarRepository $calendarRepository)
     {
-   //     $this->middleware('auth');
+        $this->calendarRepository = $calendarRepository;
+        $this->formRepository = $formRepository;
+        $this->middleware('auth');
     }
 
     /**
@@ -25,9 +24,35 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(VolunteerFormRepository  $volunteerForms)
+    public function index()
     {
-        $forms = $volunteerForms->getAllNewForms();
-        return view('admin', ['forms' => $forms]);
+        return view('admin', ['volunteerForms' => $this->formRepository->getAllNewForms()]);
+    }
+
+    public function submit(Request $request)
+    {
+        
+        $this->validate($request, [
+            'open_event_id' => 'required',
+            'volunteer_id' => 'required',
+            'approve_event' => 'required'
+        ]);
+        // Approved
+        if($request->approve_event)
+        {
+            $event = $this->formRepository->get($request->volunteer_id);
+            // update the event's status in adoptameal data
+            $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
+            // insert the event into the accepted_events calendar
+            $result = $this->calendarRepository->create($event, 'accepted');
+            // remove the event from the open_events calendar
+            $this->calendarRepository->delete($event->open_event_id, 'open');
+        }
+        // Denied
+        else
+        {
+            $this->formRepository->deny($request->volunteer_id);
+        }
+            return redirect('/admin');
     }
 }

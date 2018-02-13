@@ -1,5 +1,45 @@
 @extends('layouts.app')
 
+@section('scripts')
+    <script>
+
+        var volunteerForms = {!! json_encode($volunteerForms) !!};
+
+        function viewEvent (eventId) {
+
+            // find the event in our events list
+            var event = volunteerForms.find(function(event) { return event.open_event_id === eventId; });
+
+            // open the modal with event info
+            $("#title").text(event.title);
+            $('#meal-description').val(event.meal_description);
+            $('#organization-name').val(event.organization_name);
+            $('#event-date-time').val(event.event_date_time);
+            $('#email').val(event.email);
+            $('#notes').val(event.notes);
+            $('#phone').val(event.phone);
+            $('#paper-goods').val(event.paper_goods);
+            $('#open-event-id').val(event.open_event_id);
+            $('#volunteer-id').val(event.id);
+            $("#event-modal").modal();
+
+        }
+
+        function submitEvent (approval) {
+            // send the form, value set in jquery is async apparently?
+            $('#approve-event').val(approval);
+            $('#event-form').submit();
+        }
+
+        // make sure that boolean values show yes/no
+        $(document).ready(function() {
+           volunteerEvents.forEach(event => event.paper_goods = (event.paper_goods ? "Yes" : "No"));
+        });
+
+    </script>
+@endsection
+
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -15,65 +55,109 @@
                         @endif
 
                         You are logged in!
-                        <a href="/testEmail">Click here to send a test email</a>
                         Accept, Edit and Delete Adopt-a-Meal requests here.
                     </div>
 
                 </div>
 
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
+                <form id="event-form" method="POST" action="/api/admin/submit">
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"></h4>
+                    <div class="modal fade" id="event-modal" role="dialog">
+
+                        <div class="modal-dialog">
+
+                            <div class="modal-content">
+
+
+                                <div class="modal-header">
+                                    <h3 id="title" style="margin-top: 15px;"></h3>
+                                </div>
+
+                                <!-- list of text field inputs and check boxes  -->
+                                <div class="modal-body event-info">
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Meal Description</span>
+                                        <input id="meal-description" class="form-control" disabled />
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Organization Name</span>
+                                        <input id="organization-name" class="form-control" disabled />
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Date/Time</span>
+                                        <input id="event-date-time" class="form-control" disabled />
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Email</span>
+                                        <input id="email" class="form-control" disabled />
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Phone</span>
+                                        <input id="phone" class="form-control" disabled />
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Notes</span>
+                                        <input id="notes" class="form-control" disabled />
+                                    </div>
+
+
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Paper Goods</span>
+                                        <input id="paper-goods" class="form-control" disabled />
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+
+                                    <div class="input-group pull-right">
+
+                                        <button id="approve"
+                                                type="button"
+                                                class="btn btn-success"
+                                                onClick="submitEvent(1);">
+                                            Approve
+                                        </button>
+
+                                        <button id="deny"
+                                                type="button"
+                                                class="btn btn-default"
+                                                onClick="submitEvent(0);">
+                                            Deny
+                                        </button>
+
+                                        <input type="text" id="open-event-id" name="open_event_id" hidden>
+                                        <input type="text" id="volunteer-id" name="volunteer_id" hidden>
+                                        <input type="text" id="approve-event" name="approve_event" hidden>
+
+                                    </div>
+
+                                </div>
+
                             </div>
-                            <div class="modal-body">
-                                <h5 class="organization"></h5>
-                                <hr/>
-                                <p class="email"></p>
-                                <p class ="phone"></p>
-                                <p class="mealdescription"></p>
-                                <hr/>
-                                <p class ="notes"></p>
-                                <p class ="tablewareconfirmation"></p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-info pull-left" v-if="" data-dismiss="modal">Accept</button>
-                                <button type="button" class="btn btn-danger pull-left" v-if="" data-dismiss="modal">Decline</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
+
                         </div>
 
                     </div>
-                </div>
 
-                @foreach($forms as $form)
-                    <ul  class="list-group">
-                        <li class="list-group-item "><div class="row">
-                                <div class= "col-sm-8">
-                                    <h5>Adopt-a-Meal Request for: {{$form->event_date_time}}</h5>
-                                    <h6>From: {{$form->organization_name}}</h6>
-                                </div>
+                </form>
 
-
-                                <div class="btn-toolbar col-sm-4">
-                                    {{--<button type="button" class="btn btn-danger pull-right "  >Decline</button>--}}
-                                    <button type="button" class="btn btn-warning pull-right" data-toggle="modal"
-                                            data-mealdescription="{{ $form['meal_description'] }}"
-                                            data-organization="{{ $form['organization_name'] }}"
-                                            data-date="{{ $form['event_date_time'] }}"
-                                            data-email="{{ $form['email'] }}"
-                                            data-notes="{{ $form['notes'] }}"
-                                            data-tablewareconfirmation="{{ $form['tableware_confirmation'] }}"
-                                            data-phone="{{ $form['phone'] }}"
-                                            data-target="#myModal">Details</button>
-                                    {{--<button type="button" class="btn btn-info pull-right" >Accept</button>--}}
-
-                                </div>
-                            </div>
+                @foreach($volunteerForms as $form)
+                    <ul class="list-group">
+                        <li class="list-group-item ">
+                            <h5>{{$form->title}}</h5>
+                            <h6>From: {{$form->organization_name}}
+                                <button id="view-event" onclick="viewEvent('{{$form['open_event_id']}}');" class="btn btn-warning event-info-details pull-right">
+                                        Details
+                                </button>
+                            </h6>
+                            <h6>Date: {{$form->event_date_time}} </h6>
                         </li>
                     </ul>
 
@@ -83,46 +167,4 @@
 
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    <script>
-        $(document).ready(function(){
-            $('#myModal').on('show.bs.modal',function(event) {
-                console.log(event.relatedTarget);
-                var button = $(event.relatedTarget);
-                var notes = button.data('notes');
-                console.log(button);
-                console.log(notes);
-                
-                var mealDescription = button.data('mealdescription');
-                var organization = button.data('organization');
-                var email = button.data('email');
-                var notes = button.data('notes');
-                var phone = button.data('phone');
-                var date = button.data('date');
-
-                var tablewareConfirmation = button.data('tablewareconfirmation');
-                console.log('test tableware:', tablewareConfirmation);
-                var bringtableware = "They will provide the tableware"
-
-                var modal = $(this)
-                modal.find('.organization').text(organization)
-                if(email)
-                    modal.find('.email').text("Email: " + email)
-                if(phone)
-                    modal.find('.phone').text("Phone: "+ phone)
-                if(mealDescription)
-                  modal.find('.mealdescription').text("Meal Description: " + mealDescription)
-                modal.find('.modal-title').text("Adopt-a-Meal request for: "+ date)
-                if(notes)
-                    modal.find('.notes').text("Notes: "+ notes)
-                if(tablewareConfirmation == '1')
-                    modal.find('.tablewareconfirmation').text("Other Details: They are planning to provide tableware")
-            })
-
-        });
-
-
-    </script>
 @endsection

@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/form/submit', 'VolunteerFormController@submit');
+Route::post('/admin/submit', 'AdminController@submit');

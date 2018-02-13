@@ -5,6 +5,7 @@
 @import "variables";
 @import "checkbox";
 @import "volunteer-form";
+@import "event-form";
 @import "loading-spinner";
 
 textarea {
@@ -14,4 +15,15 @@ textarea {
 
 .text-light {
     color: #aaa;
+}
+
+@media screen and (max-width: 600px) {
+    .desktop {
+        display: none !important;
+    }
+}
+@media screen and (min-width: 600px) {
+    .mobile {
+        display: none !important;
+    }
 }

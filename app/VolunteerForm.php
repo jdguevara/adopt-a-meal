@@ -3,6 +3,7 @@
 namespace App;
 use DateTime;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VolunteerForm extends Model
 {
@@ -13,9 +14,9 @@ class VolunteerForm extends Model
      * @var array
      */
     protected $fillable = [
-        'organization_name', 'phone', 'email', 'meal_description',
-        'notes', 'food_confirmation', 'tableware_confirmation',
-        'form_status', 'open_event_id', 'event_date_time', 'confirmed_event_id'
+        'title', 'organization_name', 'phone', 'email', 'meal_description',
+        'notes', 'paper_goods', 'form_status', 'open_event_id', 
+        'event_date_time', 'confirmed_event_id'
     ];
 
 
