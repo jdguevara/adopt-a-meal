@@ -268,10 +268,10 @@
                                 <div class="input-group">
                                     <span>
                                         <strong>
-                                            By volunteering for this meal I acknowledge that I am responsible
-                                            for bringing 200+ servings to this event.
+                                        By clicking 'Volunteer' I acknowledge that I am volunteering 
+                                        to be responsible for bringing at least 200 servings to the 
+                                        Interfaith Sanctuary building by 5pm on the chosen date.
                                         </strong>
-                                        Meals should be deliverd by 5:00PM
                                     </span>
                                     <div class="checkbox-group">
                                         <label class="checkbox"> I can provide paper goods

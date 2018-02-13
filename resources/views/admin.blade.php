@@ -3,12 +3,12 @@
 @section('scripts')
     <script>
 
-        var volunteerEvents = {!! json_encode($volunteerForms) !!};
+        var volunteerForms = {!! json_encode($volunteerForms) !!};
 
         function viewEvent (eventId) {
 
             // find the event in our events list
-            var event = volunteerEvents.find(function(event) { return event.open_event_id === eventId; });
+            var event = volunteerForms.find(function(event) { return event.open_event_id === eventId; });
 
             // open the modal with event info
             $("#title").text(event.title);
