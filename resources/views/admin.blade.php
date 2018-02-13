@@ -150,16 +150,14 @@
 
                 @foreach($volunteerForms as $form)
                     <ul class="list-group">
-
                         <li class="list-group-item ">
-
                             <h5>{{$form->title}}</h5>
-                            <h6>From: {{$form->organization_name}}</h6>
-
-                            <button id="view-event" onclick="viewEvent('{{$form['open_event_id']}}');" class="btn btn-warning event-info-details">
-                                Details
-                            </button>
-
+                            <h6>From: {{$form->organization_name}}
+                                <button id="view-event" onclick="viewEvent('{{$form['open_event_id']}}');" class="btn btn-warning event-info-details pull-right">
+                                        Details
+                                </button>
+                            </h6>
+                            <h6>Date: {{$form->event_date_time}} </h6>
                         </li>
                     </ul>
 
