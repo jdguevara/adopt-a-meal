@@ -16,7 +16,7 @@ class AdminController extends Controller
     {
         $this->calendarRepository = $calendarRepository;
         $this->formRepository = $formRepository;
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
