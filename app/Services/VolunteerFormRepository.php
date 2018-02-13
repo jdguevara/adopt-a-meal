@@ -68,7 +68,6 @@ class VolunteerFormRepository implements IVolunteerFormRepository
             'event_date_time' => new DateTime($input['open_event_date_time']),
             'form_status' => 0,
         ]);
-
         $this->form->save();
     }
 
@@ -80,9 +79,11 @@ class VolunteerFormRepository implements IVolunteerFormRepository
 
     public function approve($volunteerId, $openEventId)
     {
-        // dd($volunteerId, $openEventId);
         $this->form->where('id', $volunteerId)->update(['form_status' => 1]);
-        // dd('fuk');
+    }
+
+    public function deny($volunteerId){
+        $this->form->where('id', $volunteerId)->update(['form_status' => 2]);
     }
 
 }

@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VolunteerForm extends Model
 {
-    //use SoftDeletes;
-
     protected $table = 'volunteer_forms';
     /**
      * The attributes that are mass assignable.
@@ -17,8 +15,8 @@ class VolunteerForm extends Model
      */
     protected $fillable = [
         'title', 'organization_name', 'phone', 'email', 'meal_description',
-        'notes', 'paper_goods',
-        'form_status', 'open_event_id', 'event_date_time', 'confirmed_event_id'
+        'notes', 'paper_goods', 'form_status', 'open_event_id', 
+        'event_date_time', 'confirmed_event_id'
     ];
 
 

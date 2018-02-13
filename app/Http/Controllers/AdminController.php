@@ -37,25 +37,22 @@ class AdminController extends Controller
             'volunteer_id' => 'required',
             'approve_event' => 'required'
         ]);
+        // Approved
         if($request->approve_event)
         {
             $event = $this->formRepository->get($request->volunteer_id);
-
             // update the event's status in adoptameal data
-            // $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
-
+            $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
             // insert the event into the accepted_events calendar
             $result = $this->calendarRepository->create($event, 'accepted');
-
             // remove the event from the open_events calendar
             $this->calendarRepository->delete($event->open_event_id, 'open');
         }
-
+        // Denied
         else
         {
-            $this->formRepository->delete($request->event_id);
+            $this->formRepository->deny($request->volunteer_id);
         }
-
-        return view('admin', ['volunteerForms' => $this->formRepository->getAllNewForms()]);
+            return redirect('/admin');
     }
 }
