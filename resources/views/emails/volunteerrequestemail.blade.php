@@ -8,7 +8,7 @@
     <p>Meal Description: {{$form['meal_description']}}</p>
     <p>Contact Email: {{$form['email']}} </p>
     <p>Contact Phone: {{$form['phone']}} </p>
-    <p>Will provide paper goods: {{$form['paper_goods']}}</p>
+    <p>Will provide paper goods: {{$form['paper_goods'] ? 'yes' : 'no'}}</p>
     <p>Please go to the <a href={{url($appUrl)}}>Adopt-A-Meal Admin Page</a> to approve or decline the request.</p>
 </div>
 @endsection
