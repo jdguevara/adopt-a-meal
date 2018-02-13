@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: zacharymikel
- * Date: 2/10/18
- * Time: 7:48 PM
- */
 
 namespace App\Contracts;
 

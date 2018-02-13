@@ -11,13 +11,6 @@ use Google_Service_Calendar_Event;
 
 ;
 
-/**
- * Created by PhpStorm.
- * User: zacharymikel
- * Date: 2/10/18
- * Time: 7:48 PM
- */
-
 define('APPLICATION_NAME', env('APP_NAME'));
 define('CREDENTIALS_PATH', storage_path('app/service_account_creds.json'));
 define('SCOPES', implode(' ', array(Google_Service_Calendar::CALENDAR)));
