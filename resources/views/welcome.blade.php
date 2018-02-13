@@ -47,7 +47,10 @@
                     $("#past-event-modal").modal();
                 }
                 if(calEvent.color === 'green'){
-                    return;
+                    $("#confirmed-event-modal").modal();
+                    $("#confirmed-event-date").val(calEvent.start.format('MMMM Do YYYY, h:mma'));
+                    $("#confirmed-description").val(calEvent.description);
+                    $("#confirmed-title").val(calEvent.title);
                 }
                 else {
                     // clear form fields from previous events
@@ -178,7 +181,36 @@
 
         </div>
 
-
+        <!-- confirmed event modal -->
+        <div id="confirmed-event-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="title" style="margin-top: 15px;">This event is already confirmed</h3>
+                    </div>  
+                    <div class="modal-body">
+                        <div id="inputs" class="volunteer-inputs">
+                            <div class="input-group">
+                                <span class="input-group-addon">Event Date</span>
+                                <input id="confirmed-event-date" name="event_date" type="text"  
+                                        class="form-control" disabled>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Title</span>
+                                <input id="confirmed-title" name="title" type="text"
+                                        class="form-control" placeholder="Title" disabled>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Description</span>
+                                <input id="confirmed-description" name="description" type="text" class="form-control"
+                                        placeholder="Description" disabled>
+                            </div>
+                        </div>
+                        <div class="modal-footer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Volunteer form modal that is displayed when an event is clicked -->
         <form id="volunteer-form" class="volunteer-form" method="POST" action="/api/form/submit">
 
