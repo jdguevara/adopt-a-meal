@@ -33,7 +33,7 @@
 
         // make sure that boolean values show yes/no
         $(document).ready(function() {
-           volunteerEvents.forEach(event => event.paper_goods = (event.paper_goods ? "Yes" : "No"));
+           volunteerForms.forEach(event => event.paper_goods = (event.paper_goods ? "Yes" : "No"));
         });
 
     </script>
