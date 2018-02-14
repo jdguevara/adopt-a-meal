@@ -149,8 +149,8 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading text-center">
-                <h3>Adopt-a-Meal Calendar</h3>
-                <p>Select a meal you would like to adopt.</p>
+                <h1>Adopt-a-Meal Calendar</h1>
+                <p>Select a a date you would like to Adopt A Meal</p>
             </div>
             <div class="panel-body calendar-panel text-center">
                 <div class="calendar">
