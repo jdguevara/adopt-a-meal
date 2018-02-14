@@ -51,7 +51,7 @@
                 }
                 if(calEvent.eventStatus == 1){
                     $("#confirmed-event-modal").modal();
-                    $("#confirmed-event-date").val(calEvent.start.format('MMMM Do YYYY, h:mma'));
+                    $("#confirmed-event-date").val(calEvent.start.format('MMMM Do YYYY'));
                     $("#confirmed-description").val(calEvent.description);
                     $("#confirmed-title").val(calEvent.title);
                 }
@@ -65,7 +65,7 @@
                     $('#title').text(eventTitle);
                     $('#event-id').val(calEvent.id);
                     $('#event-time').val(calEvent.start);
-                    $('#event-date').val(calEvent.start.format('MMMM Do YYYY, h:mma'));
+                    $('#event-date').val(calEvent.start.format('MMMM Do YYYY'));
                     $('#event-title').val(eventTitle);
                     $("#volunteer-modal").modal();
                 }
@@ -227,7 +227,7 @@
                         <div class="modal-body">
                             <div id="inputs" class="volunteer-inputs">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Event Date</span>
+                                    <span class="input-group-addon">Volunteer Date</span>
                                     <input id="event-date" name="event_date" type="text"  
                                            class="form-control" disabled>
                                 </div>

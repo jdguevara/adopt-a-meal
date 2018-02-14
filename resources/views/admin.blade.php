@@ -6,7 +6,6 @@
         var volunteerForms = {!! json_encode($volunteerForms) !!};
 
         function viewEvent (eventId) {
-
             // find the event in our events list
             var event = volunteerForms.find(function(event) { return event.open_event_id === eventId; });
 
@@ -18,11 +17,10 @@
             $('#email').val(event.email);
             $('#notes').val(event.notes);
             $('#phone').val(event.phone);
-            $('#paper-goods').val(event.paper_goods);
+            $('#paper-goods').val(event.paper_goods == 1 ? "Yes" : "No");
             $('#open-event-id').val(event.open_event_id);
             $('#volunteer-id').val(event.id);
             $("#event-modal").modal();
-
         }
 
         function submitEvent (approval) {
@@ -30,12 +28,6 @@
             $('#approve-event').val(approval);
             $('#event-form').submit();
         }
-
-        // make sure that boolean values show yes/no
-        $(document).ready(function() {
-           volunteerEvents.forEach(event => event.paper_goods = (event.paper_goods ? "Yes" : "No"));
-        });
-
     </script>
 @endsection
 
@@ -87,7 +79,7 @@
                                     </div>
 
                                     <div class="input-group">
-                                        <span class="input-group-addon">Date/Time</span>
+                                        <span class="input-group-addon">Date</span>
                                         <input id="event-date-time" class="form-control" disabled />
                                     </div>
 
@@ -127,10 +119,11 @@
 
                                         <button id="deny"
                                                 type="button"
-                                                class="btn btn-default"
+                                                class="btn btn-warning"
                                                 onClick="submitEvent(0);">
                                             Deny
-                                        </button>
+                                        </button> 
+                                        <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
                                         <input type="text" id="open-event-id" name="open_event_id" hidden>
                                         <input type="text" id="volunteer-id" name="volunteer_id" hidden>
