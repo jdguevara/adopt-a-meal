@@ -12,12 +12,9 @@
 */
 
 Route::get('/', 'LandingPageController@index');
-Route::get('/testEmail', 'LandingPageController@testEmail');
-
-Route::get('/testEmailtwo', function() { return new App\Mail\VolunteerFormEmail();});
-Route::get('/testEmailthree', function() { return new App\Mail\VolunteerRequestEmail();});
+Route::post('/form/submit', 'VolunteerFormController@submit');
 
 Auth::routes();
-
+Route::post('/admin/formreview', 'AdminController@submit');
 Route::get('/admin', 'AdminController@index')->name('home');
 

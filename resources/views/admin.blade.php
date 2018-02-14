@@ -52,19 +52,15 @@
 
                 </div>
 
-                <form id="event-form" method="POST" action="/api/admin/submit">
-
+                <form id="event-form" method="POST" action="/admin/formreview">
+                    {{ csrf_field() }}
+                    {{ method_field('POST') }}
                     <div class="modal fade" id="event-modal" role="dialog">
-
                         <div class="modal-dialog">
-
                             <div class="modal-content">
-
-
                                 <div class="modal-header">
                                     <h3 id="title" style="margin-top: 15px;"></h3>
                                 </div>
-
                                 <!-- list of text field inputs and check boxes  -->
                                 <div class="modal-body event-info">
 
