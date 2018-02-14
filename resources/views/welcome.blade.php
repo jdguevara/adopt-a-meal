@@ -215,24 +215,16 @@
         </div>
         <!-- Volunteer form modal that is displayed when an event is clicked -->
         <form id="volunteer-form" class="volunteer-form" method="POST" action="/api/form/submit">
-
             <div class="modal fade" id="volunteer-modal" role="dialog">
-
                 <div class="modal-dialog">
-
                     <div class="modal-content">
-
-
                         <div class="modal-header">
                             <h3 id="title" style="margin-top: 15px;"></h3>
                         </div>
 
-
                         <!-- list of text field inputs and check boxes  -->
                         <div class="modal-body">
-
                             <div id="inputs" class="volunteer-inputs">
-
                                 <div class="input-group">
                                     <span class="input-group-addon">Event Date</span>
                                     <input id="event-date" name="event_date" type="text"  
@@ -243,30 +235,25 @@
                                     <input id="organization_name" name="organization_name" type="text"
                                            class="form-control" placeholder="Organization Name" required>
                                 </div>
-
                                 <div class="input-group">
                                     <span class="input-group-addon">Email</span>
                                     <input id="email" name="email" type="text" class="form-control" placeholder="Email"
                                            required>
                                 </div>
-
                                 <div class="input-group">
                                     <span class="input-group-addon">Phone Number</span>
                                     <input id="phone" name="phone" type="text" class="form-control"
                                            placeholder="Phone Number" required>
                                 </div>
-
                                 <div class="input-group">
                                     <span class="input-group-addon">Meal Description</span>
                                     <input id="meal_description" name="meal_description" type="text" class="form-control"
                                            placeholder="Meal Description">
                                 </div>
-
                                 <div class="input-group">
                                     <textarea id="notes" name="notes" class="form-control"
                                               placeholder="Notes"></textarea>
                                 </div>
-
                                 <div class="input-group">
                                     <span>
                                         <strong>
@@ -297,9 +284,7 @@
                                     <div class="dot2"></div>
                                 </div>
                             </div>
-
                         </div>
-
 
                         <div class="modal-footer">
                             <div class="input-group pull-right">
