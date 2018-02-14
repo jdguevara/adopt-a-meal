@@ -220,12 +220,19 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3 id="title" style="margin-top: 15px;"></h3>
+                            <h3 id="title" style="margin-top: 15px;">Adopt-A-Meal Form</h3>
                         </div>
 
                         <!-- list of text field inputs and check boxes  -->
                         <div class="modal-body">
                             <div id="inputs" class="volunteer-inputs">
+                                <div class="input-group">
+                                    <span><h5>
+                                        Please provide the following information. Once the form is
+                                        complete you will recieve a confirmation e-mail and we will
+                                        contact you to help ensure your adopted meal will be a success!
+                                    </h5></span>
+                                </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Volunteer Date</span>
                                     <input id="event-date" name="event_date" type="text"  
