@@ -15,7 +15,8 @@
                 "title": e.summary,
                 "start": e.start.dateTime || e.start.date,
                 "end": e.end.dateTime || e.end.date,
-                "color": "#36b0bF"
+                "color": "#36b0bF",
+                "eventStatus": 0
             }
         });
 
@@ -27,7 +28,8 @@
                 "start": e.start.dateTime || e.start.date,
                 "end": e.end.dateTime || e.end.date,
                 "color": "green",
-                "description": e.description
+                "description": e.description,
+                "eventStatus": 1
             }
         });
         var events = transformedVolunteerEvents.concat(transformedAcceptedEvents);
@@ -46,7 +48,7 @@
                 if (eventDate.diff(today) < 0) {
                     $("#past-event-modal").modal();
                 }
-                if(calEvent.color === 'green'){
+                if(calEvent.eventStatus == 1){
                     $("#confirmed-event-modal").modal();
                     $("#confirmed-event-date").val(calEvent.start.format('MMMM Do YYYY, h:mma'));
                     $("#confirmed-description").val(calEvent.description);
