@@ -46,7 +46,7 @@
                 var eventDate = moment(calEvent.start);
 
                 // think of this operation like eventDate - today, negative is past, positive is future
-                if (eventDate.diff(today) < 0) {
+                if (eventDate.diff(today) < 0 && calEvent.eventStatus == 0) {
                     $("#past-event-modal").modal();
                 }
                 if(calEvent.eventStatus == 1){
