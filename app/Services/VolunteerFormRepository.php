@@ -36,7 +36,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
     public function create($input)
     {
         $this->form->fill([
-            'title' => $input['title'],
+            'title' => $input['organization_name'],
             'organization_name' => $input['organization_name'],
             'phone' => $input['phone'],
             'email' => $input['email'],

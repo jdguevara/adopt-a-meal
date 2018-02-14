@@ -10,11 +10,12 @@
 
 
         var transformedVolunteerEvents = volunteerEvents.map(e => {
+            console.log(e.end.date);
             return {
                 "id": e.id,
                 "title": e.summary,
-                "start": e.start.dateTime || e.start.date,
-                "end": e.end.dateTime || e.end.date,
+                "start": e.start.date,
+                "allDay": true,
                 "color": "#36b0bF",
                 "eventStatus": 0
             }
@@ -25,8 +26,8 @@
             return {
                 "id": e.id,
                 "title": e.summary,
-                "start": e.start.dateTime || e.start.date,
-                "end": e.end.dateTime || e.end.date,
+                "start": e.start.date,
+                "allDay": true,
                 "color": "green",
                 "description": e.description,
                 "eventStatus": 1
