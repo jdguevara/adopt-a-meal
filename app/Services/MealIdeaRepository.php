@@ -2,9 +2,8 @@
 
 namespace App\Services;
 
-use App\Contracts\ICalendarRepository;
-use App\Contracts\IVolunteerFormRepository;
-use App\VolunteerForm;
+use App\Contracts\IMealIdeaRepository;
+use App\MealIdea;
 use DateTime;
 
 class MealIdeaRepository implements IMealIdeaRepository

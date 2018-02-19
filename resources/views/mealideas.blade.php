@@ -7,7 +7,23 @@ function mealIdeaModal() {
     $("#mealidea-modal").trigger("reset");
 
     $("#mealidea-modal").modal();
-};    
+};
+
+function submitMealIdea() {
+console.log('test');
+var $form = $('#mealidea-form');
+
+// if the form isn't valid, "click" the submit button which will force html5 validation
+// else, send it!
+if(!$form[0].checkValidity()) {
+    $form.find(':submit').click();
+} else {    
+    $("#inputs").hide();
+    $("#loading-info").show();
+    $form.submit();
+}
+}
+
 </script>
 @endsection
 
@@ -39,7 +55,7 @@ function mealIdeaModal() {
 </div>
 
 <!-- Meal Idea modal that is displayed when Share is clicked-->
-<form id="volunteer-form" method="POST" action="/meal-ideas/submit">
+<form id="mealidea-form" method="POST" action="/meal-ideas/submit">
     <div class="modal fade" id="mealidea-modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -57,7 +73,7 @@ function mealIdeaModal() {
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Meal Name</span>
-                                <input id="meal-title" name="meal_title" type="text" class="form-control" placeholder="Meal Name" required>
+                                <input id="meal-name" name="meal_name" type="text" class="form-control" placeholder="Meal Name" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -66,17 +82,17 @@ function mealIdeaModal() {
                                 <input id="description" name="description" type="text" class="form-control" placeholder="Meal Description" required>
                             </div>
                         </div>
-                        <div></div>
+                        <!-- <div>Figure out how to make a table that you can continue adding lines to</div>  -->
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Source Website</span>
-                                <input id="external_link" name="external_link" type="text" class="form-control" placeholder="Link to the Source Website">
+                                <input id="external-link" name="external_link" type="text" class="form-control" placeholder="Link to the Source Website">
                             </div>
                             <p class="help-block">Optional</p>
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Your Name</span>
-                                <input id="email" name="email" type="text" class="form-control" placeholder="Your Email">
+                                <input id="name" name="name" type="text" class="form-control" placeholder="Your Email">
                             </div>
                             <p class="help-block">Optional</p>
                         </div>
