@@ -146,12 +146,16 @@
 @endsection
 
 @section('content')
+    <div class="text-center jumbotron">
+        <h1>Adopt-a-Meal Calendar</h1>
+        <p>Select a a date you would like to Adopt A Meal</p>
+    </div>
     <div class="container">
         <div class="panel panel-default">
-            <div class="panel-heading text-center">
-                <h1>Adopt-a-Meal Calendar</h1>
-                <p>Select a a date you would like to Adopt A Meal</p>
-            </div>
+            {{--<div class="panel-heading text-center">--}}
+                {{--<h1>Adopt-a-Meal Calendar</h1>--}}
+                {{--<p>Select a a date you would like to Adopt A Meal</p>--}}
+            {{--</div>--}}
             <div class="panel-body calendar-panel text-center">
                 <div class="calendar">
                     <div id="calendar" class="desktop"></div>
