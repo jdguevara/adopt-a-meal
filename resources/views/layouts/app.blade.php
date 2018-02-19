@@ -28,11 +28,13 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav">
                         @guest
-                            <li><a href="#">Calendar View</a></li>
+                            <li><a href="/">Calendar View</a></li>
                             <li><a href="/recipes">Meal Ideas</a></li>
                         @else
-                            <li><a href="#">Calendar View</a></li>
-                            <li><a href="#">Meal Ideas</a></li>
+                            <li><a href="/">Calendar View</a></li>
+                            <li><a href="/recipes">Meal Ideas</a></li>
+                            <li><a href="/admin/recipes">Review Meal Ideas</a></li>
+                            <li><a href="/admin/verbiage">Change Website Verbiage</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} <span class="caret"></span>
