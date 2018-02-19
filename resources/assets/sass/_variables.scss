@@ -53,26 +53,26 @@ a:hover{
     background-color:$brand-warning;
     color:white;
 }
-.calendar-panel{
-    background-color: $brand-info;
-
-}
+//.calendar-panel{
+//    background-color: white;
+//
+//}
 .panel{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 .panel-default{
     .panel-heading{
-        background-color:$brand-danger;
+        background-color:black;
 
-        border-color:$brand-warning;
+        border-color:white;
         color:white;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
 }
 thead.fc-head{
-    background-color:$brand-warning;
+    background-color:white;
 }
 .panel-default{
 }
@@ -95,11 +95,11 @@ thead.fc-head{
     background-color:$brand-success;
 }
 .top-menu {
-    background-color: $interfaith-blue;
+    background-color: white;
 }
 .modal-header{
-    background-color:$brand-danger;
-    color:white;
+    background-color:white;
+    color:black;
 }
 .fc-toolbar.fc-header-toolbar{
     padding:10px;
@@ -116,12 +116,24 @@ thead.fc-head{
 .container{
     padding-bottom: 10px;
 }
-.navbar-brand, .navbar-nav li a {
-    color: white;
+ .navbar-nav li a {
+    color: black;
+    //background-color:$interfaith-red;
 
 }
-.navbar-brand, .navbar-nav li a:hover{
-    color:$brand-success;
+.navbar-nav li a:hover {
+    color: $interfaith-red;
+    background-color:white;
+
+}
+.navbar-nav li a:focus{
+    color:white;
+    background-color:#FA364A;
+
+}
+ .navbar-nav li a:focus a:hover{
+    color:white;
+    background-color:#FA364A;
 
 }
 nav {
@@ -133,7 +145,7 @@ table{
     background-color:white;
 }
 body{
-    background-color:  $interfaith-green;
+    background-color:  white;
 }
 // This is a temp place holder
 .calendar{
