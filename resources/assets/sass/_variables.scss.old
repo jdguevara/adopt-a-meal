@@ -70,8 +70,97 @@ $btn-warning-border:             darken($btn-warning-bg, 5%) !default;
 $btn-danger-color:               #fff !default;
 $btn-danger-bg:                  $brand-danger !default;
 $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
+$btn-link-disabled-color:        $gray-light !default;
 
 
 //Interfaith Typography
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 $interfaith-open-sans : 'Open Sans', sans-serif;
+a:hover{
+    background-color:$brand-warning;
+    color:white;
+}
+
+.panel{
+    //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.panel-default{
+    .panel-heading{
+        background-color:black;
+
+        border-color:white;
+        color:white;
+        //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+}
+
+.panel-default{
+}
+.list-group-item{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+//.btn-primary{
+//    background-color:$brand-primary;
+//    border-color:$brand-primary;
+//}
+//.btn-warning{
+//    background-color:$brand-warning;
+//    border-color:$brand-warning;
+//}
+//.btn-danger{
+//    background-color:$brand-danger;
+//}
+//.btn-success{
+//    background-color:$brand-success;
+//}
+//.top-menu {
+//    background-color: white;
+//}
+//.modal-header{
+//    background-color:white;
+//    color:black;
+//}
+.fc-toolbar.fc-header-toolbar{
+    padding:10px;
+    background-color:black;
+    color:white;
+    margin:0px;
+}
+.brand {
+    max-height: 75px;
+    max-width: 75px;
+    height: auto;
+    width: auto;
+}
+.container{
+    padding-bottom: 10px;
+}
+ .navbar-nav li a {
+    color: black;
+
+}
+.navbar-nav li a:hover {
+    color: $interfaith-red;
+    background-color:white;
+
+}
+.navbar-nav li a:focus{
+    color:white;
+    background-color:#FA364A;
+
+}
+ .navbar-nav li a:focus a:hover{
+    color:white;
+    background-color:#FA364A;
+
+}
+nav {
+    font-family: $interfaith-open-sans;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+
