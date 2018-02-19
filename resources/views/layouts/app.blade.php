@@ -29,7 +29,7 @@
                     <ul class="nav navbar-nav">
                         @guest
                             <li><a href="/">Calendar View</a></li>
-                            <li><a href="/recipes">Meal Ideas</a></li>
+                            <li><a href="/meal-ideas">Meal Ideas</a></li>
                         @else
                             <li><a href="/">Calendar View</a></li>
                             <li><a href="/meal-ideas">Meal Ideas</a></li>

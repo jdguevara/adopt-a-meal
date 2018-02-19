@@ -22,7 +22,7 @@ class MealIdeasController extends Controller
         $volunteerEvents = $calendar->findVolunteerEvents();
         $acceptedEvents = $calendar->findAllAccepted();
 
-        return view('mealideas', ['recipes' => $acceptedEvents]);
+        return view('mealideas', ['mealideas' => $acceptedEvents]);
 
     }
 
