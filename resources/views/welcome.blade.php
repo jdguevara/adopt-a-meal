@@ -163,6 +163,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
         <!-- past event modal -->
         <div id="past-event-modal" class="modal fade" role="dialog">

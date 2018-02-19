@@ -1,6 +1,7 @@
 // Body
 $body-bg: white;
 
+
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
 $list-group-border: $laravel-border-color;
@@ -16,6 +17,7 @@ $text-color: #636b6f;
 
 // Navbar
 $navbar-default-bg: #fff;
+$navbar-height:79px;
 
 // Buttons
 $btn-default-color: $text-color;
@@ -65,7 +67,10 @@ $btn-danger-color:               #fff !default;
 $btn-danger-bg:                  $brand-danger !default;
 $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
 
-
 //Interfaith Typography
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 $interfaith-open-sans : 'Open Sans', sans-serif;
+
+#body-padding{
+padding-top:79px;
+}
