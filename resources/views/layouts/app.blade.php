@@ -18,20 +18,15 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar top-menu">
+        <nav class="navbar top-menu bg-light">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <!-- <a class="navbar-left" href="{{url('http://interfaithsanctuary.org/')}}"> -->
-                        <!-- <img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png"> -->
-                    <!-- </a> -->
+                    <a class="navbar-left" href="{{url('http://interfaithsanctuary.org/')}}"><img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png"></a>
+                    <a class="navbar-brand" href="/">Adopt-a-Meal</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a class="navbar-brand" href="/">Adopt-a-Meal</a></li>
-                    </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
                         @guest
                             <li><a href="#">Calendar View</a></li>
                             <li><a href="#">Meal Ideas</a></li>
