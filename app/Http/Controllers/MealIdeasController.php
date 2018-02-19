@@ -12,13 +12,10 @@ class MealIdeasController extends Controller
     public function __construct(IMealIdeaRepository $repository)
     {
         $this->mealIdeaRepository = $repository;
-        $this->middleware('guest');
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     * Show the cards of meal ideas
      */
     public function index(Calendar $calendar)
     {
@@ -38,12 +35,9 @@ class MealIdeasController extends Controller
             'description' => 'required',
         ]);
          
-        $this->sendEmail($request->all());
-        $this->formRepository->create($request->all());
+        // $this->sendEmail($request->all());
+        // $this->formRepository->create($request->all());
         // flash('Meal suggestion sent successfully')->success();
-        return redirect('/');
+        return redirect('/meal-ideas');
     }
-
-    /**
-     */
 }

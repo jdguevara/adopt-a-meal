@@ -12,10 +12,7 @@
 */
 
 Route::get('/', 'LandingPageController@index');
-Route::post('/form/submit', 'VolunteerFormController@submit');
-
 Route::get('/meal-ideas', 'MealIdeasController@index');
-Route::get('/meal-ideas/submit', 'MealIdeasController@submit');
 
 Auth::routes();
 Route::post('/admin/formreview', 'AdminController@submit');

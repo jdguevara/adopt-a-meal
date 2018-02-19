@@ -55,7 +55,7 @@ if(!$form[0].checkValidity()) {
 </div>
 
 <!-- Meal Idea modal that is displayed when Share is clicked-->
-<form id="mealidea-form" method="POST" action="/meal-ideas/submit">
+<form id="mealidea-form" method="POST" action="api/meal-ideas/submit">
     <div class="modal fade" id="mealidea-modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">

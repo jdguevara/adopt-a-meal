@@ -20,4 +20,6 @@ interface IVolunteerFormRepository
 
     public function approve($id, $eventId);
 
+    public function deny($volunteerId);
+
 }

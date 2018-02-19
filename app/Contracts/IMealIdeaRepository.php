@@ -10,7 +10,7 @@ interface IMealIdeaRepository
 
     public function get($id);
 
-    public function getAllNewForms();
+    public function getConfirmedMealIdeas();
 
     public function create($input);
 
@@ -18,6 +18,8 @@ interface IMealIdeaRepository
 
     public function delete($id);
 
-    public function approve($id, $eventId);
+    public function approve($id);
+
+    public function deny($id);
 
 }
