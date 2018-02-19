@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'LandingPageController@index');
-Route::get('/recipes', 'MealIdeasController@index');
+Route::get('/meal-ideas', 'MealIdeasController@index');
 Route::post('/form/submit', 'VolunteerFormController@submit');
 
 Auth::routes();

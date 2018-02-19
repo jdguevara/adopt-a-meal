@@ -32,8 +32,8 @@
                             <li><a href="/recipes">Meal Ideas</a></li>
                         @else
                             <li><a href="/">Calendar View</a></li>
-                            <li><a href="/recipes">Meal Ideas</a></li>
-                            <li><a href="/admin/recipes">Review Meal Ideas</a></li>
+                            <li><a href="/meal-ideas">Meal Ideas</a></li>
+                            <li><a href="/admin/meal-ideas">Review Meal Ideas</a></li>
                             <li><a href="/admin/verbiage">Change Website Verbiage</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
