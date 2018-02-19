@@ -7,7 +7,7 @@ use App\Mail\VolunteerRequestEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class LandingPageController extends Controller
+class MealIdeasController extends Controller
 {
 
     /**
@@ -22,7 +22,7 @@ class LandingPageController extends Controller
         $volunteerEvents = $calendar->findVolunteerEvents();
         $acceptedEvents = $calendar->findAllAccepted();
 
-        return view('welcome', ['volunteerEvents' => $volunteerEvents, 'acceptedEvents' => $acceptedEvents]);
+        return view('mealideas', ['recipes' => $acceptedEvents]);
 
     }
 
