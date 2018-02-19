@@ -31,14 +31,14 @@ $interfaith-yellow: #f4a71d;
 $interfaith-turquoise:#63c8cd;
 
 // Brands
-//$brand-primary: $interfaith-blue;
-//$brand-info: $interfaith-turquoise;
-//$brand-success: $interfaith-blue;
-//$brand-warning: $interfaith-yellow;
-//$brand-danger: $interfaith-red;
+$brand-primary: $interfaith-blue;
+$brand-info: $interfaith-turquoise;
+$brand-success: $interfaith-blue;
+$brand-warning: $interfaith-yellow;
+$brand-danger: $interfaith-red;
 
 $brand-primary:         black !default;
-$brand-success:         #36b0bF !default;
+$brand-success:         $interfaith-blue !default;
 $brand-info:            $interfaith-red !default;
 $brand-warning:         $interfaith-yellow !default;
 $brand-danger:          $interfaith-blue !default;
@@ -81,10 +81,7 @@ a:hover{
     background-color:$brand-warning;
     color:white;
 }
-//.calendar-panel{
-//    background-color: white;
-//
-//}
+
 .panel{
     //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
@@ -99,9 +96,7 @@ a:hover{
     }
 
 }
-//thead.fc-head{
-//    background-color:white;
-//}
+
 .panel-default{
 }
 .list-group-item{
@@ -146,7 +141,6 @@ a:hover{
 }
  .navbar-nav li a {
     color: black;
-    //background-color:$interfaith-red;
 
 }
 .navbar-nav li a:hover {
@@ -169,17 +163,6 @@ nav {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
-//table{
-//    background-color:white;
-//}
-//body{
-//    background-color:  white;
-//}
-
-//#calendar {
-//    margin: 25px;
-//    background-color: white;
-//}
 
 
 /** Email CSS **/
