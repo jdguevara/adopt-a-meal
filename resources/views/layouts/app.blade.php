@@ -17,9 +17,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-fixed-top box-shadow" id="nav-shadow">
-            <div class="container-fluid">
+    <div id="app" class="container">
+        <nav class="navbar navbar-default navbar-fixed-top " id="nav-shadow">
+            <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" style="padding:10px" href="{{url('http://interfaithsanctuary.org/')}}"><img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png"></a>
                     <a class="navbar-brand" href="/">Adopt-a-Meal</a>
@@ -54,6 +54,7 @@
                 </div>
             </div>
         </nav>
+        </div>
         <div class="container" id ="body-padding">
             @if(isset($errors) && $errors->any())
                 <div class="alert alert-danger">
