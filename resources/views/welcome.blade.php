@@ -10,12 +10,14 @@
 
 
         var transformedVolunteerEvents = volunteerEvents.map(e => {
+            console.log(e.end.date);
             return {
                 "id": e.id,
                 "title": e.summary,
-                "start": e.start.dateTime || e.start.date,
-                "end": e.end.dateTime || e.end.date,
-                "color": "#36b0bF"
+                "start": e.start.date,
+                "allDay": true,
+                "color": "#36b0bF",
+                "eventStatus": 0
             }
         });
 
@@ -24,10 +26,11 @@
             return {
                 "id": e.id,
                 "title": e.summary,
-                "start": e.start.dateTime || e.start.date,
-                "end": e.end.dateTime || e.end.date,
+                "start": e.start.date,
+                "allDay": true,
                 "color": "green",
-                "description": e.description
+                "description": e.description,
+                "eventStatus": 1
             }
         });
         var events = transformedVolunteerEvents.concat(transformedAcceptedEvents);
@@ -43,12 +46,12 @@
                 var eventDate = moment(calEvent.start);
 
                 // think of this operation like eventDate - today, negative is past, positive is future
-                if (eventDate.diff(today) < 0) {
+                if (eventDate.diff(today) < 0 && calEvent.eventStatus == 0) {
                     $("#past-event-modal").modal();
                 }
-                if(calEvent.color === 'green'){
+                if(calEvent.eventStatus == 1){
                     $("#confirmed-event-modal").modal();
-                    $("#confirmed-event-date").val(calEvent.start.format('MMMM Do YYYY, h:mma'));
+                    $("#confirmed-event-date").val(calEvent.start.format('MMMM Do YYYY'));
                     $("#confirmed-description").val(calEvent.description);
                     $("#confirmed-title").val(calEvent.title);
                 }
@@ -62,7 +65,7 @@
                     $('#title').text(eventTitle);
                     $('#event-id').val(calEvent.id);
                     $('#event-time').val(calEvent.start);
-                    $('#event-date').val(calEvent.start.format('MMMM Do YYYY, h:mma'));
+                    $('#event-date').val(calEvent.start.format('MMMM Do YYYY'));
                     $('#event-title').val(eventTitle);
                     $("#volunteer-modal").modal();
                 }
@@ -146,8 +149,8 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading text-center">
-                <h3>Adopt-a-Meal Calendar</h3>
-                <p>Select a meal you would like to adopt.</p>
+                <h1>Adopt-a-Meal Calendar</h1>
+                <p>Select a a date you would like to Adopt A Meal</p>
             </div>
             <div class="panel-body calendar-panel text-center">
                 <div class="calendar">
@@ -186,12 +189,12 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 id="title" style="margin-top: 15px;">This event is already confirmed</h3>
+                        <h3 id="title" style="margin-top: 15px;">An organization has adopted this meal!</h3>
                     </div>  
                     <div class="modal-body">
                         <div id="inputs" class="volunteer-inputs">
                             <div class="input-group">
-                                <span class="input-group-addon">Event Date</span>
+                                <span class="input-group-addon">Date</span>
                                 <input id="confirmed-event-date" name="event_date" type="text"  
                                         class="form-control" disabled>
                             </div>
@@ -213,26 +216,25 @@
         </div>
         <!-- Volunteer form modal that is displayed when an event is clicked -->
         <form id="volunteer-form" class="volunteer-form" method="POST" action="/api/form/submit">
-
             <div class="modal fade" id="volunteer-modal" role="dialog">
-
                 <div class="modal-dialog">
-
                     <div class="modal-content">
-
-
                         <div class="modal-header">
-                            <h3 id="title" style="margin-top: 15px;"></h3>
+                            <h3 id="title" style="margin-top: 15px;">Adopt-A-Meal Form</h3>
                         </div>
-
 
                         <!-- list of text field inputs and check boxes  -->
                         <div class="modal-body">
-
                             <div id="inputs" class="volunteer-inputs">
-
                                 <div class="input-group">
-                                    <span class="input-group-addon">Event Date</span>
+                                    <span><h5>
+                                        Please provide the following information. Once the form is
+                                        complete you will recieve a confirmation e-mail and we will
+                                        contact you to help ensure your adopted meal will be a success!
+                                    </h5></span>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Volunteer Date</span>
                                     <input id="event-date" name="event_date" type="text"  
                                            class="form-control" disabled>
                                 </div>
@@ -241,30 +243,25 @@
                                     <input id="organization_name" name="organization_name" type="text"
                                            class="form-control" placeholder="Organization Name" required>
                                 </div>
-
                                 <div class="input-group">
                                     <span class="input-group-addon">Email</span>
                                     <input id="email" name="email" type="text" class="form-control" placeholder="Email"
                                            required>
                                 </div>
-
                                 <div class="input-group">
                                     <span class="input-group-addon">Phone Number</span>
                                     <input id="phone" name="phone" type="text" class="form-control"
                                            placeholder="Phone Number" required>
                                 </div>
-
                                 <div class="input-group">
                                     <span class="input-group-addon">Meal Description</span>
                                     <input id="meal_description" name="meal_description" type="text" class="form-control"
                                            placeholder="Meal Description">
                                 </div>
-
                                 <div class="input-group">
                                     <textarea id="notes" name="notes" class="form-control"
                                               placeholder="Notes"></textarea>
                                 </div>
-
                                 <div class="input-group">
                                     <span>
                                         <strong>
@@ -295,9 +292,7 @@
                                     <div class="dot2"></div>
                                 </div>
                             </div>
-
                         </div>
-
 
                         <div class="modal-footer">
                             <div class="input-group pull-right">
