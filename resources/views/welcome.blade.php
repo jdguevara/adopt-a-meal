@@ -28,7 +28,7 @@
                 "title": e.summary,
                 "start": e.start.date,
                 "allDay": true,
-                "color": "green",
+                "color": "#f4a71d",
                 "description": e.description,
                 "eventStatus": 1
             }

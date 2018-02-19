@@ -18,22 +18,21 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top box-shadow" id="nav-shadow">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" style="padding:10px" href="{{url('http://interfaithsanctuary.org/')}}"><img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png"></a>
                     <a class="navbar-brand" href="/">Adopt-a-Meal</a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <div class="collapse navbar-collapse pull-right" id="app-navbar-collapse">
                     <ul class="nav navbar-nav">
-                        @guest
-                            <li><a href="#">Calendar View</a></li>
-                            <li><a href="#">Meal Ideas</a></li>
-                        @else
-                            <li><a href="#">Calendar View</a></li>
-                            <li><a href="#">Meal Ideas</a></li>
-                            <li class="dropdown">
+                        <li class="nav-item "><a class="navbar-link" href="#">Calendar View</a></li>
+                        <li class="nav-item "><a class="navbar-link" href="#">Meal Ideas</a></li>
+
+                        @auth
+
+                            <li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -50,7 +49,7 @@
                                     </li>
                                 </ul>
                             </li>
-                        @endguest
+                        @endauth
                     </ul>
                 </div>
             </div>

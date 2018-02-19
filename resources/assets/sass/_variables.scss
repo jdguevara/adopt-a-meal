@@ -1,27 +1,6 @@
 // Body
 $body-bg: white;
 
-
-// Borders
-$laravel-border-color: darken($body-bg, 10%);
-$list-group-border: $laravel-border-color;
-$navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
-
-// Typography
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-size-base: 14px;
-$line-height-base: 1.6;
-$text-color: #636b6f;
-
-// Navbar
-$navbar-default-bg: #fff;
-$navbar-height:79px;
-
-// Buttons
-$btn-default-color: $text-color;
-
 // Panels
 
 //Interfaith Brand Colors
@@ -39,6 +18,33 @@ $brand-warning:         $interfaith-yellow !default;
 $brand-danger:          $interfaith-blue !default;
 
 $panel-default-heading-bg: $brand-warning;
+
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border: $laravel-border-color;
+$navbar-default-border: #fff;
+$panel-default-border: $laravel-border-color;
+$panel-inner-border: $laravel-border-color;
+
+// Typography
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-size-base: 14px;
+$line-height-base: 1.6;
+$text-color: #636b6f;
+
+// Navbar
+$navbar-default-bg: #fff;
+$navbar-height:79px;
+$navbar-inverse-link-color: $brand-info;
+$navbar-default-link-hover-color:$brand-info;
+
+//links
+
+
+// Buttons
+$btn-default-color: $text-color;
+
+
 
 // Inputs
 $input-border: lighten($text-color, 40%);
@@ -73,4 +79,7 @@ $interfaith-open-sans : 'Open Sans', sans-serif;
 
 #body-padding{
 padding-top:79px;
+}
+#nav-shadow{
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2)
 }
