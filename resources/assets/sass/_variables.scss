@@ -94,7 +94,9 @@ $btn-danger-color:               #fff !default;
 $btn-danger-bg:                  $brand-danger !default;
 $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
 
-
+html,body{
+  height:100%;
+}
 #body-padding{
 padding-top:82px;}
 #nav-shadow{
@@ -128,7 +130,12 @@ padding-top:82px;}
   font-weight:700;
 }
 .jumbotron-footer{
-  margin-top:100px;
+  margin-top:200px;
   margin-bottom:0px;
+  position:absolute;
+width:100%
 
+}
+.footer{
+  background-color:black;
 }

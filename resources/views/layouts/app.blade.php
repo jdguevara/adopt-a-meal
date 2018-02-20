@@ -68,10 +68,9 @@
         @yield('content')
 
     </div>
-    <div class="text-center jumbotron jumbotron-footer">
-        <h1 id="jumbotron-footer-header">Thank you for adopting a meal!</h1>
-        <p>We would like to thank all the organizations who adopted a meal for there wonderful contribution!</p>
-    </div>
+    {{--<div class="footer">--}}
+        {{--<p>Created by: Boise State Merge Conflicts</p>--}}
+    {{--</div>--}}
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

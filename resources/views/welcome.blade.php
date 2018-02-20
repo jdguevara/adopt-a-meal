@@ -165,9 +165,12 @@
             </div>
         </div>
     </div>
+    <div class="text-center jumbotron jumbotron-footer">
+        <h1 id="jumbotron-footer-header">Thank you for adopting a meal!</h1>
+        <p>We would like to thank all the organizations who adopted a meal for there wonderful contribution!</p>
+    </div>
 
-
-        <!-- past event modal -->x
+        <!-- past event modal -->
         <div id="past-event-modal" class="modal fade" role="dialog">
 
             <div class="modal-dialog">
@@ -317,6 +320,7 @@
                 </div>
             </div>
         </form>
+
     </div>
 
 @endsection
