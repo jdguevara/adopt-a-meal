@@ -167,7 +167,7 @@
     </div>
     <div class="text-center jumbotron jumbotron-footer">
         <h1 id="jumbotron-footer-header">Thank you for adopting a meal!</h1>
-        <p>We would like to thank all the organizations who adopted a meal for there wonderful contribution!</p>
+        <p>We would like to thank all the organizations who adopted a meal for their wonderful contribution!</p>
     </div>
 
         <!-- past event modal -->
