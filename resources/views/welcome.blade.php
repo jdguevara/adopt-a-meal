@@ -28,7 +28,7 @@
                 "title": e.summary,
                 "start": e.start.date,
                 "allDay": true,
-                "color": "#f4a71d",
+                "color": "#ef3c5a",
                 "description": e.description,
                 "eventStatus": 1
             }
@@ -166,7 +166,8 @@
         </div>
     </div>
 
-        <!-- past event modal -->
+
+        <!-- past event modal -->x
         <div id="past-event-modal" class="modal fade" role="dialog">
 
             <div class="modal-dialog">

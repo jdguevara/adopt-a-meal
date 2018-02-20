@@ -31,6 +31,7 @@
                         <li class="nav-item "><a class="navbar-link" href="#">Meal Ideas</a></li>
 
                         @auth
+                            <li class="nav-item "><a class="navbar-link" href="/admin">Admin Dashboard</a></li>
 
                             <li class="dropdown nav-item">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -65,6 +66,11 @@
             @include('flash::message')
         </div>
         @yield('content')
+
+    </div>
+    <div class="text-center jumbotron jumbotron-footer">
+        <h1 id="jumbotron-footer-header">Thank you for adopting a meal!</h1>
+        <p>We would like to thank all the organizations who adopted a meal for there wonderful contribution!</p>
     </div>
 
     <!-- Scripts -->
