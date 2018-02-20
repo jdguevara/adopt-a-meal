@@ -147,7 +147,8 @@
 
 @section('content')
     <div class="text-center jumbotron">
-        <h1>Adopt-a-Meal Calendar</h1>
+        <h1 id="jumbotron-header">Adopt a Meal </h1>
+        <h1 id="jumbotron-subheader">Calendar</h1>
         <p>Select a a date you would like to Adopt A Meal</p>
     </div>
     <div class="container">

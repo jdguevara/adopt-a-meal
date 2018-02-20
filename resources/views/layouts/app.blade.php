@@ -21,8 +21,8 @@
         <nav class="navbar navbar-default navbar-fixed-top " id="nav-shadow">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" style="padding:10px" href="{{url('http://interfaithsanctuary.org/')}}"><img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png"></a>
-                    <a class="navbar-brand" href="/">Adopt-a-Meal</a>
+                    <a class="navbar-brand "  id="navbar-brand-padding" href="{{url('http://interfaithsanctuary.org/')}}"><img class="brand" alt="Brand" id="navbar-brand-size" src="images/Interfaith-Temp-Logo.png"></a>
+                    <a class="navbar-brand " id="navbar-brand-font" href="/">Adopt a Meal</a>
                 </div>
 
                 <div class="collapse navbar-collapse pull-right" id="app-navbar-collapse">
