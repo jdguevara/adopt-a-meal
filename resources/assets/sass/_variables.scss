@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //Interfaith Typography
 @import url('https://fonts.googleapis.com/css?family=Averia+Serif+Libre:300|Open+Sans:300,400,700,800|Amatic+SC:400,800|Open+Sans:300,400,700,800');
 
@@ -25,11 +24,7 @@ $brand-success:         $interfaith-blue !default;
 $brand-info:            $interfaith-red !default;
 $brand-warning:         $interfaith-yellow !default;
 $brand-danger:          $interfaith-blue !default;
-$panel-default-heading-bg: $brand-warning;
-=======
-// Body
-$body-bg: white;
->>>>>>> e21ee43b4051461cbb5b96f5ad8b2a848de63ad8
+
 
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
@@ -69,17 +64,6 @@ $navbar-default-link-hover-color:$brand-info;
 $btn-default-color: $text-color;
 
 
-<<<<<<< HEAD
-=======
-$brand-primary:         black !default;
-$brand-success:         $interfaith-blue !default;
-$brand-info:            $interfaith-red !default;
-$brand-warning:         $interfaith-yellow !default;
-$brand-danger:          $interfaith-blue !default;
-
-$panel-default-heading-bg: $brand-warning;
->>>>>>> e21ee43b4051461cbb5b96f5ad8b2a848de63ad8
-
 // Inputs
 $input-border: lighten($text-color, 40%);
 $input-border-focus: lighten($brand-primary, 25%);
@@ -92,11 +76,7 @@ $btn-default-color:              #333 !default;
 $btn-default-bg:                 #fff !default;
 $btn-default-border:             #ccc !default;
 $btn-primary-color:              #fff !default;
-<<<<<<< HEAD
 $btn-primary-bg:                 $brand-info !default;
-=======
-$btn-primary-bg:                 $brand-primary !default;
->>>>>>> e21ee43b4051461cbb5b96f5ad8b2a848de63ad8
 $btn-primary-border:             darken($btn-primary-bg, 5%) !default;
 $btn-success-color:              #fff;
 $btn-success-bg:                 $brand-success !default;
@@ -112,7 +92,6 @@ $btn-danger-bg:                  $brand-danger !default;
 $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
 
 
-<<<<<<< HEAD
 #body-padding{
   padding-top:82px;
 }
@@ -150,8 +129,4 @@ $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
   margin-bottom:0px;
 }
 
-=======
-//Interfaith Typography
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-$interfaith-open-sans : 'Open Sans', sans-serif;
->>>>>>> e21ee43b4051461cbb5b96f5ad8b2a848de63ad8
+

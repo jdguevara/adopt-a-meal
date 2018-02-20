@@ -17,44 +17,24 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<<<<<<< HEAD
     <div id="app" class="container">
         <nav class="navbar navbar-default navbar-fixed-top " id="nav-shadow">
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand "  id="navbar-brand-padding" href="{{url('http://interfaithsanctuary.org/')}}"><img class="brand" alt="Brand" id="navbar-brand-size" src="images/Interfaith-Temp-Logo.png"></a>
                     <a class="navbar-brand " id="navbar-brand-font" href="/">Adopt a Meal</a>
-=======
-    <div id="app">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" style="padding:10px" href="{{url('http://interfaithsanctuary.org/')}}"><img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png"></a>
-                    <a class="navbar-brand" href="/">Adopt-a-Meal</a>
->>>>>>> e21ee43b4051461cbb5b96f5ad8b2a848de63ad8
                 </div>
 
                 <div class="collapse navbar-collapse pull-right" id="app-navbar-collapse">
                     <ul class="nav navbar-nav">
-<<<<<<< HEAD
-                        <li class="nav-item "><a class="navbar-link" href="#">Calendar View</a></li>
-                        <li class="nav-item "><a class="navbar-link" href="#">Meal Ideas</a></li>
+                        <li class="nav-item "><a class="navbar-link" href="/">Calendar View</a></li>
+                        <li class="nav-item "><a class="navbar-link" href="/meal-ideas">Meal Ideas</a></li>
+
 
                         @auth
-                            <li class="nav-item "><a class="navbar-link" href="/admin">Admin Dashboard</a></li>
-
-                            <li class="dropdown nav-item">
-=======
-                        @guest
-                            <li><a href="/">Calendar View</a></li>
-                            <li><a href="/meal-ideas">Meal Ideas</a></li>
-                        @else
-                            <li><a href="/">Calendar View</a></li>
-                            <li><a href="/meal-ideas">Meal Ideas</a></li>
                             <li><a href="/admin/meal-ideas">Review Meal Ideas</a></li>
                             <li><a href="/admin/verbiage">Change Website Verbiage</a></li>
                             <li class="dropdown">
->>>>>>> e21ee43b4051461cbb5b96f5ad8b2a848de63ad8
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
