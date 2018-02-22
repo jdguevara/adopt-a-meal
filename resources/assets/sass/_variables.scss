@@ -1,24 +1,13 @@
+//Interfaith Typography
+@import url('https://fonts.googleapis.com/css?family=Averia+Serif+Libre:300|Open+Sans:300,400,700,800|Amatic+SC:400,800|Open+Sans:300,400,700,800');
+
+$interfaith-open-sans :'Open Sans', sans-serif;
+$interfaith-jumbotron-font:'Averia Serif Libre', cursive;
+$interfaith-decorative: 'Amatic SC', cursive;
+
+
 // Body
 $body-bg: white;
-
-// Borders
-$laravel-border-color: darken($body-bg, 10%);
-$list-group-border: $laravel-border-color;
-$navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
-
-// Typography
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-size-base: 14px;
-$line-height-base: 1.6;
-$text-color: #636b6f;
-
-// Navbar
-$navbar-default-bg: #fff;
-
-// Buttons
-$btn-default-color: $text-color;
 
 // Panels
 
@@ -30,19 +19,50 @@ $interfaith-yellow: #f4a71d;
 $interfaith-turquoise:#63c8cd;
 
 // Brands
-$brand-primary: $interfaith-blue;
-$brand-info: $interfaith-turquoise;
-$brand-success: $interfaith-blue;
-$brand-warning: $interfaith-yellow;
-$brand-danger: $interfaith-red;
-
 $brand-primary:         black !default;
 $brand-success:         $interfaith-blue !default;
 $brand-info:            $interfaith-red !default;
 $brand-warning:         $interfaith-yellow !default;
 $brand-danger:          $interfaith-blue !default;
 
-$panel-default-heading-bg: $brand-warning;
+
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border: $laravel-border-color;
+$navbar-default-border: #fff;
+$navbar-default-brand-color:$brand-info;
+$panel-default-border: $laravel-border-color;
+$panel-inner-border: $laravel-border-color;
+
+$panel-default-heading-bg:white;
+//Jumbotron
+$jumbotron-bg:black;
+$jumbotron-color:white;
+$jumbotron-heading-color:$brand-warning;
+// Typography
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-size-base: 14px;
+$line-height-base: 1.6;
+$text-color: #636b6f;
+$close-font-weight:300;
+$headings-font-weight:300;
+$btn-font-weight:300;
+$font-family-base:$interfaith-open-sans;
+$badge-font-weight:300;
+$font-family-sans-serif:$interfaith-open-sans;
+
+// Navbar
+$navbar-default-bg: #fff;
+$navbar-height:79px;
+$navbar-inverse-link-color: $brand-info;
+$navbar-default-link-hover-color:$brand-info;
+
+//links
+
+
+// Buttons
+$btn-default-color: $text-color;
+
 
 // Inputs
 $input-border: lighten($text-color, 40%);
@@ -56,7 +76,7 @@ $btn-default-color:              #333 !default;
 $btn-default-bg:                 #fff !default;
 $btn-default-border:             #ccc !default;
 $btn-primary-color:              #fff !default;
-$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-bg:                 $brand-info !default;
 $btn-primary-border:             darken($btn-primary-bg, 5%) !default;
 $btn-success-color:              #fff;
 $btn-success-bg:                 $brand-success !default;
@@ -72,6 +92,41 @@ $btn-danger-bg:                  $brand-danger !default;
 $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
 
 
-//Interfaith Typography
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-$interfaith-open-sans : 'Open Sans', sans-serif;
+#body-padding{
+  padding-top:82px;
+}
+#nav-shadow{
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+#navbar-brand-font{
+  font-weight:700;
+  font-family:$interfaith-decorative;
+  font-size: 20px;
+}
+#navbar-brand-padding{
+  padding:5px;
+}
+#navbar-brand-size{
+  max-height:100px;
+  max-width:100px;
+}
+#jumbotron-subheader{
+  font-size:80px;
+  font-weight: 700;
+  color:white;
+}
+#jumbotron-header{
+  padding-top:30px;
+  font-size:110px;
+  font-family: $interfaith-jumbotron-font;
+}
+#jumbotron-footer-header{
+  font-family:$interfaith-decorative;
+  font-weight:700;
+}
+.jumbotron-footer{
+  margin-top:200px;
+  margin-bottom:0px;
+}
+
+

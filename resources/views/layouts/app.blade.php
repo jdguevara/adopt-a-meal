@@ -17,22 +17,21 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
+    <div id="app" class="container">
+        <nav class="navbar navbar-default navbar-fixed-top " id="nav-shadow">
+            <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" style="padding:10px" href="{{url('http://interfaithsanctuary.org/')}}"><img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png"></a>
-                    <a class="navbar-brand" href="/">Adopt-a-Meal</a>
+                    <a class="navbar-brand "  id="navbar-brand-padding" href="{{url('http://interfaithsanctuary.org/')}}"><img class="brand" alt="Brand" id="navbar-brand-size" src="images/Interfaith-Temp-Logo.png"></a>
+                    <a class="navbar-brand " id="navbar-brand-font" href="/">Adopt a Meal</a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <div class="collapse navbar-collapse pull-right" id="app-navbar-collapse">
                     <ul class="nav navbar-nav">
-                        @guest
-                            <li><a href="/">Calendar View</a></li>
-                            <li><a href="/meal-ideas">Meal Ideas</a></li>
-                        @else
-                            <li><a href="/">Calendar View</a></li>
-                            <li><a href="/meal-ideas">Meal Ideas</a></li>
+                        <li class="nav-item "><a class="navbar-link" href="/">Calendar View</a></li>
+                        <li class="nav-item "><a class="navbar-link" href="/meal-ideas">Meal Ideas</a></li>
+
+
+                        @auth
                             <li><a href="/admin/meal-ideas">Review Meal Ideas</a></li>
                             <li><a href="/admin/verbiage">Change Website Verbiage</a></li>
                             <li class="dropdown">
@@ -52,12 +51,13 @@
                                     </li>
                                 </ul>
                             </li>
-                        @endguest
+                        @endauth
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container">
+        </div>
+        <div class="container" id ="body-padding">
             @if(isset($errors) && $errors->any())
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -67,7 +67,11 @@
             @include('flash::message')
         </div>
         @yield('content')
+
     </div>
+    {{--<div class="footer">--}}
+        {{--<p>Created by: Boise State Merge Conflicts</p>--}}
+    {{--</div>--}}
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

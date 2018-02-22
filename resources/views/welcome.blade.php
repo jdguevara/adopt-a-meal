@@ -28,7 +28,7 @@
                 "title": e.summary,
                 "start": e.start.date,
                 "allDay": true,
-                "color": "green",
+                "color": "#ef3c5a",
                 "description": e.description,
                 "eventStatus": 1
             }
@@ -147,7 +147,7 @@
 
 @section('content')
     <div class="text-center jumbotron">
-        <h1>Adopt-a-Meal Calendar</h1>
+        <h1 id="jumbotron-header">Adopt a Meal </h1>
         <p>Select a a date you would like to Adopt A Meal</p>
     </div>
     <div class="container">
@@ -163,6 +163,11 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="text-center jumbotron jumbotron-footer">
+        <h1 id="jumbotron-footer-header">Thank you for adopting a meal!</h1>
+        <p>We would like to thank all the organizations who adopted a meal for their wonderful contribution!</p>
+    </div>
 
         <!-- past event modal -->
         <div id="past-event-modal" class="modal fade" role="dialog">
@@ -314,6 +319,7 @@
                 </div>
             </div>
         </form>
+
     </div>
 
 @endsection
