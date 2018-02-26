@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Calendar;
 use App\Mail\VolunteerFormEmail;
 use App\Mail\VolunteerRequestEmail;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class LandingPageController extends Controller
@@ -17,15 +16,20 @@ class LandingPageController extends Controller
      */
     public function index(Calendar $calendar)
     {
-       // $events = array_merge($calendar->findVolunteerEvents(), $calendar->findAllAccepted());
-
-        $volunteerEvents = $calendar->findVolunteerEvents();
-        $acceptedEvents = $calendar->findAllAccepted();
-
-        return view('welcome', ['volunteerEvents' => $volunteerEvents, 'acceptedEvents' => $acceptedEvents]);
-
+        $events = $calendar->findAll();
+        return view('welcome', ['events' => $events]);
     }
 
     /**
      */
+    public function testEmail()
+    {
+        Mail::to('mergeconflictscs471-group@u.boisestate.edu')
+        ->send(new VolunteerFormEmail());
+
+        Mail::to('mergeconflictscs471-group@u.boisestate.edu')
+        ->send(new VolunteerRequestEmail());
+
+        return redirect('/');
+    }
 }

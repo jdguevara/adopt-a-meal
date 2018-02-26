@@ -11,7 +11,11 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class EmailRouteRedirectTest extends TestCase
+<<<<<<< HEAD:tests/Unit/EmailSentRedirectTest.php
+class EmailSentRedirectTest extends TestCase
+=======
+class EmailRouteRedirect extends TestCase
+>>>>>>> feature/test-unit:tests/Unit/EmailSentRedirect.php
 {
 
     public function test_volunteer_form_redirect()

@@ -1,158 +1,88 @@
 @extends('layouts.app')
 
-@section('scripts')
-    <script>
-
-        var volunteerForms = {!! json_encode($volunteerForms) !!};
-
-        function viewEvent (eventId) {
-            // find the event in our events list
-            var event = volunteerForms.find(function(event) { return event.open_event_id === eventId; });
-
-            // open the modal with event info
-            $("#title").text(event.title);
-            $('#meal-description').val(event.meal_description);
-            $('#organization-name').val(event.organization_name);
-            $('#event-date-time').val(event.event_date_time);
-            $('#email').val(event.email);
-            $('#notes').val(event.notes);
-            $('#phone').val(event.phone);
-            $('#paper-goods').val(event.paper_goods == 1 ? "Yes" : "No");
-            $('#open-event-id').val(event.open_event_id);
-            $('#volunteer-id').val(event.id);
-            $("#event-modal").modal();
-        }
-
-        function submitEvent (approval) {
-            // send the form, value set in jquery is async apparently?
-            $('#approve-event').val(approval);
-            $('#event-form').submit();
-        }
-    </script>
-@endsection
-
-
 @section('content')
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading text-center text-capitalize"><h3>Admin Dashboard</h3></div>
-
-                    <div class="panel-body text-center">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        You are logged in!
-                        Accept, Edit and Delete Adopt-a-Meal requests here.
-                    </div>
-
-                </div>
-
-                <form id="event-form" method="POST" action="/admin/formreview">
-                    {{ csrf_field() }}
-                    {{ method_field('POST') }}
-                    <div class="modal fade" id="event-modal" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 id="title" style="margin-top: 15px;"></h3>
-                                </div>
-                                <!-- list of text field inputs and check boxes  -->
-                                <div class="modal-body event-info">
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Meal Description</span>
-                                        <input id="meal-description" class="form-control" disabled />
-                                    </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Organization Name</span>
-                                        <input id="organization-name" class="form-control" disabled />
-                                    </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Date</span>
-                                        <input id="event-date-time" class="form-control" disabled />
-                                    </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Email</span>
-                                        <input id="email" class="form-control" disabled />
-                                    </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Phone</span>
-                                        <input id="phone" class="form-control" disabled />
-                                    </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Notes</span>
-                                        <input id="notes" class="form-control" disabled />
-                                    </div>
-
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Paper Goods</span>
-                                        <input id="paper-goods" class="form-control" disabled />
-                                    </div>
-
-                                </div>
-
-                                <div class="modal-footer">
-
-                                    <div class="input-group pull-right">
-
-                                        <button id="approve"
-                                                type="button"
-                                                class="btn btn-success"
-                                                onClick="submitEvent(1);">
-                                            Approve
-                                        </button>
-
-                                        <button id="deny"
-                                                type="button"
-                                                class="btn btn-warning"
-                                                onClick="submitEvent(0);">
-                                            Deny
-                                        </button> 
-                                        <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                                        <input type="text" id="open-event-id" name="open_event_id" hidden>
-                                        <input type="text" id="volunteer-id" name="volunteer_id" hidden>
-                                        <input type="text" id="approve-event" name="approve_event" hidden>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center text-capitalize"><h3>Admin Dashboard</h3></div>
+                <div class="panel-body text-center">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
                         </div>
-
-                    </div>
-
-                </form>
-
-                @foreach($volunteerForms as $form)
-                    <ul class="list-group">
-                        <li class="list-group-item ">
-                            <h5>{{$form->title}}</h5>
-                            <h6>From: {{$form->organization_name}}
-                                <button id="view-event" onclick="viewEvent('{{$form['open_event_id']}}');" class="btn btn-warning event-info-details pull-right">
-                                        Details
-                                </button>
-                            </h6>
-                            <h6>Date: {{$form->event_date_time}} </h6>
-                        </li>
-                    </ul>
-
-                @endforeach
+                    @endif
+                    You are logged in!
+                    <a href="/testEmail">Click here to send a test email</a>
+                    Accept, Edit and Delete Adopt-a-Meal requests here.
+                </div>
             </div>
 
+             @foreach($forms as $form)
+                <ul  class="list-group">
+                    <li class="list-group-item "><div class="row">
+                            <div class= "col-sm-6">
+                                <h5>{{$form['organization']}}</h5>
+                                <h6>Date: {{$form['date']}}</h6>
+                            </div>
+                            <div class="btn-toolbar col-sm-6">
+                                <button type="button" class="btn btn-danger pull-right " data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-date="{{json_encode($form['date'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}"  data-target="#myModal">Decline</button>
+                                <button type="button" class="btn btn-warning pull-right" data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-date="{{json_encode($form['date'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Details</button>
+                                <button type="button" class="btn btn-info pull-right" data-toggle="modal" :data-organization="{{json_encode($form['organization'],true)}}" :data-date="{{json_encode($form['date'],true)}}" :data-email="{{json_encode($form['email'],true)}}" :data-notes="{{json_encode($form['notes'],true)}}" data-target="#myModal">Accept</button>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            @endforeach
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="date"></p>
+                            <p class="email"></p>
+                            <p class="notes"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info pull-left" v-if="" data-dismiss="modal">Accept</button>
+                            <button type="button" class="btn btn-warning pull-left" v-if="" data-dismiss="modal">Details</button>
+                            <button type="button" class="btn btn-danger pull-left" v-if="" data-dismiss="modal">Decline</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
+    </div>
+</div>
+@endsection
 
+@section('scripts')
+    <script>
+            $(document).ready(function(){
+                $('#myModal').on('show.bs.modal',function(event) {
+                    var button = $(event.relatedTarget)
+                    var organization = button.data('organization')
+                    var email = button.data('email')
+                    var notes = button.data('notes')
+                    var date = button.data('date')
+
+                    var modal = $(this)
+                    modal.find('.modal-title').text(organization)
+                    modal.find('.email').text("Email: " + email)
+                    modal.find('.notes').text("Notes: " + notes)
+                    modal.find('.date').text("Date: "+date)
+                })
+
+            });
+
+
+    </script>
 @endsection

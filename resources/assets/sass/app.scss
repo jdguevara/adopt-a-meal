@@ -1,43 +1,5 @@
-// Import variables before bootstrap to apply them
-@import "variables";
-
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 // Variables
-@import "checkbox";
-@import "volunteer-form";
-@import "event-form";
-@import "loading-spinner";
-
-
-
-// textarea {
-//     border-radius: 4px !important;
-//     resize: none;
-// }
-
-// .text-light {
-//     color: #aaa;
-// }
-
-@media screen and (max-width: 600px) {
-    .desktop {
-        display: none !important;
-    }
-}
-@media screen and (min-width: 600px) {
-    .mobile {
-        display: none !important;
-    }
-}
-
-// .fc-day-grid-event {
-//     padding-top: 10px;
-//     padding-bottom: 10px;
-// }
-
-.navbar-brand > .brand {
-    max-height: 50px;
-    max-width: 50px;
-}
+@import "variables";

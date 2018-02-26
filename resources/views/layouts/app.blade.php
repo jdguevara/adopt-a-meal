@@ -17,23 +17,27 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app" class="container">
-        <nav class="navbar navbar-default navbar-fixed-top " id="nav-shadow">
-            <div class="container">
+    <div id="app">
+        <nav class="navbar top-menu">
+            <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand "  id="navbar-brand-padding" href="{{url('http://interfaithsanctuary.org/')}}"><img class="brand" alt="Brand" id="navbar-brand-size" src="images/Interfaith-Temp-Logo.png"></a>
-                    <a class="navbar-brand " id="navbar-brand-font" href="/">Adopt a Meal</a>
+                    <a class="navbar-left" href="{{url('http://interfaithsanctuary.org/')}}">
+                        <img class="brand" alt="Brand" src="images/Interfaith-Temp-Logo.png">
+                    </a>
                 </div>
 
-                <div class="collapse navbar-collapse pull-right" id="app-navbar-collapse">
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="nav-item "><a class="navbar-link" href="/">Calendar View</a></li>
-                        <li class="nav-item "><a class="navbar-link" href="/meal-ideas">Meal Ideas</a></li>
+                        <li><a class="navbar-brand" href="/">Adopt-a-Meal</a></li>
+                    </ul>
 
-
-                        @auth
-                            <li><a href="/admin/meal-ideas">Review Meal Ideas</a></li>
-                            <li><a href="/admin/verbiage">Change Website Verbiage</a></li>
+                    <ul class="nav navbar-nav navbar-right">
+                        @guest
+                            <li><a href="#">Calendar View</a></li>
+                            <li><a href="#">Meal Ideas</a></li>
+                        @else
+                            <li><a href="#">Calendar View</a></li>
+                            <li><a href="#">Meal Ideas</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -51,34 +55,16 @@
                                     </li>
                                 </ul>
                             </li>
-                        @endauth
+                        @endguest
                     </ul>
                 </div>
             </div>
         </nav>
-        </div>
-        <div class="container" id ="body-padding">
-            @if(isset($errors) && $errors->any())
-                <div class="alert alert-danger">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {!! implode('<br />', $errors->all()) !!}
-                </div>
-            @endif
-            @include('flash::message')
-        </div>
         @yield('content')
-
     </div>
-    {{--<div class="footer">--}}
-        {{--<p>Created by: Boise State Merge Conflicts</p>--}}
-    {{--</div>--}}
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
-    <script>
-      $('div.alert').not('.alert-important').delay(1500).fadeOut(350);
-      $('#flash-overlay-modal').modal();
-    </script>
 </body>
 </html>
