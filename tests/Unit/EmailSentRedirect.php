@@ -11,7 +11,7 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class EmailRouteRedirectTest extends TestCase
+class EmailRouteRedirect extends TestCase
 {
 
     public function VolunteerFormRedirectTest()

@@ -19,9 +19,6 @@ class LinksAndAuthenticationTest extends TestCase
      */
     public function testLinkAuthentication()
     {
-        //$this->visit('/')
-        //   ->click('Meal Ideas')
-        //   ->seePageIs('/meal-ideas');
 
         // Checking the Welcome page works fine
         $response = $this->get('/');
@@ -31,7 +28,7 @@ class LinksAndAuthenticationTest extends TestCase
 
         // Checking the /admin URL works fine
         $response = $this->get('/admin');
-        //$response->assertViewIs('login');
+        $response->assertViewIs('login');
         $response->assertStatus(500);
         $this->assertGuest($guard = null);
 
