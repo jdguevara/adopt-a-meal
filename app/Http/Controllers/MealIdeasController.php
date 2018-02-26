@@ -20,11 +20,8 @@ class MealIdeasController extends Controller
     public function index(Calendar $calendar)
     {
        // $events = array_merge($calendar->findVolunteerEvents(), $calendar->findAllAccepted());
-
-        $volunteerEvents = $calendar->findVolunteerEvents();
-        $acceptedEvents = $calendar->findAllAccepted();
-
-        return view('mealideas', ['mealideas' => $acceptedEvents]);
+        $recipes = $this->mealIdeaRepository->getConfirmedMealIdeas();
+        return view('mealideas', ['mealideas' => $recipes]);
 
     }
 

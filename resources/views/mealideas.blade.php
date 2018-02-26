@@ -49,9 +49,9 @@ $(document).on('click', '.btn_remove', function(){
     @foreach ($mealideas as $mealidea)
     <div class="col-12 col-md-6 col-lg-3">
         <div class="panel panel-default">
-            <div class="panel-heading">Recipe Title</div>
+            <div class="panel-heading">{{$mealidea->title}}</div>
             <div class="panel-body">
-                Description
+                {{$mealidea->description}}
             </div>
             <ul class="list-group">
                 <li class="list-group-item">Cras justo odio</li>
@@ -146,8 +146,9 @@ $(document).on('click', '.btn_remove', function(){
 
             </div>
         </div>
+        </div>
     </div>
-    </form>
+</form>
 @endsection
 
 

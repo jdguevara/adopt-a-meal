@@ -32,7 +32,6 @@ class MealIdeaRepository implements IMealIdeaRepository
 
     public function create($input)
     {
-        $this->console_log(json_encode($input['ingredient']));
         $this->mealidea->fill([
             'title' => $input['meal_name'],
             'description' => $input['description'],
@@ -47,12 +46,6 @@ class MealIdeaRepository implements IMealIdeaRepository
         $this->mealidea->save();
 
         return $this->mealidea->id;
-    }
-    function console_log($value){
-        echo '<script>';
-        echo 'console.log(' . json_encode($value) . ');';
-        echo '</script>';
-
     }
     public function update($form, $input)
     {
