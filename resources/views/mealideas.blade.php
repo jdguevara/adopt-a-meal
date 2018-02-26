@@ -43,6 +43,14 @@ $(document).on('click', '.btn_remove', function(){
     <div class="page-header">
         <h2>Meals Suggested By Volunteers and Community Members</h2>
         <h2><small>If you have an idea click here <button class="btn btn-primary" href="#" onClick="mealIdeaModal();" role="button">Share</button></small></h2>
+
+        @if(isset($errors) && $errors->any())
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {!! implode('<br />', $errors->all()) !!}
+            </div>
+        @endif
+        @include('flash::message')
     </div>
 </div>
 <div class="container">
@@ -53,13 +61,13 @@ $(document).on('click', '.btn_remove', function(){
             <div class="panel-body">
                 {{$mealidea->description}}
             </div>
-            <ul class="list-group">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
+            @if($mealidea->ingredients)
+                <ul class="list-group">
+                    @foreach($mealidea->ingredients as $ingredient)
+                        <li class="list-group-item">{{$ingredient}}</li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </div>
     @endforeach

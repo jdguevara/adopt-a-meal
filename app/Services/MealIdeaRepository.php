@@ -42,7 +42,6 @@ class MealIdeaRepository implements IMealIdeaRepository
             'meal_idea_status' => 0,
             
         ]);
-
         $this->mealidea->save();
 
         return $this->mealidea->id;
