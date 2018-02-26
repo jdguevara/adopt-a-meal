@@ -35,9 +35,25 @@ class MealIdeasController extends Controller
             'description' => 'required',
         ]);
          
-        // $this->sendEmail($request->all());
-        // $this->formRepository->create($request->all());
-        // flash('Meal suggestion sent successfully')->success();
+        //$this->sendEmail($request->all());
+        $this->mealIdeaRepository->create($request->all());
+        flash('Meal suggestion sent successfully')->success();
         return redirect('/meal-ideas');
+    }
+
+    public function addMorePost(Request $request)
+    {
+        $rules = [];
+        foreach($request->input('name') as $key => $value) {
+            $rules["name.{$key}"] = 'required';
+        }
+        //$validator = Validator::make($request->all(), $rules);
+        //if ($validator->passes()) {
+            foreach($request->input('name') as $key => $value) {
+                TagList::create(['name'=>$value]);
+            }
+            return response()->json(['success'=>'done']);
+        //}
+        //return response()->json(['error'=>$validator->errors()->all()]);
     }
 }

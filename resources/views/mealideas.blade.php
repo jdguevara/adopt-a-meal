@@ -23,7 +23,18 @@ if(!$form[0].checkValidity()) {
     $form.submit();
 }
 }
-
+var i = 1;
+$('#add').click(function(){
+    i++;
+    $('#dynamic_field').append('<div id="row'+i+'" class="dynamic-added ingredient input-group"><input type="text" name="ingredient[]" placeholder="Enter an Ingredient" class="form-control ingredient_list" /><span class="input-group-btn"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></span></div>');
+});
+$(document).on('click', '.btn_remove', function(){
+    var button_id = $(this).attr("id");
+    $('#row'+button_id+'').remove();
+    if($('#dynamic_field').children().length < 2){
+        i = 1;
+    }
+});
 </script>
 @endsection
 
@@ -102,6 +113,17 @@ if(!$form[0].checkValidity()) {
                                 <input id="email" name="email" type="text" class="form-control" placeholder="Your Email">
                             </div>
                             <p class="help-block">Optional</p>
+                        </div>
+                        <div class="form-group">
+                            <h3>Ingredients:</h3>
+                            <div  id="dynamic_field">
+                                <div class="ingredient input-group">
+                                    <input type="text" name="ingredient[]" placeholder="Enter an ingredient" class="form-control ingredient_list" />
+                                    <span class="input-group-btn">
+                                        <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
