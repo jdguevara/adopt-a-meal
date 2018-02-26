@@ -11,14 +11,12 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class RegisterRouteRedirectTest extends TestCase
+class EmailSentRedirect extends TestCase
 {
 
-    public function test_redirect()
+    public function test_volunteer_form_redirect()
     {
-        $response = $this->get('/register');
+        $response = $this->get('/testEmail');
         $response->assertStatus(301);
     }
-
-
 }
