@@ -103,7 +103,7 @@ $(document).on('click', '.btn_remove', function(){
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Your Name</span>
-                                <input id="name" name="name" type="text" class="form-control" placeholder="Your Email">
+                                <input id="name" name="name" type="text" class="form-control" placeholder="Your Name">
                             </div>
                             <p class="help-block">Optional</p>
                         </div>
