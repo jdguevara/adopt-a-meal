@@ -58,6 +58,7 @@
                 else {
                     // clear form fields from previous events
                     $("#volunteer-form").trigger("reset");
+                    resetValidation();
 
                     var eventTitle = (calEvent.title && calEvent.title.length > 0) ?
                         calEvent.title : "Volunteer For Event";
@@ -118,16 +119,16 @@
             });
             $('#organization_name').on('focusout', function() {
                 if (!$(this).val()) {
-                    $('#organization_name_validation').removeClass('hide');
+                    $('#organization_name_validation').removeClass('hidden');
                 }
                 $('#organization_name').on('input', function () {
                     if ($(this).val()) {
-                        $('#organization_name_validation').addClass('hide');
+                        $('#organization_name_validation').addClass('hidden');
                         $('#organization_name_validation').addClass('valid');
 
                     }
                     else {
-                        $('#organization_name_validation').removeClass('hide');
+                        $('#organization_name_validation').removeClass('hidden');
                         $('#organization_name_validation').removeClass('valid');
                     }
 
@@ -135,17 +136,17 @@
             });
             $('#email').on('focusout', function(){
                 if(!$(this).val()){
-                    $('#email_validation').removeClass('hide');
+                    $('#email_validation').removeClass('hidden');
                 }
                 $('#email').on('input', function() {
                     var regExEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                     var checkEmail = regExEmail.test($(this).val());
                     if (checkEmail) {
-                        $('#email_validation').addClass('hide');
+                        $('#email_validation').addClass('hidden');
                         $('#email_validation').addClass('valid');
                     }
                     else {
-                        $('#email_validation').removeClass('hide')
+                        $('#email_validation').removeClass('hidden')
                         $('#email_validation').removeClass('valid');
                     }
 
@@ -153,31 +154,39 @@
             });
             $('#phone').on('focusout', function(){
                 if(!$(this).val()){
-                    $('#phone_validation').removeClass('hide');
+                    $('#phone_validation').removeClass('hidden');
                 }
                 $('#phone').on('input', function(){
                     var regExPhone =/^([0-9]{10})|(\\(\\d{3}\\) \\d{3}-\\d{4})$/;
                     var checkPhone = regExPhone.test($(this).val());
                     if(checkPhone){
-                        $('#phone_validation').addClass('hide');
+                        $('#phone_validation').addClass('hidden');
                         $('#phone_validation').addClass('valid');
 
                     }
                     else{
-                        $('#phone_validation').removeClass('hide');
+                        $('#phone_validation').removeClass('hidden');
                         $('#phone_validation').removeClass('valid');
                     }
 
                 });
             });
+            $('#meal_description').on('focusout', function(){
+                if(!$(this).val()){
+                    $('#meal_description_validation').removeClass('hidden');
+                } else {
+                    $('#meal_description_validation').addClass('hidden');
+                    $('#meal_description_validation').addClass('valid');
+                }
+            });
         });
 
        function resetValidation(){
-           $('#phone_validation').addClass('hide');
+           $('#phone_validation').addClass('hidden');
            $('#phone_validation').removeClass('valid');
-           $('#email_validation').addClass('hide');
+           $('#email_validation').addClass('hidden');
            $('#email_validation').removeClass('valid');
-           $('#organization_name_validation').addClass('hide');
+           $('#organization_name_validation').addClass('hidden');
            $('#organization_name_validation').removeClass('valid');
        }
         /**
@@ -196,15 +205,15 @@
                 $volunteerForm.submit();
             } else {
                 if(!$('#phone_validation').hasClass('valid')){
-                    $('#phone_validation').removeClass('hide');
+                    $('#phone_validation').removeClass('hidden');
                     $('#phone_validation').removeClass('valid');
                 }
                 if(! $('#organization_name_validation').hasClass('valid')){
-                    $('#organization_name_validation').removeClass('hide');
+                    $('#organization_name_validation').removeClass('hidden');
                     $('#organization_name_validation').removeClass('valid');
                 }
                 if(! $('#email_validation').hasClass('valid')){
-                    $('#email_validation').removeClass('hide');
+                    $('#email_validation').removeClass('hidden');
                     $('#email_validation').removeClass('valid');
                 }
                 if(!$volunteerForm[0].checkValidity()) {
@@ -322,26 +331,25 @@
                                     <span class="input-group-addon">Organization Name</span>
                                     <input id="organization_name" name="organization_name" type="text"
                                            class="form-control" placeholder="Organization Name" >
-                                    <div id="organization_name_validation" class="hide alert-danger">Required: Please enter your Organization's Name</div>
+                                    <div id="organization_name_validation" class="hidden alert-danger">Required: Please enter your Organization's Name</div>
                                 </div>
 
                                 <div class="input-group">
                                     <span class="input-group-addon">Email</span>
                                     <input id="email" name="email" type="text" class="form-control" placeholder="Email">
-                                    <div id="email_validation" class="hide alert-danger">Required: Please enter a valid email address</div>
+                                    <div id="email_validation" class="hidden alert-danger">Required: Please enter a valid email address</div>
                                 </div>
 
                                 <div class="input-group">
                                     <span class="input-group-addon">Phone Number</span>
                                     <input id="phone" name="phone" type="text" class="form-control"
                                            placeholder="Phone Number" >
-                                    <div id="phone_validation" class="hide alert-danger">Required: Please enter a valid phone number</div>
+                                    <div id="phone_validation" class="hidden alert-danger">Required: Please enter a valid phone number</div>
                                 </div>
-                                <div id="email_errors" class="hide">That is not a real email</div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Meal Description</span>
-                                    <input id="meal_description" name="meal_description" type="text" class="form-control"
-                                           placeholder="Meal Description">
+                                    <input id="meal_description" name="meal_description" type="text" class="form-control" placeholder="Meal Description">
+                                    <div id="meal_description_validation" class="hidden alert-danger">Required: Please enter a description of the meal</div>
                                 </div>
                                 <div class="input-group">
                                     <textarea id="notes" name="notes" class="form-control"
@@ -361,8 +369,6 @@
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
-                                    {{--<div id="checkbox_validation" class="hide">Please check this checkbox to proceed</div>--}}
-
                                 </div>
 
                                 <!-- rendered from event id stored in calendar -->
@@ -386,7 +392,7 @@
                                 <button id="submit-form" type="button" class="btn btn-success"
                                         onClick="submitVolunteerForm();">Volunteer
                                 </button>
-                                <button id="cancel-form" type="button" class="btn btn-default" data-dismiss="modal" onClick="resetValidation()">
+                                <button id="cancel-form" type="button" class="btn btn-default" data-dismiss="modal">
                                     Cancel
                                 </button>
                                 <button type="submit" hidden></button>
