@@ -35,6 +35,7 @@
         var events = transformedVolunteerEvents.concat(transformedAcceptedEvents);
         
         $(document).ready(function () {
+
             /**
              * Load up a calendar event in the modal view so that a user can fill out their
              * info and submit it for review.
@@ -114,6 +115,26 @@
                 height: 'parent' + 80,
                 aspectRatio: 1.5,
                 themeSystem: 'bootstrap3'
+            });
+
+            //init le error handling stuff 0.0
+            $('#organization_errors').addClass('hide');
+            // //Validation things
+            $('#volunteer-form').on('change', function(){
+
+
+
+                $('#organization_name').on('input', function(){
+                    if($(this).val()){
+                        $('#organization_errors').removeClass('visible');
+                        $('#organization_errors').addClass('hide');
+                    }
+                    else{
+                        $('#organization_errors').removeClass('hide');
+                        $('#organization_errors').addClass('visible');
+                    }
+
+                });
             });
         });
 
