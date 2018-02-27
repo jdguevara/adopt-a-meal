@@ -4,13 +4,15 @@
     <script>
 
         var volunteerForms = {!! json_encode($volunteerForms) !!};
-        console.log(volunteerForms);
+
 
         function viewEvent (eventId) {
             // find the event in our events list
             var event = volunteerForms.find(function(event) { return event.id == eventId; });
 
-            console.log(event);
+            
+            
+            
             // open the modal with event info
             $("#title").text(event.title);
             $('#meal-description').val(event.meal_description);
