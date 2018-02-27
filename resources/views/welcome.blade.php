@@ -36,8 +36,6 @@
         var events = transformedVolunteerEvents.concat(transformedAcceptedEvents);
         
         $(document).ready(function () {
-
-
             /**
              * Load up a calendar event in the modal view so that a user can fill out their
              * info and submit it for review.
@@ -118,26 +116,6 @@
                 aspectRatio: 1.5,
                 themeSystem: 'bootstrap3'
             });
-
-            //init le error handling stuff 0.0
-            $('#organization_errors').addClass('hide');
-            // //Validation things
-            $('#volunteer-form').on('change', function(){
-
-
-
-                $('#organization_name').on('input', function(){
-                    if($(this).val()){
-                        $('#organization_errors').removeClass('visible');
-                        $('#organization_errors').addClass('hide');
-                    }
-                    else{
-                        $('#organization_errors').removeClass('hide');
-                        $('#organization_errors').addClass('visible');
-                    }
-
-                });
-            });
         });
 
         /**
@@ -162,10 +140,6 @@
 
             }
         }
-
-        /*I guess I'll just plop my jquery here for now*/
-
-
     </script>
 
 
@@ -278,7 +252,6 @@
                                     <input id="organization_name" name="organization_name" type="text"
                                            class="form-control" placeholder="Organization Name" required>
                                 </div>
-                                <div id="organization_errors">Yo bro you don't have no orginization? Maybe you shouldn't sign up then.</div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Email</span>
                                     <input id="email" name="email" type="text" class="form-control" placeholder="Email"
