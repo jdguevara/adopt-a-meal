@@ -5,10 +5,14 @@
 
         var volunteerForms = {!! json_encode($volunteerForms) !!};
 
+
         function viewEvent (eventId) {
             // find the event in our events list
-            var event = volunteerForms.find(function(event) { return event.open_event_id === eventId; });
+            var event = volunteerForms.find(function(event) { return event.id == eventId; });
 
+            
+            
+            
             // open the modal with event info
             $("#title").text(event.title);
             $('#meal-description').val(event.meal_description);
@@ -35,7 +39,7 @@
 @section('content')
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading text-center text-capitalize"><h3>Admin Dashboard</h3></div>
 
                     <div class="panel-body text-center">
@@ -62,7 +66,6 @@
                                 </div>
                                 <!-- list of text field inputs and check boxes  -->
                                 <div class="modal-body event-info">
-
                                     <div class="input-group">
                                         <span class="input-group-addon">Meal Description</span>
                                         <input id="meal-description" class="form-control" disabled />
@@ -93,18 +96,14 @@
                                         <input id="notes" class="form-control" disabled />
                                     </div>
 
-
                                     <div class="input-group">
                                         <span class="input-group-addon">Paper Goods</span>
                                         <input id="paper-goods" class="form-control" disabled />
                                     </div>
-
                                 </div>
 
                                 <div class="modal-footer">
-
                                     <div class="input-group pull-right">
-
                                         <button id="approve"
                                                 type="button"
                                                 class="btn btn-success"
@@ -123,17 +122,11 @@
                                         <input type="text" id="open-event-id" name="open_event_id" hidden>
                                         <input type="text" id="volunteer-id" name="volunteer_id" hidden>
                                         <input type="text" id="approve-event" name="approve_event" hidden>
-
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
-
                 </form>
 
                 @foreach($volunteerForms as $form)
@@ -141,11 +134,11 @@
                         <li class="list-group-item ">
                             <h5>{{$form->title}}</h5>
                             <h6>From: {{$form->organization_name}}
-                                <button id="view-event" onclick="viewEvent('{{$form['open_event_id']}}');" class="btn btn-warning event-info-details pull-right">
+                                <button id="view-event" onclick="viewEvent('{{$form['id']}}');" class="btn btn-warning event-info-details pull-right">
                                         Details
                                 </button>
                             </h6>
-                            <h6>Date: {{$form->event_date_time}} </h6>
+                            <h6>Date: {{date('m-d-Y', strtotime($form->event_date_time))}} </h6>
                         </li>
                     </ul>
 

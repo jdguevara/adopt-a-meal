@@ -116,7 +116,7 @@
                 aspectRatio: 1.5,
                 themeSystem: 'bootstrap3'
             });
-            $('#organization_name').on('click', function() {
+            $('#organization_name').on('focusout', function() {
                 if (!$(this).val()) {
                     $('#organization_name_validation').removeClass('hide');
                 }
@@ -133,25 +133,25 @@
 
                 });
             });
-            $('#email').on('click', function(){
+            $('#email').on('focusout', function(){
                 if(!$(this).val()){
                     $('#email_validation').removeClass('hide');
                 }
-            $('#email').on('input', function() {
-                var regExEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-                var checkEmail = regExEmail.test($(this).val());
-                if (checkEmail) {
-                    $('#email_validation').addClass('hide');
-                    $('#email_validation').addClass('valid');
-                }
-                else {
-                    $('#email_validation').removeClass('hide')
-                    $('#email_validation').removeClass('valid');
-                }
+                $('#email').on('input', function() {
+                    var regExEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                    var checkEmail = regExEmail.test($(this).val());
+                    if (checkEmail) {
+                        $('#email_validation').addClass('hide');
+                        $('#email_validation').addClass('valid');
+                    }
+                    else {
+                        $('#email_validation').removeClass('hide')
+                        $('#email_validation').removeClass('valid');
+                    }
 
+                });
             });
-            });
-            $('#phone').on('click', function(){
+            $('#phone').on('focusout', function(){
                 if(!$(this).val()){
                     $('#phone_validation').removeClass('hide');
                 }
@@ -170,25 +170,6 @@
 
                 });
             });
-                // $('#paper_goods_val').on('input', function(){
-                //     console.log($(this).val())
-                //     if($(this).val()){
-                //         $('#checkbox_validation').addClass('hide');
-                //         $('#checkbox_validation').addClass('valid');
-                //
-                //     }
-                //     else{
-                //         $('#checkbox_validation').removeClass('hide');
-                //         $('#checkbox_validation').removeClass('valid');
-                //
-                //
-                //     }
-                //
-                // });
-
-
-
-
         });
 
        function resetValidation(){
@@ -209,16 +190,11 @@
             // if the form isn't valid, "click" the submit button which will force html5 validation
             // else, send it!
             if($('#phone_validation').hasClass('valid') && $('#email_validation').hasClass('valid') && $('#organization_name_validation').hasClass('valid') && $volunteerForm[0].checkValidity()){
-                console.log("inputs", $("#paper_goods").val())
                 $("#inputs").hide();
+                $("#input-buttons").hide();
                 $("#loading-info").show();
                 $volunteerForm.submit();
-            }
-            // else if(!$volunteerForm[0].checkValidity()) {
-            //     $volunteerForm.find(':submit').click();
-            //
-            // }
-            else {
+            } else {
                 if(!$('#phone_validation').hasClass('valid')){
                     $('#phone_validation').removeClass('hide');
                     $('#phone_validation').removeClass('valid');
@@ -233,7 +209,6 @@
                 }
                 if(!$volunteerForm[0].checkValidity()) {
                      $volunteerForm.find(':submit').click();
-
                 }
             }
         }
@@ -301,7 +276,7 @@
                         <div class="volunteer-inputs">
                             <div class="input-group">
                                 <span class="input-group-addon">Date</span>
-                                <input name="event_date" type="text"
+                                <input name="event_date" type="text"  
                                         class="form-control" disabled>
                             </div>
                             <div class="input-group">
@@ -382,8 +357,7 @@
                                     </span>
                                     <div class="checkbox-group">
                                         <label class="checkbox"> I can provide paper goods
-                                            <input id="paper_goods" name="paper_goods" type="checkbox" required>
-                                            <input id="paper_goods_val" name="paper_goods_val" type="text" hidden />
+                                            <input id="paper_goods" name="paper_goods" type="checkbox">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -407,7 +381,7 @@
                             </div>
                         </div>
 
-                        <div class="modal-footer">
+                        <div id="input-buttons" class="modal-footer">
                             <div class="input-group pull-right">
                                 <button id="submit-form" type="button" class="btn btn-success"
                                         onClick="submitVolunteerForm();">Volunteer
