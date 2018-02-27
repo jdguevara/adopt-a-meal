@@ -10,6 +10,8 @@ interface IMealIdeaRepository
 
     public function get($id);
 
+    public function getNewMealIdeas();
+
     public function getConfirmedMealIdeas();
 
     public function create($input);

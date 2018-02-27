@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\ICalendarRepository;
+use App\Contracts\IMealIdeaRepository;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -11,11 +12,13 @@ class AdminController extends Controller
 
     protected $formRepository;
     protected $calendarRepository;
+    protected $mealRepository;
 
-    public function __construct(IVolunteerFormRepository $formRepository, ICalendarRepository $calendarRepository)
+    public function __construct(IVolunteerFormRepository $formRepository, ICalendarRepository $calendarRepository, IMealIdeaRepository $mealRepository)
     {
         $this->calendarRepository = $calendarRepository;
         $this->formRepository = $formRepository;
+        $this->mealRepository = $mealRepository;
         $this->middleware('auth');
     }
 
@@ -27,6 +30,11 @@ class AdminController extends Controller
     public function index()
     {
         return view('admin', ['volunteerForms' => $this->formRepository->getAllNewForms()]);
+    }
+
+    public function viewMealIdeas()
+    {
+        return view('admin-mealideas', ['mealideas' => $this->mealRepository->getNewMealIdeas()]);
     }
 
     public function reviewVolunteerForm(Request $request)

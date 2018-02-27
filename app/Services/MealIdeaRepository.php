@@ -25,6 +25,11 @@ class MealIdeaRepository implements IMealIdeaRepository
         return $this->mealidea->find($id);
     }
 
+    public function getNewMealIdeas()
+    {
+        return $this->mealidea->where('meal_idea_status', '=', 0)->get();
+    }
+
     public function getConfirmedMealIdeas()
     {
         return $this->mealidea->where('meal_idea_status', '=', 1)->get();

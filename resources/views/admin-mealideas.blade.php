@@ -3,7 +3,7 @@
 @section('scripts')
     <script>
 
-        var mealIdeas = {!! json_encode($mealIdeas) !!};
+        var mealIdeas = {!! json_encode($mealideas) !!};
 
         function viewEvent (eventId) {
             // find the event in our events list
@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center text-capitalize"><h3>Admin Dashboard</h3></div>
+                    <div class="panel-heading text-center text-capitalize"><h3>Review Meal Ideas</h3></div>
 
                     <div class="panel-body text-center">
                         @if (session('status'))
@@ -44,9 +44,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        You are logged in!
-                        Accept, Edit and Delete Adopt-a-Meal requests here.
+                        Accept, Edit and Delete Meal Ideas here.
                     </div>
 
                 </div>
