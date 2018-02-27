@@ -32,6 +32,7 @@
 
 
                         @auth
+                            <li><a href="/admin">Adopt-A-Meal Requests</a></li>
                             <li><a href="/admin/meal-ideas">Review Meal Ideas</a></li>
                             <li><a href="/admin/verbiage">Change Website Verbiage</a></li>
                             <li class="dropdown">
