@@ -116,41 +116,89 @@
                 aspectRatio: 1.5,
                 themeSystem: 'bootstrap3'
             });
+            $('#organization_name').on('click', function() {
+                if (!$(this).val()) {
+                    $('#organization_name_validation').removeClass('hide');
+                }
+                $('#organization_name').on('input', function () {
+                    if ($(this).val()) {
+                        $('#organization_name_validation').addClass('hide');
+                        $('#organization_name_validation').addClass('valid');
 
-            //init le error handling stuff 0.0
-            // //Validation things
-          //  $('#organization_name_errors').addClass('hide');
-           // $('#volunteer-form').on('change', function(){
-
-
-
-                $('#organization_name').on('input', function(){
-                    if($(this).val()){
-                        $('#organization_name_errors').addClass('hide');
                     }
-                    else{
-                        $('#organization_name_errors').removeClass('hide');
-                        $("#submit-form").attr("disabled", "disabled");
-
+                    else {
+                        $('#organization_name_validation').removeClass('hide');
+                        $('#organization_name_validation').removeClass('valid');
                     }
 
                 });
-            $('#email').on('input', function(){
-                var regExEmail =/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-                var checkEmail = regExEmail.test($(this).val());
-                if(checkEmail){
-                    $('#email_errors').addClass('hide');
+            });
+            $('#email').on('click', function(){
+                if(!$(this).val()){
+                    $('#email_validation').removeClass('hide');
                 }
-                else{
-                    $('#email_errors').removeClass('hide');
-                    $("#submit-form").attr("disabled", "disabled");
-
+            $('#email').on('input', function() {
+                var regExEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                var checkEmail = regExEmail.test($(this).val());
+                if (checkEmail) {
+                    $('#email_validation').addClass('hide');
+                    $('#email_validation').addClass('valid');
+                }
+                else {
+                    $('#email_validation').removeClass('hide')
+                    $('#email_validation').removeClass('valid');
                 }
 
             });
-            //});
+            });
+            $('#phone').on('click', function(){
+                if(!$(this).val()){
+                    $('#phone_validation').removeClass('hide');
+                }
+                $('#phone').on('input', function(){
+                    var regExPhone =/^([0-9]{10})|(\\(\\d{3}\\) \\d{3}-\\d{4})$/;
+                    var checkPhone = regExPhone.test($(this).val());
+                    if(checkPhone){
+                        $('#phone_validation').addClass('hide');
+                        $('#phone_validation').addClass('valid');
+
+                    }
+                    else{
+                        $('#phone_validation').removeClass('hide');
+                        $('#phone_validation').removeClass('valid');
+                    }
+
+                });
+            });
+                // $('#paper_goods_val').on('input', function(){
+                //     console.log($(this).val())
+                //     if($(this).val()){
+                //         $('#checkbox_validation').addClass('hide');
+                //         $('#checkbox_validation').addClass('valid');
+                //
+                //     }
+                //     else{
+                //         $('#checkbox_validation').removeClass('hide');
+                //         $('#checkbox_validation').removeClass('valid');
+                //
+                //
+                //     }
+                //
+                // });
+
+
+
+
         });
 
+       function resetValidation(){
+           $('#phone_validation').addClass('hide');
+           $('#phone_validation').removeClass('valid');
+           $('#email_validation').addClass('hide');
+           $('#email_validation').removeClass('valid');
+           $('#organization_name_validation').addClass('hide');
+           $('#organization_name_validation').removeClass('valid');
+       }
         /**
          * Submit the volunteer's info for reviewing
          */
@@ -160,13 +208,33 @@
 
             // if the form isn't valid, "click" the submit button which will force html5 validation
             // else, send it!
-            if(!$volunteerForm[0].checkValidity()) {
-                $volunteerForm.find(':submit').click();
-            } else {
+            if($('#phone_validation').hasClass('valid') && $('#email_validation').hasClass('valid') && $('#organization_name_validation').hasClass('valid') && $volunteerForm[0].checkValidity()){
                 console.log("inputs", $("#paper_goods").val())
                 $("#inputs").hide();
                 $("#loading-info").show();
                 $volunteerForm.submit();
+            }
+            // else if(!$volunteerForm[0].checkValidity()) {
+            //     $volunteerForm.find(':submit').click();
+            //
+            // }
+            else {
+                if(!$('#phone_validation').hasClass('valid')){
+                    $('#phone_validation').removeClass('hide');
+                    $('#phone_validation').removeClass('valid');
+                }
+                if(! $('#organization_name_validation').hasClass('valid')){
+                    $('#organization_name_validation').removeClass('hide');
+                    $('#organization_name_validation').removeClass('valid');
+                }
+                if(! $('#email_validation').hasClass('valid')){
+                    $('#email_validation').removeClass('hide');
+                    $('#email_validation').removeClass('valid');
+                }
+                if(!$volunteerForm[0].checkValidity()) {
+                     $volunteerForm.find(':submit').click();
+
+                }
             }
         }
     </script>
@@ -278,22 +346,23 @@
                                 <div class="input-group">
                                     <span class="input-group-addon">Organization Name</span>
                                     <input id="organization_name" name="organization_name" type="text"
-                                           class="form-control" placeholder="Organization Name" required>
+                                           class="form-control" placeholder="Organization Name" >
+                                    <div id="organization_name_validation" class="hide alert-danger">Required: Please enter your Organization's Name</div>
                                 </div>
-                                <div id="organization_name_errors" class="hide">Yo bro you don't have no orginization? Maybe you shouldn't sign up then.</div>
 
                                 <div class="input-group">
                                     <span class="input-group-addon">Email</span>
-                                    <input id="email" name="email" type="text" class="form-control" placeholder="Email"
-                                           required>
+                                    <input id="email" name="email" type="text" class="form-control" placeholder="Email">
+                                    <div id="email_validation" class="hide alert-danger">Required: Please enter a valid email address</div>
                                 </div>
-                                <div id="email_errors" class="hide">That is not a real email</div>
 
                                 <div class="input-group">
                                     <span class="input-group-addon">Phone Number</span>
                                     <input id="phone" name="phone" type="text" class="form-control"
-                                           placeholder="Phone Number" required>
+                                           placeholder="Phone Number" >
+                                    <div id="phone_validation" class="hide alert-danger">Required: Please enter a valid phone number</div>
                                 </div>
+                                <div id="email_errors" class="hide">That is not a real email</div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Meal Description</span>
                                     <input id="meal_description" name="meal_description" type="text" class="form-control"
@@ -313,11 +382,13 @@
                                     </span>
                                     <div class="checkbox-group">
                                         <label class="checkbox"> I can provide paper goods
-                                            <input id="paper_goods" name="paper_goods" type="checkbox">
+                                            <input id="paper_goods" name="paper_goods" type="checkbox" required>
                                             <input id="paper_goods_val" name="paper_goods_val" type="text" hidden />
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
+                                    {{--<div id="checkbox_validation" class="hide">Please check this checkbox to proceed</div>--}}
+
                                 </div>
 
                                 <!-- rendered from event id stored in calendar -->
@@ -341,7 +412,7 @@
                                 <button id="submit-form" type="button" class="btn btn-success"
                                         onClick="submitVolunteerForm();">Volunteer
                                 </button>
-                                <button id="cancel-form" type="button" class="btn btn-default" data-dismiss="modal">
+                                <button id="cancel-form" type="button" class="btn btn-default" data-dismiss="modal" onClick="resetValidation()">
                                     Cancel
                                 </button>
                                 <button type="submit" hidden></button>
