@@ -129,8 +129,8 @@
             if(!$volunteerForm[0].checkValidity()) {
                 $volunteerForm.find(':submit').click();
             } else {
-                console.log("inputs", $("#paper_goods").val())
                 $("#inputs").hide();
+                $("#input-buttons").hide();
                 $("#loading-info").show();
                 $volunteerForm.submit();
             }
@@ -298,7 +298,7 @@
                             </div>
                         </div>
 
-                        <div class="modal-footer">
+                        <div id="input-buttons" class="modal-footer">
                             <div class="input-group pull-right">
                                 <button id="submit-form" type="button" class="btn btn-success"
                                         onClick="submitVolunteerForm();">Volunteer
