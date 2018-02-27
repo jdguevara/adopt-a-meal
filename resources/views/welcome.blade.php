@@ -216,7 +216,7 @@
                 $volunteerForm.submit();
             }
             //This is if they've clicked on the volunteer button
-            else        //if((!$('#phone_validation').hasClass('valid') && $('#email_validation').hasClass('valid') && $('#organization_name_validation').hasClass('valid') && $volunteerForm[0].checkValidity()))
+            else if(!($('#phone_validation').hasClass('valid') && $('#email_validation').hasClass('valid') && $('#organization_name_validation').hasClass('valid') && $volunteerForm[0].checkValidity()))
             {
                 if(! $('#phone_validation').hasClass('valid')) {
                     $('#phone_validation').removeClass('hidden');
@@ -410,7 +410,7 @@
                                 <button id="submit-form" type="button" class="btn btn-success"
                                         onClick="submitVolunteerForm();">Volunteer
                                 </button>
-                                <button  id="cancel-form" type="button" class="btn btn-default" data-dismiss="modal">
+                                <button  id="cancel-form" type="button" class="btn btn-default" data-dismiss="modal" >
                                     Cancel
                                 </button>
                                 <button type="submit" hidden></button>
