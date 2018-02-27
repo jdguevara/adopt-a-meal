@@ -23,6 +23,12 @@
                 <div class="navbar-header">
                     <a class="navbar-brand "  id="navbar-brand-padding" href="{{url('http://interfaithsanctuary.org/')}}"><img class="brand" alt="Brand" id="navbar-brand-size" src="images/Interfaith-Temp-Logo.png"></a>
                     <a class="navbar-brand " id="navbar-brand-font" href="/">Adopt a Meal</a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                 </div>
 
                 <div class="collapse navbar-collapse pull-right" id="app-navbar-collapse">
