@@ -45,7 +45,6 @@ class MealIdeaRepository implements IMealIdeaRepository
             'name' => $input['name'],
             'email' => $input['email'],
             'meal_idea_status' => 0,
-            
         ]);
         $this->mealidea->save();
 
@@ -62,9 +61,19 @@ class MealIdeaRepository implements IMealIdeaRepository
         $mealidea->delete();
     }
 
-    public function approve($mealIdeaId)
+    public function approve($mealIdeaId, $mealIdea)
     {
-        $this->mealidea->where('id', $mealIdeaId)->update(['meal_idea_status' => 1]);
+        $mealidea = $this->mealidea->find($mealIdeaId);
+        $mealidea->fill([
+            'title' => $mealIdea['title'],
+            'description' => $mealIdea['description'],
+            'ingredients_json' => json_encode($mealIdea['ingredients']),
+            'external_link' => $mealIdea['external_link'],
+            'name' => $mealIdea['name'],
+            'email' => $mealIdea['email'],
+            'meal_idea_status' => 1,
+        ]);
+        $mealidea->save();
     }
 
     public function deny($mealIdeaId){

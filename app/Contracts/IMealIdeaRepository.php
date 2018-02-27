@@ -20,7 +20,7 @@ interface IMealIdeaRepository
 
     public function delete($id);
 
-    public function approve($id);
+    public function approve($mealIdeaId, $mealIdea);
 
     public function deny($id);
 

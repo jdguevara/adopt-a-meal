@@ -64,7 +64,6 @@
                                 </div>
                                 <!-- list of text field inputs and check boxes  -->
                                 <div class="modal-body event-info">
-
                                     <div class="input-group">
                                         <span class="input-group-addon">Meal Description</span>
                                         <input id="meal-description" class="form-control" disabled />
@@ -95,18 +94,14 @@
                                         <input id="notes" class="form-control" disabled />
                                     </div>
 
-
                                     <div class="input-group">
                                         <span class="input-group-addon">Paper Goods</span>
                                         <input id="paper-goods" class="form-control" disabled />
                                     </div>
-
                                 </div>
 
                                 <div class="modal-footer">
-
                                     <div class="input-group pull-right">
-
                                         <button id="approve"
                                                 type="button"
                                                 class="btn btn-success"
@@ -125,17 +120,11 @@
                                         <input type="text" id="open-event-id" name="open_event_id" hidden>
                                         <input type="text" id="volunteer-id" name="volunteer_id" hidden>
                                         <input type="text" id="approve-event" name="approve_event" hidden>
-
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
-
                 </form>
 
                 @foreach($volunteerForms as $form)

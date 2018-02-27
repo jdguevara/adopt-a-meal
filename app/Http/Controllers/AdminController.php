@@ -63,4 +63,27 @@ class AdminController extends Controller
         }
             return redirect('/admin');
     }
+
+    public function reviewMealIdea(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required',
+            'description' => 'required',
+            'ingredients' => 'required',
+            'new_status' => 'required'
+        ]);
+        
+        // Check the new status on the request
+        if($request->new_status == 1)
+        {
+            // Update the meal idea with any changes and approve
+            $this->mealRepository->approve($request->id, $request);
+        }
+        // Denied
+        else if ($request->new_status == 2)
+        {
+            $this->mealRepository->deny($request->id);
+        }
+            return redirect('/admin/meal-ideas');
+    }
 }

@@ -5,27 +5,29 @@
 
         var mealIdeas = {!! json_encode($mealideas) !!};
 
-        function viewEvent (eventId) {
+        function viewMealIdea (id) {
             // find the event in our events list
-            var event = mealIdeas.find(function(event) { return mealIdeas.id === eventId; });
+            var idea = mealIdeas.find(function(event) { return event.id == id; });
 
+            console.log(idea);
             // open the modal with event info
-            $("#title").text(event.title);
-            $('#meal-description').val(event.meal_description);
-            $('#organization-name').val(event.organization_name);
-            $('#event-date-time').val(event.event_date_time);
-            $('#email').val(event.email);
-            $('#notes').val(event.notes);
-            $('#phone').val(event.phone);
-            $('#paper-goods').val(event.paper_goods == 1 ? "Yes" : "No");
-            $('#open-event-id').val(event.open_event_id);
-            $('#volunteer-id').val(event.id);
+            console.log($("#meal-title"));
+
+            $("#meal-title").val(idea.title);
+            $('#description').val(idea.description);
+            $('#email').val(idea.email);
+            $('#name').val(idea.name);
+            $('#external-link').val(idea.external_link);
+            $('#meal-id').val(idea.id);
+
+            var ingredients = JSON.parse(idea.ingredients_json);
+            $('#ingredients').val(ingredients.join(', ')); 
             $("#event-modal").modal();
         }
 
-        function submitEvent (approval) {
+        function submitEvent (status) {
             // send the form, value set in jquery is async apparently?
-            $('#approve-event').val(approval);
+            $('#new-status').val(status);
             $('#event-form').submit();
         }
     </script>
@@ -56,53 +58,46 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h3 id="title" style="margin-top: 15px;"></h3>
+                                    <h3 style="margin-top: 15px;">Suggested Meal</h3>
                                 </div>
                                 <!-- list of text field inputs and check boxes  -->
                                 <div class="modal-body event-info">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Meal Name</span>
+                                        <input id="meal-title" name="title" class="form-control" type="text" />
+                                    </div>
 
                                     <div class="input-group">
                                         <span class="input-group-addon">Meal Description</span>
-                                        <input id="meal-description" class="form-control" disabled />
+                                        <input id="description" name="description" class="form-control" type="text" />
                                     </div>
 
                                     <div class="input-group">
-                                        <span class="input-group-addon">Organization Name</span>
-                                        <input id="organization-name" class="form-control" disabled />
+                                        <span class="input-group-addon">External Link</span>
+                                        <input id="external-link" name="external_link" class="form-control"  type="text"/>
                                     </div>
 
                                     <div class="input-group">
-                                        <span class="input-group-addon">Date</span>
-                                        <input id="event-date-time" class="form-control" disabled />
+                                        <span class="input-group-addon">Ingredient List</span>
+                                        <textarea id="ingredients" name="ingredients" class="form-control" type="text"> </textarea>
                                     </div>
 
                                     <div class="input-group">
-                                        <span class="input-group-addon">Email</span>
-                                        <input id="email" class="form-control" disabled />
+                                        <span class="input-group-addon">Submitter Name</span>
+                                        <input id="name" name="name" class="form-control" type="text" />
                                     </div>
 
                                     <div class="input-group">
-                                        <span class="input-group-addon">Phone</span>
-                                        <input id="phone" class="form-control" disabled />
+                                        <span class="input-group-addon">Submitter Email</span>
+                                        <input id="email" name="email" class="form-control" type="text" />
                                     </div>
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Notes</span>
-                                        <input id="notes" class="form-control" disabled />
-                                    </div>
-
-
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Paper Goods</span>
-                                        <input id="paper-goods" class="form-control" disabled />
-                                    </div>
-
                                 </div>
 
+                                <input id="meal-id" name="id" type="text" hidden />
+                                <input  id="new-status" name="new_status" type="text" hidden>
+
                                 <div class="modal-footer">
-
                                     <div class="input-group pull-right">
-
                                         <button id="approve"
                                                 type="button"
                                                 class="btn btn-success"
@@ -113,35 +108,26 @@
                                         <button id="deny"
                                                 type="button"
                                                 class="btn btn-warning"
-                                                onClick="submitEvent(0);">
+                                                onClick="submitEvent(2);">
                                             Deny
                                         </button> 
                                         <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                                        <input type="text" id="open-event-id" name="open_event_id" hidden>
-                                        <input type="text" id="volunteer-id" name="volunteer_id" hidden>
-                                        <input type="text" id="approve-event" name="approve_event" hidden>
-
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
-
                 </form>
 
                 @foreach($mealideas as $mealidea)
                     <ul class="list-group">
                         <li class="list-group-item ">
                             <h5>{{$mealidea->title}}</h5>
-                            <h6>From: {{$mealidea->name}}</h6>
-                            <button id="view-event" onclick="viewEvent('{{$mealidea['id']}}');" class="btn btn-warning event-info-details pull-right">
+                            <h6>From: {{$mealidea->name}}
+                            <button id="view-event" onclick="viewMealIdea('{{$mealidea['id']}}');" class="btn btn-warning event-info-details pull-right">
                                 Details
                             </button>
+                            </h6>
                         </li>
                     </ul>
 
