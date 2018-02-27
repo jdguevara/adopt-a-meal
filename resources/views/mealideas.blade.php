@@ -56,10 +56,10 @@ $(document).on('click', '.btn_remove', function(){
 <div class="container">
     @foreach ($mealideas as $mealidea)
     <div class="col-12 col-md-6 col-lg-3">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">{{$mealidea->title}}</div>
             <div class="panel-body">
-                {{$mealidea->description}}
+                <h6>{{$mealidea->description}}</h6>
             </div>
             @if($mealidea->ingredients)
                 <ul class="list-group">
