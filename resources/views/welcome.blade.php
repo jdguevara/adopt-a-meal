@@ -118,24 +118,26 @@
             });
 
             //init le error handling stuff 0.0
-            $('#organization_errors').addClass('hide');
             // //Validation things
-            $('#volunteer-form').on('change', function(){
+          //  $('#organization_name_errors').addClass('hide');
+           // $('#volunteer-form').on('change', function(){
 
 
 
                 $('#organization_name').on('input', function(){
                     if($(this).val()){
-                        $('#organization_errors').removeClass('visible');
-                        $('#organization_errors').addClass('hide');
+                        $('#organization_name_errors').removeClass('visible');
+                        $('#organization_name_errors').addClass('hide');
                     }
                     else{
-                        $('#organization_errors').removeClass('hide');
-                        $('#organization_errors').addClass('visible');
+                        $('#organization_name_errors').removeClass('hide');
+                        $('#organization_name_errors').addClass('visible');
+                        $("#submit-form").attr("disabled", "disabled");
+
                     }
 
                 });
-            });
+            //});
         });
 
         /**
@@ -267,6 +269,8 @@
                                     <input id="organization_name" name="organization_name" type="text"
                                            class="form-control" placeholder="Organization Name" required>
                                 </div>
+                                <div id="organization_name_errors" class="hide">Yo bro you don't have no orginization? Maybe you shouldn't sign up then.</div>
+
                                 <div class="input-group">
                                     <span class="input-group-addon">Email</span>
                                     <input id="email" name="email" type="text" class="form-control" placeholder="Email"
