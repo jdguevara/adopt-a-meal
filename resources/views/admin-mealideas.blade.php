@@ -6,12 +6,8 @@
         var mealIdeas = {!! json_encode($mealideas) !!};
 
         function viewMealIdea (id) {
-            // find the event in our events list
+            // find the particular meal idea in our meal idea list
             var idea = mealIdeas.find(function(event) { return event.id == id; });
-
-            console.log(idea);
-            // open the modal with event info
-            console.log($("#meal-title"));
 
             $("#meal-title").val(idea.title);
             $('#description').val(idea.description);
