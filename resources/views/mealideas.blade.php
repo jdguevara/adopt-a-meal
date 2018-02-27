@@ -55,7 +55,7 @@ $(document).on('click', '.btn_remove', function(){
 </div>
 <div class="container">
     @foreach ($mealideas as $mealidea)
-    <div class="col-12 col-md-6 col-lg-3">
+    <div class="col-12 col-md-6 col-lg-4">
         <div class="panel panel-primary">
             <div class="panel-heading">{{$mealidea->title}}</div>
             <div class="panel-body">
