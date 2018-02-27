@@ -11,16 +11,6 @@
 @import "loading-spinner";
 
 
-
-// textarea {
-//     border-radius: 4px !important;
-//     resize: none;
-// }
-
-// .text-light {
-//     color: #aaa;
-// }
-
 @media screen and (max-width: 600px) {
     .desktop {
         display: none !important;
@@ -31,11 +21,6 @@
         display: none !important;
     }
 }
-
-// .fc-day-grid-event {
-//     padding-top: 10px;
-//     padding-bottom: 10px;
-// }
 
 .navbar-brand > .brand {
     max-height: 50px;

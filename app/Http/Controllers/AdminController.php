@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\ICalendarRepository;
+use App\Contracts\IMealIdeaRepository;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -11,11 +12,13 @@ class AdminController extends Controller
 
     protected $formRepository;
     protected $calendarRepository;
+    protected $mealRepository;
 
-    public function __construct(IVolunteerFormRepository $formRepository, ICalendarRepository $calendarRepository)
+    public function __construct(IVolunteerFormRepository $formRepository, ICalendarRepository $calendarRepository, IMealIdeaRepository $mealRepository)
     {
         $this->calendarRepository = $calendarRepository;
         $this->formRepository = $formRepository;
+        $this->mealRepository = $mealRepository;
         $this->middleware('auth');
     }
 
@@ -29,7 +32,12 @@ class AdminController extends Controller
         return view('admin', ['volunteerForms' => $this->formRepository->getAllNewForms()]);
     }
 
-    public function submit(Request $request)
+    public function viewMealIdeas()
+    {
+        return view('admin-mealideas', ['mealideas' => $this->mealRepository->getNewMealIdeas()]);
+    }
+
+    public function reviewVolunteerForm(Request $request)
     {
         
         $this->validate($request, [
@@ -54,5 +62,29 @@ class AdminController extends Controller
             $this->formRepository->deny($request->volunteer_id);
         }
             return redirect('/admin');
+    }
+
+    public function reviewMealIdea(Request $request)
+    {
+        $request['ingredients'] = json_encode(array_map(function($val) { return trim($val); }, explode(",", $request->ingredients)));
+        $this->validate($request, [
+            'id' => 'required',
+            'description' => 'required',
+            'ingredients' => 'required',
+            'new_status' => 'required'
+        ]);
+        
+        // Check the new status on the request
+        if($request->new_status == 1)
+        {
+            // Update the meal idea with any changes and approve
+            $this->mealRepository->approve($request->id, $request);
+        }
+        // Denied
+        else if ($request->new_status == 2)
+        {
+            $this->mealRepository->deny($request->id);
+        }
+        return redirect('/admin/meal-ideas');
     }
 }
