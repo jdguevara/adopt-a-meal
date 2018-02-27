@@ -71,7 +71,7 @@ class MealIdeaRepository implements IMealIdeaRepository
             'external_link' => $newMealIdea['external_link'],
             'name' => $newMealIdea['name'],
             'email' => $newMealIdea['email'],
-            'meal_idea_status' => 0,
+            'meal_idea_status' => 1,
         ]);
         $this->mealidea->save();
     }
