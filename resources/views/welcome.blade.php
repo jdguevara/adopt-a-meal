@@ -10,7 +10,6 @@
 
 
         var transformedVolunteerEvents = volunteerEvents.map(e => {
-            console.log(e.end.date);
             return {
                 "id": e.id,
                 "title": e.summary,
@@ -130,13 +129,11 @@
             if(!$volunteerForm[0].checkValidity()) {
                 $volunteerForm.find(':submit').click();
             } else {
-                
-                var bringingTableware = $("#paper-goods:checked").length;
-                $("#paper-goods").val(bringingTableware);
-
+                $("#paper_goods").val( $("#paper_goods").is(':checked') );
+                console.log($("#paper_goods"));
                 $("#inputs").hide();
                 $("#loading-info").show();
-                $volunteerForm.submit();
+                //$volunteerForm.submit();
 
             }
         }
@@ -201,24 +198,23 @@
                         <h3 id="title" style="margin-top: 15px;">An organization has adopted this meal!</h3>
                     </div>  
                     <div class="modal-body">
-                        <div id="inputs" class="volunteer-inputs">
+                        <div class="volunteer-inputs">
                             <div class="input-group">
                                 <span class="input-group-addon">Date</span>
-                                <input id="confirmed-event-date" name="event_date" type="text"  
+                                <input name="event_date" type="text"  
                                         class="form-control" disabled>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Title</span>
-                                <input id="confirmed-title" name="title" type="text"
+                                <input name="title" type="text"
                                         class="form-control" placeholder="Title" disabled>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Description</span>
-                                <input id="confirmed-description" name="description" type="text" class="form-control"
+                                <input name="description" type="text" class="form-control"
                                         placeholder="Description" disabled>
                             </div>
                         </div>
-                        <div class="modal-footer"></div>
                     </div>
                 </div>
             </div>
@@ -281,7 +277,7 @@
                                     </span>
                                     <div class="checkbox-group">
                                         <label class="checkbox"> I can provide paper goods
-                                            <input id="paper-goods" name="paper_goods" type="checkbox">
+                                            <input id="paper_goods" name="paper_goods" type="checkbox">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>

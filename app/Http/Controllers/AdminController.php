@@ -29,7 +29,7 @@ class AdminController extends Controller
         return view('admin', ['volunteerForms' => $this->formRepository->getAllNewForms()]);
     }
 
-    public function submit(Request $request)
+    public function reviewVolunteerForm(Request $request)
     {
         
         $this->validate($request, [

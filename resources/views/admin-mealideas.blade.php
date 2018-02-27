@@ -3,11 +3,11 @@
 @section('scripts')
     <script>
 
-        var volunteerForms = {!! json_encode($volunteerForms) !!};
+        var mealIdeas = {!! json_encode($mealIdeas) !!};
 
         function viewEvent (eventId) {
             // find the event in our events list
-            var event = volunteerForms.find(function(event) { return event.open_event_id === eventId; });
+            var event = mealIdeas.find(function(event) { return mealIdeas.id === eventId; });
 
             // open the modal with event info
             $("#title").text(event.title);
@@ -51,7 +51,7 @@
 
                 </div>
 
-                <form id="event-form" method="POST" action="/admin/form/review">
+                <form id="event-form" method="POST" action="/admin/meal-ideas/review">
                     {{ csrf_field() }}
                     {{ method_field('POST') }}
                     <div class="modal fade" id="event-modal" role="dialog">
@@ -136,16 +136,14 @@
 
                 </form>
 
-                @foreach($volunteerForms as $form)
+                @foreach($mealideas as $mealidea)
                     <ul class="list-group">
                         <li class="list-group-item ">
-                            <h5>{{$form->title}}</h5>
-                            <h6>From: {{$form->organization_name}}
-                                <button id="view-event" onclick="viewEvent('{{$form['open_event_id']}}');" class="btn btn-warning event-info-details pull-right">
-                                        Details
-                                </button>
-                            </h6>
-                            <h6>Date: {{$form->event_date_time}} </h6>
+                            <h5>{{$mealidea->title}}</h5>
+                            <h6>From: {{$mealidea->name}}</h6>
+                            <button id="view-event" onclick="viewEvent('{{$mealidea['id']}}');" class="btn btn-warning event-info-details pull-right">
+                                Details
+                            </button>
                         </li>
                     </ul>
 
