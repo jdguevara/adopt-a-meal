@@ -4,11 +4,13 @@
     <script>
 
         var volunteerForms = {!! json_encode($volunteerForms) !!};
+        console.log(volunteerForms);
 
         function viewEvent (eventId) {
             // find the event in our events list
-            var event = volunteerForms.find(function(event) { return event.open_event_id === eventId; });
+            var event = volunteerForms.find(function(event) { return event.id == eventId; });
 
+            console.log(event);
             // open the modal with event info
             $("#title").text(event.title);
             $('#meal-description').val(event.meal_description);
@@ -141,11 +143,11 @@
                         <li class="list-group-item ">
                             <h5>{{$form->title}}</h5>
                             <h6>From: {{$form->organization_name}}
-                                <button id="view-event" onclick="viewEvent('{{$form['open_event_id']}}');" class="btn btn-warning event-info-details pull-right">
+                                <button id="view-event" onclick="viewEvent('{{$form['id']}}');" class="btn btn-warning event-info-details pull-right">
                                         Details
                                 </button>
                             </h6>
-                            <h6>Date: {{$form->event_date_time}} </h6>
+                            <h6>Date: {{date('m-d-Y', strtotime($form->event_date_time))}} </h6>
                         </li>
                     </ul>
 
