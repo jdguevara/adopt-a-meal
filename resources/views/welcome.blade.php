@@ -117,7 +117,7 @@
                 aspectRatio: 1.5,
                 themeSystem: 'bootstrap3'
             });
-            $('#organization_name').on('focusout', function() {
+            $('#organization_name').on('click', function() {
                 if (!$(this).val()) {
                     $('#organization_name_validation').removeClass('hidden');
                 }
@@ -171,7 +171,7 @@
 
                 });
             });
-            $('#meal_description').on('focus', function(){
+            $('#meal_description').on('click', function(){
                 if(!$(this).val()){
                     $('#meal_description_validation').removeClass('hidden');
                 }
