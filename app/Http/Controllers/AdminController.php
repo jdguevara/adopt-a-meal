@@ -66,6 +66,7 @@ class AdminController extends Controller
 
     public function reviewMealIdea(Request $request)
     {
+        $request['ingredients'] = json_encode(array_map(function($val) { return trim($val); }, explode(",", $request->ingredients)));
         $this->validate($request, [
             'id' => 'required',
             'description' => 'required',
@@ -84,6 +85,6 @@ class AdminController extends Controller
         {
             $this->mealRepository->deny($request->id);
         }
-            return redirect('/admin/meal-ideas');
+        return redirect('/admin/meal-ideas');
     }
 }
