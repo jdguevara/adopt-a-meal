@@ -25,6 +25,11 @@ class MealIdeaRepository implements IMealIdeaRepository
         return $this->mealidea->find($id);
     }
 
+    public function getNewMealIdeas()
+    {
+        return $this->mealidea->where('meal_idea_status', '=', 0)->get();
+    }
+
     public function getConfirmedMealIdeas()
     {
         return $this->mealidea->where('meal_idea_status', '=', 1)->get();
@@ -33,16 +38,21 @@ class MealIdeaRepository implements IMealIdeaRepository
     public function create($input)
     {
         $this->mealidea->fill([
-            
+            'title' => $input['meal_name'],
+            'description' => $input['description'],
+            'ingredients_json' => json_encode($input['ingredient']),
+            'external_link' => $input['external_link'],
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'meal_idea_status' => 0,
         ]);
-
         $this->mealidea->save();
 
         return $this->mealidea->id;
     }
-
     public function update($form, $input)
     {
+        $form = $this->mealidea->find($form->id);
     }
 
     public function delete($id)
@@ -51,9 +61,19 @@ class MealIdeaRepository implements IMealIdeaRepository
         $mealidea->delete();
     }
 
-    public function approve($mealIdeaId)
+    public function approve($mealIdeaId, $newMealIdea)
     {
-        $this->mealidea->where('id', $mealIdeaId)->update(['meal_idea_status' => 1]);
+        $this->mealidea = $this->mealidea->find($mealIdeaId);
+        $this->mealidea->fill([
+            'title' => $newMealIdea['title'],
+            'description' => $newMealIdea['description'],
+            'ingredients_json' => $newMealIdea['ingredients'],
+            'external_link' => $newMealIdea['external_link'],
+            'name' => $newMealIdea['name'],
+            'email' => $newMealIdea['email'],
+            'meal_idea_status' => 1,
+        ]);
+        $this->mealidea->save();
     }
 
     public function deny($mealIdeaId){

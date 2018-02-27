@@ -25,6 +25,8 @@ class VolunteerFormController extends Controller
 
     public function submit(Request $request)
     {
+        $request['paper_goods'] = $request['paper_goods'] == "on" ? true : false;
+
         $this->validate($request, [
             'title' => 'required',
             'organization_name' => 'required',
@@ -32,7 +34,7 @@ class VolunteerFormController extends Controller
             'email' => 'required',
             'meal_description' => 'required',
             'open_event_id' => 'required',
-            'open_event_date_time' => 'required',
+            'open_event_date_time' => 'required'
         ]);
          
         $this->sendEmail($request->all());

@@ -23,7 +23,18 @@ if(!$form[0].checkValidity()) {
     $form.submit();
 }
 }
-
+var i = 1;
+$('#add').click(function(){
+    i++;
+    $('#dynamic_field').append('<div id="row'+i+'" class="dynamic-added ingredient input-group"><input type="text" name="ingredient[]" placeholder="Enter an Ingredient" class="form-control ingredient_list" /><span class="input-group-btn"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></span></div>');
+});
+$(document).on('click', '.btn_remove', function(){
+    var button_id = $(this).attr("id");
+    $('#row'+button_id+'').remove();
+    if($('#dynamic_field').children().length < 2){
+        i = 1;
+    }
+});
 </script>
 @endsection
 
@@ -32,23 +43,31 @@ if(!$form[0].checkValidity()) {
     <div class="page-header">
         <h2>Meals Suggested By Volunteers and Community Members</h2>
         <h2><small>If you have an idea click here <button class="btn btn-primary" href="#" onClick="mealIdeaModal();" role="button">Share</button></small></h2>
+
+        @if(isset($errors) && $errors->any())
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {!! implode('<br />', $errors->all()) !!}
+            </div>
+        @endif
+        @include('flash::message')
     </div>
 </div>
 <div class="container">
     @foreach ($mealideas as $mealidea)
-    <div class="col-12 col-md-6 col-lg-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">Recipe Title</div>
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">{{$mealidea->title}}</div>
             <div class="panel-body">
-                Description
+                <h6>{{$mealidea->description}}</h6>
             </div>
-            <ul class="list-group">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
+            @if($mealidea->ingredients)
+                <ul class="list-group">
+                    @foreach($mealidea->ingredients as $ingredient)
+                        <li class="list-group-item">{{$ingredient}}</li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </div>
     @endforeach
@@ -92,7 +111,7 @@ if(!$form[0].checkValidity()) {
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Your Name</span>
-                                <input id="name" name="name" type="text" class="form-control" placeholder="Your Email">
+                                <input id="name" name="name" type="text" class="form-control" placeholder="Your Name">
                             </div>
                             <p class="help-block">Optional</p>
                         </div>
@@ -102,6 +121,17 @@ if(!$form[0].checkValidity()) {
                                 <input id="email" name="email" type="text" class="form-control" placeholder="Your Email">
                             </div>
                             <p class="help-block">Optional</p>
+                        </div>
+                        <div class="form-group">
+                            <h3>Ingredients:</h3>
+                            <div  id="dynamic_field">
+                                <div class="ingredient input-group">
+                                    <input type="text" name="ingredient[]" placeholder="Enter an ingredient" class="form-control ingredient_list" />
+                                    <span class="input-group-btn">
+                                        <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -124,8 +154,9 @@ if(!$form[0].checkValidity()) {
 
             </div>
         </div>
+        </div>
     </div>
-    </form>
+</form>
 @endsection
 
 
