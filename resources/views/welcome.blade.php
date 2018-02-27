@@ -117,7 +117,7 @@
                 aspectRatio: 1.5,
                 themeSystem: 'bootstrap3'
             });
-            $('#organization_name').on('focusout', function() {
+            $('#organization_name').on('click', function() {
                 if (!$(this).val()) {
                     $('#organization_name_validation').removeClass('hidden');
                 }
@@ -171,7 +171,7 @@
 
                 });
             });
-            $('#meal_description').on('focusout', function(){
+            $('#meal_description').on('click', function(){
                 if(!$(this).val()){
                     $('#meal_description_validation').removeClass('hidden');
                 }
@@ -209,14 +209,9 @@
 
             // if the form isn't valid, "click" the submit button which will force html5 validation
             // else, send it!
-            if($('#phone_validation').hasClass('valid') && $('#email_validation').hasClass('valid') && $('#organization_name_validation').hasClass('valid') && $('#meal_description_validation').hasClass('valid') && $volunteerForm[0].checkValidity() ){
-                $("#inputs").hide();
-                $("#input-buttons").hide();
-                $("#loading-info").show();
-                $volunteerForm.submit();
-            }
+
             //This is if they've clicked on the volunteer button
-            else if(!($('#phone_validation').hasClass('valid') && $('#email_validation').hasClass('valid') && $('#organization_name_validation').hasClass('valid') && $volunteerForm[0].checkValidity()))
+            if(!($('#phone_validation').hasClass('valid') && $('#email_validation').hasClass('valid') && $('#organization_name_validation').hasClass('valid') && $volunteerForm[0].checkValidity()))
             {
                 if(! $('#phone_validation').hasClass('valid')) {
                     $('#phone_validation').removeClass('hidden');
@@ -237,6 +232,13 @@
                 if(!$volunteerForm[0].checkValidity()) {
                      $volunteerForm.find(':submit').click();
                 }
+
+            }
+            else{
+                $("#inputs").hide();
+                $("#input-buttons").hide();
+                $("#loading-info").show();
+                $volunteerForm.submit();
             }
         }
     </script>
