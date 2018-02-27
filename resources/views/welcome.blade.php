@@ -126,17 +126,28 @@
 
                 $('#organization_name').on('input', function(){
                     if($(this).val()){
-                        $('#organization_name_errors').removeClass('visible');
                         $('#organization_name_errors').addClass('hide');
                     }
                     else{
                         $('#organization_name_errors').removeClass('hide');
-                        $('#organization_name_errors').addClass('visible');
                         $("#submit-form").attr("disabled", "disabled");
 
                     }
 
                 });
+            $('#email').on('input', function(){
+                var regExEmail =/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                var checkEmail = regExEmail.test($(this).val());
+                if(checkEmail){
+                    $('#email_errors').addClass('hide');
+                }
+                else{
+                    $('#email_errors').removeClass('hide');
+                    $("#submit-form").attr("disabled", "disabled");
+
+                }
+
+            });
             //});
         });
 
@@ -276,6 +287,8 @@
                                     <input id="email" name="email" type="text" class="form-control" placeholder="Email"
                                            required>
                                 </div>
+                                <div id="email_errors" class="hide">That is not a real email</div>
+
                                 <div class="input-group">
                                     <span class="input-group-addon">Phone Number</span>
                                     <input id="phone" name="phone" type="text" class="form-control"
