@@ -117,10 +117,7 @@
                 aspectRatio: 1.5,
                 themeSystem: 'bootstrap3'
             });
-            $('#organization_name').on('click', function() {
-                if (!$(this).val()) {
-                    $('#organization_name_validation').removeClass('hidden');
-                }
+
                 $('#organization_name').on('input', function () {
                     if ($(this).val()) {
                         $('#organization_name_validation').addClass('hidden');
@@ -133,11 +130,7 @@
                     }
 
                 });
-            });
-            $('#email').on('click', function(){
-                if(!$(this).val()){
-                    $('#email_validation').removeClass('hidden');
-                }
+
                 $('#email').on('input',  function() {
                     var regExEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                     var checkEmail = regExEmail.test($(this).val());
@@ -151,11 +144,6 @@
                     }
 
                 });
-            });
-            $('#phone').on('click', function(){
-                if(!$(this).val()){
-                    $('#phone_validation').removeClass('hidden');
-                }
                 $('#phone').on('input', function(){
                     var regExPhone =/^([0-9]{10})|(\\(\\d{3}\\) \\d{3}-\\d{4})$/;
                     var checkPhone = regExPhone.test($(this).val());
@@ -170,11 +158,7 @@
                     }
 
                 });
-            });
-            $('#meal_description').on('click', function(){
-                if(!$(this).val()){
-                    $('#meal_description_validation').removeClass('hidden');
-                }
+
                 $('#meal_description').on('input', function(){
                     if($(this).val()){
                         $('#meal_description_validation').addClass('hidden');
@@ -187,9 +171,6 @@
                     }
                 });
             });
-
-        });
-
        function resetValidation(){
            $('#phone_validation').addClass('hidden');
            $('#phone_validation').removeClass('valid');
