@@ -117,7 +117,7 @@
                 aspectRatio: 1.5,
                 themeSystem: 'bootstrap3'
             });
-            $('#organization_name').on('click', function() {
+            $('#organization_name').on('focusout', function() {
                 if (!$(this).val()) {
                     $('#organization_name_validation').removeClass('hidden');
                 }
@@ -171,7 +171,7 @@
 
                 });
             });
-            $('#meal_description').on('click', function(){
+            $('#meal_description').on('focus', function(){
                 if(!$(this).val()){
                     $('#meal_description_validation').removeClass('hidden');
                 }
@@ -197,6 +197,8 @@
            $('#email_validation').removeClass('valid');
            $('#organization_name_validation').addClass('hidden');
            $('#organization_name_validation').removeClass('valid');
+           $('#meal_description_validation').addClass('hidden');
+           $('#meal_description_validation').removeClass('valid');
        }
         /**
          * Submit the volunteer's info for reviewing
@@ -408,7 +410,7 @@
                                 <button id="submit-form" type="button" class="btn btn-success"
                                         onClick="submitVolunteerForm();">Volunteer
                                 </button>
-                                <button onClick="resetValidation()" id="cancel-form" type="button" class="btn btn-default" data-dismiss="modal">
+                                <button  id="cancel-form" type="button" class="btn btn-default" data-dismiss="modal">
                                     Cancel
                                 </button>
                                 <button type="submit" hidden></button>
