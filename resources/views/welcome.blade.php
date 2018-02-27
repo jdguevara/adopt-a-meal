@@ -129,12 +129,10 @@
             if(!$volunteerForm[0].checkValidity()) {
                 $volunteerForm.find(':submit').click();
             } else {
-                $("#paper_goods").val( $("#paper_goods").is(':checked') );
-                console.log($("#paper_goods"));
+                console.log("inputs", $("#paper_goods").val())
                 $("#inputs").hide();
                 $("#loading-info").show();
-                //$volunteerForm.submit();
-
+                $volunteerForm.submit();
             }
         }
     </script>
@@ -278,6 +276,7 @@
                                     <div class="checkbox-group">
                                         <label class="checkbox"> I can provide paper goods
                                             <input id="paper_goods" name="paper_goods" type="checkbox">
+                                            <input id="paper_goods_val" name="paper_goods_val" type="text" hidden />
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>

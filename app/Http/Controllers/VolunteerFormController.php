@@ -32,7 +32,7 @@ class VolunteerFormController extends Controller
             'email' => 'required',
             'meal_description' => 'required',
             'open_event_id' => 'required',
-            'open_event_date_time' => 'required',
+            'open_event_date_time' => 'required'
         ]);
          
         $this->sendEmail($request->all());
