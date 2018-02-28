@@ -230,7 +230,7 @@
 @section('content')
     <div class="text-center jumbotron">
         <h1 id="jumbotron-header">Adopt a Meal </h1>
-        <p>Select a a date you would like to Adopt A Meal</p>
+        <p>Select a date you would like to Adopt A Meal</p>
     </div>
     <div class="container">
         <div class="panel panel-default">
@@ -248,7 +248,7 @@
     </div>
     <div class="text-center jumbotron jumbotron-footer">
         <h1 id="jumbotron-footer-header">Thank you for adopting a meal!</h1>
-        <p>We would like to thank all the organizations who adopted a meal for their wonderful contribution!</p>
+        <p>We would like to thank all the organizations who have volunteered for their wonderful contributions!</p>
     </div>
 
         <!-- past event modal -->
