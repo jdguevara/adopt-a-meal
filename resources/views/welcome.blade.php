@@ -44,7 +44,6 @@
             var eventClicked = function (calEvent) {
                 var today = moment().startOf('day');
                 var eventDate = moment(calEvent.start).add(7, 'hours');
-                console.log('event date:', eventDate, eventDate.diff(today));
 
                 // think of this operation like eventDate - today, negative is past, positive is future
                 if(calEvent.eventStatus == 1){
