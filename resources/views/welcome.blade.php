@@ -43,19 +43,17 @@
              */
             var eventClicked = function (calEvent) {
                 var today = moment().startOf('day');
-                var eventDate = moment(calEvent.start);
+                var eventDate = moment(calEvent.start).add(7, 'hours');
 
                 // think of this operation like eventDate - today, negative is past, positive is future
-                if (eventDate.diff(today) < 0 && calEvent.eventStatus == 0) {
-                    $("#past-event-modal").modal();
-                }
                 if(calEvent.eventStatus == 1){
                     $("#confirmed-event-modal").modal();
                     $("#confirmed-event-date").val(calEvent.start.format('MMMM Do YYYY'));
                     $("#confirmed-description").val(calEvent.description);
                     $("#confirmed-title").val(calEvent.title);
-                }
-                else {
+                } else if (eventDate.diff(today) < 0 && calEvent.eventStatus == 0) {
+                    $("#past-event-modal").modal();
+                } else {
                     // clear form fields from previous events
                     $("#volunteer-form").trigger("reset");
                     resetValidation();
@@ -78,7 +76,7 @@
                 // Modifying the DOM containing the event to allow "tooltip"
                 // Showing the description of an event when mouse hover it.
                 element.attr("data-toggle","tooltip");
-                element.attr("title", "Description: " + event.description );
+                element.attr("title", event.description );
 
                 // Initialization of tooltip()
                 $(function () {
@@ -253,11 +251,8 @@
 
         <!-- past event modal -->
         <div id="past-event-modal" class="modal fade" role="dialog">
-
             <div class="modal-dialog">
-
                 <div class="modal-content">
-
                     <div class="modal-header">
                         <h3 id="title" style="margin-top: 15px;">This event is in the past</h3>
                     </div>
@@ -267,12 +262,9 @@
                         Sorry, but this event has already happened. Please check some of the current events to adopt a
                         meal!
                     </div>
-
                     <div class="modal-footer"></div>
                 </div>
-
             </div>
-
         </div>
 
         <!-- confirmed event modal -->
@@ -286,17 +278,17 @@
                         <div class="volunteer-inputs">
                             <div class="input-group">
                                 <span class="input-group-addon">Date</span>
-                                <input name="event_date" type="text"  
+                                <input id="confirmed-event-date" name="event_date" type="text"  
                                         class="form-control" disabled>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Title</span>
-                                <input name="title" type="text"
+                                <input id="confirmed-title" name="title" type="text"
                                         class="form-control" placeholder="Title" disabled>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Description</span>
-                                <input name="description" type="text" class="form-control"
+                                <input id="confirmed-description" name="description" type="text" class="form-control"
                                         placeholder="Description" disabled>
                             </div>
                         </div>
