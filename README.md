@@ -7,6 +7,22 @@
 ## Project Description:
 Create a web application that assists with organizing volunteers for weekend meals. The application will consist of three main parts, a calendar for displaying future dates that can be volunteered for, a form for volunteers to fill out, and a workflow for approving or rejecting applications.
 
+
+## Team Members:
+
+Last Name       | First Name      | 
+--------------- | --------------- | 
+Al Mahmud       | Saif            | 
+Bakyono         | Daniel          | 
+Bower           | Melissa         | 
+Carmona         | Joey            | 
+McNew           | Nicholas        | 
+Mikel           | Zach            | 
+Smith           | Matt            | 
+Wigington       | Tyler           |
+
+
+
 ## Team Members:
 
 Last Name       | First Name      | GitHub User Name     | Scrum Role
