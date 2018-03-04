@@ -17,3 +17,6 @@ composer.lock
 package-lock.json
 yarn.lock
 mix-manifest.json
+.ebextensions
+.elasticbeanstalk
+deploy.sh
