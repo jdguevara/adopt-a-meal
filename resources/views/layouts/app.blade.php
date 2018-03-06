@@ -4,23 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.css' />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
-
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top" id="nav-shadow">
         <div class="navbar-header pull-left">
             <a class="navbar-brand"  id="navbar-brand-padding" href="{{url('http://interfaithsanctuary.org/')}}">
-                <img class="brand" alt="Brand" id="navbar-brand-size" src="images/Interfaith-Temp-Logo.png">
+                <img class="brand" alt="Brand" id="navbar-brand-size" src="/images/Interfaith-Temp-Logo.png">
             </a>
             <a class="navbar-brand" id="navbar-brand-font" href="/">Adopt a Meal</a>
         </div>
