@@ -19,6 +19,7 @@ class AdminLoginTest extends DuskTestCase
     public function testAdminLogin()
     {
 
+        echo "\nTesting Login Admin\n";
         $this->browse(function ($browser) {
             $username = env('MASTER_USER', '');
             $password = env('MASTER_PASS', '');
@@ -30,6 +31,7 @@ class AdminLoginTest extends DuskTestCase
                 ->assertPathIs('/admin');
 
         });
+        echo "Done\n";
     }
 
 

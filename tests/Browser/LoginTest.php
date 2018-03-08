@@ -15,6 +15,7 @@ class LoginTest extends DuskTestCase
     public function testLogin()
     {
 
+        echo "\nTesting Login\n";
         $this->browse(function ($browser) {
             $username = env('MASTER_USER', '');
             $password = env('MASTER_PASS', '');
@@ -25,5 +26,6 @@ class LoginTest extends DuskTestCase
                 ->press('Login')
                 ->assertPathIs('/');
         });
+        echo "Done\n";
     }
 }

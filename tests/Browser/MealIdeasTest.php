@@ -15,9 +15,11 @@ class MealIdeasTest extends DuskTestCase
      */
     public function testBasicExample()
     {
+        echo "\nTesting MealIdeas route\n";
         $this->browse(function (Browser $browser) {
             $browser->visit('/meal-ideas')
                     ->assertSee('idea');
         });
+        echo "Done\n";
     }
 }
