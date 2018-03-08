@@ -17,10 +17,10 @@ class CreateMealIdeaTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description');
-            $table->longtext('ingredients_json')->nullable();
+            $table->longtext('ingredients_json');
             $table->string('external_link')->nullable();
-            $table->string('name');
-            $table->string('email');
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
             $table->smallInteger('meal_idea_status')->comment('0=new,1=confirmed,2=rejected');
             $table->timestamps();
         });

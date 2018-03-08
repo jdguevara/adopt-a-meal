@@ -17,14 +17,13 @@ class MealIdeasController extends Controller
     /**
      * Show the cards of meal ideas
      */
-    public function index(Calendar $calendar)
+    public function index()
     {
-       // $events = array_merge($calendar->findVolunteerEvents(), $calendar->findAllAccepted());
-
-        $volunteerEvents = $calendar->findVolunteerEvents();
-        $acceptedEvents = $calendar->findAllAccepted();
-
-        return view('mealideas', ['mealideas' => $acceptedEvents]);
+        $recipes = $this->mealIdeaRepository->getConfirmedMealIdeas();
+        foreach($recipes as $recipe){
+            $recipe->ingredients = json_decode($recipe->ingredients_json);
+        }
+        return view('mealideas', ['mealideas' => $recipes, ]);
 
     }
 
@@ -33,11 +32,11 @@ class MealIdeasController extends Controller
         $this->validate($request, [
             'meal_name' => 'required',
             'description' => 'required',
+            'ingredient' => 'required',
         ]);
-         
-        // $this->sendEmail($request->all());
-        // $this->formRepository->create($request->all());
-        // flash('Meal suggestion sent successfully')->success();
+        $this->mealIdeaRepository->create($request->all());
+        flash('Meal suggestion sent successfully')->success();
         return redirect('/meal-ideas');
     }
+
 }

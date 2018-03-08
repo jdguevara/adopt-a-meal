@@ -10,6 +10,8 @@ interface IMealIdeaRepository
 
     public function get($id);
 
+    public function getNewMealIdeas();
+
     public function getConfirmedMealIdeas();
 
     public function create($input);
@@ -18,7 +20,7 @@ interface IMealIdeaRepository
 
     public function delete($id);
 
-    public function approve($id);
+    public function approve($mealIdeaId, $mealIdea);
 
     public function deny($id);
 

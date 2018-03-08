@@ -15,6 +15,9 @@ Route::get('/', 'LandingPageController@index');
 Route::get('/meal-ideas', 'MealIdeasController@index');
 
 Auth::routes();
-Route::post('/admin/formreview', 'AdminController@submit');
 Route::get('/admin', 'AdminController@index')->name('home');
+Route::post('/admin/form/review', 'AdminController@reviewVolunteerForm');
+
+Route::get('/admin/meal-ideas', 'AdminController@viewMealIdeas');
+Route::post('/admin/meal-ideas/review', 'AdminController@reviewMealIdea');
 
