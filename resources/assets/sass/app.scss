@@ -1,5 +1,31 @@
+// Import variables before bootstrap to apply them
+@import "variables";
+
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 // Variables
-@import "variables";
+@import "checkbox";
+@import "volunteer-form";
+@import "event-form";
+@import "loading-spinner";
+
+//
+@import "~fullcalendar/dist/fullcalendar.min.css";
+
+
+@media screen and (max-width: 600px) {
+    .desktop {
+        display: none !important;
+    }
+}
+@media screen and (min-width: 600px) {
+    .mobile {
+        display: none !important;
+    }
+}
+
+.navbar-brand > .brand {
+    max-height: 50px;
+    max-width: 50px;
+}

@@ -1,0 +1,166 @@
+// Body
+$body-bg: white;
+
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border: $laravel-border-color;
+$navbar-default-border: $laravel-border-color;
+$panel-default-border: $laravel-border-color;
+$panel-inner-border: $laravel-border-color;
+
+// Typography
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-size-base: 14px;
+$line-height-base: 1.6;
+$text-color: #636b6f;
+
+// Navbar
+$navbar-default-bg: #fff;
+
+// Buttons
+$btn-default-color: $text-color;
+
+// Panels
+
+//Interfaith Brand Colors
+$interfaith-red: #ef3c5a;
+$interfaith-blue: #36b0bF;
+$interfaith-green: #e8f3df;
+$interfaith-yellow: #f4a71d;
+$interfaith-turquoise:#63c8cd;
+
+// Brands
+$brand-primary: $interfaith-blue;
+$brand-info: $interfaith-turquoise;
+$brand-success: $interfaith-blue;
+$brand-warning: $interfaith-yellow;
+$brand-danger: $interfaith-red;
+
+$brand-primary:         black !default;
+$brand-success:         $interfaith-blue !default;
+$brand-info:            $interfaith-red !default;
+$brand-warning:         $interfaith-yellow !default;
+$brand-danger:          $interfaith-blue !default;
+
+$panel-default-heading-bg: $brand-warning;
+
+// Inputs
+$input-border: lighten($text-color, 40%);
+$input-border-focus: lighten($brand-primary, 25%);
+$input-color-placeholder: lighten($text-color, 30%);
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+$btn-font-weight:                normal !default;
+$btn-default-color:              #333 !default;
+$btn-default-bg:                 #fff !default;
+$btn-default-border:             #ccc !default;
+$btn-primary-color:              #fff !default;
+$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-border:             darken($btn-primary-bg, 5%) !default;
+$btn-success-color:              #fff;
+$btn-success-bg:                 $brand-success !default;
+$btn-success-border:             darken($btn-success-bg, 5%) !default;
+$btn-info-color:                 #fff !default;
+$btn-info-bg:                    $brand-info !default;
+$btn-info-border:                darken($btn-info-bg, 5%) !default;
+$btn-warning-color:              #fff !default;
+$btn-warning-bg:                 $brand-warning !default;
+$btn-warning-border:             darken($btn-warning-bg, 5%) !default;
+$btn-danger-color:               #fff !default;
+$btn-danger-bg:                  $brand-danger !default;
+$btn-danger-border:              darken($btn-danger-bg, 5%) !default;
+$btn-link-disabled-color:        $gray-light !default;
+
+
+//Interfaith Typography
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+$interfaith-open-sans : 'Open Sans', sans-serif;
+a:hover{
+    background-color:$brand-warning;
+    color:white;
+}
+
+.panel{
+    //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.panel-default{
+    .panel-heading{
+        background-color:black;
+
+        border-color:white;
+        color:white;
+        //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+}
+
+.panel-default{
+}
+.list-group-item{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+//.btn-primary{
+//    background-color:$brand-primary;
+//    border-color:$brand-primary;
+//}
+//.btn-warning{
+//    background-color:$brand-warning;
+//    border-color:$brand-warning;
+//}
+//.btn-danger{
+//    background-color:$brand-danger;
+//}
+//.btn-success{
+//    background-color:$brand-success;
+//}
+//.top-menu {
+//    background-color: white;
+//}
+//.modal-header{
+//    background-color:white;
+//    color:black;
+//}
+.fc-toolbar.fc-header-toolbar{
+    padding:10px;
+    background-color:black;
+    color:white;
+    margin:0px;
+}
+.brand {
+    max-height: 75px;
+    max-width: 75px;
+    height: auto;
+    width: auto;
+}
+.container{
+    padding-bottom: 10px;
+}
+ .navbar-nav li a {
+    color: black;
+
+}
+.navbar-nav li a:hover {
+    color: $interfaith-red;
+    background-color:white;
+
+}
+.navbar-nav li a:focus{
+    color:white;
+    background-color:#FA364A;
+
+}
+ .navbar-nav li a:focus a:hover{
+    color:white;
+    background-color:#FA364A;
+
+}
+nav {
+    font-family: $interfaith-open-sans;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+

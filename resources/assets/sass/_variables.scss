@@ -1,30 +1,13 @@
+//Interfaith Typography
+@import url('https://fonts.googleapis.com/css?family=Averia+Serif+Libre:300|Open+Sans:300,400,700,800|Amatic+SC:400,800|Open+Sans:300,400,700,800');
+
+$interfaith-open-sans :'Open Sans', sans-serif;
+$interfaith-jumbotron-font:'Averia Serif Libre', cursive;
+$interfaith-decorative: 'Amatic SC', cursive;
+
 
 // Body
-$body-bg: #f5f8fa;
-
-// Borders
-$laravel-border-color: darken($body-bg, 10%);
-$list-group-border: $laravel-border-color;
-$navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
-
-// Typography
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-size-base: 14px;
-$line-height-base: 1.6;
-$text-color: #636b6f;
-
-// Navbar
-$navbar-default-bg: #fff;
-
-// Buttons
-$btn-default-color: $text-color;
-
-// Inputs
-$input-border: lighten($text-color, 40%);
-$input-border-focus: lighten($brand-primary, 25%);
-$input-color-placeholder: lighten($text-color, 30%);
+$body-bg: white;
 
 // Panels
 
@@ -36,130 +19,114 @@ $interfaith-yellow: #f4a71d;
 $interfaith-turquoise:#63c8cd;
 
 // Brands
-$brand-primary: $interfaith-blue;
-$brand-info: $interfaith-turquoise;
-$brand-success: $interfaith-blue;
-$brand-warning: $interfaith-yellow;
-$brand-danger: $interfaith-red;
-
-$panel-default-heading-bg: $brand-warning;
+$brand-primary:         black !default;
+$brand-success:         $interfaith-blue !default;
+$brand-info:            $interfaith-red !default;
+$brand-warning:         $interfaith-yellow !default;
+$brand-danger:          $interfaith-blue !default;
 
 
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border: $laravel-border-color;
+$navbar-default-border: #fff;
+$navbar-default-brand-color:$brand-info;
+$panel-default-border: $laravel-border-color;
+$panel-inner-border: $laravel-border-color;
 
-//Interfaith Typography
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-$interfaith-open-sans : 'Open Sans', sans-serif;
-a:hover{
-    background-color:$brand-warning;
-    color:white;
-}
-.calendar-panel{
-    background-color: $brand-info;
+$panel-default-heading-bg:white;
+//Jumbotron
+$jumbotron-bg:black;
+$jumbotron-color:white;
+$jumbotron-heading-color:$brand-warning;
+// Typography
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-size-base: 14px;
+$line-height-base: 1.6;
+$text-color: #636b6f;
+$close-font-weight:300;
+$headings-font-weight:300;
+$btn-font-weight:300;
+$font-family-base:$interfaith-open-sans;
+$badge-font-weight:300;
+$font-family-sans-serif:$interfaith-open-sans;
 
-}
-.panel{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+// Navbar
+$navbar-default-bg: #fff;
+$navbar-height:79px;
+$navbar-inverse-link-color: $brand-info;
+$navbar-default-link-hover-color:$brand-info;
 
-}
-.panel-default{
-    .panel-heading{
-        background-color:$brand-danger;
+//links
 
-        border-color:$brand-warning;
-        color:white;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
 
-}
-thead.fc-head{
-    background-color:$brand-warning;
-}
-.panel-default{
-}
-.list-group-item{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+// Buttons
+$btn-default-color: $text-color;
 
-}
-.btn-primary{
-    background-color:$brand-primary;
-    border-color:$brand-primary;
-}
-.btn-warning{
-    background-color:$brand-warning;
-    border-color:$brand-warning;
-}
-.btn-danger{
-    background-color:$brand-danger;
-}
-.btn-success{
-    background-color:$brand-success;
-}
-.top-menu {
-    background-color: $interfaith-blue;
-}
-.modal-header{
-    background-color:$brand-danger;
-    color:white;
-}
-.fc-toolbar.fc-header-toolbar{
-    padding:10px;
-    background-color:$brand-warning;
-    color:white;
-    margin:0px;
-}
-.brand {
-    max-height: 75px;
-    max-width: 75px;
-    height: auto;
-    width: auto;
-}
-.container{
-    padding-bottom: 10px;
-}
-.navbar-brand, .navbar-nav li a {
-    color: white;
 
-}
-.navbar-brand, .navbar-nav li a:hover{
-    color:$brand-success;
+// Inputs
+$input-border: lighten($text-color, 40%);
+$input-border-focus: lighten($brand-primary, 25%);
+$input-color-placeholder: lighten($text-color, 30%);
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+$btn-font-weight:                normal !default;
+$btn-default-color:              #333 !default;
+$btn-default-bg:                 #fff !default;
+$btn-default-border:             #ccc !default;
+$btn-primary-color:              #fff !default;
+$btn-primary-bg:                 $brand-info !default;
+$btn-primary-border:             darken($btn-primary-bg, 5%) !default;
+$btn-success-color:              #fff;
+$btn-success-bg:                 $brand-success !default;
+$btn-success-border:             darken($btn-success-bg, 5%) !default;
+$btn-info-color:                 #fff !default;
+$btn-info-bg:                    $brand-info !default;
+$btn-info-border:                darken($btn-info-bg, 5%) !default;
+$btn-warning-color:              #fff !default;
+$btn-warning-bg:                 $brand-warning !default;
+$btn-warning-border:             darken($btn-warning-bg, 5%) !default;
+$btn-danger-color:               #fff !default;
+$btn-danger-bg:                  $brand-danger !default;
+$btn-danger-border:              darken($btn-danger-bg, 5%) !default;
 
-}
-nav {
-    font-family: $interfaith-open-sans;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
+#body-padding{
+  padding-top:82px;
 }
-table{
-    background-color:white;
+#nav-shadow{
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
 }
-body{
-    background-color:  $interfaith-green;
+#navbar-brand-font{
+  font-weight:700;
+  font-family:$interfaith-decorative;
+  font-size: 20px;
 }
-// This is a temp place holder
-.calendar{
-    background-color: $interfaith-turquoise;
-    //padding:0.3px;
-    //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-    
+#navbar-brand-padding{
+  padding:5px;
 }
-#calendar {
-    margin: 25px;
-    background-color: white;
+#navbar-brand-size{
+  max-height:100px;
+  max-width:100px;
+}
+#jumbotron-subheader{
+  font-size:80px;
+  font-weight: 700;
+  color:white;
+}
+#jumbotron-header{
+  padding-top:30px;
+  font-size:110px;
+  font-family: $interfaith-jumbotron-font;
+}
+#jumbotron-footer-header{
+  font-family:$interfaith-decorative;
+  font-weight:700;
+}
+.jumbotron-footer{
+  margin-top:200px;
+  margin-bottom:0px;
 }
 
 
-/** Email CSS **/
-.email-template {
-    background-color: white;
-}
-.email-logo-container .email-logo{
-    display: inline-block;
-    width: 225px;
-}
-.email-logo:hover {
-    background-color: inherit;
-}
-.email-logo img {
-    display: inline-block;
-}

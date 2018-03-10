@@ -12,12 +12,12 @@
 */
 
 Route::get('/', 'LandingPageController@index');
-Route::get('/testEmail', 'LandingPageController@testEmail');
-
-Route::get('/testEmailtwo', function() { return new App\Mail\VolunteerFormEmail();});
-Route::get('/testEmailthree', function() { return new App\Mail\VolunteerRequestEmail();});
+Route::get('/meal-ideas', 'MealIdeasController@index');
 
 Auth::routes();
-
 Route::get('/admin', 'AdminController@index')->name('home');
+Route::post('/admin/form/review', 'AdminController@reviewVolunteerForm');
+
+Route::get('/admin/meal-ideas', 'AdminController@viewMealIdeas');
+Route::post('/admin/meal-ideas/review', 'AdminController@reviewMealIdea');
 

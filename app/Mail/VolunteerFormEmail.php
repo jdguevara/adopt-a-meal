@@ -6,6 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Carbon\Carbon;
+
 
 class VolunteerFormEmail extends Mailable
 {
@@ -15,8 +17,9 @@ class VolunteerFormEmail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($form)
     {
+        $this->form = $form;
     }
 
     /**
@@ -26,6 +29,7 @@ class VolunteerFormEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.volunteerformemail');
+        $this->form['open_event_date_time'] =  Carbon::parse($this->form['open_event_date_time'])->format('F jS Y, H:ia');
+        return $this->view('emails.volunteerformemail', ['form' => $this->form]);
     }
 }
