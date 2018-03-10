@@ -2,6 +2,7 @@
 
 @section('scripts')
 @component('formmodals.volunteer-form-js') @endcomponent
+@component('formmodals.confirmed-event-js') @endcomponent
 <script>
 var volunteerEvents = @json($volunteerEvents);
 var acceptedEvents = @json($acceptedEvents);
@@ -43,14 +44,11 @@ $(document).ready(function () {
 
         // think of this operation like eventDate - today, negative is past, positive is future
         if(calEvent.eventStatus == 1){
-            $("#confirmed-event-modal").modal();
-            $("#confirmed-event-date").val(calEvent.start.format('MMMM Do YYYY'));
-            $("#confirmed-description").val(calEvent.description);
-            $("#confirmed-title").val(calEvent.title);
+            loadConfirmedEventModal(calEvent);
         } else if (eventDate.diff(today) < 0 && calEvent.eventStatus == 0) {
             $("#past-event-modal").modal();
         } else {
-            loadVolunteerForm(calEvent);
+            loadVolunteerFormModal(calEvent);
         }
     };
 
@@ -121,56 +119,25 @@ $(document).ready(function () {
         <h1 id="jumbotron-footer-header">Thank you for adopting a meal!</h1>
         <p>We would like to thank all the organizations who have volunteered for their wonderful contributions!</p>
     </div>
-
-        <!-- past event modal -->
-        <div id="past-event-modal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 id="title" style="margin-top: 15px;">This event is in the past</h3>
-                    </div>
-
-                    <!-- list of text field inputs and check boxes  -->
-                    <div class="modal-body">
-                        Sorry, but this event has already happened. Please check some of the current events to adopt a
-                        meal!
-                    </div>
-                    <div class="modal-footer"></div>
+    <!-- past event modal -->
+    <div id="past-event-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="title" style="margin-top: 15px;">This event is in the past</h3>
                 </div>
+
+                <!-- list of text field inputs and check boxes  -->
+                <div class="modal-body">
+                    Sorry, but this event has already happened. Please check some of the current events to adopt a
+                    meal!
+                </div>
+                <div class="modal-footer"></div>
             </div>
         </div>
-
-        <!-- confirmed event modal -->
-        <div id="confirmed-event-modal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 id="title" style="margin-top: 15px;">An organization has adopted this meal!</h3>
-                    </div>
-                    <div class="modal-body">
-                        <div class="volunteer-inputs">
-                            <div class="input-group">
-                                <span class="input-group-addon">Date</span>
-                                <input id="confirmed-event-date" name="event_date" type="text"  
-                                        class="form-control" disabled>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Title</span>
-                                <input id="confirmed-title" name="title" type="text"
-                                        class="form-control" placeholder="Title" disabled>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Description</span>
-                                <input id="confirmed-description" name="description" type="text" class="form-control"
-                                        placeholder="Description" disabled>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @component('formmodals.volunteer-form-modal', [])
-        @endcomponent
+    </div>
+    @component('formmodals.confirmed-event-modal', []) @endcomponent
+    @component('formmodals.volunteer-form-modal', []) @endcomponent
     </div>
 
 @endsection

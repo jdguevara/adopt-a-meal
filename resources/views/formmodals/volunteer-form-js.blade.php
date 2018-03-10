@@ -1,5 +1,5 @@
 <script>
-function loadVolunteerForm(calEvent) {
+function loadVolunteerFormModal(calEvent) {
     // clear form fields from previous events
     $("#volunteer-form").trigger("reset");
     resetVolunteerFormValidation();
