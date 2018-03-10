@@ -52,7 +52,6 @@
                         You are logged in!
                         Accept, Edit and Delete Adopt-a-Meal requests here.
                     </div>
-
                 </div>
 
                 <form id="event-form" method="POST" action="/admin/form/review">
