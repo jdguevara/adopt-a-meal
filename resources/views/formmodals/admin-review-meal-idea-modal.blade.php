@@ -7,10 +7,12 @@
                     <h3 style="margin-top: 15px;">Suggested Meal</h3>
                 </div>
                 <!-- list of text field inputs and check boxes  -->
-                <div class="modal-body event-info volunteer-inputs">
+                <div class="modal-body volunteer-inputs">
+                    <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon">Meal Name</span>
                         <input id="meal-title" name="title" class="form-control" type="text" />
+                    </div>
                     </div>
 
                     <div class="input-group">
