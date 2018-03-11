@@ -14,7 +14,7 @@ $(document).ready(function () {
 
 @section('content')
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
         <div class="panel panel-primary">
             <div class="panel-heading text-center text-capitalize"><h3>Review Meal Ideas</h3></div>
             <div class="panel-body text-center">
@@ -23,7 +23,7 @@ $(document).ready(function () {
                         {{ session('status') }}
                     </div>
                 @endif
-                Accept, Edit and Delete Meal Ideas here.
+                Accept, Edit, and Delete Meal Ideas here.
             </div>
         </div>
 

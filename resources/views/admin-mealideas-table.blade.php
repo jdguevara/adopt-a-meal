@@ -13,8 +13,8 @@ $(document).ready(function () {
 
 
 @section('content')
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
+<div class="container">
+    <div class="row">
         <div class="panel panel-primary">
             <div class="panel-heading text-center text-capitalize"><h3>Review Meal Ideas</h3></div>
             <div class="panel-body text-center">
@@ -27,35 +27,35 @@ $(document).ready(function () {
             </div>
         </div>
 
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Meal Name</th>
-                    <th>Description</th>
-                    <th>Website</th>
-                    <th>Submitter Name</th>
-                    <th>Submitter Email</th>
-                    <th>Displayed</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($mealideas as $mealidea)
-                <tr>
-                    <td>{{ $mealidea->title }}</td>
-                    <td>{{ $mealidea->description }}</td>
-                    <td>{{ $mealidea->external_link }}</td>
-                    <td>{{ $mealidea->name }}</td>
-                    <td>{{ $mealidea->email }}</td>
-                    <td>{{ $mealidea->display ? "Yes" : "No" }}</td>
-                    <td><button onclick="loadMealIdeaReviewModal('{{$mealidea['id']}}');" class="btn btn-warning">Edit</button></td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Meal Name</th>
+                        <th>Description</th>
+                        <th>Website</th>
+                        <th>Submitter Name</th>
+                        <th>Submitter Email</th>
+                        <th>Displayed</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($mealideas as $mealidea)
+                    <tr>
+                        <td>{{ $mealidea->title }}</td>
+                        <td>{{ $mealidea->description }}</td>
+                        <td>{{ $mealidea->external_link }}</td>
+                        <td>{{ $mealidea->name }}</td>
+                        <td>{{ $mealidea->email }}</td>
+                        <td>{{ $mealidea->display ? "Yes" : "No" }}</td>
+                        <td><button onclick="loadMealIdeaReviewModal('{{$mealidea['id']}}');" class="btn btn-warning">Edit</button></td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-    
 </div>
 
 @component('formmodals.admin-review-meal-idea-modal', ['editMode' => true]) @endcomponent

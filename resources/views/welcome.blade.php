@@ -101,7 +101,8 @@ $(document).ready(function () {
         <h1 id="jumbotron-header">Adopt a Meal </h1>
         <p>Select a date you would like to Adopt A Meal</p>
     </div>
-    <div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-lg-8 col-lg-offset-2">
         <div class="panel panel-default">
             {{--<div class="panel-heading text-center">--}}
                 {{--<h1>Adopt-a-Meal Calendar</h1>--}}
@@ -113,6 +114,7 @@ $(document).ready(function () {
                     <div id="listCalendar" class="mobile"></div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
     <div class="text-center jumbotron jumbotron-footer">
