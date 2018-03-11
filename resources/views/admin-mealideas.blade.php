@@ -3,7 +3,11 @@
 @section('scripts')
 @component('formmodals.admin-review-meal-idea-js') @endcomponent
 <script>
-    var mealIdeas = @json($mealideas);        
+var mealIdeas = @json($mealideas);
+
+$(document).ready(function () {
+    setupMealIdeaValidation();    
+});
 </script>
 @endsection
 
