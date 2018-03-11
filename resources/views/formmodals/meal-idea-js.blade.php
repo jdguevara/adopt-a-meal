@@ -2,7 +2,7 @@
 function loadMealIdeaModal() {
     // clear form fields from previous events
     $("#mealidea-modal").trigger("reset");
-    resetValidation(inputIds);
+    resetJQueryValidation(inputIds);
 
     $("#meal-title").val('');
     $('#instructions').val('');
@@ -61,32 +61,4 @@ $(document).on('click', '.btn_remove', function(){
     }
 });
 
-function simpleJQueryValidation(event, validation_id, regex) {
-    if($(event).val()) {
-        var checkRegex = regex == undefined || regex.test($(event).val());
-        if (checkRegex) {
-            $(validation_id).addClass('hidden');
-            $(validation_id).addClass('valid');
-            return;
-        }
-    }
-    $(validation_id).removeClass('hidden');
-    $(validation_id).removeClass('valid');
-}
-
-function simpleJQueryValidity(validation_id) {
-    if(!($(validation_id).hasClass('valid'))) {
-        $(validation_id).removeClass('hidden');
-        return false;
-    } else {
-        return true;
-    }
-}
-
-function resetValidation(inputIds){
-    $.each(inputIds, function( index, value) {
-        $(value + '-validation').addClass('hidden');
-        $(value + '-validation').removeClass('valid');
-    });
-}
 </script>

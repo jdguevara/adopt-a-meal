@@ -2,7 +2,7 @@
 function loadVolunteerFormModal(calEvent) {
     // clear form fields from previous events
     $("#volunteer-form").trigger("reset");
-    resetValidation(validationIds);
+    resetJQueryValidation(validationIds);
 
     var eventTitle = (calEvent.title && calEvent.title.length > 0) ?
     calEvent.title : "Volunteer For Event";
@@ -15,20 +15,20 @@ function loadVolunteerFormModal(calEvent) {
     $("#volunteer-modal").modal();
 }
 
-var validationIds = ['#organization_name_validation', '#email_validation', '#phone_validation', '#meal_description_validation'];
+var validationIds = ['#organization_name', '#email', '#phone', '#meal_description'];
 
 function setupVolunteerFormValidation() {
     $('#organization_name').on('input', function () {
-        simpleJQueryValidation(this, '#organization_name_validation');
+        simpleJQueryValidation(this, '#organization_name-validation');
     });
     $('#email').on('input', function () {
-        simpleJQueryValidation(this, '#email_validation', new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/));
+        simpleJQueryValidation(this, '#email-validation', new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/));
     });
     $('#phone').on('input', function () {
-        simpleJQueryValidation(this, '#phone_validation', new RegExp(/^([0-9]{10})|(\\(\\d{3}\\) \\d{3}-\\d{4})$/));
+        simpleJQueryValidation(this, '#phone-validation', new RegExp(/^([0-9]{10})|(\\(\\d{3}\\) \\d{3}-\\d{4})$/));
     });
     $('#meal_description').on('input', function () {
-        simpleJQueryValidation(this, '#meal_description_validation');
+        simpleJQueryValidation(this, '#meal_description-validation');
     });
 }
 
@@ -37,7 +37,7 @@ function submitVolunteerForm() {
 
     var valid = true;
     $.each(validationIds, function(index, value) {
-        valid = simpleJQueryValidity(value) ? valid ? true : false : false;
+        valid = simpleJQueryValidity(value + '-validation') ? valid ? true : false : false;
     });
     if(valid) {
         $("#inputs").hide();
@@ -45,34 +45,5 @@ function submitVolunteerForm() {
         $("#loading-info").show();
         $volunteerForm.submit();
     }
-}
-
-function simpleJQueryValidation(event, validation_id, regex) {
-    if($(event).val()) {
-        var checkRegex = regex == undefined || regex.test($(event).val());
-        if (checkRegex) {
-            $(validation_id).addClass('hidden');
-            $(validation_id).addClass('valid');
-            return;
-        }
-    }
-    $(validation_id).removeClass('hidden');
-    $(validation_id).removeClass('valid');
-}
-
-function simpleJQueryValidity(validation_id) {
-    if(!($(validation_id).hasClass('valid')) ) {
-        $(validation_id).removeClass('hidden');
-        return false;
-    } else {
-        return true;
-    }
-}
-
-function resetValidation(validationIds){
-    $.each(validationIds, function( index, value) {
-        $(value).addClass('hidden');
-        $(value).removeClass('valid');
-    });
 }
 </script>

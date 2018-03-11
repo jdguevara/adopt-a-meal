@@ -27,7 +27,7 @@
                                 <span class="input-group-addon">Organization Name</span>
                                 <input id="organization_name" name="organization_name" type="text" class="form-control" placeholder="Organization Name" >
                             </div>
-                            <div id="organization_name_validation" class="hidden alert-danger">Required: Please enter your Organization's Name</div>                            
+                            <div id="organization_name-validation" class="hidden alert-danger">Required: Please enter your Organization's Name</div>                            
                         </div>
 
                         <div class="form-group">
@@ -35,7 +35,7 @@
                                 <span class="input-group-addon">Email</span>
                                 <input id="email" name="email" type="text" class="form-control" placeholder="Email">
                             </div>
-                            <span id="email_validation" class="help-block hidden alert-danger">Required: Please enter a valid email address</span>
+                            <span id="email-validation" class="help-block hidden alert-danger">Required: Please enter a valid email address</span>
                         </div>
 
                         <div class="form-group">
@@ -43,7 +43,7 @@
                                 <span class="input-group-addon">Phone Number</span>
                                 <input id="phone" name="phone" type="text" class="form-control" placeholder="Phone Number" >
                             </div>
-                            <div id="phone_validation" class="hidden alert-danger">Required: Please enter a valid phone number</div>
+                            <div id="phone-validation" class="hidden alert-danger">Required: Please enter a valid phone number</div>
                         </div>
 
                         <div class="form-group">
@@ -51,7 +51,7 @@
                                 <span class="input-group-addon">Meal Description</span>
                                 <input id="meal_description" name="meal_description" type="text" class="form-control" placeholder="Meal Description">
                             </div>
-                            <div id="meal_description_validation" class="hidden alert-danger">Required: Please enter a description of the meal</div>
+                            <div id="meal_description-validation" class="hidden alert-danger">Required: Please enter a description of the meal</div>
                         </div>
 
                         <div class="form-group">
