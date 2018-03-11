@@ -15,61 +15,50 @@ function loadVolunteerFormModal(calEvent) {
     $("#volunteer-modal").modal();
 }
 
+function simpleJQueryValidation(event, validation_id, regex) {
+    if($(event).val()) {
+        var checkRegex = regex == undefined || regex.test($(event).val());
+        if (checkRegex) {
+            $(validation_id).addClass('hidden');
+            $(validation_id).addClass('valid');
+        } else {
+            $(validation_id).removeClass('hidden');
+            $(validation_id).removeClass('valid');
+        }
+    }
+}
+
 function setupVolunteerFormValidation() {
     $('#organization_name').on('input', function () {
-        if ($(this).val()) {
-            $('#organization_name_validation').addClass('hidden');
-            $('#organization_name_validation').addClass('valid');
-        } else {
-            $('#organization_name_validation').removeClass('hidden');
-            $('#organization_name_validation').removeClass('valid');
-        }
+        simpleJQueryValidation(this, '#organization_name_validation');
     });
-    $('#email').on('input',  function() {
-        var regExEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        var checkEmail = regExEmail.test($(this).val());
-        if (checkEmail) {
-            $('#email_validation').addClass('hidden');
-            $('#email_validation').addClass('valid');
-        } else {
-            $('#email_validation').removeClass('hidden')
-            $('#email_validation').removeClass('valid');
-        }
+    $('#email').on('input', function () {
+        simpleJQueryValidation(this, '#email_validation', new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/));
     });
-    $('#phone').on('input', function(){
-        var regExPhone =/^([0-9]{10})|(\\(\\d{3}\\) \\d{3}-\\d{4})$/;
-        var checkPhone = regExPhone.test($(this).val());
-        if(checkPhone) {
-            $('#phone_validation').addClass('hidden');
-            $('#phone_validation').addClass('valid');
-        } else {
-            $('#phone_validation').removeClass('hidden');
-            $('#phone_validation').removeClass('valid');
-        }
+    $('#phone').on('input', function () {
+        simpleJQueryValidation(this, '#phone_validation', new RegExp(/^([0-9]{10})|(\\(\\d{3}\\) \\d{3}-\\d{4})$/));
     });
-
-    $('#meal_description').on('input', function(){
-        if($(this).val()){
-            $('#meal_description_validation').addClass('hidden');
-            $('#meal_description_validation').addClass('valid');
-
-        } else {
-
-            $('#meal_description_validation').removeClass('hidden');
-            $('#meal_description_validation').removeClass('valid');
-        }
+    $('#meal_description').on('input', function () {
+        simpleJQueryValidation(this, '#meal_description_validation');
     });
 }
 
+var validationIds = ['#organization_name_validation', '#email_validation', '#phone_validation', '#meal_description_validation'];
 function resetVolunteerFormValidation(){
-    $('#phone_validation').addClass('hidden');
-    $('#phone_validation').removeClass('valid');
-    $('#email_validation').addClass('hidden');
-    $('#email_validation').removeClass('valid');
-    $('#organization_name_validation').addClass('hidden');
-    $('#organization_name_validation').removeClass('valid');
-    $('#meal_description_validation').addClass('hidden');
-    $('#meal_description_validation').removeClass('valid');
+    $.each(validationIds, function( index, value) {
+        $(value).addClass('hidden');
+        $(value).removeClass('valid');
+    });
+}
+
+function simpleJQueryValidity(validation_id) {
+    if(!($(validation_id).hasClass('valid')) ) {
+        $(validation_id).removeClass('hidden');
+        $(validation_id).removeClass('valid');
+        return false;
+    } else {
+        return true;
+    }
 }
 
 function submitVolunteerForm() {
@@ -80,36 +69,15 @@ function submitVolunteerForm() {
     // else, send it!
 
     //This is if they've clicked on the volunteer button
-    if(!($('#phone_validation').hasClass('valid')
-        && $('#email_validation').hasClass('valid')
-        && $('#organization_name_validation').hasClass('valid')
-        && $volunteerForm[0].checkValidity())) {
-
-        if(! $('#phone_validation').hasClass('valid')) {
-            $('#phone_validation').removeClass('hidden');
-            $('#phone_validation').removeClass('valid');
-        }
-        if(! $('#organization_name_validation').hasClass('valid')){
-            $('#organization_name_validation').removeClass('hidden');
-            $('#organization_name_validation').removeClass('valid');
-        }
-        if(! $('#email_validation').hasClass('valid')){
-            $('#email_validation').removeClass('hidden');
-            $('#email_validation').removeClass('valid');
-        }
-        if(! $('#meal_description_validation').hasClass('valid')){
-            $('#meal_description_validation').removeClass('hidden');
-            $('#meal_description_validation').removeClass('valid');
-        }
-        if(!$volunteerForm[0].checkValidity()) {
-            $volunteerForm.find(':submit').click();
-        }
-
-    } else {
-            $("#inputs").hide();
-            $("#input-buttons").hide();
-            $("#loading-info").show();
-            $volunteerForm.submit();
+    var valid = true;
+    $.each(validationIds, function(index, value) {
+        valid = simpleJQueryValidity(value);
+    });
+    if(valid) {
+        $("#inputs").hide();
+        $("#input-buttons").hide();
+        $("#loading-info").show();
+        $volunteerForm.submit();
     }
 }
 

@@ -71,7 +71,7 @@
                                 </span>
                                 <div class="checkbox-group">
                                     <label class="checkbox"> I can provide paper goods
-                                        <input id="paper_goods" name="paper_goods" type="checkbox" required>
+                                        <input id="paper_goods" name="paper_goods" type="checkbox">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>

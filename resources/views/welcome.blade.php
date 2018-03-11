@@ -126,8 +126,6 @@ $(document).ready(function () {
                 <div class="modal-header">
                     <h3 id="title" style="margin-top: 15px;">This event is in the past</h3>
                 </div>
-
-                <!-- list of text field inputs and check boxes  -->
                 <div class="modal-body">
                     Sorry, but this event has already happened. Please check some of the current events to adopt a
                     meal!
