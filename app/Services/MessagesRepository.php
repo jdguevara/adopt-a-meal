@@ -5,15 +5,19 @@ namespace App\Services;
 
 use App\Contracts\IMessagesRepository;
 use App\Message;
+use App\MessageType;
+use Illuminate\Support\Facades\DB;
 
 class MessagesRepository implements IMessagesRepository
 {
 
     private $message;
+    private $messageType;
 
-    public function __construct(Message $m)
+    public function __construct(Message $m, MessageType $mt)
     {
         $this->message = $m;
+        $this->messageType = $mt;
     }
 
     /**
@@ -22,7 +26,28 @@ class MessagesRepository implements IMessagesRepository
      */
     public function all()
     {
-        return $this->message->all();
+        // come up with a list of all message types
+        $messageTypes = $this->messageType->all();
+
+        // find the newest message for each type and store it for result
+        $result = [];
+        forEach($messageTypes as $messageType) {
+
+            $message = DB::table('messages')
+                ->join('message_types', 'messages.type_id', '=', 'message_types.id')
+                ->select('messages.*', 'message_types.type')
+                ->where('messages.type_id', $messageType->id)
+                ->orderBy('messages.version', 'DESC')
+                ->take(1)
+                ->get();
+
+            if(count($message) > 0) {
+                array_push($result, $message[0]);
+            }
+
+        }
+
+        return $result;
     }
 
     /**
@@ -43,7 +68,7 @@ class MessagesRepository implements IMessagesRepository
     public function create($input)
     {
         $this->message->fill([
-            'type' => $input['type'],
+            'type_id' => $input['type_id'],
             'content' => $input['content'],
             'user_id' => $input['user_id']
         ]);

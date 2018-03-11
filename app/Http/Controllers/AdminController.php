@@ -95,6 +95,7 @@ class AdminController extends Controller
     {
         // get all current versions of site messages
         $messages = $this->messagesRepository->all();
+        // dd($messages);
         return view('messages', ['messages' => $messages]);
     }
 
