@@ -20,7 +20,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
 
     public function all()
     {
-        $this->form->all();
+        return $this->form->all();
     }
 
     public function get($id)

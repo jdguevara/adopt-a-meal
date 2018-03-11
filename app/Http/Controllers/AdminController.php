@@ -35,9 +35,19 @@ class AdminController extends Controller
         return view('admin', ['volunteerForms' => $this->formRepository->getAllNewForms()]);
     }
 
+    public function viewVolunteerFormsTable()
+    {
+        return view('admin-volunteerforms-table', ['volunteerforms' => $this->formRepository->all()]);
+    }
+
     public function viewMealIdeas()
     {
         return view('admin-mealideas', ['mealideas' => $this->mealRepository->getNewMealIdeas()]);
+    }
+
+    public function viewMealIdeasTable()
+    {
+        return view('admin-mealideas-table', ['mealideas' => $this->mealRepository->getConfirmedMealIdeas()]);
     }
 
     public function reviewVolunteerForm(Request $request)
@@ -69,6 +79,7 @@ class AdminController extends Controller
 
     public function reviewMealIdea(Request $request)
     {
+        $request['display'] = $request['display'] == "on" ? true : false;
         $request['ingredients'] = json_encode(array_map(function($val) { return trim($val); }, explode(",", $request->ingredients)));
         $this->validate($request, [
             'id' => 'required',
@@ -88,7 +99,7 @@ class AdminController extends Controller
         {
             $this->mealRepository->deny($request->id);
         }
-        return redirect('/admin/meal-ideas');
+        return redirect()->back();
     }
 
     public function getMessages(Request $request)

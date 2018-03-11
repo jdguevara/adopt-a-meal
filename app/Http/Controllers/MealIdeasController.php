@@ -19,7 +19,7 @@ class MealIdeasController extends Controller
      */
     public function index()
     {
-        $recipes = $this->mealIdeaRepository->getConfirmedMealIdeas();
+        $recipes = $this->mealIdeaRepository->getPublicMealIdeas();
         foreach($recipes as $recipe){
             $recipe->ingredients = json_decode($recipe->ingredients_json);
         }
@@ -29,9 +29,12 @@ class MealIdeasController extends Controller
 
     public function submit(Request $request)
     {
+        $request['display'] = $request['display'] == "on" ? true : false;
         $this->validate($request, [
-            'meal_name' => 'required',
+            'title' => 'required',
             'description' => 'required',
+            'instructions' => 'required',
+            'display' => 'required',
             'ingredient' => 'required',
         ]);
         $this->mealIdeaRepository->create($request->all());
