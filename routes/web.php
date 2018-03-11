@@ -19,5 +19,6 @@ Route::get('/admin', 'AdminController@index')->name('home');
 Route::post('/admin/form/review', 'AdminController@reviewVolunteerForm');
 
 Route::get('/admin/meal-ideas', 'AdminController@viewMealIdeas');
+Route::get('/admin/meal-ideas/all', 'AdminController@viewMealIdeasTable');
 Route::post('/admin/meal-ideas/review', 'AdminController@reviewMealIdea');
 

@@ -32,9 +32,9 @@ $(document).ready(function () {
                 <li class="list-group-item ">
                     <h5>{{$mealidea->title}}</h5>
                     <h6>From: {{$mealidea->name}}
-                    <button id="view-event" onclick="loadMealIdeaReviewModal('{{$mealidea['id']}}');" class="btn btn-warning event-info-details pull-right">
+                    <button onclick="loadMealIdeaReviewModal('{{$mealidea['id']}}');" class="btn btn-warning event-info-details pull-right">
                         Details
-                    </button>
+                    </button> 
                     </h6>
                 </li>
             </ul>

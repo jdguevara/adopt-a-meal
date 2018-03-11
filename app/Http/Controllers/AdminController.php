@@ -37,6 +37,11 @@ class AdminController extends Controller
         return view('admin-mealideas', ['mealideas' => $this->mealRepository->getNewMealIdeas()]);
     }
 
+    public function viewMealIdeasTable()
+    {
+        return view('admin-mealideas-table', ['mealideas' => $this->mealRepository->getConfirmedMealIdeas()]);
+    }
+
     public function reviewVolunteerForm(Request $request)
     {
         
