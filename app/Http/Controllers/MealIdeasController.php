@@ -19,7 +19,7 @@ class MealIdeasController extends Controller
      */
     public function index()
     {
-        $recipes = $this->mealIdeaRepository->getVisibleMealIdeas();
+        $recipes = $this->mealIdeaRepository->getPublicMealIdeas();
         foreach($recipes as $recipe){
             $recipe->ingredients = json_decode($recipe->ingredients_json);
         }
