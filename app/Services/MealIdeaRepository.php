@@ -35,16 +35,22 @@ class MealIdeaRepository implements IMealIdeaRepository
         return $this->mealidea->where('meal_idea_status', '=', 1)->get();
     }
 
+    public function getPublicMealIdeas() {
+        return $this->mealidea->where('meal_idea_status', '=',1)->where('display', '=', '1')->get();
+    }
+
     public function create($input)
     {
         $this->mealidea->fill([
-            'title' => $input['meal_name'],
+            'title' => $input['title'],
             'description' => $input['description'],
+            'instructions' => $input['instructions'],
             'ingredients_json' => json_encode($input['ingredient']),
             'external_link' => $input['external_link'],
             'name' => $input['name'],
             'email' => $input['email'],
-            'meal_idea_status' => 0,
+            'display' => 1,
+            'meal_idea_status' => 0
         ]);
         $this->mealidea->save();
 
@@ -67,10 +73,12 @@ class MealIdeaRepository implements IMealIdeaRepository
         $this->mealidea->fill([
             'title' => $newMealIdea['title'],
             'description' => $newMealIdea['description'],
+            'instructions' => $newMealIdea['instructions'],
             'ingredients_json' => $newMealIdea['ingredients'],
             'external_link' => $newMealIdea['external_link'],
             'name' => $newMealIdea['name'],
             'email' => $newMealIdea['email'],
+            'display' => $newMealIdea['display'],
             'meal_idea_status' => 1,
         ]);
         $this->mealidea->save();

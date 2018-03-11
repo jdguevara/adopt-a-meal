@@ -6,10 +6,10 @@
 
 try {
     window.$ = window.jQuery = require('jquery');
+    window.moment = require('moment');
 
     require('bootstrap-sass');
     require('fullcalendar');
-    requite('moment');
 } catch (e) {}
 
 
