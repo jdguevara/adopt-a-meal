@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('scripts')
-@component('formmodals.admin-review-volunteer-form-js') @endcomponent
+@component('formmodals.admin-review-volunteer-form-modaljs') @endcomponent
 <script>
 var volunteerForms = @json($volunteerForms);
 </script>

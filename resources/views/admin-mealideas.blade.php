@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('scripts')
-@component('formmodals.admin-review-meal-idea-js') @endcomponent
+@component('formmodals.admin-review-meal-idea-modaljs') @endcomponent
 <script>
 var mealIdeas = @json($mealideas);
 

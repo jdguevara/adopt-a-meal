@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('scripts')
-@component('formmodals.meal-idea-js') @endcomponent
+@component('formmodals.meal-idea-modaljs') @endcomponent
 <script>
 $(document).ready(function () {
     setupMealIdeaValidation();    

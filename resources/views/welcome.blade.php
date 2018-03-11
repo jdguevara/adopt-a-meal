@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('scripts')
-@component('formmodals.volunteer-form-js') @endcomponent
-@component('formmodals.confirmed-event-js') @endcomponent
+@component('formmodals.volunteer-form-modaljs') @endcomponent
+@component('formmodals.confirmed-event-modaljs') @endcomponent
 <script>
 var volunteerEvents = @json($volunteerEvents);
 var acceptedEvents = @json($acceptedEvents);
