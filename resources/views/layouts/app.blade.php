@@ -31,8 +31,8 @@
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Settings<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="">
-                                Change Site Wording
+                            <a href="/admin/settings/change-messages">
+                                Change Messages
                             </a>
                         </li>
                     </ul>

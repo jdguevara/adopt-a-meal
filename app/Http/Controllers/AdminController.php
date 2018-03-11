@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\IMessagesRepository;
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\ICalendarRepository;
 use App\Contracts\IMealIdeaRepository;
@@ -13,12 +14,14 @@ class AdminController extends Controller
     protected $formRepository;
     protected $calendarRepository;
     protected $mealRepository;
+    protected $messagesRepository;
 
-    public function __construct(IVolunteerFormRepository $formRepository, ICalendarRepository $calendarRepository, IMealIdeaRepository $mealRepository)
+    public function __construct(IVolunteerFormRepository $formRepository, ICalendarRepository $calendarRepository, IMealIdeaRepository $mealRepository, IMessagesRepository $messagesRepository)
     {
         $this->calendarRepository = $calendarRepository;
         $this->formRepository = $formRepository;
         $this->mealRepository = $mealRepository;
+        $this->messagesRepository = $messagesRepository;
         $this->middleware('auth');
     }
 
@@ -86,5 +89,17 @@ class AdminController extends Controller
             $this->mealRepository->deny($request->id);
         }
         return redirect('/admin/meal-ideas');
+    }
+
+    public function getMessages(Request $request)
+    {
+        // get all current versions of site messages
+        $messages = $this->messagesRepository->all();
+        return view('messages', ['messages' => $messages]);
+    }
+
+    public function editMessage(Request $request)
+    {
+
     }
 }

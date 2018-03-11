@@ -21,3 +21,5 @@ Route::post('/admin/form/review', 'AdminController@reviewVolunteerForm');
 Route::get('/admin/meal-ideas', 'AdminController@viewMealIdeas');
 Route::post('/admin/meal-ideas/review', 'AdminController@reviewMealIdea');
 
+Route::get('/admin/settings/change-messages', 'AdminController@getMessages');
+
