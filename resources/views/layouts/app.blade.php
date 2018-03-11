@@ -33,7 +33,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('home') }}">Volunteer Calendar</a></li>
                         <li><a href="{{ route('admin-home') }}">Review Pending Volunteers</a></li>
-                        <li><a href="{{ route('admin-volunteerforms-table') }}">Volunteer Table</a></li>
+                        <li><a href="{{ route('admin-volunteerforms-table') }}">Past Volunteer Requests</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

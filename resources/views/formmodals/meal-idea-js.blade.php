@@ -51,7 +51,7 @@ function submitMealIdea() {
 var i = 1;
 $('#add').click(function(){
     i++;
-    $('#dynamic_field').append('<div id="row'+i+'" class="dynamic-added ingredient input-group"><input type="text" name="ingredient[]" placeholder="Enter an Ingredient" class="form-control ingredient_list" /><span class="input-group-btn"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></span></div>');
+    $('#dynamic_field').append('<div id="row'+i+'" class="dynamic-added ingredient input-group"><input type="text" name="ingredient[]" placeholder="Enter an Ingredient" class="form-control ingredient_list" /><span class="input-group-btn"><button type="button" name="remove" id="'+i+'" class="btn btn-warning btn_remove">X</button></span></div>');
 });
 $(document).on('click', '.btn_remove', function(){
     var button_id = $(this).attr("id");

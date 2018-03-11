@@ -99,22 +99,28 @@ $(document).ready(function () {
 @section('content')
     <div class="text-center jumbotron">
         <h1 id="jumbotron-header">Adopt a Meal </h1>
-        <p>Select a date you would like to Adopt A Meal</p>
+        <p>Select a date to Adopt A Meal</p>
     </div>
     <div class="row">
         <div class="col-sm-12 col-lg-8 col-lg-offset-2">
-        <div class="panel panel-default">
-            {{--<div class="panel-heading text-center">--}}
-                {{--<h1>Adopt-a-Meal Calendar</h1>--}}
-                {{--<p>Select a a date you would like to Adopt A Meal</p>--}}
-            {{--</div>--}}
-            <div class="panel-body calendar-panel text-center">
-                <div class="calendar">
-                    <div id="calendar" class="desktop"></div>
-                    <div id="listCalendar" class="mobile"></div>
+            <div class="panel panel-default">
+                <div class="panel-body calendar-panel text-center">
+                    <div class="calendar">
+                        <div id="calendar" class="desktop"></div>
+                        <div id="listCalendar" class="mobile"></div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <h4>Instructions:</h4>
+                    <ol>
+                        <li>Click an open volunteer event in the Calendar above (Open events are blue).</li>
+                        <li>Fill out the form that opens with a your organization's name or your name, contact information, and some information about the meal that will be provided. 
+                            If you're unsure of the exact meal, please include that in the meal description and we will work with you!</li>
+                        <li>Submit the form, and then you will recieve an e-mail confirmation.</li>
+                        <li>Staff at Interfaith Sanctuary will contact you once they've been notified of your request.</li>
+                    </ol>
                 </div>
             </div>
-        </div>
         </div>
     </div>
     <div class="text-center jumbotron jumbotron-footer">

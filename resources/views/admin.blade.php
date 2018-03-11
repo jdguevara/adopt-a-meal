@@ -12,7 +12,7 @@ var volunteerForms = @json($volunteerForms);
 <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
         <div class="panel panel-primary">
-            <div class="panel-heading text-center text-capitalize"><h3>Admin Dashboard</h3></div>
+            <div class="panel-heading text-center text-capitalize"><h3>Pending Volunteer Requests</h3></div>
 
             <div class="panel-body text-center">
                 @if (session('status'))
@@ -20,9 +20,10 @@ var volunteerForms = @json($volunteerForms);
                         {{ session('status') }}
                     </div>
                 @endif
-
-                You are logged in!
-                Review Adopt-a-Meal volunteer requests here.
+                <p>Review Adopt-a-Meal volunteer requests here.</p>
+                <p>To review a volunteer request, click the "Details" 
+                button next to the volunteer request's details. Once a volunteer request is accepted, it can be
+                edited in the "Past Volunteer Requests" view.</p>
             </div>
         </div>
         @foreach($volunteerForms as $form)

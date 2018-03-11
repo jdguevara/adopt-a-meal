@@ -19,14 +19,17 @@ function
 <div class="container">
     <div class="row">
         <div class="panel panel-primary">
-            <div class="panel-heading text-center text-capitalize"><h3>Review Meal Ideas</h3></div>
+            <div class="panel-heading text-center text-capitalize"><h3>Past Volunteer Requests</h3></div>
             <div class="panel-body text-center">
                 @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
                     </div>
                 @endif
-                Accept, Edit and Delete Meal Ideas here.
+                View past volunteer requests by month in the table below. To view past months click the "Previous" button.
+                Previously accepted volunteer requests can be cancelled. Once cancelled, the volunteer's calendar event
+                will be removed the Adopt-A-Meal calendar and a new "Click here to Adopt-A-Meal!" event will be created.
+                To edit an already submitted volunteer request, click "Edit" in a row. 
             </div>
         </div>
 

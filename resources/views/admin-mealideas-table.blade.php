@@ -16,14 +16,10 @@ $(document).ready(function () {
 <div class="container">
     <div class="row">
         <div class="panel panel-primary">
-            <div class="panel-heading text-center text-capitalize"><h3>Review Meal Ideas</h3></div>
+            <div class="panel-heading text-center text-capitalize"><h3>Current Meal Ideas</h3></div>
             <div class="panel-body text-center">
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                Accept, Edit and Delete Meal Ideas here.
+                Approved meal ideas are displayed in the table below. Meal ideas can be hidden from the public by unchecking the "Display" checkbox
+                and updating the meal idea. To edit a meal idea, click the "Edit" button its a row.
             </div>
         </div>
 

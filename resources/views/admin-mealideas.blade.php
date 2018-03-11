@@ -18,11 +18,6 @@ $(document).ready(function () {
         <div class="panel panel-primary">
             <div class="panel-heading text-center text-capitalize"><h3>Review Meal Ideas</h3></div>
             <div class="panel-body text-center">
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
                 Accept, Edit, and Delete Meal Ideas here.
             </div>
         </div>
