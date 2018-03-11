@@ -66,6 +66,7 @@ class AdminController extends Controller
 
     public function reviewMealIdea(Request $request)
     {
+        $request['display'] = $request['display'] == "on" ? true : false;
         $request['ingredients'] = json_encode(array_map(function($val) { return trim($val); }, explode(",", $request->ingredients)));
         $this->validate($request, [
             'id' => 'required',

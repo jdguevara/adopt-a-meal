@@ -12,11 +12,13 @@
                         <input id="confirmed-event-date" name="event_date" type="text"  
                                 class="form-control" disabled>
                     </div>
+
                     <div class="input-group">
                         <span class="input-group-addon">Title</span>
                         <input id="confirmed-title" name="title" type="text"
                                 class="form-control" placeholder="Title" disabled>
                     </div>
+                    
                     <div class="input-group">
                         <span class="input-group-addon">Description</span>
                         <input id="confirmed-description" name="description" type="text" class="form-control"

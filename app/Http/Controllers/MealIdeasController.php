@@ -29,9 +29,12 @@ class MealIdeasController extends Controller
 
     public function submit(Request $request)
     {
+        $request['display'] = $request['display'] == "on" ? true : false;
         $this->validate($request, [
             'meal_name' => 'required',
             'description' => 'required',
+            'instructions' => 'required',
+            'display' => 'required',
             'ingredient' => 'required',
         ]);
         $this->mealIdeaRepository->create($request->all());

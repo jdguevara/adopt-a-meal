@@ -67,10 +67,12 @@ class MealIdeaRepository implements IMealIdeaRepository
         $this->mealidea->fill([
             'title' => $newMealIdea['title'],
             'description' => $newMealIdea['description'],
+            'instructions' => $newMealIdea['instructions'],
             'ingredients_json' => $newMealIdea['ingredients'],
             'external_link' => $newMealIdea['external_link'],
             'name' => $newMealIdea['name'],
             'email' => $newMealIdea['email'],
+            'display' => $newMealIdea['display'],
             'meal_idea_status' => 1,
         ]);
         $this->mealidea->save();
