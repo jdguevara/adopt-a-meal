@@ -43,9 +43,5 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Contracts\IMessagesRepository',
             'App\Services\MessagesRepository'
         );
-        $this->app->bind(
-            'App\Contracts\IMessageTypesRepository',
-            'App\Services\MessageTypesRepository'
-        );
     }
 }

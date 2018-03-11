@@ -13,10 +13,10 @@ interface IMessagesRepository
 
     /**
      * Get all versions of a message corresponding to the message's type
-     * @param $type
+     * @param $id
      * @return mixed
      */
-    public function get($type);
+    public function get($id);
 
     /**
      * Add a new message, making it the newest version for its type

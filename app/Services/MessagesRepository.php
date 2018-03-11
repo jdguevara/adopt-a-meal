@@ -14,10 +14,9 @@ class MessagesRepository implements IMessagesRepository
     private $message;
     private $messageType;
 
-    public function __construct(Message $m, MessageType $mt)
+    public function __construct(Message $m)
     {
         $this->message = $m;
-        $this->messageType = $mt;
     }
 
     /**
@@ -26,38 +25,17 @@ class MessagesRepository implements IMessagesRepository
      */
     public function all()
     {
-        // come up with a list of all message types
-        $messageTypes = $this->messageType->all();
-
-        // find the newest message for each type and store it for result
-        $result = [];
-        forEach($messageTypes as $messageType) {
-
-            $message = DB::table('messages')
-                ->join('message_types', 'messages.type_id', '=', 'message_types.id')
-                ->select('messages.*', 'message_types.type')
-                ->where('messages.type_id', $messageType->id)
-                ->orderBy('messages.version', 'DESC')
-                ->take(1)
-                ->get();
-
-            if(count($message) > 0) {
-                array_push($result, $message[0]);
-            }
-
-        }
-
-        return $result;
+        return $this->message->all();
     }
 
     /**
      * Get all versions of a message corresponding to the message's type
-     * @param $type
+     * @param $id
      * @return mixed
      */
-    public function get($type)
+    public function get($id)
     {
-        return $this->message->where('type', $type);
+        return $this->message->find($id);
     }
 
     /**
@@ -67,19 +45,18 @@ class MessagesRepository implements IMessagesRepository
      */
     public function create($input)
     {
+
         $this->message->fill([
-            'type_id' => $input['type_id'],
+            'type' => $input['type'],
             'content' => $input['content'],
             'user_id' => $input['user_id']
         ]);
         $this->message->save();
-
-        // We will need to get the auto-generated ID and Version number for this message, so send back all of it.
-        return $this->message;
+        return $this->message->id;
     }
 
     /**
-     * Update an existing message (this will probably never be used as the messages are versioned)
+     * Update an existing message
      * @param $input
      * @return mixed
      * @internal param $form
@@ -103,4 +80,5 @@ class MessagesRepository implements IMessagesRepository
     {
         $this->message->find($id)->delete();
     }
+
 }

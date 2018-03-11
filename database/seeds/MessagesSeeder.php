@@ -13,24 +13,21 @@ class MessagesSeeder extends Seeder
         $messages = [
 
             [
-                'type_id' => '1',
-                'version' => '1',
+                'type' => '1',
                 'content' => 'Test Message',
-                'user_id' => '1',
+                'user_id' => '1'
             ],
 
             [
-                'type_id' => '2',
-                'version' => '1',
+                'type' => '2',
                 'content' => 'Test Message',
-                'user_id' => '1',
+                'user_id' => '1'
             ],
 
             [
-                'type_id' => '3',
-                'version' => '1',
+                'type' => '3',
                 'content' => 'Test Message',
-                'user_id' => '1',
+                'user_id' => '1'
             ],
 
         ];

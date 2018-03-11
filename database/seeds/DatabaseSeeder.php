@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(MasterAdminSeeder::class);
-        $this->call(MessageTypesSeeder::class);
         $this->call(MessagesSeeder::class);
     }
 }
