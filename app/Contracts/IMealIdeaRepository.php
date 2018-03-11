@@ -14,6 +14,8 @@ interface IMealIdeaRepository
 
     public function getConfirmedMealIdeas();
 
+    public function getVisibleMealIdeas();
+
     public function create($input);
 
     public function update($form, $input);

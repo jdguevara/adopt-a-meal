@@ -35,6 +35,10 @@ class MealIdeaRepository implements IMealIdeaRepository
         return $this->mealidea->where('meal_idea_status', '=', 1)->get();
     }
 
+    public function getVisibleMealIdeas() {
+        return $this->mealidea->where('meal_idea_status', '=',1)->where('display', '=', '1')->get();
+    }
+
     public function create($input)
     {
         $this->mealidea->fill([

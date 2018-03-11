@@ -42,5 +42,5 @@ $(document).ready(function () {
     </div>
 </div>
 
-@component('formmodals.admin-review-meal-idea-modal') @endcomponent
+@component('formmodals.admin-review-meal-idea-modal', ['editMode' => false]) @endcomponent
 @endsection

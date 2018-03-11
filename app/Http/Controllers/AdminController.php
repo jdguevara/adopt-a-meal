@@ -91,6 +91,6 @@ class AdminController extends Controller
         {
             $this->mealRepository->deny($request->id);
         }
-        return redirect('/admin/meal-ideas');
+        return redirect()->back();
     }
 }
