@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="form-group">
-                            <h3>Ingredients:</h3>
+                            <h4>Ingredients:</h4>
                             <div id="dynamic_field">
                                 <div class="ingredient input-group">
                                     <input type="text" id="ingredients" name="ingredient[]" placeholder="Enter an ingredient" class="form-control ingredient_list" />
@@ -45,6 +45,7 @@
                         </div>
 
                         <div class="form-group">
+                            <h4>Instructions:</h4>
                             <div class="input-group">
                                 <textarea id="instructions" name="instructions" class="form-control" placeholder="Instructions"></textarea>
                             </div>
