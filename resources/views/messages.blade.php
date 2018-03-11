@@ -3,33 +3,41 @@
 
 @section('content')
 
-<h1 style="padding-left: 15px;"> Messages </h1>
+<div class="container">
 
-<div class="col-sm-12 col-lg-6">
+    <div class="panel panel-primary">
+        <div class="panel-heading text-center text-capitalize"><h3>Messages</h3></div>
+        <div class="panel-body text-center">
+            Edit application messages here. If you see an application message that you'd like to change, please take note of the previous
+            message. Once you change a message, it cannot be undone!
+        </div>
+    </div>
 
-<ul class="list-group">
+    <ul class="list-group">
+        @foreach($messages as $m)
 
-    @foreach($messages as $m)
+            <li class="list-group-item">
 
-        <li class="list-group-item">
+                <div class="row row-padding">
+                    <h2 style="display: inline-block;"> {{ $m->type_str }}</h2>
+                    <span class="pull-right" style="font-style: italic"> Updated: {{ $m->updated_str }} </span>
+                </div>
 
-            <div class="row row-padding">
-                <h2 style="display: inline-block;"> {{ $m->type }}</h2>
-                <span> - Last Updated: {{ date('m-d-Y', strtotime($m->updated_at)) }} </span>
-            </div>
+                <div class="row row-padding">
+                    <span id="message-{{ $m->id }}-content">{{ $m->content }}</span>
+                </div>
 
-            <div class="row row-padding">
-                <span id="message-{{ $m->id }}-content">{{ $m->content }}</span>
-                <button id="message-{{ $m->id }}-edit" class="btn btn-default pull-right">Edit Message</button>
+                <div class="row row-padding" style="margin-top: 10px;">
+                    <button id="message-{{ $m->id }}-edit" class="btn btn-success pull-right">Edit Message</button>
+                    {{-- this is for jquery to hook into the message that was clicked --}}
+                    <span id="message_id" hidden>{{ $m->id }}</span>
+                </div>
 
-                {{-- this is for jquery to hook into the message that was clicked --}}
-                <span id="message_id" hidden>{{ $m->id }}</span>
-            </div>
+            </li>
+        @endforeach
 
-        </li>
-    @endforeach
+    </ul>
 
-</ul>
 
 </div>
 

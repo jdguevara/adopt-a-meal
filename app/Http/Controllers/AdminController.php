@@ -104,12 +104,37 @@ class AdminController extends Controller
 
     public function getMessages(Request $request)
     {
+        // get all message objects
         $messages = $this->messagesRepository->all();
+
+        forEach($messages as $message) {
+
+            // change underscores to user-friendly format
+            $message->type_str = $this->transformUnderscoreText($message->type);
+
+            // display "never" if the message hasn't been updated
+            if($message->updated_at == null) {
+                $message->updated_str = "Never";
+            }
+            else {
+                $message->updated_str = date('m-d-Y', strtotime($message->updated_at));
+            }
+
+        }
+
         return view('messages', ['messages' => $messages]);
     }
 
     public function editMessage(Request $request)
     {
 
+    }
+
+    private function transformUnderscoreText($string) {
+        $string_arr = explode("_", $string);
+        for($i = 0; $i < count($string_arr); $i++) {
+            $string_arr[$i] = ucfirst($string_arr[$i]);
+        }
+        return implode(" ", $string_arr);
     }
 }

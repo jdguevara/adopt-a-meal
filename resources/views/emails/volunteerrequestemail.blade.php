@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <p>{{$form['organization_name']}} has requested to adopt-a-meal and needs approval.</p>
+    <p>{{$form['organization_name']}} {{ $messages['admin_email_volunteer_request'] }} </p>
     <p>Their request: </p>
     <p>Event Date: {{$form['open_event_date_time']}}</p>
     <p>Meal Description: {{$form['meal_description']}}</p>

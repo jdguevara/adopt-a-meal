@@ -25,6 +25,7 @@ class MessagesRepository implements IMessagesRepository
      */
     public function all()
     {
+
         return $this->message->all();
     }
 
@@ -36,6 +37,16 @@ class MessagesRepository implements IMessagesRepository
     public function get($id)
     {
         return $this->message->find($id);
+    }
+
+    /**
+     * Get a single message by its type
+     * @param $type
+     * @return mixed
+     */
+    public function getByType($type)
+    {
+        return $this->message->where('type', $type);
     }
 
     /**
@@ -81,4 +92,20 @@ class MessagesRepository implements IMessagesRepository
         $this->message->find($id)->delete();
     }
 
+    /**
+     * Get all messages by 'type' => 'content' (this is for views)
+     * @return mixed
+     */
+    public function allContent()
+    {
+        // get all messages
+        $messages = $this->message->all();
+        $result = [];
+
+        // store
+        forEach($messages as $message) {
+            $result[$message->type] = $message->content;
+        }
+        return $result;
+    }
 }

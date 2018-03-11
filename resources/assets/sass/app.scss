@@ -6,7 +6,7 @@
 
 // Variables
 @import "checkbox";
-@import "volunteer-form";
+@import "form";
 @import "loading-spinner";
 
 //
@@ -32,4 +32,8 @@
     float: right;
     position: relative;
     margin-top: -13px;
+}
+
+.row-padding {
+    margin: 0;
 }

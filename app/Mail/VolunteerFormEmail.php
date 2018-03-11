@@ -17,9 +17,10 @@ class VolunteerFormEmail extends Mailable
      *
      * @return void
      */
-    public function __construct($form)
+    public function __construct($form, $messages)
     {
         $this->form = $form;
+        $this->messages = $messages;
     }
 
     /**
@@ -30,6 +31,6 @@ class VolunteerFormEmail extends Mailable
     public function build()
     {
         $this->form['open_event_date_time'] =  Carbon::parse($this->form['open_event_date_time'])->format('F jS Y, H:ia');
-        return $this->view('emails.volunteerformemail', ['form' => $this->form]);
+        return $this->view('emails.volunteerformemail', ['form' => $this->form, 'messages' => $this->messages ]);
     }
 }

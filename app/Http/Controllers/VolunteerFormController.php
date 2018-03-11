@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Contracts\IMessagesRepository;
 use App\Http\Requests;
 use App\Contracts\IVolunteerFormRepository;
 use Illuminate\Http\Request;
@@ -16,9 +17,11 @@ define('INTERFAITH_ADMINS', env('INTERFAITH_ADMINS'));
 class VolunteerFormController extends Controller
 {
     protected $formRepository;
+    protected $messagesRepository;
 
-    public function __construct(IVolunteerFormRepository $formRepository)
+    public function __construct(IVolunteerFormRepository $formRepository, IMessagesRepository $messagesRepository)
     {
+        $this->messagesRepository = $messagesRepository;
         $this->formRepository = $formRepository;
         $this->middleware('guest');
     }
@@ -46,16 +49,18 @@ class VolunteerFormController extends Controller
     public function sendEmail($form)
     {
         $admin_emails = explode(',', INTERFAITH_ADMINS);
-        
+
+        $messages = $this->messagesRepository->allContent();
+
         // To Interfaith
         foreach($admin_emails as $email){
             Mail::to($email)
-            ->send(new VolunteerRequestEmail($form));
+            ->send(new VolunteerRequestEmail($form, $messages));
         }
         
         // To the Volunteer
         Mail::to($form["email"])
-        ->send(new VolunteerFormEmail($form));
+        ->send(new VolunteerFormEmail($form, $messages));
 
         return redirect('/');
     }

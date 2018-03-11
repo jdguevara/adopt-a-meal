@@ -6,10 +6,16 @@ interface IMessagesRepository
 {
 
     /**
-     * Get all messages
+     * Get all messages in model format
      * @return mixed
      */
     public function all();
+
+    /**
+     * Get all messages by 'type' => 'content' (this is for views)
+     * @return mixed
+     */
+    public function allContent();
 
     /**
      * Get all versions of a message corresponding to the message's type
@@ -17,6 +23,13 @@ interface IMessagesRepository
      * @return mixed
      */
     public function get($id);
+
+    /**
+     * Get a single message by its type
+     * @param $type
+     * @return mixed
+     */
+    public function getByType($type);
 
     /**
      * Add a new message, making it the newest version for its type

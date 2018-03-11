@@ -13,8 +13,8 @@ $(document).ready(function () {
 <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
         <div class="page-header">
-            <h1>Meals Suggested By Volunteers and Community Members</h1>
-            <h2><small>If you have an idea click here <button class="btn btn-primary" href="#" onClick="loadMealIdeaModal();" role="button">Share</button></small></h2>
+            <h1>{{ $messages['meal_ideas_title'] }}</h1>
+            <h2><small>{{ $messages['meal_ideas_share_prompt'] }} <button class="btn btn-primary" href="#" onClick="loadMealIdeaModal();" role="button">Share</button></small></h2>
         </div>
 
         @foreach ($mealideas as $mealidea)

@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 use App\Contracts\IMealIdeaRepository;
 use App\Calendar;
+use App\Contracts\IMessagesRepository;
 use Illuminate\Http\Request;
 
 class MealIdeasController extends Controller
 {
     protected $mealIdeaRepository;
+    protected $messagesRepository;
 
-    public function __construct(IMealIdeaRepository $repository)
+    public function __construct(IMealIdeaRepository $repository, IMessagesRepository $messagesRepository)
     {
         $this->mealIdeaRepository = $repository;
+        $this->messagesRepository = $messagesRepository;
     }
 
     /**
@@ -23,7 +26,9 @@ class MealIdeasController extends Controller
         foreach($recipes as $recipe){
             $recipe->ingredients = json_decode($recipe->ingredients_json);
         }
-        return view('mealideas', ['mealideas' => $recipes, ]);
+
+        $messages = $this->messagesRepository->allContent();
+        return view('mealideas', ['mealideas' => $recipes, 'messages' => $messages ]);
 
     }
 

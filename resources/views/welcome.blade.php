@@ -135,6 +135,8 @@ $(document).ready(function () {
                     <h3 id="title" style="margin-top: 15px;">This event is in the past</h3>
                 </div>
                 <div class="modal-body">
+
+                    {{--{{ $eventTakenMessage }}--}}
                     Sorry, but this event has already happened. Please check some of the current events to adopt a
                     meal!
                 </div>
