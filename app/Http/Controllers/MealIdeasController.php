@@ -31,7 +31,7 @@ class MealIdeasController extends Controller
     {
         $request['display'] = $request['display'] == "on" ? true : false;
         $this->validate($request, [
-            'meal_name' => 'required',
+            'title' => 'required',
             'description' => 'required',
             'instructions' => 'required',
             'display' => 'required',

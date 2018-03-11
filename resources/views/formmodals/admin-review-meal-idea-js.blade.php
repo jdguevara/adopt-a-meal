@@ -20,7 +20,7 @@ function loadMealIdeaReviewModal (id) {
 
 var inputIds = ['#meal-title', '#instructions', '#description', '#ingredients'];
 
-function setupMealIdeaValidation() {
+function setupMealIdeaReviewValidation() {
     $('#meal-title').on('input', function () {
         simpleJQueryValidation(this, '#meal-title-validation');
     });
@@ -40,7 +40,7 @@ function submitMealIdeaReview (status) {
 
     var valid = true;
     $.each(inputIds, function(index, value) {
-        valid = valid ? simpleJQueryValidity(value + '-validation') : false;
+        valid = simpleJQueryValidity(value + '-validation') ? valid ? true : false : false;
     });
     if(valid) {
         $("#inputs").hide();
@@ -56,11 +56,11 @@ function simpleJQueryValidation(event, validation_id, regex) {
         if (checkRegex) {
             $(validation_id).addClass('hidden');
             $(validation_id).addClass('valid');
-        } else {
-            $(validation_id).removeClass('hidden');
-            $(validation_id).removeClass('valid');
+            return;
         }
     }
+    $(validation_id).removeClass('hidden');
+    $(validation_id).removeClass('valid');
 }
 
 function simpleJQueryValidity(validation_id) {

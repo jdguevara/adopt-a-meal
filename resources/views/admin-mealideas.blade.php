@@ -6,7 +6,7 @@
 var mealIdeas = @json($mealideas);
 
 $(document).ready(function () {
-    setupMealIdeaValidation();    
+    setupMealIdeaReviewValidation();    
 });
 </script>
 @endsection

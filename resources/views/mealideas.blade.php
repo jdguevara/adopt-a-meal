@@ -3,7 +3,9 @@
 @section('scripts')
 @component('formmodals.meal-idea-js') @endcomponent
 <script>
-
+$(document).ready(function () {
+    setupMealIdeaValidation();    
+});
 </script>
 @endsection
 

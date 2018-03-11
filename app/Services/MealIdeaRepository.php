@@ -38,13 +38,15 @@ class MealIdeaRepository implements IMealIdeaRepository
     public function create($input)
     {
         $this->mealidea->fill([
-            'title' => $input['meal_name'],
+            'title' => $input['title'],
             'description' => $input['description'],
+            'instructions' => $input['instructions'],
             'ingredients_json' => json_encode($input['ingredient']),
             'external_link' => $input['external_link'],
             'name' => $input['name'],
             'email' => $input['email'],
-            'meal_idea_status' => 0,
+            'display' => 1,
+            'meal_idea_status' => 0
         ]);
         $this->mealidea->save();
 

@@ -2,7 +2,7 @@
 function loadVolunteerFormModal(calEvent) {
     // clear form fields from previous events
     $("#volunteer-form").trigger("reset");
-    resetVolunteerFormValidation(validationIds);
+    resetValidation(validationIds);
 
     var eventTitle = (calEvent.title && calEvent.title.length > 0) ?
     calEvent.title : "Volunteer For Event";
@@ -37,7 +37,7 @@ function submitVolunteerForm() {
 
     var valid = true;
     $.each(validationIds, function(index, value) {
-        valid = simpleJQueryValidity(value);
+        valid = simpleJQueryValidity(value) ? valid ? true : false : false;
     });
     if(valid) {
         $("#inputs").hide();
@@ -53,17 +53,16 @@ function simpleJQueryValidation(event, validation_id, regex) {
         if (checkRegex) {
             $(validation_id).addClass('hidden');
             $(validation_id).addClass('valid');
-        } else {
-            $(validation_id).removeClass('hidden');
-            $(validation_id).removeClass('valid');
+            return;
         }
     }
+    $(validation_id).removeClass('hidden');
+    $(validation_id).removeClass('valid');
 }
 
 function simpleJQueryValidity(validation_id) {
     if(!($(validation_id).hasClass('valid')) ) {
         $(validation_id).removeClass('hidden');
-        $(validation_id).removeClass('valid');
         return false;
     } else {
         return true;

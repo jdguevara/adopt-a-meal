@@ -2,21 +2,48 @@
 function loadMealIdeaModal() {
     // clear form fields from previous events
     $("#mealidea-modal").trigger("reset");
+    resetValidation(inputIds);
 
-    $("#mealidea-modal").modal();
+    $("#meal-title").val('');
+    $('#instructions').val('');
+    $('#description').val('');
+    $('#email').val('');
+    $('#name').val('');
+    $('#external-link').val('');
+
+    var ingredients = JSON.parse('[]');
+    $('#ingredients').val(ingredients.join(', '));
+
+    $("#meal-idea-modal").modal();
 };
 
-function submitMealIdea() {
-    var $form = $('#mealidea-form');
+var inputIds = ['#meal-title', '#instructions', '#description', '#ingredients'];
 
-    // if the form isn't valid, "click" the submit button which will force html5 validation
-    // else, send it!
-    if(!$form[0].checkValidity()) {
-        $form.find(':submit').click();
-    } else {    
+function setupMealIdeaValidation() {
+    $('#meal-title').on('input', function () {
+        simpleJQueryValidation(this, '#meal-title-validation');
+    });
+    $('#instructions').on('input', function () {
+        simpleJQueryValidation(this, '#instructions-validation');
+    });
+    $('#description').on('input', function () {
+        simpleJQueryValidation(this, '#description-validation');
+    });
+    $('#ingredients').on('input', function () {
+        simpleJQueryValidation(this, '#ingredients-validation');
+    });
+}
+
+function submitMealIdea() {
+    var valid = true;
+    $.each(inputIds, function(index, value) {
+        valid = simpleJQueryValidity(value + '-validation') ? valid ? true : false : false;
+    });
+    if(valid) {
         $("#inputs").hide();
+        $("#input-buttons").hide();
         $("#loading-info").show();
-        $form.submit();
+        $('#meal-idea-form').submit();
     }
 }
 
@@ -33,4 +60,33 @@ $(document).on('click', '.btn_remove', function(){
         i = 1;
     }
 });
+
+function simpleJQueryValidation(event, validation_id, regex) {
+    if($(event).val()) {
+        var checkRegex = regex == undefined || regex.test($(event).val());
+        if (checkRegex) {
+            $(validation_id).addClass('hidden');
+            $(validation_id).addClass('valid');
+            return;
+        }
+    }
+    $(validation_id).removeClass('hidden');
+    $(validation_id).removeClass('valid');
+}
+
+function simpleJQueryValidity(validation_id) {
+    if(!($(validation_id).hasClass('valid'))) {
+        $(validation_id).removeClass('hidden');
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function resetValidation(inputIds){
+    $.each(inputIds, function( index, value) {
+        $(value + '-validation').addClass('hidden');
+        $(value + '-validation').removeClass('valid');
+    });
+}
 </script>
