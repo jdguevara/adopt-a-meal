@@ -32,6 +32,11 @@ class AdminController extends Controller
         return view('admin', ['volunteerForms' => $this->formRepository->getAllNewForms()]);
     }
 
+    public function viewVolunteerFormsTable()
+    {
+        return view('admin-volunteerforms-table', ['volunteerforms' => $this->formRepository->all()]);
+    }
+
     public function viewMealIdeas()
     {
         return view('admin-mealideas', ['mealideas' => $this->mealRepository->getNewMealIdeas()]);
