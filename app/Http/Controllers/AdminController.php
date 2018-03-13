@@ -9,7 +9,7 @@ use App\Contracts\IMealIdeaRepository;
 use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Utils;
+use App\Utils;
 
 class AdminController extends Controller
 {
