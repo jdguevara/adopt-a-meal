@@ -6,7 +6,9 @@ use App\Contracts\IMessagesRepository;
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\ICalendarRepository;
 use App\Contracts\IMealIdeaRepository;
+use http\Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -125,8 +127,37 @@ class AdminController extends Controller
         return view('messages', ['messages' => $messages]);
     }
 
-    public function editMessage(Request $request)
+    public function updateMessage(Request $request)
     {
+
+        // validate inputs
+        $this->validate($request, [
+            'id' => 'required',
+            'message-content' => 'required',
+        ]);
+
+        // get the user id and save the message
+        if(Auth::check()) {
+            $userId = Auth::id();
+
+            $input = [
+                'id' => $request['id'],
+                'content' => $request['message-content'],
+                'user_id' => $userId
+            ];
+
+            try {
+                $this->messagesRepository->update($input);
+                flash( "Your message was saved successfully!")->success();
+            }
+
+            catch(Exception $e) {
+                flash("There was a problem saving your message. Please try again later.")->error();
+            }
+
+        }
+
+        return redirect('admin/settings/change-messages');
 
     }
 

@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
 
-@section('content')
+@section('scripts')
+@component('formmodals.admin-change-message-modaljs') @endcomponent
+<script>
+    $(document).ready(function () {
+        setupMessageValidation();
+    });
+</script>
 
 <div class="container">
 
@@ -28,7 +34,7 @@
                 </div>
 
                 <div class="row row-padding" style="margin-top: 10px;">
-                    <button id="message-{{ $m->id }}-edit" class="btn btn-success pull-right">Edit Message</button>
+                    <button id="{{ $m->id }}" class="btn btn-success pull-right" onClick="loadMessageModal(this);" role="button">Edit Message</button>
                     {{-- this is for jquery to hook into the message that was clicked --}}
                     <span id="message_id" hidden>{{ $m->id }}</span>
                 </div>
@@ -37,6 +43,8 @@
         @endforeach
 
     </ul>
+
+    @component('formmodals.admin-change-message-modal') @endcomponent
 
 
 </div>

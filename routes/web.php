@@ -24,4 +24,5 @@ Route::get('/admin/meal-ideas/all', 'AdminController@viewMealIdeasTable')->name(
 Route::post('/admin/meal-ideas/review', 'AdminController@reviewMealIdea');
 
 Route::get('/admin/settings/change-messages', 'AdminController@getMessages');
+Route::post('/admin/settings/update-message', 'AdminController@updateMessage');
 

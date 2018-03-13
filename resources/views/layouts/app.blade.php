@@ -90,7 +90,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
     <script>
-      $('div.alert').not('.alert-important').delay(1500).fadeOut(350);
+      $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
       $('#flash-overlay-modal').modal();
     </script>
 </body>
