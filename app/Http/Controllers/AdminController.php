@@ -9,6 +9,7 @@ use App\Contracts\IMealIdeaRepository;
 use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Utils;
 
 class AdminController extends Controller
 {
@@ -112,7 +113,7 @@ class AdminController extends Controller
         forEach($messages as $message) {
 
             // change underscores to user-friendly format
-            $message->type_str = $this->transformUnderscoreText($message->type);
+            $message->type_str = Utils::transformUnderscoreText($message->type);
 
             // display "never" if the message hasn't been updated
             if($message->updated_at == null) {
@@ -159,13 +160,5 @@ class AdminController extends Controller
 
         return redirect('admin/settings/change-messages');
 
-    }
-
-    private function transformUnderscoreText($string) {
-        $string_arr = explode("_", $string);
-        for($i = 0; $i < count($string_arr); $i++) {
-            $string_arr[$i] = ucfirst($string_arr[$i]);
-        }
-        return implode(" ", $string_arr);
     }
 }

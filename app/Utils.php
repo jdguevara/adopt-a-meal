@@ -2,16 +2,12 @@
 
 class Utils {
 
-    function underscoreToPlain($string) {
-        $string = str_replace($string, "_", " ");
-        $string = strtolower($string);
-        $stringArray = explode(" ", $string);
-
-        forEach($stringArray as $s) {
-            $s = ucfirst($s);
+    public static function transformUnderscoreText($string) {
+        $string_arr = explode("_", $string);
+        for($i = 0; $i < count($string_arr); $i++) {
+            $string_arr[$i] = ucfirst($string_arr[$i]);
         }
-
-        dd($stringArray);
+        return implode(" ", $string_arr);
     }
 
 
