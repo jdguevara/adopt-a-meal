@@ -10,6 +10,8 @@ try {
 
     require('bootstrap-sass');
     require('fullcalendar');
+    require('quill');
+
 } catch (e) {}
 
 

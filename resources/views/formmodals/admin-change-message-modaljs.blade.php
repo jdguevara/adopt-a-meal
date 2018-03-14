@@ -19,8 +19,14 @@
         $("#message-modal").trigger("reset");
         resetJQueryValidation(inputIds);
 
+        <!-- Initialize Quill editor -->
+        var quill = new Quill('#editor', {
+            modules: { toolbar: '#toolbar'},
+            theme: 'snow'
+        });
+
         $("#message-id").val(messageId);
-        $("#message-content").val(messageContent);
+        $("#editor").val(messageContent);
 
         $("#modal").modal();
 

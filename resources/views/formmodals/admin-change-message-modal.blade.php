@@ -16,15 +16,21 @@
 
                     <h3 id="message-title"></h3>
 
+                    {{--quill editor--}}
                     <div id="inputs" class="container-fluid message-inputs">
 
-                        <div class="form-group">
+                        <!-- Create the editor container -->
+                        <div id="editor">
+
+                        </div>
+
+                        {{--<div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Message</span>
                                 <input id="message-content" name="message-content" class="form-control" type="text" />
                                 <div id="message-content-validation" class="hidden alert-danger">Required: Please enter message content</div>
                             </div>
-                        </div>
+                        </div>--}}
 
                     </div>
 
