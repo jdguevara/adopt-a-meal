@@ -1,6 +1,7 @@
 <script>
 
     var inputIds = ['#message-content'];
+    var quill = null;
 
     function setupMessageValidation() {
         $('#message-content').on('input', function () {
@@ -12,27 +13,35 @@
 
         var messageId = $(elem).attr("id");
         var messageContentId = "#message-" + messageId + "-content";
-        var messageContent = $(messageContentId).text();
+        var messageContent =  $(messageContentId).html();
 
-        console.log(messageContentId);
+        $("#old-message-content").html(messageContent);
 
         $("#message-modal").trigger("reset");
         resetJQueryValidation(inputIds);
 
-        <!-- Initialize Quill editor -->
-        var quill = new Quill('#editor', {
+        quill = null;
+        $(".ql-toolbar").remove();
+
+        $("#message-id").val(messageId);
+        // $("#editor").text(messageContent);
+        $("#modal").modal();
+
+        quill = new Quill('#editor', {
             // modules: { toolbar: '#toolbar'},
             theme: 'snow'
         });
 
-        $("#message-id").val(messageId);
-        $("#editor").val(messageContent);
-
-        $("#modal").modal();
 
     }
 
     function submitMessage() {
+
+        var text = quill.root.innerHTML;
+
+        var messageContent = $('#message-content');
+        messageContent.val(text);
+        messageContent.trigger('input');
 
         var valid = true;
         $.each(inputIds, function(index, value) {

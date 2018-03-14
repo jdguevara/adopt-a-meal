@@ -14,6 +14,8 @@
                 <!-- list of text field inputs and check boxes  -->
                 <div class="modal-body">
 
+                    <strong>Current:</strong><p id="old-message-content"></p>
+
                     <h3 id="message-title"></h3>
 
                     {{--quill editor--}}
@@ -24,17 +26,14 @@
 
                         </div>
 
-                        {{--<div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">Message</span>
-                                <input id="message-content" name="message-content" class="form-control" type="text" />
-                                <div id="message-content-validation" class="hidden alert-danger">Required: Please enter message content</div>
-                            </div>
-                        </div>--}}
+                        <input id="message-content" name="message-content" hidden />
+
+                        <div id="message-content-validation" class="hidden alert-danger">Required: Please enter message content</div>
 
                     </div>
 
                     <input id="message-id" name="id" type="text" hidden />
+
                     <!-- loading spinner -->
                     <div id="loading-info" class="loading-info" hidden>
                         <h3 class="text-light text-center">Submitting Message</h3>
