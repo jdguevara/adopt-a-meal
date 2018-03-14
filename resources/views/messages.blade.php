@@ -1,14 +1,5 @@
 @extends('layouts.app')
 
-@section('scripts')
-@component('formmodals.admin-change-message-modaljs') @endcomponent
-<script>
-    $(document).ready(function () {
-        setupMessageValidation();
-    });
-</script>
-@endsection
-
 @section('content')
 <div class="container">
     <div class="panel panel-primary">
@@ -43,4 +34,15 @@
 </div>
 
 @component('formmodals.admin-change-message-modal') @endcomponent
+@endsection
+
+
+@section('scripts')
+@component('formmodals.admin-change-message-modaljs') @endcomponent
+    <script>
+      $(document).ready(function () {
+        setupMessageValidation();
+        loadMessageModal();
+      });
+    </script>
 @endsection

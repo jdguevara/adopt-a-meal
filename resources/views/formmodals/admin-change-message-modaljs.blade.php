@@ -21,7 +21,7 @@
 
         <!-- Initialize Quill editor -->
         var quill = new Quill('#editor', {
-            modules: { toolbar: '#toolbar'},
+            // modules: { toolbar: '#toolbar'},
             theme: 'snow'
         });
 
