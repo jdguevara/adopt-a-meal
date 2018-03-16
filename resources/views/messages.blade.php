@@ -17,8 +17,8 @@
                 <li id="{{ $m->type }}" class="list-group-item">
 
                     <div class="row row-padding">
-                        <h2 style="display: inline-block;"> {{ $m->type_str }}</h2>
-                        <span class="pull-right" style="font-style: italic"> Updated: {{ $m->updated_str }} </span>
+                        <h4 class="text-yellow" style="display: inline-block;"><strong>{{ $m->type_str }}</strong></h4>
+                        <span class="pull-right text-light" style="font-style: italic"> Updated: {{ $m->updated_str }} </span>
                     </div>
 
                     <div class="row row-padding">

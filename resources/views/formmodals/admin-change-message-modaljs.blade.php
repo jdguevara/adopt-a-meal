@@ -15,7 +15,7 @@
         var search = $('#search').val();
 
         items.forEach(function(item) {
-           if(item.attr('id') === search) 
+           if(item.attr('id') === search)
         });
 
     }

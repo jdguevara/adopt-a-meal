@@ -25,8 +25,7 @@ class MessagesRepository implements IMessagesRepository
      */
     public function all()
     {
-
-        return $this->message->all();
+        return $this->message->orderBy('type')->get();
     }
 
     /**
