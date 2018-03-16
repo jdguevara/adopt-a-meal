@@ -9,26 +9,37 @@
         });
     }
 
+    function filter() {
+
+        var items = $('li');
+        var search = $('#search').val();
+
+        items.forEach(function(item) {
+           if(item.attr('id') === search) 
+        });
+
+    }
+
     function loadMessageModal(elem) {
 
         var messageId = $(elem).attr("id");
         var messageContentId = "#message-" + messageId + "-content";
         var messageContent =  $(messageContentId).html();
 
-        $("#old-message-content").html(messageContent);
-
         $("#message-modal").trigger("reset");
         resetJQueryValidation(inputIds);
 
+        // reset quill by removing the toolbar html and garbage collecting it, bye!
         quill = null;
         $(".ql-toolbar").remove();
 
+        // set the quill container's content to the rendered html of the old message
+        $("#editor").html(messageContent);
+
         $("#message-id").val(messageId);
-        // $("#editor").text(messageContent);
         $("#modal").modal();
 
         quill = new Quill('#editor', {
-            // modules: { toolbar: '#toolbar'},
             theme: 'snow'
         });
 

@@ -155,7 +155,6 @@ class AdminController extends Controller
             }
 
             catch(Exception $e) {
-                dd($e);
                 flash("There was a problem saving your message. Please try again later.")->error();
             }
 

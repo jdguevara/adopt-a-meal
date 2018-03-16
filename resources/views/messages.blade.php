@@ -4,16 +4,6 @@
 
     <div class="container">
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <div class="panel panel-primary">
             <div class="panel-heading text-center text-capitalize"><h3>Messages</h3></div>
             <div class="panel-body text-center">
@@ -22,9 +12,9 @@
             </div>
         </div>
 
-        <ul class="list-group">
+        <ul id="messages-list" class="list-group">
             @foreach($messages as $m)
-                <li class="list-group-item">
+                <li id="{{ $m->type }}" class="list-group-item">
 
                     <div class="row row-padding">
                         <h2 style="display: inline-block;"> {{ $m->type_str }}</h2>

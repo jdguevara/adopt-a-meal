@@ -34,8 +34,84 @@ class MessagesSeeder extends Seeder
                 'type' => 'meal_ideas_share_prompt',
                 'content' => 'If you have an idea click here ',
                 'user_id' => 1
+            ],
+
+            [
+                'type' => 'volunteer_prompt',
+                'content' => 'Select a date to Adopt A Meal',
+                'user_id' => 1
+            ],
+
+            [
+                'type' => 'landing_page_title',
+                'content' => 'Adopt A Meal',
+                'user_id' => 1
+            ],
+
+            [
+                'type' => 'volunteer_instructions',
+                'content' => "<h4>Instructions:</h4>
+                    <ol>
+                        <li>Click an open volunteer event in the Calendar above (Open events are blue).</li>
+                        <li>Fill out the form that opens with a your organization\'s name or your name, contact information, and some information about the meal that will be provided. 
+                            If you\'re unsure of the exact meal, please include that in the meal description and we will work with you!</li>
+                        <li>Submit the form, and then you will recieve an e-mail confirmation.</li>
+                        <li>Staff at Interfaith Sanctuary will contact you once they\'ve been notified of your request.</li>
+                    </ol>",
+                'user_id' => 1
+            ],
+
+            [
+                'type' => 'volunteer_thank_you',
+                'content' => "<h1>Thank you for adopting a meal!</h1>
+                                <p>We would like to thank all the organizations who have volunteered for their wonderful contributions!</p>",
+                'user_id' => 1
+            ],
+
+            [
+                'type' => 'event_taken_title',
+                'content' => 'This event is in the past',
+                'user_id' => 1
+            ],
+
+            [
+                'type' => 'event_taken',
+                'content' => "Sorry, but this event has already happened. Please check some of the current events to adopt a
+                    meal!",
+                'user_id' => 1
+            ],
+
+            [
+                'type' => 'volunteer_form_title',
+                'content' => 'Adopt-A-Meal Form',
+                'user_id' => 1
+            ],
+
+            [
+                'type' => 'volunteer_form_instructions',
+                'content' => "<h5>
+                            Please provide the following information. Once the form is
+                            complete you will recieve a confirmation e-mail and we will
+                            contact you to help ensure your adopted meal will be a success!
+                            </h5>",
+                'user_id' => 1
+            ],
+
+            [
+                'type' => 'volunteer_confirmation',
+                'content' => '<strong>
+                              By clicking \'Volunteer\' I acknowledge that I am volunteering 
+                              to be responsible for bringing at least 200 servings to the 
+                              Interfaith Sanctuary building by 5pm on the chosen date.
+                              </strong>',
+                'user_id' => 1
+            ],
+
+            [
+                'type' => 'volunteer_loading',
+                'content' => 'Your volunteer information is being sent!',
+                'user_id' => 1
             ]
-            
         ];
 
         forEach($messages as $message) {

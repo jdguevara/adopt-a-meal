@@ -8,13 +8,11 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h3>Change Message</h3>
+                    <h3>Change Content</h3>
                 </div>
 
                 <!-- list of text field inputs and check boxes  -->
                 <div class="modal-body">
-
-                    <strong>Current:</strong><p id="old-message-content"></p>
 
                     <h3 id="message-title"></h3>
 
@@ -47,9 +45,11 @@
 
                 <div class="modal-footer">
 
+                    <span class="change-message-warning-text"> * Once this content is changed, it can't be undone! Make sure to copy the old content before changing. </span>
+
                     <div id="input-buttons" class="input-group pull-right">
                         <button id="update" type="button" class="btn btn-success" onClick="submitMessage();">
-                            Update
+                            Update Content
                         </button>
                         <button id="cancel" type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
                     </div>

@@ -69,9 +69,6 @@
         </div>
     </nav>
     <div id="app">
-        <div class="fluid-container">
-        @yield('content')
-        </div>
         <div class="container" >
             @if(isset($errors) && $errors->any())
                 <div class="alert alert-danger">
@@ -80,6 +77,9 @@
                 </div>
             @endif
             @include('flash::message')
+        </div>
+        <div class="fluid-container">
+        @yield('content')
         </div>
     </div>
     {{--<div class="footer">--}}
