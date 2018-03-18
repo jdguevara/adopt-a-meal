@@ -37,7 +37,7 @@ $(document).ready(function () {
     </div>
 </div>
 
-@component('formmodals.meal-idea-modal') @endcomponent
+@component('formmodals.meal-idea-modal', [ 'messages' => $messages ]) @endcomponent
 
 @endsection
 

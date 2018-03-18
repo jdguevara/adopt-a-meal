@@ -9,7 +9,7 @@
         });
     }
 
-    function filter() {
+    /* function filter() {
 
         var items = $('li');
         var search = $('#search').val();
@@ -18,7 +18,7 @@
            if(item.attr('id') === search)
         });
 
-    }
+    } */
 
     function loadMessageModal(elem) {
 

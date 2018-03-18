@@ -53,10 +53,10 @@ class MessagesSeeder extends Seeder
                 'content' => "<h4>Instructions:</h4>
                     <ol>
                         <li>Click an open volunteer event in the Calendar above (Open events are blue).</li>
-                        <li>Fill out the form that opens with a your organization\'s name or your name, contact information, and some information about the meal that will be provided. 
-                            If you\'re unsure of the exact meal, please include that in the meal description and we will work with you!</li>
+                        <li>Fill out the form that opens with a your organization's name or your name, contact information, and some information about the meal that will be provided. 
+                            If you're unsure of the exact meal, please include that in the meal description and we will work with you!</li>
                         <li>Submit the form, and then you will recieve an e-mail confirmation.</li>
-                        <li>Staff at Interfaith Sanctuary will contact you once they\'ve been notified of your request.</li>
+                        <li>Staff at Interfaith Sanctuary will contact you once they've been notified of your request.</li>
                     </ol>",
                 'user_id' => 1
             ],
@@ -76,8 +76,7 @@ class MessagesSeeder extends Seeder
 
             [
                 'type' => 'event_taken',
-                'content' => "Sorry, but this event has already happened. Please check some of the current events to adopt a
-                    meal!",
+                'content' => 'Sorry, but this event has already happened. Please check some of the current events to adopt a meal!',
                 'user_id' => 1
             ],
 
@@ -99,17 +98,39 @@ class MessagesSeeder extends Seeder
 
             [
                 'type' => 'volunteer_confirmation',
-                'content' => '<strong>
-                              By clicking \'Volunteer\' I acknowledge that I am volunteering 
+                'content' => "<strong>
+                              By clicking 'Volunteer' I acknowledge that I am volunteering 
                               to be responsible for bringing at least 200 servings to the 
                               Interfaith Sanctuary building by 5pm on the chosen date.
-                              </strong>',
+                              </strong>",
                 'user_id' => 1
             ],
 
             [
                 'type' => 'volunteer_loading',
                 'content' => 'Your volunteer information is being sent!',
+                'user_id' => 1
+            ],
+
+            [
+                'type' => 'confirmed_event_title',
+                'content' => '<h3>An organization has adopted this meal!</h3>',
+                'user_id' => 1
+            ],
+            [
+            'type' => 'meal_idea_title',
+            'content' => '<h3>Suggest a Meal Idea</h3>',
+            'user_id' => 1
+            ],
+            [
+                'type' => 'meal_idea_instructions',
+                'content' => "<p>Thank you for taking the time to fill out a meal idea!</p>
+                            <p>A provided recipe should be able to make at least 200 portions</p>",
+                'user_id' => 1
+            ],
+            [
+                'type' => 'meal_idea_loading',
+                'content' => 'Your recipe is being submitted for review!',
                 'user_id' => 1
             ]
         ];
