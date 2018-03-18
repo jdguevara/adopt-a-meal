@@ -148,7 +148,7 @@ $(document).ready(function () {
     </div>
     @component('formmodals.confirmed-event-modal', [ 'messages' => $messages ]) @endcomponent
     @component('formmodals.volunteer-form-modal', [ 'messages' => $messages ]) @endcomponent
-¡
+
 @endsection
 
 

@@ -25,6 +25,10 @@
     }
 }
 
+html::-webkit-scrollbar {
+    display: none;
+}
+
 .navbar-brand > .brand {
     max-height: 50px;
     max-width: 50px;
@@ -45,4 +49,21 @@
 
 .row-padding {
     margin: 0;
+}
+
+.messages-list {
+    height: 65vh;
+    overflow-y: scroll;
+}
+
+.messages-search-bar {
+    width: 50%;
+    margin: 15px auto;
+}
+
+@media screen and (max-width: 991px) {
+    .messages-search-bar {
+        width: 100%;
+        margin: 15px 0;
+    }
 }
