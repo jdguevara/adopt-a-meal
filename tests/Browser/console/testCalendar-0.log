@@ -3,6 +3,6 @@
         "level": "SEVERE",
         "message": "http:\/\/localhost:8000\/ 256:28 Uncaught ReferenceError: moment is not defined",
         "source": "javascript",
-        "timestamp": 1520538522016
+        "timestamp": 1521413375263
     }
 ]

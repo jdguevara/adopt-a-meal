@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-php artisan dusk
+#php artisan dusk
 
 vendor/phpunit/phpunit/phpunit --debug
 

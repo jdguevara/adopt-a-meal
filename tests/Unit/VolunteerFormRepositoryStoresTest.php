@@ -5,14 +5,14 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class MealIdeaFormRepositoryStoresTest extends TestCase
+class VolunteerFormRepositoryStoresTest extends TestCase
 {
     protected $formService;
 
     public function setUp()
     {
         parent::setUp();
-        $this->formService = $this->app->make('App\Contracts\IMealIdeaRepository');
+        $this->formService = $this->app->make('App\Contracts\IVolunteerFormRepository');
     }
 
     /**
@@ -28,16 +28,19 @@ class MealIdeaFormRepositoryStoresTest extends TestCase
     public function test_create_minimum_requirement()
     {
         $mockRequest = [
-            'meal_name' => 'Title',
-            'description' => 'Isn\'t supposed to be null',
-            'ingredient' => [
-                'a',
-                'b',
-                'c',
-            ],
-            'external_link' => null,
-            'name' => null,
-            'email' => null,
+
+            'organization_name' => 'abc',
+            'phone' => '2082082088',
+            'email' => 'someemail@some.com',
+            'meal_description' => 'blah blah',
+            'notes' => $input['notes'] ?? '',
+            'paper_goods' => $input['paper_goods'] ?? false,
+            'open_event_id' => $input['open_event_id'],
+            'open_event_date_time' => new DateTime($input['open_event_date_time']),
+            'form_status' => 0,
+
+        //
+
         ];
 
         $id = $this->formService->create($mockRequest);
