@@ -12,14 +12,14 @@ class MessagesSeeder extends Seeder
 
         $messages = [
             [
-                'type' => 'admin_approved_email',
+                'type' => 'volunteer_admin_approved_email',
                 'content' => 'A request to Adopt-A-Meal has been approved!',
                 'user_id' => 1
             ],
 
             [
                 'type' => 'volunteer_approved_email',
-                'content' => 'Your request to Adopt-A-Meal at Interfaith Sanctuary has been approved!.',
+                'content' => 'Your request to Adopt-A-Meal at Interfaith Sanctuary has been approved!',
                 'user_id' => 1
             ],
 
