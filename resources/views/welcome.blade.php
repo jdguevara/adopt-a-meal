@@ -133,8 +133,7 @@ $(document).ready(function () {
              <p>We would like to thank all the organizations who have volunteered for their wonderful contributions!</p>' !!}
         <div class="row">
             @foreach($completedEvents as $completeEvent)
-
-                <div class="list-group-item thank-you-list-item col-md-4" >
+                <div class="list-group-item thank-you-list-item col-md-3" >
                     <h3>
                         {{$completeEvent}}
                     </h3>

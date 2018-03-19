@@ -23,7 +23,7 @@ class LandingPageController extends Controller
 
         $volunteerEvents = $calendarRepository->getVolunteerEvents();
         $acceptedEvents = $calendarRepository->getAcceptedEvents();
-        $completedEvents = $volunteerFormRepository->getAllOldApprovedForms();
+        $completedEvents = $volunteerFormRepository->getAllPreviousAcceptedOrganizationNames();
         $messages = $messagesRepository->allContent();
 
 

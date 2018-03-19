@@ -33,34 +33,13 @@ class VolunteerFormRepository implements IVolunteerFormRepository
     {
         return $this->form->where('form_status', '=', 0)->get();
     }
-//    public function findAllCompleted(){
-//
-//        $time = new DateTime();
-//        $time->sub(new DateInterval('P1M'));
-//
-//        $optParams = array(
-//            'orderBy' => 'updated',
-//            'singleEvents' => TRUE,
-//            'timeMin' => Carbon::minValue()->toIso8601String(),
-//            'timeMax' => Carbon::now()->toIso8601String()
-//        );
-//
-//        $items = $this->googleCalendarService->events->listEvents($this->acceptedCalendarId, $optParams)->getItems();
-//        $results = array();
-//
-//        foreach($items as $item){
-//            array_push($results,$item->getSummary());
-//        }
-//        $results = array_unique($results);
-//        return $results;
-//    }
-    public function getAllOldApprovedForms()
+    public function getAllPreviousAcceptedOrganizationNames()
     {
 
         $items = $this->form
             ->where('form_status', '=', 1)
             ->where('event_date_time', '<', Carbon::now())
-            ->where('event_date_time', '>=', Carbon::now()->addMonths(-12))->get();
+            ->get();
         $results = array();
 
         foreach($items as $item){
