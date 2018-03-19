@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Contracts\ICalendarRepository;
 use App\Contracts\IVolunteerFormRepository;
 use App\VolunteerForm;
+use Carbon\Carbon;
 use DateTime;
 
 class VolunteerFormRepository implements IVolunteerFormRepository
@@ -32,7 +33,43 @@ class VolunteerFormRepository implements IVolunteerFormRepository
     {
         return $this->form->where('form_status', '=', 0)->get();
     }
+//    public function findAllCompleted(){
+//
+//        $time = new DateTime();
+//        $time->sub(new DateInterval('P1M'));
+//
+//        $optParams = array(
+//            'orderBy' => 'updated',
+//            'singleEvents' => TRUE,
+//            'timeMin' => Carbon::minValue()->toIso8601String(),
+//            'timeMax' => Carbon::now()->toIso8601String()
+//        );
+//
+//        $items = $this->googleCalendarService->events->listEvents($this->acceptedCalendarId, $optParams)->getItems();
+//        $results = array();
+//
+//        foreach($items as $item){
+//            array_push($results,$item->getSummary());
+//        }
+//        $results = array_unique($results);
+//        return $results;
+//    }
+    public function getAllOldApprovedForms()
+    {
 
+        $items = $this->form
+            ->where('form_status', '=', 1)
+            ->where('event_date_time', '<', Carbon::now())
+            ->where('event_date_time', '>=', Carbon::now()->addMonths(-12))->get();
+        $results = array();
+
+        foreach($items as $item){
+            array_push($results, $item['organization_name']);
+        }
+        $results = array_unique($results);
+        return $results;
+
+    }
     public function create($input)
     {
         $this->form->fill([

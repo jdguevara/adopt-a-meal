@@ -69,28 +69,6 @@ class CalendarRepository implements ICalendarRepository {
 
         return $results;
     }
-    public function findAllCompleted(){
-
-        $time = new DateTime();
-        $time->sub(new DateInterval('P1M'));
-
-        $optParams = array(
-            'orderBy' => 'updated',
-            'singleEvents' => TRUE,
-            'timeMin' => Carbon::minValue()->toIso8601String(),
-            'timeMax' => Carbon::now()->toIso8601String()
-        );
-
-        $items = $this->googleCalendarService->events->listEvents($this->acceptedCalendarId, $optParams)->getItems();
-        $results = array();
-
-        foreach($items as $item){
-            array_push($results,$item->getSummary());
-        }
-        $results = array_unique($results);
-        return $results;
-    }
-
 
     public function create($event, $eventType)
     {

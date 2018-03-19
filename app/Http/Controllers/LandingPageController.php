@@ -5,6 +5,8 @@ use App\Calendar;
 use App\Mail\VolunteerFormEmail;
 use App\Mail\VolunteerRequestEmail;
 use App\Services\CalendarRepository;
+use App\Services\VolunteerFormRepository;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,13 +18,13 @@ class LandingPageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( CalendarRepository $calendarRepository)
+    public function index( CalendarRepository $calendarRepository, VolunteerFormRepository $volunteerFormRepository)
     {
        // $events = array_merge($calendar->findVolunteerEvents(), $calendar->findAllAccepted());
 
         $volunteerEvents = $calendarRepository->getVolunteerEvents();
         $acceptedEvents = $calendarRepository->getAcceptedEvents();
-        $completedEvents = $calendarRepository->findAllCompleted();
+        $completedEvents = $volunteerFormRepository->getAllOldApprovedForms();
 
         return view('welcome', ['volunteerEvents' => $volunteerEvents, 'acceptedEvents' => $acceptedEvents, 'completedEvents' => $completedEvents]);
 

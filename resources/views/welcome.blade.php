@@ -127,17 +127,14 @@ $(document).ready(function () {
         <h1 id="jumbotron-footer-header">Thank you for adopting a meal!</h1>
         <p>We would like to thank all the organizations who have volunteered for their wonderful contributions!</p>
         <div class="row">
+            @foreach($completedEvents as $completeEvent)
 
-
-                    @foreach($completedEvents as $completeEvent)
-
-                        <div class="list-group-item thank-you-list-item col-md-2" >
-                            <h3>
-                                {{$completeEvent}}
-                            </h3>
-                        </div>
-                    @endforeach
-
+                <div class="list-group-item thank-you-list-item col-md-4" >
+                    <h3>
+                        {{$completeEvent}}
+                    </h3>
+                </div>
+            @endforeach
         </div>
     </div>
     <!-- past event modal -->
