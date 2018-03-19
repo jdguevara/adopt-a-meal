@@ -6,7 +6,7 @@
 var mealIdeas = @json($mealideas);
 
 $(document).ready(function () {
-    setupMealIdeaReviewValidation();
+    setupMealIdeaReviewValidation();    
 });
 </script>
 @endsection
@@ -29,7 +29,7 @@ $(document).ready(function () {
                     <h6>From: {{$mealidea->name}}
                     <button onclick="loadMealIdeaReviewModal('{{$mealidea['id']}}');" class="btn btn-warning event-info-details pull-right">
                         Details
-                    </button>
+                    </button> 
                     </h6>
                 </li>
             </ul>

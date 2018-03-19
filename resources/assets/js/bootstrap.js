@@ -10,7 +10,6 @@ try {
 
     require('bootstrap-sass');
     require('fullcalendar');
-    requite('moment');
 } catch (e) {}
 
 

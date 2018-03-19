@@ -4,7 +4,7 @@
 @component('formmodals.meal-idea-modaljs') @endcomponent
 <script>
 $(document).ready(function () {
-    setupMealIdeaValidation();
+    setupMealIdeaValidation();    
 });
 </script>
 @endsection

@@ -114,7 +114,7 @@ $(document).ready(function () {
                     <h4>Instructions:</h4>
                     <ol>
                         <li>Click an open volunteer event in the Calendar above (Open events are blue).</li>
-                        <li>Fill out the form that opens with a your organization's name or your name, contact information, and some information about the meal that will be provided.
+                        <li>Fill out the form that opens with a your organization's name or your name, contact information, and some information about the meal that will be provided. 
                             If you're unsure of the exact meal, please include that in the meal description and we will work with you!</li>
                         <li>Submit the form, and then you will recieve an e-mail confirmation.</li>
                         <li>Staff at Interfaith Sanctuary will contact you once they've been notified of your request.</li>

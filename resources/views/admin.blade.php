@@ -21,7 +21,7 @@ var volunteerForms = @json($volunteerForms);
                     </div>
                 @endif
                 <p>Review Adopt-a-Meal volunteer requests here.</p>
-                <p>To review a volunteer request, click the "Details"
+                <p>To review a volunteer request, click the "Details" 
                 button next to the volunteer request's details. Once a volunteer request is accepted, it can be
                 edited in the "Past Volunteer Requests" view.</p>
             </div>
