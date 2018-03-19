@@ -23,3 +23,6 @@ Route::get('/admin/meal-ideas', 'AdminController@viewMealIdeas')->name('admin-me
 Route::get('/admin/meal-ideas/all', 'AdminController@viewMealIdeasTable')->name('admin-mealideas-table');
 Route::post('/admin/meal-ideas/review', 'AdminController@reviewMealIdea');
 
+Route::get('/admin/settings/change-messages', 'AdminController@getMessages');
+Route::post('/admin/settings/update-message', 'AdminController@updateMessage');
+

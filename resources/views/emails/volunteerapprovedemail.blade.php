@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container">
-        <p>Your request to Adopt-A-Meal at Interfaith Sanctuary has been approved!</p>
+        <p>{{ $messages['volunteer_approved_email'] }}</p>
+        <p>{{ $messages['volunteer_approved_email_thank_you'] }}</p>
         <p>Your Request: </p>
         <p>Event Date: {{$form['open_event_date_time']}}</p>
         <p>Meal Description: {{$form['meal_description']}}</p>

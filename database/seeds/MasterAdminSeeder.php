@@ -12,7 +12,7 @@ class MasterAdminSeeder extends Seeder
     public function run()
     {
         // Adds the master user to the User table
-        $user = env('MASTER_USER', '');
+        $user = '';
         $pass = env('MASTER_PASS', '');
         $email = env('MASTER_EMAIL', '');
 
