@@ -33,6 +33,20 @@
                         </div>
 
                         <div class="form-group">
+                            <h4>Ingredients:</h4>
+                            <div id="dynamic_field">
+                                <div class="ingredient input-group">
+                                    <input type="text" id="ingredients" name="ingredient[]" placeholder="Enter an ingredient" class="form-control ingredient_list" />
+                                    <span class="input-group-btn">
+                                        <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div id="ingredients-validation" class="hidden alert-danger">Required: Please provide a list of ingredients needed to make your meal idea</div>
+                        </div>
+
+                        <div class="form-group">
+                            <h4>Instructions:</h4>
                             <div class="input-group">
                                 <textarea id="instructions" name="instructions" class="form-control" placeholder="Instructions"></textarea>
                             </div>
@@ -61,19 +75,6 @@
                                 <input id="email" name="email" type="text" class="form-control" placeholder="Your Email">
                             </div>
                             <p class="help-block">Optional</p>
-                        </div>
-                        
-                        <div class="form-group">
-                            <h3>Ingredients:</h3>
-                            <div id="dynamic_field">
-                                <div class="ingredient input-group">
-                                    <input type="text" id="ingredients" name="ingredient[]" placeholder="Enter an ingredient" class="form-control ingredient_list" />
-                                    <span class="input-group-btn">
-                                        <button type="button" name="add" id="add" class="btn btn-success">Add More</button>
-                                    </span>
-                                </div>
-                            </div>
-                            <div id="ingredients-validation" class="hidden alert-danger">Required: Please provide a list of ingredients needed to make your meal idea</div>
                         </div>
                     </div>
 

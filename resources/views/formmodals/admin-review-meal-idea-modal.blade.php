@@ -27,17 +27,17 @@
 
                         <div class="form-group">
                             <div class="input-group">
-                                <textarea id="instructions" name="instructions" class="form-control" placeholder="Instructions"></textarea>
+                                <span class="input-group-addon">Ingredient List</span>
+                                <textarea id="ingredients" name="ingredients" class="form-control" type="text"> </textarea>
                             </div>
-                            <div id="instructions-validation" class="hidden alert-danger">Required: Please provide instructions to prepare the meal</div>
+                            <div id="ingredients-validation" class="hidden alert-danger">Required: Please provide a list of ingredients needed to make the meal idea</div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon">Ingredient List</span>
-                                <textarea id="ingredients" name="ingredients" class="form-control" type="text"> </textarea>
+                                <textarea id="instructions" name="instructions" class="form-control" placeholder="Instructions"></textarea>
                             </div>
-                            <div id="ingredients-validation" class="hidden alert-danger">Required: Please provide a list of ingredients needed to make your meal idea</div>
+                            <div id="instructions-validation" class="hidden alert-danger">Required: Please provide instructions to prepare the meal</div>
                         </div>
 
                         <div class="form-group">
