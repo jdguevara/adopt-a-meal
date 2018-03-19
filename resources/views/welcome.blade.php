@@ -129,11 +129,11 @@ $(document).ready(function () {
     </div>
     <div class="text-center jumbotron jumbotron-footer">
         {!! $messages['volunteer_thank_you'] or
-            '<h1 id="jumbotron-footer-header">Thank you for adopting a meal!</h1>
+            '<h1>Thank you for adopting a meal!</h1>
              <p>We would like to thank all the organizations who have volunteered for their wonderful contributions!</p>' !!}
         <div class="row">
             @foreach($completedEvents as $completeEvent)
-                <div class="list-group-item thank-you-list-item col-md-3" >
+                <div class="list-group-item thank-you-list-item col-md-2 md-col-3 lg-col-4" >
                     <h3>
                         {{$completeEvent}}
                     </h3>
