@@ -11,11 +11,11 @@ use Google_Service_Calendar_Event;
 
 
 
-//define('APPLICATION_NAME', env('APP_NAME'));
-//define('CREDENTIALS_PATH', storage_path('app/service_account_creds.json'));
-//define('SCOPES', implode(' ', array(Google_Service_Calendar::CALENDAR)));
-//define('DEV_CALENDAR_ID', env('DEV_CALENDAR_ID'));
-//define('DEV_CALENDAR_ACCEPTED_ID', env('DEV_CALENDAR_ACCEPTED_ID'));
+define('APPLICATION_NAME', env('APP_NAME'));
+define('CREDENTIALS_PATH', storage_path('app/service_account_creds.json'));
+define('SCOPES', implode(' ', array(Google_Service_Calendar::CALENDAR)));
+define('DEV_CALENDAR_ID', env('DEV_CALENDAR_ID'));
+define('DEV_CALENDAR_ACCEPTED_ID', env('DEV_CALENDAR_ACCEPTED_ID'));
 
 class CalendarRepository implements ICalendarRepository {
 
@@ -82,7 +82,7 @@ class CalendarRepository implements ICalendarRepository {
             'timeMax' => Carbon::now()->toIso8601String()
         );
 
-        $results = $this->calendarService->events->listEvents($this->acceptedCalendarId, $optParams)->getItems();
+        $results = $this->googleCalendarService->events->listEvents($this->acceptedCalendarId, $optParams)->getItems();
 
         return $results;
     }

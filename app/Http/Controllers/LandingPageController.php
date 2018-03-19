@@ -16,12 +16,12 @@ class LandingPageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Calendar $calendar, CalendarRepository $calendarRepository)
+    public function index( CalendarRepository $calendarRepository)
     {
        // $events = array_merge($calendar->findVolunteerEvents(), $calendar->findAllAccepted());
 
-        $volunteerEvents = $calendar->findVolunteerEvents();
-        $acceptedEvents = $calendar->findAllAccepted();
+        $volunteerEvents = $calendarRepository->getVolunteerEvents();
+        $acceptedEvents = $calendarRepository->getAcceptedEvents();
         $completedEvents = $calendarRepository->findAllCompleted();
 
         return view('welcome', ['volunteerEvents' => $volunteerEvents, 'acceptedEvents' => $acceptedEvents, 'completedEvents' => $completedEvents]);
