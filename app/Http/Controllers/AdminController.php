@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Contracts\IMessagesRepository;
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\ICalendarRepository;
@@ -8,20 +10,25 @@ use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Utils;
+
 class AdminController extends Controller
 {
+
     protected $formRepository;
     protected $calendarRepository;
     protected $mealRepository;
     protected $messagesRepository;
+
     public function __construct(IVolunteerFormRepository $formRepository, ICalendarRepository $calendarRepository, IMealIdeaRepository $mealRepository, IMessagesRepository $messagesRepository)
     {
+
         $this->calendarRepository = $calendarRepository;
         $this->formRepository = $formRepository;
         $this->mealRepository = $mealRepository;
         $this->messagesRepository = $messagesRepository;
         $this->middleware('auth');
     }
+
     /**
      * Show the application dashboard.
      *
@@ -31,18 +38,22 @@ class AdminController extends Controller
     {
         return view('admin', ['volunteerForms' => $this->formRepository->getAllNewForms()]);
     }
+
     public function viewVolunteerFormsTable()
     {
         return view('admin-volunteerforms-table', ['volunteerforms' => $this->formRepository->all()]);
     }
+
     public function viewMealIdeas()
     {
         return view('admin-mealideas', ['mealideas' => $this->mealRepository->getNewMealIdeas()]);
     }
+
     public function viewMealIdeasTable()
     {
         return view('admin-mealideas-table', ['mealideas' => $this->mealRepository->getConfirmedMealIdeas()]);
     }
+
     public function reviewVolunteerForm(Request $request)
     {
 
@@ -69,6 +80,7 @@ class AdminController extends Controller
         }
         return redirect('/admin');
     }
+
     public function reviewMealIdea(Request $request)
     {
         $request['display'] = $request['display'] == "on" ? true : false;
@@ -93,6 +105,7 @@ class AdminController extends Controller
         }
         return redirect()->back();
     }
+
     public function getMessages(Request $request)
     {
         // get all message objects
@@ -110,6 +123,7 @@ class AdminController extends Controller
         }
         return view('messages', ['messages' => $messages]);
     }
+
     public function updateMessage(Request $request)
     {
         // validate inputs
@@ -135,4 +149,5 @@ class AdminController extends Controller
         }
         return redirect('admin/settings/change-messages');
     }
+
 }
