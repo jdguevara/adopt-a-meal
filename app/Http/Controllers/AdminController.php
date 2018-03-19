@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\ICalendarRepository;
 use App\Contracts\IMealIdeaRepository;
+use App\Mail\VolunteerFormEmail;
+use App\Mail\VolunteerRequestEmail;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -58,6 +60,7 @@ class AdminController extends Controller
         // Approved
         if($request->approve_event)
         {
+            $this->sendEmail($request->all());
             $event = $this->formRepository->get($request->volunteer_id);
             // update the event's status in adoptameal data
             $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
@@ -97,5 +100,22 @@ class AdminController extends Controller
             $this->mealRepository->deny($request->id);
         }
         return redirect()->back();
+    }
+
+    public function sendEmail($form)
+    {
+        $admin_emails = explode(',', INTERFAITH_ADMINS);
+
+        // To Interfaith
+        foreach($admin_emails as $email){
+            Mail::to($email)
+                ->send(new VolunteerRequestEmail($form));
+        }
+
+        // To the Volunteer
+        Mail::to($form["email"])
+            ->send(new VolunteerFormEmail($form));
+
+        return redirect('/');
     }
 }
