@@ -98,8 +98,8 @@ $(document).ready(function () {
 
 @section('content')
     <div class="text-center jumbotron">
-        <h1 id="jumbotron-header">Adopt a Meal </h1>
-        <p>Select a date to Adopt A Meal</p>
+        <h1 id="jumbotron-header">{!! $messages['landing_page_title'] or 'Adopt A Meal' !!} </h1>
+        <p> {!! $messages['volunteer_prompt'] or 'Select a date to Adopt A Meal' !!} </p>
     </div>
     <div class="row">
         <div class="col-sm-12 col-lg-8 col-lg-offset-2">
@@ -111,21 +111,26 @@ $(document).ready(function () {
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <h4>Instructions:</h4>
+
+                    {!! $messages['volunteer_instructions'] or
+
+                    '<h4>Instructions:</h4>
                     <ol>
                         <li>Click an open volunteer event in the Calendar above (Open events are blue).</li>
-                        <li>Fill out the form that opens with a your organization's name or your name, contact information, and some information about the meal that will be provided. 
-                            If you're unsure of the exact meal, please include that in the meal description and we will work with you!</li>
+                        <li>Fill out the form that opens with a your organization\'s name or your name, contact information, and some information about the meal that will be provided.
+                            If you\'re unsure of the exact meal, please include that in the meal description and we will work with you!</li>
                         <li>Submit the form, and then you will recieve an e-mail confirmation.</li>
-                        <li>Staff at Interfaith Sanctuary will contact you once they've been notified of your request.</li>
-                    </ol>
+                        <li>Staff at Interfaith Sanctuary will contact you once they\'ve been notified of your request.</li>
+                    </ol>' !!}
+
                 </div>
             </div>
         </div>
     </div>
     <div class="text-center jumbotron jumbotron-footer">
-        <h1 id="jumbotron-footer-header">Thank you for adopting a meal!</h1>
-        <p>We would like to thank all the organizations who have volunteered for their wonderful contributions!</p>
+        {!! $messages['volunteer_thank_you'] or
+            '<h1 id="jumbotron-footer-header">Thank you for adopting a meal!</h1>
+             <p>We would like to thank all the organizations who have volunteered for their wonderful contributions!</p>' !!}
         <div class="row">
             @foreach($completedEvents as $completeEvent)
 
@@ -145,16 +150,14 @@ $(document).ready(function () {
                     <h3 id="title" style="margin-top: 15px;">This event is in the past</h3>
                 </div>
                 <div class="modal-body">
-                    Sorry, but this event has already happened. Please check some of the current events to adopt a
-                    meal!
+                    {!! $messages['event_taken'] or 'Sorry, but this event has already happened. Please check some of the current events to adopt a meal!' !!}
                 </div>
                 <div class="modal-footer"></div>
             </div>
         </div>
     </div>
-    @component('formmodals.confirmed-event-modal', []) @endcomponent
-    @component('formmodals.volunteer-form-modal', []) @endcomponent
-    </div>
+    @component('formmodals.confirmed-event-modal', [ 'messages' => $messages ]) @endcomponent
+    @component('formmodals.volunteer-form-modal', [ 'messages' => $messages ]) @endcomponent
 
 @endsection
 

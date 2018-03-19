@@ -115,16 +115,21 @@ $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
   font-weight: 700;
   color:white;
 }
-#jumbotron-header{
+#jumbotron-header > * {
   padding-top:30px;
   font-size:110px;
   font-family: $interfaith-jumbotron-font;
 }
-#jumbotron-footer-header{
+#jumbotron-header {
+  padding-top:30px;
+  font-size:110px;
+  font-family: $interfaith-jumbotron-font;
+}
+#jumbotron-footer-header > * {
   font-family:$interfaith-decorative;
   font-weight:700;
 }
-.jumbotron-footer{
+.jumbotron-footer {
   margin-top:200px;
   margin-bottom:0px;
 }
