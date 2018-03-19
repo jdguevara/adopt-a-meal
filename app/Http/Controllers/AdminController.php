@@ -25,6 +25,7 @@ class AdminController extends Controller
 
     public function __construct(IVolunteerFormRepository $formRepository, ICalendarRepository $calendarRepository, IMealIdeaRepository $mealRepository, IMessagesRepository $messagesRepository)
     {
+
         $this->calendarRepository = $calendarRepository;
         $this->formRepository = $formRepository;
         $this->mealRepository = $mealRepository;
@@ -65,8 +66,10 @@ class AdminController extends Controller
             'volunteer_id' => 'required',
             'approve_event' => 'required'
         ]);
+
         // Approved
         if ($request->approve_event) {
+
             $event = $this->formRepository->get($request->volunteer_id);
             // update the event's status in adoptameal data
             $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
@@ -108,6 +111,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+
     public function sendEmail($form)
     {
         $admin_emails = explode(',', INTERFAITH_ADMINS);
@@ -124,13 +128,13 @@ class AdminController extends Controller
 
         return redirect('/');
     }
+
     public function getMessages(Request $request)
     {
         // get all message objects
         $messages = $this->messagesRepository->all();
 
         forEach($messages as $message) {
-
             // change underscores to user-friendly format
             $message->type_str = Utils::transformUnderscoreText($message->type);
 
@@ -143,7 +147,6 @@ class AdminController extends Controller
             }
 
         }
-
         return view('messages', ['messages' => $messages]);
     }
 
@@ -154,7 +157,7 @@ class AdminController extends Controller
             'id' => 'required',
             'message-content' => 'required',
         ]);
-
+        
         // get the user id and save the message
         if(Auth::check()) {
             $userId = Auth::id();
@@ -164,7 +167,6 @@ class AdminController extends Controller
                 'content' => $request['message-content'],
                 'user_id' => $userId
             ];
-
             try {
                 $this->messagesRepository->update($input);
                 flash( "Your message was saved successfully!")->success();
@@ -178,4 +180,5 @@ class AdminController extends Controller
 
         return redirect('admin/settings/change-messages');
     }
+
 }
