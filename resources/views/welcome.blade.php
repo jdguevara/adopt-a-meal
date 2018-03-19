@@ -131,10 +131,10 @@ $(document).ready(function () {
 
                     @foreach($completedEvents as $completeEvent)
 
-                        <div class="list-group-item thank-you-list-item col-md-6" >
-                            <h2>
+                        <div class="list-group-item thank-you-list-item col-md-2" >
+                            <h3>
                                 {{$completeEvent}}
-                            </h2>
+                            </h3>
                         </div>
                     @endforeach
 
