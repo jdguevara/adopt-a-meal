@@ -130,9 +130,6 @@ class AdminController extends Controller
 
     public function updateMessage(Request $request)
     {
-
-//        dd($request['message-content']);
-
         // validate inputs
         $this->validate($request, [
             'id' => 'required',
@@ -161,6 +158,5 @@ class AdminController extends Controller
         }
 
         return redirect('admin/settings/change-messages');
-
     }
 }
