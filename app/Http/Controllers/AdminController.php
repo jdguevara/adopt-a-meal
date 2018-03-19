@@ -6,8 +6,12 @@ use App\Contracts\IMessagesRepository;
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\ICalendarRepository;
 use App\Contracts\IMealIdeaRepository;
-use http\Exception;
+use App\Mail\AdminApproveEmail;
+use App\Mail\VolunteerApprovedEmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+define('INTERFAITH_ADMINS', env('INTERFAITH_ADMINS'));
+use http\Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Utils;
 
@@ -55,56 +59,71 @@ class AdminController extends Controller
 
     public function reviewVolunteerForm(Request $request)
     {
-        
+
         $this->validate($request, [
             'open_event_id' => 'required',
             'volunteer_id' => 'required',
             'approve_event' => 'required'
         ]);
         // Approved
-        if($request->approve_event)
-        {
+        if ($request->approve_event) {
             $event = $this->formRepository->get($request->volunteer_id);
             // update the event's status in adoptameal data
             $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
+            $this->sendEmail($event);
             // insert the event into the accepted_events calendar
             $result = $this->calendarRepository->create($event, 'accepted');
             // remove the event from the open_events calendar
+
             $this->calendarRepository->delete($event->open_event_id, 'open');
-        }
-        // Denied
-        else
-        {
+
+        } // Denied
+        else {
             $this->formRepository->deny($request->volunteer_id);
         }
-            return redirect('/admin');
+        return redirect('/admin');
     }
 
     public function reviewMealIdea(Request $request)
     {
         $request['display'] = $request['display'] == "on" ? true : false;
-        $request['ingredients'] = json_encode(array_map(function($val) { return trim($val); }, explode(",", $request->ingredients)));
+        $request['ingredients'] = json_encode(array_map(function ($val) {
+            return trim($val);
+        }, explode(",", $request->ingredients)));
         $this->validate($request, [
             'id' => 'required',
             'description' => 'required',
             'ingredients' => 'required',
             'new_status' => 'required'
         ]);
-        
+
         // Check the new status on the request
-        if($request->new_status == 1)
-        {
+        if ($request->new_status == 1) {
             // Update the meal idea with any changes and approve
             $this->mealRepository->approve($request->id, $request);
-        }
-        // Denied
-        else if ($request->new_status == 2)
-        {
+        } // Denied
+        else if ($request->new_status == 2) {
             $this->mealRepository->deny($request->id);
         }
         return redirect()->back();
     }
 
+    public function sendEmail($form)
+    {
+        $admin_emails = explode(',', INTERFAITH_ADMINS);
+
+        // To Interfaith
+        foreach($admin_emails as $email){
+            Mail::to($email)
+                ->send(new AdminApproveEmail($form));
+        }
+
+        // To the Volunteer
+        Mail::to($form["email"])
+            ->send(new VolunteerApprovedEmail($form));
+
+        return redirect('/');
+    }
     public function getMessages(Request $request)
     {
         // get all message objects

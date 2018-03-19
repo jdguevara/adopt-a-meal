@@ -11,7 +11,23 @@ class MessagesSeeder extends Seeder
         $env = env('APP_ENV');
 
         $messages = [
+            [
+                'type' => 'volunteer_admin_approved_email',
+                'content' => 'A request to Adopt-A-Meal has been approved!',
+                'user_id' => 1
+            ],
 
+            [
+                'type' => 'volunteer_approved_email',
+                'content' => 'Your request to Adopt-A-Meal at Interfaith Sanctuary has been approved!',
+                'user_id' => 1
+            ],
+
+            [
+                'type' => 'volunteer_approved_email_thank_you',
+                'content' => 'Thank you so much for adopting a meal at the Interfaith Sanctuary!',
+                'user_id' => 1
+            ],
             [
                 'type' => 'volunteer_email_thank_you',
                 'content' => 'Thank you for submitting your request to Adopt-A-Meal at the Interfaith Sanctuary!',
