@@ -126,6 +126,32 @@ $(document).ready(function () {
     <div class="text-center jumbotron jumbotron-footer">
         <h1 id="jumbotron-footer-header">Thank you for adopting a meal!</h1>
         <p>We would like to thank all the organizations who have volunteered for their wonderful contributions!</p>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <ul class="list-group" >
+                        @foreach(array_chunk($completedEvents, ceil(count($completedEvents)/2))[0] as $completeEvent)
+                            <li class="list-group-item text-center text-capitalize thank-you-list-item" >
+                                <h2>{{$completeEvent->summary}}
+
+                                </h2>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-group thank-you-style" >
+                        @foreach(array_chunk($completedEvents, ceil(count($completedEvents)/2))[1] as $completeEvent)
+                            <li class="list-group-item thank-you-list-item" >
+                                <h2>{{$completeEvent->summary}}
+                                </h2>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
     </div>
     <!-- past event modal -->
     <div id="past-event-modal" class="modal fade" role="dialog">

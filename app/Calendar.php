@@ -75,5 +75,21 @@ class Calendar
 
         return $results;
     }
+    function findAllCompleted(){
 
+        $time = new DateTime();
+        $time->sub(new DateInterval('P1M'));
+
+        $optParams = array(
+            'maxResults' => 100,
+            'orderBy' => 'startTime',
+            'singleEvents' => TRUE,
+            'timeMin' => Carbon::minValue()->toIso8601String(),
+            'timeMax' => Carbon::now()->toIso8601String()
+        );
+
+        $results = $this->calendarService->events->listEvents($this->acceptedCalendarId, $optParams)->getItems();
+
+        return $results;
+    }
 }
