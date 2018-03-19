@@ -12,7 +12,7 @@ class LandingPageController extends Controller
 {
 
     /**
-     * Show the application dashboard.
+     * Show the application dashboard./
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,3 +31,6 @@ class LandingPageController extends Controller
     /**
      */
 }
+
+
+
