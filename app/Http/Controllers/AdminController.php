@@ -110,9 +110,11 @@ class AdminController extends Controller
     {
         // get all message objects
         $messages = $this->messagesRepository->all();
+
         forEach($messages as $message) {
             // change underscores to user-friendly format
             $message->type_str = Utils::transformUnderscoreText($message->type);
+
             // display "never" if the message hasn't been updated
             if($message->updated_at == null) {
                 $message->updated_str = "Never";
@@ -120,6 +122,7 @@ class AdminController extends Controller
             else {
                 $message->updated_str = date('m-d-Y', strtotime($message->updated_at));
             }
+
         }
         return view('messages', ['messages' => $messages]);
     }
@@ -131,9 +134,11 @@ class AdminController extends Controller
             'id' => 'required',
             'message-content' => 'required',
         ]);
+        
         // get the user id and save the message
         if(Auth::check()) {
             $userId = Auth::id();
+
             $input = [
                 'id' => $request['id'],
                 'content' => $request['message-content'],
@@ -143,10 +148,13 @@ class AdminController extends Controller
                 $this->messagesRepository->update($input);
                 flash( "Your message was saved successfully!")->success();
             }
+
             catch(Exception $e) {
                 flash("There was a problem saving your message. Please try again later.")->error();
             }
+
         }
+
         return redirect('admin/settings/change-messages');
     }
 
