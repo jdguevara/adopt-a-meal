@@ -7,8 +7,10 @@
 // Variables
 @import "checkbox";
 @import "volunteer-form";
-@import "event-form";
 @import "loading-spinner";
+
+//
+@import "~fullcalendar/dist/fullcalendar.min.css";
 
 
 @media screen and (max-width: 600px) {
@@ -26,3 +28,9 @@
     max-height: 50px;
     max-width: 50px;
 }
+
+.event-info-details {
+    float: right;
+    position: relative;
+    margin-top: -13px;
+  }
