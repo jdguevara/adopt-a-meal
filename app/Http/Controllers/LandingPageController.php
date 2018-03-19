@@ -22,6 +22,7 @@ class LandingPageController extends Controller
         $volunteerEvents = $calendar->findVolunteerEvents();
         $acceptedEvents = $calendar->findAllAccepted();
         $completedEvents = $calendar->findAllCompleted();
+
         return view('welcome', ['volunteerEvents' => $volunteerEvents, 'acceptedEvents' => $acceptedEvents, 'completedEvents' => $completedEvents]);
 
     }
