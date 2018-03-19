@@ -75,15 +75,19 @@ class CalendarRepository implements ICalendarRepository {
         $time->sub(new DateInterval('P1M'));
 
         $optParams = array(
-            'maxResults' => 100,
-            'orderBy' => 'startTime',
+            'orderBy' => 'updated',
             'singleEvents' => TRUE,
             'timeMin' => Carbon::minValue()->toIso8601String(),
             'timeMax' => Carbon::now()->toIso8601String()
         );
 
-        $results = $this->googleCalendarService->events->listEvents($this->acceptedCalendarId, $optParams)->getItems();
+        $items = $this->googleCalendarService->events->listEvents($this->acceptedCalendarId, $optParams)->getItems();
+        $results = array();
 
+        foreach($items as $item){
+            array_push($results,$item->getSummary());
+        }
+        $results = array_unique($results);
         return $results;
     }
 
