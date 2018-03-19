@@ -74,7 +74,7 @@ class MealIdeaRepository implements IMealIdeaRepository
             'title' => $newMealIdea['title'],
             'description' => $newMealIdea['description'],
             'instructions' => $newMealIdea['instructions'],
-            'ingredients_json' => $newMealIdea['ingredients'],
+            'ingredients_json' => json_encode($newMealIdea['ingredient']),
             'external_link' => $newMealIdea['external_link'],
             'name' => $newMealIdea['name'],
             'email' => $newMealIdea['email'],

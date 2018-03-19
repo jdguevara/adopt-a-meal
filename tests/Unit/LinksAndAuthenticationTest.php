@@ -34,7 +34,7 @@ class LinksAndAuthenticationTest extends TestCase
         // Checking the /admin URL works fine
         $response = $this->get('/admin');
         //$response->assertViewIs('auth.login');
-        $response->assertStatus(500);
+        $response->assertStatus(302);
         $this->assertGuest($guard = null);
         echo "Done\n";
 

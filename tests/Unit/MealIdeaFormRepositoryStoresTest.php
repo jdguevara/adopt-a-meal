@@ -28,7 +28,9 @@ class MealIdeaFormRepositoryStoresTest extends TestCase
     public function test_create_minimum_requirement()
     {
         $mockRequest = [
+            'title' => 'Some Title',
             'meal_name' => 'Title',
+            'instructions' => 'Here is some Instr.',
             'description' => 'Isn\'t supposed to be null',
             'ingredient' => [
                 'a',
@@ -38,6 +40,8 @@ class MealIdeaFormRepositoryStoresTest extends TestCase
             'external_link' => null,
             'name' => null,
             'email' => null,
+            'display' => 1,
+            'meal_idea_status' => 0
         ];
 
         $id = $this->formService->create($mockRequest);
@@ -72,7 +76,9 @@ class MealIdeaFormRepositoryStoresTest extends TestCase
     public function test_meal_idea_approve()
     {
         $mockRequest = [
+            'title' => 'Some Title',
             'meal_name' => 'Title',
+            'instructions' => 'Here is some Instr.',
             'description' => 'Isn\'t supposed to be null',
             'ingredient' => [
                 'a',
@@ -82,6 +88,7 @@ class MealIdeaFormRepositoryStoresTest extends TestCase
             'external_link' => null,
             'name' => null,
             'email' => null,
+            'display' => 1,
             'meal_idea_status' => 0,
         ];
 

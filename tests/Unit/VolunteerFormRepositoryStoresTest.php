@@ -4,9 +4,11 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use DateTime;
 
 class VolunteerFormRepositoryStoresTest extends TestCase
 {
+    use RefreshDatabase;
     protected $formService;
 
     public function setUp()
@@ -25,7 +27,7 @@ class VolunteerFormRepositoryStoresTest extends TestCase
         $this->assertTrue( $this->formService != null);
     }
 
-    public function test_create_minimum_requirement()
+    public function test_volunteer_form_create_minimum_requirement()
     {
         $mockRequest = [
 
@@ -33,10 +35,10 @@ class VolunteerFormRepositoryStoresTest extends TestCase
             'phone' => '2082082088',
             'email' => 'someemail@some.com',
             'meal_description' => 'blah blah',
-            'notes' => $input['notes'] ?? '',
-            'paper_goods' => $input['paper_goods'] ?? false,
-            'open_event_id' => $input['open_event_id'],
-            'open_event_date_time' => new DateTime($input['open_event_date_time']),
+            'notes' => 'notes notes notes',
+            'paper_goods' => true,
+            'open_event_id' => '0002',
+            'open_event_date_time' => mktime(0, 0, 0, date('m') + 1, 1, date('Y')),
             'form_status' => 0,
 
         //
@@ -52,48 +54,70 @@ class VolunteerFormRepositoryStoresTest extends TestCase
     /**
     * @expectedException Exception
     */
-    public function test_create_missing_requirements()
+    public function test_volunteer_form_create_missing_requirements()
     {
 
         $mockRequest = [
-            'meal_name' => 'Title',
-            'description' => null,
-            'ingredient' => [
-                'a',
-                'b',
-                'c',
-            ],
-            'external_link' => null,
-            'name' => null,
+            'organization_name' => null,
+            'phone' => '2082082088',
             'email' => null,
-            'meal_idea_status' => 0,
+            'meal_description' => 'blah blah',
+            'notes' => 'notes notes notes',
+            'paper_goods' => true,
+            'open_event_id' => '0002',
+            'open_event_date_time' => mktime(0, 0, 0, date('m') + 1, 1, date('Y')),
+            'form_status' => 0,
         ];
         $id = $this->formService->create($mockRequest);
         $this->assertFalse(true); // Should not be reached because an exception will be thrown
     }
 
-    public function test_meal_idea_approve()
+    public function test_volunteer_form_approve()
     {
         $mockRequest = [
-            'meal_name' => 'Title',
-            'description' => 'Isn\'t supposed to be null',
-            'ingredient' => [
-                'a',
-                'b',
-                'c',
-            ],
-            'external_link' => null,
-            'name' => null,
-            'email' => null,
-            'meal_idea_status' => 0,
+            'organization_name' => 'abc',
+            'phone' => '2082082088',
+            'email' => 'someemail@some.com',
+            'meal_description' => 'blah blah',
+            'notes' => 'notes notes notes',
+            'paper_goods' => true,
+            'open_event_id' => '0002',
+            'open_event_date_time' => mktime(0, 0, 0, date('m') + 1, 1, date('Y')),
+            'form_status' => 0,
         ];
 
         $id = $this->formService->create($mockRequest);
         $this->assertNotNull($id);
         $form = $this->formService->get($id);
+        $this->assertEquals($form->form_status, 0);
         $this->formService->approve($form->id, $form);
         $form = $this->formService->get($id);
-        $this->assertEquals($form->meal_idea_status, 1);
+        $this->assertEquals($form->form_status, 1);
+    }
+
+
+
+    public function test_volunteer_form_deny()
+    {
+        $mockRequest = [
+            'organization_name' => 'abc',
+            'phone' => '2082082088',
+            'email' => 'someemail@some.com',
+            'meal_description' => 'blah blah',
+            'notes' => 'notes notes notes',
+            'paper_goods' => true,
+            'open_event_id' => '0002',
+            'open_event_date_time' => mktime(0, 0, 0, date('m') + 1, 1, date('Y')),
+            'form_status' => 0,
+        ];
+
+        $id = $this->formService->create($mockRequest);
+        $this->assertNotNull($id);
+        $form = $this->formService->get($id);
+        $this->assertEquals($form->form_status, 0);
+        $this->formService->deny($form->id);
+        $form = $this->formService->get($id);
+        $this->assertEquals($form->form_status, 2);
     }
 
 }
