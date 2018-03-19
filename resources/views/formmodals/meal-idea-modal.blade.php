@@ -4,15 +4,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 id="title">Suggest a Meal Idea</h3>
+                    {!! $messages['meal_idea_title'] or '<h3>Suggest a Meal Idea</h3>' !!}
                 </div>
 
                 <!-- list of text field inputs and check boxes  -->
                 <div class="modal-body">
                     <div id="inputs" class="volunteer-inputs">
                         <div class="input-group">
-                            <p>Thank you for taking the time to fill out a meal idea!</p>
-                            <p>A provided recipe should be able to make at least 200 portions</p>
+                            {!! $messages['meal_idea_instructions'] or
+                            '<p>Thank you for taking the time to fill out a meal idea!</p>
+                            <p>A provided recipe should be able to make at least 200 portions</p>' !!}
                         </div>
 
                         <div class="form-group">

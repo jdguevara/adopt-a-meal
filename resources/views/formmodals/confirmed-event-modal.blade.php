@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>An organization has adopted this meal!</h3>
+                {!! $messages['confirmed_event_title'] or '<h3>An organization has adopted this meal!</h3>'  !!}
             </div>
             <div class="modal-body">
                 <div class="container-fluid volunteer-inputs">

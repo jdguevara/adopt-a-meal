@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\IMessagesRepository;
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\ICalendarRepository;
 use App\Contracts\IMealIdeaRepository;
+use http\Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Utils;
 
 class AdminController extends Controller
 {
@@ -13,12 +17,14 @@ class AdminController extends Controller
     protected $formRepository;
     protected $calendarRepository;
     protected $mealRepository;
+    protected $messagesRepository;
 
-    public function __construct(IVolunteerFormRepository $formRepository, ICalendarRepository $calendarRepository, IMealIdeaRepository $mealRepository)
+    public function __construct(IVolunteerFormRepository $formRepository, ICalendarRepository $calendarRepository, IMealIdeaRepository $mealRepository, IMessagesRepository $messagesRepository)
     {
         $this->calendarRepository = $calendarRepository;
         $this->formRepository = $formRepository;
         $this->mealRepository = $mealRepository;
+        $this->messagesRepository = $messagesRepository;
         $this->middleware('auth');
     }
 
@@ -97,5 +103,60 @@ class AdminController extends Controller
             $this->mealRepository->deny($request->id);
         }
         return redirect()->back();
+    }
+
+    public function getMessages(Request $request)
+    {
+        // get all message objects
+        $messages = $this->messagesRepository->all();
+
+        forEach($messages as $message) {
+
+            // change underscores to user-friendly format
+            $message->type_str = Utils::transformUnderscoreText($message->type);
+
+            // display "never" if the message hasn't been updated
+            if($message->updated_at == null) {
+                $message->updated_str = "Never";
+            }
+            else {
+                $message->updated_str = date('m-d-Y', strtotime($message->updated_at));
+            }
+
+        }
+
+        return view('messages', ['messages' => $messages]);
+    }
+
+    public function updateMessage(Request $request)
+    {
+        // validate inputs
+        $this->validate($request, [
+            'id' => 'required',
+            'message-content' => 'required',
+        ]);
+
+        // get the user id and save the message
+        if(Auth::check()) {
+            $userId = Auth::id();
+
+            $input = [
+                'id' => $request['id'],
+                'content' => $request['message-content'],
+                'user_id' => $userId
+            ];
+
+            try {
+                $this->messagesRepository->update($input);
+                flash( "Your message was saved successfully!")->success();
+            }
+
+            catch(Exception $e) {
+                flash("There was a problem saving your message. Please try again later.")->error();
+            }
+
+        }
+
+        return redirect('admin/settings/change-messages');
     }
 }

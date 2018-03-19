@@ -48,8 +48,8 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Settings<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="">
-                                Change Site Wording
+                            <a href="/admin/settings/change-messages">
+                                Change Messages
                             </a>
                         </li>
                     </ul>
@@ -69,9 +69,6 @@
         </div>
     </nav>
     <div id="app">
-        <div class="fluid-container">
-        @yield('content')
-        </div>
         <div class="container" >
             @if(isset($errors) && $errors->any())
                 <div class="alert alert-danger">
@@ -80,6 +77,9 @@
                 </div>
             @endif
             @include('flash::message')
+        </div>
+        <div class="fluid-container">
+        @yield('content')
         </div>
     </div>
     {{--<div class="footer">--}}
@@ -90,7 +90,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
     <script>
-      $('div.alert').not('.alert-important').delay(1500).fadeOut(350);
+      $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
       $('#flash-overlay-modal').modal();
     </script>
 </body>
