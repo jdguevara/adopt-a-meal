@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\ICalendarRepository;
 use App\Contracts\IMealIdeaRepository;
-use App\Mail\VolunteerFormEmail;
-use App\Mail\VolunteerRequestEmail;
+use App\Mail\AdminApproveEmail;
+use App\Mail\VolunteerApprovedEmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+define('INTERFAITH_ADMINS', env('INTERFAITH_ADMINS'));
 
 class AdminController extends Controller
 {
@@ -60,14 +62,19 @@ class AdminController extends Controller
         // Approved
         if($request->approve_event)
         {
-            $this->sendEmail($request->all());
             $event = $this->formRepository->get($request->volunteer_id);
             // update the event's status in adoptameal data
             $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
+//            dd($event);
+            $this->sendEmail($event);
             // insert the event into the accepted_events calendar
             $result = $this->calendarRepository->create($event, 'accepted');
             // remove the event from the open_events calendar
+
             $this->calendarRepository->delete($event->open_event_id, 'open');
+
+
+
         }
         // Denied
         else
@@ -109,12 +116,12 @@ class AdminController extends Controller
         // To Interfaith
         foreach($admin_emails as $email){
             Mail::to($email)
-                ->send(new VolunteerRequestEmail($form));
+                ->send(new AdminApproveEmail($form));
         }
 
         // To the Volunteer
         Mail::to($form["email"])
-            ->send(new VolunteerFormEmail($form));
+            ->send(new VolunteerApprovedEmail($form));
 
         return redirect('/');
     }
