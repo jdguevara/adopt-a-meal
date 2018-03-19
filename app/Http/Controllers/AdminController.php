@@ -70,14 +70,12 @@ class AdminController extends Controller
             $event = $this->formRepository->get($request->volunteer_id);
             // update the event's status in adoptameal data
             $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
-//            dd($event);
             $this->sendEmail($event);
             // insert the event into the accepted_events calendar
             $result = $this->calendarRepository->create($event, 'accepted');
             // remove the event from the open_events calendar
 
             $this->calendarRepository->delete($event->open_event_id, 'open');
-
 
         } // Denied
         else {
