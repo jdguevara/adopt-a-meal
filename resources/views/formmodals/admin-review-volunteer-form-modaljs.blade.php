@@ -13,12 +13,18 @@ function loadAdminReviewVolunteerFormModal (event) {
     $("#event-modal").modal();
 }
 
-function submitAdminReviewVolunteerForm (update) {
-    if(update){
+function submitAdminReviewVolunteerForm (submit) {
+    console.log(submit);
+    if(submit == 1 || !submit){ 
+        $('#approve-event').val(submit);
+        $('#event-form').submit();
+    }
+    else if(submit == 2){
         $('#paper-goods').val($('#paper-goods').val().toLowerCase() == "yes" ? 1 : 0);
         $('#event-form').submit();
-    }else{
-        console.log("cancel event");
     }
+    // else{
+    //     console.log("cancel event");
+    // }
 }
 </script>

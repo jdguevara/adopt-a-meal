@@ -31,11 +31,11 @@ interface ICalendarRepository
 
     /**
      * Updated a single event from the desired calendar (open or accepted)
-     * @param $id google calendar event id
+     * @param $eventType allows for updating on accepted or Open Event
      * @param $eventType Open event or Accepted Event
      * @return mixed
      */
-    public function update($id, $eventType);
+    public function update($eventType, $details);
 
     /**
      * Create an event of the desired type (open or accepted)

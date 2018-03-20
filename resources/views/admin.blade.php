@@ -31,7 +31,7 @@ var volunteerForms = @json($volunteerForms);
             <li class="list-group-item ">
                 <h5>{{$form->title}}</h5>
                 <h6>From: {{$form->organization_name}}
-                    <button id="view-event" onclick="loadAdminReviewVolunteerFormModal('{{$form['id']}}');" class="btn btn-warning event-info-details pull-right">
+                    <button id="view-event" onclick="loadAdminReviewVolunteerFormModal({{$form}});" class="btn btn-warning event-info-details pull-right">
                             Details
                     </button>
                 </h6>

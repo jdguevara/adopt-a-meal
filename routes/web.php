@@ -17,7 +17,8 @@ Route::get('/meal-ideas', 'MealIdeasController@index')->name('mealideas');
 Auth::routes();
 Route::get('/admin', 'AdminController@index')->name('admin-home');
 Route::get('/admin/settings/edit-forms', 'AdminController@viewVolunteerFormsTable')->name('admin-volunteerforms-table');
-Route::post('/admin/settings/update-form', 'AdminController@updateForm');
+Route::post('/admin/settings/update-form', 'AdminController@reviewVolunteerForm');
+Route::post('/admin/form/review', 'AdminController@reviewVolunteerForm');
 
 Route::get('/admin/meal-ideas', 'AdminController@viewMealIdeas')->name('admin-mealideas');
 Route::get('/admin/meal-ideas/all', 'AdminController@viewMealIdeasTable')->name('admin-mealideas-table');
