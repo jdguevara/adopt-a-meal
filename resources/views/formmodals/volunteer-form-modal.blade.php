@@ -4,16 +4,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 id="title" style="margin-top: 15px;">Adopt-A-Meal Form</h3>
+                    <h3 id="title" style="margin-top: 15px;">{!! $messages['volunteer_form_title'] or 'Adopt-A-Meal Form' !!}</h3>
                 </div>
                 <!-- list of text field inputs and check boxes  -->
                 <div class="modal-body">
                     <div id="inputs" class="container-fluid volunteer-inputs">
-                        <span><h5>
+                        <span>
+                            {!! $messages['volunteer_form_instructions'] or
+                            '<h5>
                             Please provide the following information. Once the form is
                             complete you will recieve a confirmation e-mail and we will
                             contact you to help ensure your adopted meal will be a success!
-                        </h5></span>
+                            </h5>' !!}
+                        </span>
 
                         <div class="form-group">
                             <div class="input-group">
@@ -63,11 +66,12 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span>
-                                    <strong>
-                                    By clicking 'Volunteer' I acknowledge that I am volunteering 
-                                    to be responsible for bringing at least 200 servings to the 
-                                    Interfaith Sanctuary building by 5pm on the chosen date.
-                                    </strong>
+                                    {!! $messages['volunteer_confirmation'] or
+                                    '<strong>
+                                        By clicking \'Volunteer\' I acknowledge that I am volunteering
+                                        to be responsible for bringing at least 200 servings to the
+                                        Interfaith Sanctuary building by 5pm on the chosen date.
+                                     </strong>'!!}
                                 </span>
                                 <div class="checkbox-group">
                                     <label class="checkbox"> I can provide paper goods
@@ -86,7 +90,7 @@
 
                     <!-- loading spinner -->
                     <div id="loading-info" class="loading-info" hidden>
-                        <h3 class="text-light text-center">Your volunteer information is being sent!</h3>
+                        <h3 class="text-light text-center"> {!! $messages['volunteer_loading'] or 'Your volunteer information is being sent!' !!}</h3>
                         <div id="loading-spinner" class="spinner">
                             <div class="dot1"></div>
                             <div class="dot2"></div>

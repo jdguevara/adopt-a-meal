@@ -8,8 +8,8 @@ use Google_Service_Calendar;
 use DateTime;
 use DateInterval;
 use Google_Service_Calendar_Event;
-use App;
-;
+
+
 
 defined('APPLICATION_NAME') or define('APPLICATION_NAME', env('APP_NAME'));
 defined('CREDENTIALS_PATH') or define('CREDENTIALS_PATH', storage_path('app/service_account_creds.json'));
@@ -69,8 +69,6 @@ class CalendarRepository implements ICalendarRepository {
 
         return $results;
     }
-
-
 
     public function create($event, $eventType)
     {

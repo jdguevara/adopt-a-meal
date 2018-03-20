@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Contracts\ICalendarRepository;
 use App\Contracts\IVolunteerFormRepository;
 use App\VolunteerForm;
+use Carbon\Carbon;
 use DateTime;
 
 class VolunteerFormRepository implements IVolunteerFormRepository
@@ -32,7 +33,22 @@ class VolunteerFormRepository implements IVolunteerFormRepository
     {
         return $this->form->where('form_status', '=', 0)->get();
     }
+    public function getAllPreviousAcceptedOrganizationNames()
+    {
 
+        $items = $this->form
+            ->where('form_status', '=', 1)
+            ->where('event_date_time', '<', Carbon::now())
+            ->get();
+        $results = array();
+
+        foreach($items as $item){
+            array_push($results, $item['organization_name']);
+        }
+        $results = array_unique($results);
+        return $results;
+
+    }
     public function create($input)
     {
         $this->form->fill([
