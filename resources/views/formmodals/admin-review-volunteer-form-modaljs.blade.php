@@ -1,9 +1,5 @@
 <script>
-function loadAdminReviewVolunteerFormModal (eventId) {
-    // find the event in our events list
-    var event = volunteerForms.find(function(event) { return event.id == eventId; });
-
-    // open the modal with event info
+function loadAdminReviewVolunteerFormModal (event) {
     $("#title").text(event.title);
     $('#meal-description').val(event.meal_description);
     $('#organization-name').val(event.organization_name);
@@ -17,9 +13,12 @@ function loadAdminReviewVolunteerFormModal (eventId) {
     $("#event-modal").modal();
 }
 
-function submitAdminReviewVolunteerForm (approval) {
-    // send the form, value set in jquery is async apparently?
-    $('#approve-event').val(approval);
-    $('#event-form').submit();
+function submitAdminReviewVolunteerForm (update) {
+    if(update){
+        $('#paper-goods').val($('#paper-goods').val().toLowerCase() == "yes" ? 1 : 0);
+        $('#event-form').submit();
+    }else{
+        console.log("cancel event");
+    }
 }
 </script>

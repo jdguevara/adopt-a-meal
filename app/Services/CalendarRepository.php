@@ -91,8 +91,22 @@ class CalendarRepository implements ICalendarRepository {
 
 
 
-    public function update($id, $eventType)
+    public function update($eventType, $details)
     {
+        
+        $calendar_event = new Google_Service_Calendar_Event(array(
+            'summary' => $details['title'],
+            'description' => $details['meal_description'],
+            'start' => array(
+                'date' => Carbon::parse($details['event_date_time'])->format('Y-m-d')
+            ),
+            'end' => array(
+                'date' => Carbon::parse($details['event_date_time'])->format('Y-m-d')
+            )
+        ));
+
+        return $this->googleCalendarService->events->update($this->acceptedCalendarId, $details['id'],$calendar_event);
+
         // TODO: Implement update() method.
     }
 

@@ -1,13 +1,9 @@
 @extends('layouts.app')
 
 @section('scripts')
-@component('formmodals.admin-review-meal-idea-modaljs') @endcomponent
+@component('formmodals.admin-review-volunteer-form-modaljs') @endcomponent
 <script>
 var volunteerforms = @json($volunteerforms);
-
-$(document).ready(function () {
-    setupMealIdeaReviewValidation();    
-});
 
 </script>
 @endsection
@@ -48,7 +44,8 @@ $(document).ready(function () {
                         <th>Website</th>
                         <th>Submitter Name</th>
                         <th>Submitter Email</th>
-                        <th>Displayed</th>
+                        <th>Bringing Paper Goods</th>
+
                         <th></th>
                     </tr>
                 </thead>
@@ -56,12 +53,13 @@ $(document).ready(function () {
                     @foreach($volunteerforms as $volunteerform)
                     <tr>
                         <td>{{ $volunteerform->title }}</td>
-                        <td>{{ $volunteerform->title }}</td>
-                        <td>{{ $volunteerform->description }}</td>
-                        <td>{{ $volunteerform->name }}</td>
+                        <td>{{ $volunteerform->meal_description }}</td>
+                        <td>{{ $volunteerform->website }}</td>
+                        <td>{{ $volunteerform->organization_name }}</td>
                         <td>{{ $volunteerform->email }}</td>
                         <td>{{ $volunteerform->paper_goods ? "Yes" : "No" }}</td>
-                        <td><button onclick="loadVolunteerFormReviewModal('{{ $volunteerform['id'] }}');" class="btn btn-warning">Edit</button></td>
+
+                        <td><button onclick="loadAdminReviewVolunteerFormModal({{ $volunteerform }});" class="btn btn-warning">Edit</button></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -70,5 +68,5 @@ $(document).ready(function () {
     </div>
 </div>
 
-@component('formmodals.admin-review-meal-idea-modal', ['editMode' => true]) @endcomponent
+@component('formmodals.admin-review-volunteer-form-modal', ['editMode' => true]) @endcomponent
 @endsection

@@ -1,4 +1,4 @@
-<form id="event-form" method="POST" action="/admin/form/review">
+<form id="event-form" method="POST" action="/admin/settings/update-form">
     {{ csrf_field() }}
     <div class="modal fade" id="event-modal" role="dialog">
         <div class="modal-dialog">
@@ -12,75 +12,64 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Meal Description</span>
-                                <input id="meal-description" class="form-control" @if(!$editMode) disabled @endif/>
+                                <input type="text" id="meal-description" name="meal_description" class="form-control"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Organization Name</span>
-                                <input id="organization-name" class="form-control" @if(!$editMode) disabled @endif />
+                                <input type="text" id="organization-name" name="organization_name" class="form-control" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Date</span>
-                                <input id="event-date-time" class="form-control" @if(!$editMode) disabled @endif />
+                                <input type="text" id="event-date-time" name="open_event_date_time" class="form-control"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Email</span>
-                                <input id="email" class="form-control" @if(!$editMode) disabled @endif />
+                                <input type="text" id="email" name="email" class="form-control" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Phone</span>
-                                <input id="phone" class="form-control" @if(!$editMode) disabled @endif />
+                                <input type="text" id="phone" name="phone" class="form-control" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Notes</span>
-                                <input id="notes" class="form-control" @if(!$editMode) disabled @endif />
+                                <input type="text"id="notes" name="notes" class="form-control"  />
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Paper Goods</span>
-                                <input id="paper-goods" class="form-control" @if(!$editMode) disabled @endif />
+                                <input type="text" id="paper-goods" name="paper_goods" class="form-control" />
                             </div>
                         </div>
                         <input type="text" id="open-event-id" name="open_event_id" hidden>
-                        <input type="text" id="volunteer-id" name="volunteer_id" hidden>
-                        <input type="text" id="approve-event" name="approve_event" hidden>
+                        <input type="number" id="volunteer-id" name="volunteer_id" hidden>
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <div class="input-group pull-right">
-                        @if(!$editMode)
-                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm(1);">
-                            Approve
-                        </button>
-                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm(0);">
-                            Deny
-                        </button>
-                        @else
                         <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm(1);">
                             Update
                         </button>
-                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm(0);">
+                        <!-- <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm(0);">
                             Cancel Volunteer Event
-                        </button> 
-                        @endif
-
+                        </button>  -->
                         <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>

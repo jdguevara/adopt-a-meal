@@ -45,7 +45,7 @@ class AdminController extends Controller
 
     public function viewVolunteerFormsTable()
     {
-        return view('admin-volunteerforms-table', ['volunteerforms' => $this->formRepository->all()]);
+        return view('admin-volunteerforms-table', ['volunteerforms' => $this->formRepository->getConfirmedEvents()]);
     }
 
     public function viewMealIdeas()
@@ -58,34 +58,34 @@ class AdminController extends Controller
         return view('admin-mealideas-table', ['mealideas' => $this->mealRepository->getConfirmedMealIdeas()]);
     }
 
-    public function reviewVolunteerForm(Request $request)
-    {
+    // public function reviewVolunteerForm(Request $request)
+    // {
 
-        $this->validate($request, [
-            'open_event_id' => 'required',
-            'volunteer_id' => 'required',
-            'approve_event' => 'required'
-        ]);
+    //     $this->validate($request, [
+    //         'open_event_id' => 'required',
+    //         'volunteer_id' => 'required',
+    //         'approve_event' => 'required'
+    //     ]);
 
-        // Approved
-        if ($request->approve_event) {
+    //     // Approved
+    //     if ($request->approve_event) {
 
-            $event = $this->formRepository->get($request->volunteer_id);
-            // update the event's status in adoptameal data
-            $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
-            $this->sendEmail($event);
-            // insert the event into the accepted_events calendar
-            $result = $this->calendarRepository->create($event, 'accepted');
-            // remove the event from the open_events calendar
+    //         $event = $this->formRepository->get($request->volunteer_id);
+    //         // update the event's status in adoptameal data
+    //         $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
+    //         $this->sendEmail($event);
+    //         // insert the event into the accepted_events calendar
+    //         $result = $this->calendarRepository->create($event, 'accepted');
+    //         // remove the event from the open_events calendar
 
-            $this->calendarRepository->delete($event->open_event_id, 'open');
+    //         $this->calendarRepository->delete($event->open_event_id, 'open');
 
-        } // Denied
-        else {
-            $this->formRepository->deny($request->volunteer_id);
-        }
-        return redirect('/admin');
-    }
+    //     } // Denied
+    //     else {
+    //         $this->formRepository->deny($request->volunteer_id);
+    //     }
+    //     return redirect('/admin');
+    // }
 
     public function reviewMealIdea(Request $request)
     {
@@ -181,4 +181,35 @@ class AdminController extends Controller
         return redirect('admin/settings/change-messages');
     }
 
+<<<<<<< Updated upstream
 }
+=======
+    public function updateForm(Request $request)
+    {
+
+        $this->validate($request, [
+            'organization_name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'meal_description' => 'required',
+            'open_event_id' => 'required',
+            'open_event_date_time' => 'required',
+            'paper_goods' => 'required',
+            'volunteer_id' => 'required'
+        ]);
+        $details = [
+            'id' => $request['open_event_id'],
+            'title' => $request['organization_name'],
+            'event_date_time' => $request['open_event_date_time'],
+            'meal_description' => $request['meal_description']  
+        ];
+        $this->formRepository->update($request->all(), 1);
+        return $this->calendarRepository->update('accepted', $details);
+    }
+    public function cancelEvent(Request $request)
+    {
+
+    }
+
+}
+>>>>>>> Stashed changes

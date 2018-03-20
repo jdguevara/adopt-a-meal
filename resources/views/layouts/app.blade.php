@@ -52,6 +52,7 @@
                                 Change Messages
                             </a>
                         </li>
+                        <li><a href="/admin/settings/edit-forms">Edit Volunteer Forms</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

@@ -29,6 +29,11 @@ class VolunteerFormRepository implements IVolunteerFormRepository
         return $this->form->find($id);
     }
 
+    public function getConfirmedEvents()
+    {
+        return $this->form->where('form_status', '=', 1)->get();
+    }
+
     public function getAllNewForms()
     {
         return $this->form->where('form_status', '=', 0)->get();
@@ -69,20 +74,19 @@ class VolunteerFormRepository implements IVolunteerFormRepository
         return $this->form->id;
     }
 
-    public function update($form, $input)
+    public function update($input, $status)
     {
-        $form = $this->form->find($form->id);
-        $form->fill([
-            'organization_name' => $input['organization_name'],
-            'phone' => $input['phone'],
-            'email' => $input['email'],
-            'meal_description' => $input['meal_description'],
-            'notes' => $input['notes'] ?? '',
-            'food_confirmation' => $input['food_confirmation'] ?? false,
-            'tableware_confirmation' => $input['tableware_confirmation'] ?? false,
-            'open_event_id' => $input['open_event_id'],
-            'event_date_time' => new DateTime($input['open_event_date_time']),
-            'form_status' => 0,
+        $form = $this->form->where('id',$input['volunteer_id'])
+        ->update([
+                'organization_name' => $input['organization_name'],
+                'phone' => $input['phone'],
+                'email' => $input['email'],
+                'meal_description' => $input['meal_description'],
+                'notes' => $input['notes'] ?? '',
+                'paper_goods' => $input['paper_goods'] ,
+                'open_event_id' => $input['open_event_id'],
+                'event_date_time' => new DateTime($input['open_event_date_time']),
+                'form_status' => $status
         ]);
         $this->form->save();
     }
