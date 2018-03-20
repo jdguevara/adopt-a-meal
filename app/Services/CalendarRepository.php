@@ -104,9 +104,9 @@ class CalendarRepository implements ICalendarRepository {
                 'date' => Carbon::parse($details['event_date_time'])->format('Y-m-d')
             )
         ));
-        dd($details);
-        return $eventType == 'accepted' ? $this->googleCalendarService->events->update($this->acceptedCalendarId, $details['open_event_id'], $calendar_event) 
-                                         : $this->googleCalendarService->events->update($this->openCalendarId, $details['open_event_id'], $calendar_event);
+    
+        return $eventType == 'accepted' ? $this->googleCalendarService->events->update($this->acceptedCalendarId, $details['id'], $calendar_event) 
+                                         : $this->googleCalendarService->events->update($this->openCalendarId, $details['id'], $calendar_event);
     }
 
     public function delete($id, $eventType)

@@ -60,7 +60,6 @@ class AdminController extends Controller
 
     public function reviewVolunteerForm(Request $request)
     {
-        dd($request);
         // Approved
         if ($request->approve_event == 1) {
             $this->validate($request, [
@@ -70,17 +69,16 @@ class AdminController extends Controller
             ]);
             $event = $this->formRepository->get($request->volunteer_id);
             // update the event's status in adoptameal data
-            // $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
+            $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
             // $this->sendEmail($event);
             // insert the event into the accepted_events calendar
             $result = $this->calendarRepository->create($event, 'accepted');
-            dd($result);
             // remove the event from the open_events calendar
-            // $this->formRepository->updateEventId();    
+            $this->formRepository->updateEventId($request->volunteer_id , $result->id);    
             $this->calendarRepository->delete($event->open_event_id, 'open');
         } 
         // Denied
-        else if(!$request->approve_event) {
+        else if($request->approve_event == 0) {
             $this->formRepository->deny($request->volunteer_id);
         }
         // update
@@ -103,6 +101,8 @@ class AdminController extends Controller
             ];
             $this->formRepository->update($request->all(), 1);
             $this->calendarRepository->update('accepted', $details);
+            flash( "Your message was saved successfully!")->success();
+            redirect('admin/settings/edit-forms');
         } 
         //cancel event
         else{
@@ -185,7 +185,6 @@ class AdminController extends Controller
         // get the user id and save the message
         if(Auth::check()) {
             $userId = Auth::id();
-
             $input = [
                 'id' => $request['id'],
                 'content' => $request['message-content'],
@@ -195,13 +194,10 @@ class AdminController extends Controller
                 $this->messagesRepository->update($input);
                 flash( "Your message was saved successfully!")->success();
             }
-
             catch(Exception $e) {
                 flash("There was a problem saving your message. Please try again later.")->error();
             }
-
         }
-
         return redirect('admin/settings/change-messages');
     }
 

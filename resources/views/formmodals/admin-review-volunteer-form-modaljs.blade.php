@@ -14,9 +14,8 @@ function loadAdminReviewVolunteerFormModal (event) {
 }
 
 function submitAdminReviewVolunteerForm (submit) {
-    console.log(submit);
+    $('#approve-event').val(submit);
     if(submit == 1 || !submit){ 
-        $('#approve-event').val(submit);
         $('#event-form').submit();
     }
     else if(submit == 2){

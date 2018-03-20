@@ -57,6 +57,7 @@
                                 <input type="text" id="paper-goods" name="paper_goods" class="form-control" @if(!$editMode) disabled @endif/>
                             </div>
                         </div>
+                        <input type="text" id="approve-event" name="approve_event" hidden>
                         <input type="text" id="open-event-id" name="open_event_id" hidden>
                         <input type="number" id="volunteer-id" name="volunteer_id" hidden>
                     </div>

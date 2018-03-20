@@ -89,6 +89,9 @@ class VolunteerFormRepository implements IVolunteerFormRepository
                 'form_status' => $status
         ]);
     }
+    public function updateEventId($id, $eventId){
+        $form = $this->form->where('id',$id)->update(['open_event_id' => $eventId]);
+    }
 
     public function delete($id)
     {
