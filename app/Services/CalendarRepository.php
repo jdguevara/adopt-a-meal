@@ -11,6 +11,7 @@ use Google_Service_Calendar_Event;
 
 
 
+
 defined('APPLICATION_NAME') or define('APPLICATION_NAME', env('APP_NAME'));
 defined('CREDENTIALS_PATH') or define('CREDENTIALS_PATH', storage_path('app/service_account_creds.json'));
 defined('SCOPES') or define('SCOPES', implode(' ', array(Google_Service_Calendar::CALENDAR)));
