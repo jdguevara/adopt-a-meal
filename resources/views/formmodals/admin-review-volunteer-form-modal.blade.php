@@ -12,49 +12,49 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Meal Description</span>
-                                <input type="text" id="meal-description" name="meal_description" class="form-control"/>
+                                <input type="text" id="meal-description" name="meal_description" class="form-control" @if(!$editMode) disabled @endif/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Organization Name</span>
-                                <input type="text" id="organization-name" name="organization_name" class="form-control" />
+                                <input type="text" id="organization-name" name="organization_name" class="form-control" @if(!$editMode) disabled @endif/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Date</span>
-                                <input type="text" id="event-date-time" name="open_event_date_time" class="form-control"/>
+                                <input type="text" id="event-date-time" name="open_event_date_time" class="form-control" @if(!$editMode) disabled @endif/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Email</span>
-                                <input type="text" id="email" name="email" class="form-control" />
+                                <input type="text" id="email" name="email" class="form-control" @if(!$editMode) disabled @endif/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Phone</span>
-                                <input type="text" id="phone" name="phone" class="form-control" />
+                                <input type="text" id="phone" name="phone" class="form-control" @if(!$editMode) disabled @endif/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Notes</span>
-                                <input type="text"id="notes" name="notes" class="form-control"  />
+                                <input type="text"id="notes" name="notes" class="form-control"  @if(!$editMode) disabled @endif/>
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Paper Goods</span>
-                                <input type="text" id="paper-goods" name="paper_goods" class="form-control" />
+                                <input type="text" id="paper-goods" name="paper_goods" class="form-control" @if(!$editMode) disabled @endif/>
                             </div>
                         </div>
                         <input type="text" id="open-event-id" name="open_event_id" hidden>

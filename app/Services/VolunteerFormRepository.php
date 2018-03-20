@@ -88,7 +88,6 @@ class VolunteerFormRepository implements IVolunteerFormRepository
                 'event_date_time' => new DateTime($input['open_event_date_time']),
                 'form_status' => $status
         ]);
-        $this->form->save();
     }
 
     public function delete($id)
