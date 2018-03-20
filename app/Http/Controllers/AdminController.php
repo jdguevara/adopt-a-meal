@@ -181,9 +181,6 @@ class AdminController extends Controller
         return redirect('admin/settings/change-messages');
     }
 
-<<<<<<< Updated upstream
-}
-=======
     public function updateForm(Request $request)
     {
 
@@ -212,4 +209,3 @@ class AdminController extends Controller
     }
 
 }
->>>>>>> Stashed changes
