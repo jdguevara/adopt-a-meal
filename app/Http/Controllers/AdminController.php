@@ -152,17 +152,18 @@ class AdminController extends Controller
 
     public function sendEmail($form)
     {
+        $messages = $this->messagesRepository->allContent();
         $admin_emails = explode(',', INTERFAITH_ADMINS);
 
         // To Interfaith
         foreach($admin_emails as $email){
             Mail::to($email)
-                ->send(new AdminApproveEmail($form));
+                ->send(new AdminApproveEmail($form, $messages));
         }
 
         // To the Volunteer
         Mail::to($form["email"])
-            ->send(new VolunteerApprovedEmail($form));
+            ->send(new VolunteerApprovedEmail($form, $messages));
 
         return redirect('/');
     }

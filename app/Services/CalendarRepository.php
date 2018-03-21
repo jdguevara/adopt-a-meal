@@ -14,8 +14,8 @@ use Google_Service_Calendar_Event;
 define('APPLICATION_NAME', env('APP_NAME'));
 define('CREDENTIALS_PATH', storage_path('app/service_account_creds.json'));
 define('SCOPES', implode(' ', array(Google_Service_Calendar::CALENDAR)));
-define('DEV_CALENDAR_ID', env('DEV_CALENDAR_ID'));
-define('DEV_CALENDAR_ACCEPTED_ID', env('DEV_CALENDAR_ACCEPTED_ID'));
+define('CALENDAR_ID', env('CALENDAR_ID'));
+define('CONFIRMED_CALENDAR_ID', env('CONFIRMED_CALENDAR_ID'));
 
 class CalendarRepository implements ICalendarRepository {
 
@@ -33,8 +33,8 @@ class CalendarRepository implements ICalendarRepository {
 
         $cal = new Google_Service_Calendar($client);
         $this->googleCalendarService = $cal;
-        $this->openCalendarId = DEV_CALENDAR_ID;
-        $this->acceptedCalendarId = DEV_CALENDAR_ACCEPTED_ID;
+        $this->openCalendarId = CALENDAR_ID;
+        $this->acceptedCalendarId = CONFIRMED_CALENDAR_ID;
     }
 
     public function getVolunteerEvents()
