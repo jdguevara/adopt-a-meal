@@ -40,7 +40,7 @@ class VolunteerFormController extends Controller
             'open_event_date_time' => 'required'
         ]);
          
-        // $this->sendEmail($request->all());
+        $this->sendEmail($request->all());
         $this->formRepository->create($request->all());
         flash('Volunteer form submitted successfully')->success();
         return redirect('/');
