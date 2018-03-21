@@ -109,7 +109,7 @@ class AdminController extends Controller
 
         } else {
             $this->calendarRepository->cancelVolunteerEvent($request);
-            $this->formRepository->deny($request->volunteer_id);
+            $this->formRepository->cancelled($request->volunteer_id);
             flash( "Volunteer Event Cancelled Succesfully")->success();
         }
 

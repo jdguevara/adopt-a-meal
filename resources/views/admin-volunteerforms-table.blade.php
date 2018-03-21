@@ -57,7 +57,26 @@ var volunteerForms = @json($volunteerforms);
                         <td>{{ $volunteerform->notes }}</td>
                         <td>{{ $volunteerform->paper_goods ? "Yes" : "No" }}</td>
 
-                        <td>@if($volunteerform->form_status != 2) <button onclick="loadAdminReviewVolunteerFormModal('{{ $volunteerform['id'] }}');" class="btn btn-warning">Edit</button> @endif</td>
+                        <td>
+                        @switch($volunteerform->form_status)
+                            @case(0)
+                                <i>Pending Review</i>
+                                @break
+
+                            @case(1)
+                                <button onclick="loadAdminReviewVolunteerFormModal('{{ $volunteerform['id'] }}');" class="btn btn-warning">Edit</button>
+                                @break
+
+                            @case(2)
+                                <i>Denied</i>
+                                @break
+                            @case(3)
+                                <i>Cancelled</i>
+                                @break
+                            @default
+                                <i>LostInSpace</i>
+                        @endswitch
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

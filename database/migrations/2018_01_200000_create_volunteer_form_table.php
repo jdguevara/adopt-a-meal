@@ -21,7 +21,7 @@ class VolunteerFormTable extends Migration
             $table->text('meal_description');
             $table->text('notes');
             $table->boolean('paper_goods');
-            $table->smallInteger('form_status')->nullable()->comment('0=new,1=confirmed,2=rejected');
+            $table->smallInteger('form_status')->nullable()->comment('0=new,1=confirmed,2=rejected,3=cancelled');
             $table->string('open_event_id');
             $table->dateTime('event_date_time')->nullable();
             $table->string('confirmed_event_id')->nullable();

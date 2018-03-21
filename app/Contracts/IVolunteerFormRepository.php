@@ -22,4 +22,5 @@ interface IVolunteerFormRepository
 
     public function deny($volunteerId);
 
+    public function cancelled($volunteerId);
 }
