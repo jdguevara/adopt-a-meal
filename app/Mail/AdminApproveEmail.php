@@ -17,9 +17,10 @@ class AdminApproveEmail extends Mailable
      *
      * @return void
      */
-    public function __construct($form)
+    public function __construct($form, $messages)
     {
         $this->form = $form;
+        $this->messages = $messages;
     }
 
     /**
@@ -29,7 +30,7 @@ class AdminApproveEmail extends Mailable
      */
     public function build()
     {
-        $this->form['open_event_date_time'] =  Carbon::parse($this->form['open_event_date_time'])->format('F jS Y, H:ia');
-        return $this->view('emails.adminapprovedemail', ['form' => $this->form]);
+        $this->form['open_event_date_time'] =  Carbon::parse($this->form['open_event_date_time'])->format('Y-m-d');
+        return $this->view('emails.adminapprovedemail', ['form' => $this->form, 'messages' => $this->messages ]);
     }
 }
