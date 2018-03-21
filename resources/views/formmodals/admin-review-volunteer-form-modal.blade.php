@@ -1,4 +1,7 @@
-<form id="event-form" method="POST" action="/admin/form/review">
+@if($editMode) <form id="event-form" method="POST" action="/admin/form/update">
+@else <form id="event-form" method="POST" action="/admin/form/review">
+@endif
+
     {{ csrf_field() }}
     <div class="modal fade" id="event-modal" role="dialog">
         <div class="modal-dialog">

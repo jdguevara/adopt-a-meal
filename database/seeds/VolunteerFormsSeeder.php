@@ -22,7 +22,6 @@ class VolunteerFormsSeeder extends Seeder
         for ($i = 0; $i < $max; $i++) {
             $event = $events[mt_rand(0, count($events) - 1)];
             DB::table('volunteer_forms')->insert([
-                'title' => 'Seeded title',
                 'organization_name' => 'Seeded Organization',
                 'email' => 'seed@seed.seed',
                 'phone' => '9998887776',

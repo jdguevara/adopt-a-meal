@@ -15,7 +15,6 @@ class VolunteerFormTable extends Migration
     {
         Schema::create('volunteer_forms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
             $table->string('organization_name');
             $table->string('email');
             $table->string('phone');

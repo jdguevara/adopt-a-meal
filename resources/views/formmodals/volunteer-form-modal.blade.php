@@ -85,7 +85,7 @@
                         <!-- rendered from event id stored in calendar -->
                         <input id="event-id" name="open_event_id" type="text" hidden />
                         <input id="event-time" name="open_event_date_time" type="text" hidden />
-                        <input id="event-title" name="title" type="text" hidden />
+
                     </div> <!-- end inputs -->
 
                     <!-- loading spinner -->

@@ -11,11 +11,9 @@ use DateTime;
 class VolunteerFormRepository implements IVolunteerFormRepository
 {
     private $form;
-    protected $calendarRepository;
 
-    public function __construct(VolunteerForm $form, ICalendarRepository $ICalendarRepository)
+    public function __construct(VolunteerForm $form, ICalendarRepository $ICalendarRepository) // TODO REMOVE CALENDAR REPOSITORY
     {
-        $this->calendarRepository = $ICalendarRepository;
         $this->form = $form;
     }
 
@@ -57,7 +55,6 @@ class VolunteerFormRepository implements IVolunteerFormRepository
     public function create($input)
     {
         $this->form->fill([
-            'title' => $input['title'],
             'organization_name' => $input['organization_name'],
             'phone' => $input['phone'],
             'email' => $input['email'],

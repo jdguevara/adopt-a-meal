@@ -22,7 +22,7 @@ class LandingPageController extends Controller
        // $events = array_merge($calendar->findVolunteerEvents(), $calendar->findAllAccepted());
 
         $volunteerEvents = $calendarRepository->getVolunteerEvents();
-        $acceptedEvents = $calendarRepository->getAcceptedEvents();
+        $acceptedEvents = $calendarRepository->getConfirmedEvents();
         $completedEvents = $volunteerFormRepository->getAllPreviousAcceptedOrganizationNames();
         $messages = $messagesRepository->allContent();
 

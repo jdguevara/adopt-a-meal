@@ -79,6 +79,7 @@ class AdminController extends Controller
     {
         $this->formRepository->deny($request->volunteer_id);
     }
+
     private function updateForm(Request $request)
     {
         $this->validate($request, [
@@ -92,16 +93,10 @@ class AdminController extends Controller
             'volunteer_id' => 'required',
             'confirmed_event_id' => 'required'
         ]);
-        $details = [
-            'confirmed_event_id' => $request['confirmed_event_id'],
-            'title' => $request['organization_name'],
-            'event_date_time' => $request['open_event_date_time'],
-            'meal_description' => $request['meal_description'],
-            'open_event_id' => $request['open_event_id']
-        ];
+
         strtolower($request['paper_goods'][0]) == 'y' ? $request->merge(['paper_goods' => 1]) : $request->merge(['paper_goods' => 0]);
         $this->formRepository->update($request->all(), 1);
-        $this->calendarRepository->update('accepted', $details);
+        $this->calendarRepository->updateVolunteerEvent($request);
         flash( "Form Updated Succesfully")->success();
     }
     public function approveForm(Request $request)
@@ -113,12 +108,12 @@ class AdminController extends Controller
         ]);
         $event = $this->formRepository->get($request->volunteer_id);
         // insert the event into the accepted_events calendar
-        $result = $this->calendarRepository->create($event, 'accepted');
+        $result = $this->calendarRepository->createConfirmedVolunteerEvent($event);
         $this->sendEmail($event);
         // update the event's status in adoptameal data
         $this->formRepository->approve($request->volunteer_id, $result->id);
         // remove the event from the open_events calendar
-        $this->calendarRepository->delete($event->open_event_id, 'open');
+        $this->calendarRepository->deleteOpenEvent($event->open_event_id);
     }
     private function cancelEvent(Request $request)
     {
