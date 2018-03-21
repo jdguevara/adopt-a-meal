@@ -38,7 +38,7 @@
                                 <span class="input-group-addon">Email</span>
                                 <input id="email" name="email" type="text" class="form-control" placeholder="Email">
                             </div>
-                            <span id="email-validation" class="help-block hidden alert-danger">Required: Please enter a valid email address</span>
+                            <div id="email-validation" class="hidden alert-danger">Required: Please enter a valid email address</div>
                         </div>
 
                         <div class="form-group">
