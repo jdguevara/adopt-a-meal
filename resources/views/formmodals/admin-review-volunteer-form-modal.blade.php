@@ -60,7 +60,7 @@
                                 <input type="text" id="paper-goods" name="paper_goods" class="form-control" @if(!$editMode) disabled @endif/>
                             </div>
                         </div>
-                        <input type="text" id="approve-event" name="approve_event" hidden>
+                        <input type="number" id="volunteer-form-status" name="volunteer-form-status" hidden>
                         <input type="text" id="open-event-id" name="open_event_id" hidden>
                         <input type="text" id="confirmed-event-id" name="confirmed_event_id" hidden>
                         <input type="number" id="volunteer-id" name="volunteer_id" hidden>
@@ -70,21 +70,21 @@
                 <div class="modal-footer">
                     <div class="input-group pull-right">
                         @if($editMode)
-                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm(2);">
+                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm(1);">
                             Update
                         </button>
-                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm(3);">
+                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm(2);">
                             Cancel Volunteer Event
                         </button> 
                         @else
                         <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm(1);">
                             Approve
                         </button>
-                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm(0);">
+                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm(2);">
                             Deny
                         </button>        
-                        <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         @endif
+                        <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

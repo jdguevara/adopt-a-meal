@@ -1,6 +1,8 @@
 <script>
-function loadAdminReviewVolunteerFormModal (event) {
-    $("#title").text(event.title);
+function loadAdminReviewVolunteerFormModal (eventId) {
+
+    var event = volunteerForms.find(function(event) { return event.id == eventId; });
+
     $('#meal-description').val(event.meal_description);
     $('#organization-name').val(event.organization_name);
     $('#event-date-time').val(event.event_date_time);
@@ -15,15 +17,8 @@ function loadAdminReviewVolunteerFormModal (event) {
 }
 
 function submitAdminReviewVolunteerForm (submit) {
-    $('#approve-event').val(submit);
-    if(submit == 1 || !submit){ 
-        $('#event-form').submit();
-    }
-    else if(submit == 2){
-        $('#event-form').submit();
-    }
-    else{
-        console.log("cancel event");
-    }
+    $('#volunteer-form-status').val(submit);
+    $('#event-form').submit();
 }
+
 </script>

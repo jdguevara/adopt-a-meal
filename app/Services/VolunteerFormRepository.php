@@ -27,11 +27,6 @@ class VolunteerFormRepository implements IVolunteerFormRepository
         return $this->form->find($id);
     }
 
-    public function getConfirmedEvents()
-    {
-        return $this->form->where('form_status', '=', 1)->get();
-    }
-
     public function getAllNewForms()
     {
         return $this->form->where('form_status', '=', 0)->get();

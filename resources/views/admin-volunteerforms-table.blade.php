@@ -59,7 +59,7 @@ var volunteerforms = @json($volunteerforms);
                         <td>{{ $volunteerform->email }}</td>
                         <td>{{ $volunteerform->paper_goods ? "Yes" : "No" }}</td>
 
-                        <td><button onclick="loadAdminReviewVolunteerFormModal({{ $volunteerform }});" class="btn btn-warning">Edit</button></td>
+                        <td><button onclick="loadAdminReviewVolunteerFormModal('{{ $volunteerform['id'] }}');" class="btn btn-warning">Edit</button></td>
                     </tr>
                     @endforeach
                 </tbody>

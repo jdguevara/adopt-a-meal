@@ -45,7 +45,7 @@ class AdminController extends Controller
 
     public function viewVolunteerFormsTable()
     {
-        return view('admin-volunteerforms-table', ['volunteerforms' => $this->formRepository->getConfirmedEvents()]);
+        return view('admin-volunteerforms-table', ['volunteerforms' => $this->formRepository->all()]);
     }
 
     public function viewMealIdeas()
@@ -60,28 +60,33 @@ class AdminController extends Controller
 
     public function reviewVolunteerForm(Request $request)
     {
-        switch($request->approve_event){
-            case 0:
-                $this->denyForm($request);
-                return redirect('/admin');
-            case 1:
-                $this->approveForm($request);
-                return redirect('/admin');
-            case 2:
-                $this->updateForm($request);
-                return redirect('/admin/form/all');
-            default:
-                $this->cancelEvent($request);
+        $this->validate($request, [
+            'open_event_id' => 'required',
+            'volunteer_id' => 'required',
+            'form_status' => 'required'
+        ]);
+        // Approved
+        if ($request->form_status == 1) {
+            $event = $this->formRepository->get($request->volunteer_id);
+            // update the event's status in adoptameal data
+            $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
+            $this->sendApprovedEmail($event);
+            // insert the event into the accepted_events calendar
+            $result = $this->calendarRepository->createConfirmedVolunteerEvent($event);
+            // remove the event from the open_events calendar
+            $this->calendarRepository->deleteOpenEvent($event->open_event_id);
+        } // Denied
+        else {
+            $this->formRepository->deny($request->volunteer_id);
         }
+        return redirect('/admin');
     }
 
-    private function denyForm(Request $request)
+    public function updateVolunteerForm(Request $request)
     {
-        $this->formRepository->deny($request->volunteer_id);
-    }
+        // Fix the paper_goods field
+        strtolower($request['paper_goods'][0]) == 'y' ? $request->merge(['paper_goods' => 1]) : $request->merge(['paper_goods' => 0]);
 
-    private function updateForm(Request $request)
-    {
         $this->validate($request, [
             'organization_name' => 'required',
             'phone' => 'required',
@@ -94,30 +99,9 @@ class AdminController extends Controller
             'confirmed_event_id' => 'required'
         ]);
 
-        strtolower($request['paper_goods'][0]) == 'y' ? $request->merge(['paper_goods' => 1]) : $request->merge(['paper_goods' => 0]);
         $this->formRepository->update($request->all(), 1);
         $this->calendarRepository->updateVolunteerEvent($request);
         flash( "Form Updated Succesfully")->success();
-    }
-    public function approveForm(Request $request)
-    {
-        $this->validate($request, [
-            'open_event_id' => 'required',
-            'volunteer_id' => 'required',
-            'approve_event' => 'required'
-        ]);
-        $event = $this->formRepository->get($request->volunteer_id);
-        // insert the event into the accepted_events calendar
-        $result = $this->calendarRepository->createConfirmedVolunteerEvent($event);
-        $this->sendEmail($event);
-        // update the event's status in adoptameal data
-        $this->formRepository->approve($request->volunteer_id, $result->id);
-        // remove the event from the open_events calendar
-        $this->calendarRepository->deleteOpenEvent($event->open_event_id);
-    }
-    private function cancelEvent(Request $request)
-    {
-        //TODO
     }
 
     public function reviewMealIdea(Request $request)
@@ -145,7 +129,7 @@ class AdminController extends Controller
     }
 
 
-    public function sendEmail($form)
+    public function sendApprovedEmail($form)
     {
         $messages = $this->messagesRepository->allContent();
         $admin_emails = explode(',', INTERFAITH_ADMINS);
