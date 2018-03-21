@@ -10,8 +10,8 @@ use Carbon\Carbon;
 define('APPLICATION_NAME', env('APP_NAME'));
 define('CREDENTIALS_PATH', storage_path('app/service_account_creds.json'));
 define('SCOPES', implode(' ', array(Google_Service_Calendar::CALENDAR)));
-define('DEV_CALENDAR_ID', env('DEV_CALENDAR_ID'));
-define('DEV_CALENDAR_ACCEPTED_ID', env('DEV_CALENDAR_ACCEPTED_ID'));
+define('CALENDAR_ID', env('CALENDAR_ID'));
+define('CONFIRMED_CALENDAR_ID', env('CONFIRMED_CALENDAR_ID'));
 
 class Calendar
 {
@@ -32,8 +32,8 @@ class Calendar
 
         $cal = new Google_Service_Calendar($client);
         $this->calendarService = $cal;
-        $this->calendarId = DEV_CALENDAR_ID;
-        $this->acceptedCalendarId = DEV_CALENDAR_ACCEPTED_ID;
+        $this->calendarId = CALENDAR_ID;
+        $this->acceptedCalendarId = CONFIRMED_CALENDAR_ID;
     }
 
     function findVolunteerEvents() {
