@@ -75,10 +75,9 @@ class AdminController extends Controller
         }
     }
 
-    private function denyForm()
+    private function denyForm(Request $request)
     {
         $this->formRepository->deny($request->volunteer_id);
-        return redirect('/admin');
     }
     private function updateForm(Request $request)
     {
