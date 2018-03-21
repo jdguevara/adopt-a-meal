@@ -14,13 +14,6 @@
                     <div id="inputs" class="container-fluid volunteer-inputs">
                         <div class="form-group">
                             <div class="input-group">
-                                <span class="input-group-addon">Meal Description</span>
-                                <input type="text" id="meal-description" name="meal_description" class="form-control" @if(!$editMode) disabled @endif/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="input-group">
                                 <span class="input-group-addon">Organization Name</span>
                                 <input type="text" id="organization-name" name="organization_name" class="form-control" @if(!$editMode) disabled @endif/>
                             </div>
@@ -28,8 +21,15 @@
 
                         <div class="form-group">
                             <div class="input-group">
+                                <span class="input-group-addon">Meal Description</span>
+                                <input type="text" id="meal-description" name="meal_description" class="form-control" @if(!$editMode) disabled @endif/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
                                 <span class="input-group-addon">Date</span>
-                                <input type="text" id="event-date-time" name="open_event_date_time" class="form-control" @if(!$editMode) disabled @endif/>
+                                <input type="text" id="event-date-time" class="form-control" disabled />
                             </div>
                         </div>
 
@@ -60,7 +60,8 @@
                                 <input type="text" id="paper-goods" name="paper_goods" class="form-control" @if(!$editMode) disabled @endif/>
                             </div>
                         </div>
-                        <input type="number" id="volunteer-form-status" name="volunteer-form-status" hidden>
+                        <input type="string" id="event-date-time" name="event_date_time" class="hidden" hidden>
+                        <input type="number" id="form-status" name="form_status" hidden>
                         <input type="text" id="open-event-id" name="open_event_id" hidden>
                         <input type="text" id="confirmed-event-id" name="confirmed_event_id" hidden>
                         <input type="number" id="volunteer-id" name="volunteer_id" hidden>

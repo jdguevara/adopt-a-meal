@@ -45,7 +45,8 @@ class AdminController extends Controller
 
     public function viewVolunteerFormsTable()
     {
-        return view('admin-volunteerforms-table', ['volunteerforms' => $this->formRepository->all()]);
+        $allVolunteerForms = $this->formRepository->all(); //asort(, function($date1, $date2) {} );
+        return view('admin-volunteerforms-table', ['volunteerforms' => $allVolunteerForms ]);
     }
 
     public function viewMealIdeas()
@@ -67,14 +68,16 @@ class AdminController extends Controller
         ]);
         // Approved
         if ($request->form_status == 1) {
-            $event = $this->formRepository->get($request->volunteer_id);
-            // update the event's status in adoptameal data
-            $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
-            $this->sendApprovedEmail($event);
-            // insert the event into the accepted_events calendar
-            $result = $this->calendarRepository->createConfirmedVolunteerEvent($event);
-            // remove the event from the open_events calendar
-            $this->calendarRepository->deleteOpenEvent($event->open_event_id);
+            
+            $event = $this->formRepository->get($request->volunteer_id); // Get the current volunteer information
+            
+            $result = $this->calendarRepository->createConfirmedVolunteerEvent($event);// insert the event into the accepted_events calendar
+            $this->calendarRepository->deleteOpenEvent($event->open_event_id); // remove the event from the open_events calendar
+
+            $this->sendApprovedEmail($event); // Notify the volunteers and the admins that the volunteer form has been approved
+
+            // finalize the approval by updating the event's status in adoptameal database. If it fails before this post they will be able to redo it easily
+            $this->formRepository->approve($request->volunteer_id, $result->id);
         } // Denied
         else {
             $this->formRepository->deny($request->volunteer_id);
@@ -87,21 +90,30 @@ class AdminController extends Controller
         // Fix the paper_goods field
         strtolower($request['paper_goods'][0]) == 'y' ? $request->merge(['paper_goods' => 1]) : $request->merge(['paper_goods' => 0]);
 
-        $this->validate($request, [
-            'organization_name' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
-            'meal_description' => 'required',
-            'open_event_id' => 'required',
-            'open_event_date_time' => 'required',
-            'paper_goods' => 'required',
-            'volunteer_id' => 'required',
-            'confirmed_event_id' => 'required'
-        ]);
+        if ($request->form_status == 1) {
+            $this->validate($request, [
+                'organization_name' => 'required',
+                'phone' => 'required',
+                'email' => 'required',
+                'meal_description' => 'required',
+                'open_event_id' => 'required',
+                'event_date_time' => 'required',
+                'paper_goods' => 'required',
+                'volunteer_id' => 'required',
+                'confirmed_event_id' => 'required'
+            ]);
 
-        $this->formRepository->update($request->all(), 1);
-        $this->calendarRepository->updateVolunteerEvent($request);
-        flash( "Form Updated Succesfully")->success();
+            $this->calendarRepository->updateVolunteerEvent($request);
+            $this->formRepository->update($request->all(), 1);
+            flash( "Form Updated Succesfully")->success();
+
+        } else {
+            $this->calendarRepository->cancelVolunteerEvent($request);
+            $this->formRepository->deny($request->volunteer_id);
+            flash( "Volunteer Event Cancelled Succesfully")->success();
+        }
+
+        return redirect('/admin/form/all');
     }
 
     public function reviewMealIdea(Request $request)

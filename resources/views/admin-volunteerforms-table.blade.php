@@ -3,8 +3,7 @@
 @section('scripts')
 @component('formmodals.admin-review-volunteer-form-modaljs') @endcomponent
 <script>
-var volunteerforms = @json($volunteerforms);
-
+var volunteerForms = @json($volunteerforms);
 </script>
 @endsection
 
@@ -39,27 +38,26 @@ var volunteerforms = @json($volunteerforms);
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Meal Name</th>
-                        <th>Description</th>
-                        <th>Website</th>
-                        <th>Submitter Name</th>
-                        <th>Submitter Email</th>
+                        <th>Organization Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Meal Description</th>
+                        <th>Notes</th>
                         <th>Bringing Paper Goods</th>
-
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($volunteerforms as $volunteerform)
                     <tr>
-                        <td>{{ $volunteerform->title }}</td>
-                        <td>{{ $volunteerform->meal_description }}</td>
-                        <td>{{ $volunteerform->website }}</td>
                         <td>{{ $volunteerform->organization_name }}</td>
                         <td>{{ $volunteerform->email }}</td>
+                        <td>{{ $volunteerform->phone }}</td>
+                        <td>{{ $volunteerform->meal_description }}</td>
+                        <td>{{ $volunteerform->notes }}</td>
                         <td>{{ $volunteerform->paper_goods ? "Yes" : "No" }}</td>
 
-                        <td><button onclick="loadAdminReviewVolunteerFormModal('{{ $volunteerform['id'] }}');" class="btn btn-warning">Edit</button></td>
+                        <td>@if($volunteerform->form_status != 2) <button onclick="loadAdminReviewVolunteerFormModal('{{ $volunteerform['id'] }}');" class="btn btn-warning">Edit</button> @endif</td>
                     </tr>
                     @endforeach
                 </tbody>

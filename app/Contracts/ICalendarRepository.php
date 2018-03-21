@@ -31,13 +31,6 @@ interface ICalendarRepository
      * @param $eventType Open event or Accepted event
      * @return mixed
      */
-    public function createOpenVolunteerEvent($event);
-
-    /**
-     * Get all events from the desired calendar (open or accepted)
-     * @param $eventType Open event or Accepted event
-     * @return mixed
-     */
     public function updateVolunteerEvent($details);
 
     /**
@@ -45,7 +38,7 @@ interface ICalendarRepository
      * @param $eventType Open event or Accepted event
      * @return mixed
      */
-    public function deleteVolunteerEvent($id);
+    public function cancelVolunteerEvent($event);
 
     /**
      * Get all events from the desired calendar (open or accepted)

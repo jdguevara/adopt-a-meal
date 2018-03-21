@@ -30,7 +30,7 @@ class VolunteerApprovedEmail extends Mailable
      */
     public function build()
     {
-        $this->form['open_event_date_time'] = Carbon::parse($this->form['open_event_date_time'])->format('Y-m-d');
+        $this->form['event_date_time'] = Carbon::parse($this->form['event_date_time'])->format('Y-m-d');
         return $this->view('emails.volunteerapprovedemail', [ 'form' => $this->form, 'messages' => $this->messages ]);
     }
 }

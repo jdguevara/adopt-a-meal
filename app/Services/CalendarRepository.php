@@ -86,21 +86,6 @@ class CalendarRepository implements ICalendarRepository {
         return $this->googleCalendarService->events->insert($this->acceptedCalendarId, $calendar_event);
     }
 
-    public function createOpenVolunteerEvent($event)
-    {
-        $calendar_event = new Google_Service_Calendar_Event(array(
-            'summary' => "Click to Adopt-A-Meal!",
-            'start' => array(
-                'date' => Carbon::parse($event->event_date_time)->format('Y-m-d')
-            ),
-            'end' => array(
-                'date' => Carbon::parse($event->event_date_time)->format('Y-m-d')
-            )
-        ));
-
-        return $this->googleCalendarService->events->insert($this->openCalendarId, $calendar_event);
-    }
-
     public function updateVolunteerEvent($details)
     {
         $calendar_event = new Google_Service_Calendar_Event(array(
@@ -113,18 +98,31 @@ class CalendarRepository implements ICalendarRepository {
                 'date' => Carbon::parse($details->event_date_time)->format('Y-m-d')
             )
         ));
-    
-        return $this->googleCalendarService->events->update($this->acceptedCalendarId, $details['confirmed_event_id'], $calendar_event);
+
+        return $this->googleCalendarService->events->update($this->acceptedCalendarId, $details->confirmed_event_id, $calendar_event);
     }
 
-    public function deleteVolunteerEvent($id)
+    public function cancelVolunteerEvent($event)
     {
-        return $this->googleCalendarService->events->delete($this->acceptedCalendarId, $id);
+        $this->googleCalendarService->events->delete($this->acceptedCalendarId, $event->confirmed_event_id);
+
+        $calendar_event = new Google_Service_Calendar_Event(array(
+            'summary' => "Click to Adopt-A-Meal!",
+            'status' => "confirmed",
+            'start' => array(
+                'date' => Carbon::parse($event->event_date_time)->format('Y-m-d')
+            ),
+            'end' => array(
+                'date' => Carbon::parse($event->event_date_time)->format('Y-m-d')
+            )
+        ));
+
+        return $this->googleCalendarService->events->update($this->openCalendarId, $event->open_event_id, $calendar_event);
     }
 
     public function deleteOpenEvent($id)
     {
-        //return $this->googleCalendarService->events->delete($this->openCalendarId, $id);
+        return $this->googleCalendarService->events->delete($this->openCalendarId, $id);
     }
 
     public function all($eventType)

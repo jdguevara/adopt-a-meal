@@ -76,8 +76,6 @@ class VolunteerFormRepository implements IVolunteerFormRepository
                 'meal_description' => $input['meal_description'],
                 'notes' => $input['notes'] ?? '',
                 'paper_goods' => $input['paper_goods'] ,
-                'confirmed_event_id' => $input['confirmed_event_id'],
-                'event_date_time' => new DateTime($input['open_event_date_time']),
                 'form_status' => $status
         ]);
     }

@@ -6,6 +6,7 @@ function loadAdminReviewVolunteerFormModal (eventId) {
     $('#meal-description').val(event.meal_description);
     $('#organization-name').val(event.organization_name);
     $('#event-date-time').val(event.event_date_time);
+    $('#event-date-time.hidden').val(event.event_date_time);
     $('#email').val(event.email);
     $('#notes').val(event.notes);
     $('#phone').val(event.phone);
@@ -17,7 +18,7 @@ function loadAdminReviewVolunteerFormModal (eventId) {
 }
 
 function submitAdminReviewVolunteerForm (submit) {
-    $('#volunteer-form-status').val(submit);
+    $('#form-status').val(submit);
     $('#event-form').submit();
 }
 
