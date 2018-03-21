@@ -33,6 +33,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('home') }}">Volunteer Calendar</a></li>
                         <li><a href="{{ route('admin-home') }}">Review Pending Volunteers</a></li>
+                        <li><a href="{{ route('admin-volunteerforms-table') }}">Edit Approved Volunteer Forms</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -51,7 +52,6 @@
                                 Change Messages
                             </a>
                         </li>
-                        <li><a href="/admin/settings/edit-forms">Edit Volunteer Forms</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

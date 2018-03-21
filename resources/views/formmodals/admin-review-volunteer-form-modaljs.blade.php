@@ -9,6 +9,7 @@ function loadAdminReviewVolunteerFormModal (event) {
     $('#phone').val(event.phone);
     $('#paper-goods').val(event.paper_goods == 1 ? "Yes" : "No");
     $('#open-event-id').val(event.open_event_id);
+    $('#confirmed-event-id').val(event.confirmed_event_id)
     $('#volunteer-id').val(event.id);
     $("#event-modal").modal();
 }
@@ -19,11 +20,10 @@ function submitAdminReviewVolunteerForm (submit) {
         $('#event-form').submit();
     }
     else if(submit == 2){
-        $('#paper-goods').val($('#paper-goods').val().toLowerCase() == "yes" ? 1 : 0);
         $('#event-form').submit();
     }
-    // else{
-    //     console.log("cancel event");
-    // }
+    else{
+        console.log("cancel event");
+    }
 }
 </script>

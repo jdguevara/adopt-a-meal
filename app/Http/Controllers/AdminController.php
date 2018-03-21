@@ -60,55 +60,71 @@ class AdminController extends Controller
 
     public function reviewVolunteerForm(Request $request)
     {
-        // Approved
-        if ($request->approve_event == 1) {
-            $this->validate($request, [
-                'open_event_id' => 'required',
-                'volunteer_id' => 'required',
-                'approve_event' => 'required'
-            ]);
-            $event = $this->formRepository->get($request->volunteer_id);
-            // update the event's status in adoptameal data
-            $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
-            // $this->sendEmail($event);
-            // insert the event into the accepted_events calendar
-            $result = $this->calendarRepository->create($event, 'accepted');
-            // remove the event from the open_events calendar
-            $this->formRepository->updateEventId($request->volunteer_id , $result->id);    
-            $this->calendarRepository->delete($event->open_event_id, 'open');
-        } 
-        // Denied
-        else if($request->approve_event == 0) {
-            $this->formRepository->deny($request->volunteer_id);
+        switch($request->approve_event){
+            case 0:
+                $this->denyForm($request);
+                return redirect('/admin');
+            case 1:
+                $this->approveForm($request);
+                return redirect('/admin');
+            case 2:
+                $this->updateForm($request);
+                return redirect('/admin/form/all');
+            default:
+                $this->cancelEvent($request);
         }
-        // update
-        else if($request->approve_event == 2){
-            $this->validate($request, [
-                'organization_name' => 'required',
-                'phone' => 'required',
-                'email' => 'required',
-                'meal_description' => 'required',
-                'open_event_id' => 'required',
-                'open_event_date_time' => 'required',
-                'paper_goods' => 'required',
-                'volunteer_id' => 'required'
-            ]);
-            $details = [
-                'id' => $request['open_event_id'],
-                'title' => $request['organization_name'],
-                'event_date_time' => $request['open_event_date_time'],
-                'meal_description' => $request['meal_description']  
-            ];
-            $this->formRepository->update($request->all(), 1);
-            $this->calendarRepository->update('accepted', $details);
-            flash( "Your message was saved successfully!")->success();
-            redirect('admin/settings/edit-forms');
-        } 
-        //cancel event
-        else{
+    }
 
-        }
+    private function denyForm()
+    {
+        $this->formRepository->deny($request->volunteer_id);
         return redirect('/admin');
+    }
+    private function updateForm(Request $request)
+    {
+        $this->validate($request, [
+            'organization_name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'meal_description' => 'required',
+            'open_event_id' => 'required',
+            'open_event_date_time' => 'required',
+            'paper_goods' => 'required',
+            'volunteer_id' => 'required',
+            'confirmed_event_id' => 'required'
+        ]);
+        $details = [
+            'confirmed_event_id' => $request['confirmed_event_id'],
+            'title' => $request['organization_name'],
+            'event_date_time' => $request['open_event_date_time'],
+            'meal_description' => $request['meal_description'],
+            'open_event_id' => $request['open_event_id']
+        ];
+        strtolower($request['paper_goods'][0]) == 'y' ? $request->merge(['paper_goods' => 1]) : $request->merge(['paper_goods' => 0]);
+        dd($request);
+        $this->formRepository->update($request->all(), 1);
+        $this->calendarRepository->update('accepted', $details);
+        flash( "Form Updated Succesfully")->success();
+    }
+    public function approveForm(Request $request)
+    {
+        $this->validate($request, [
+            'open_event_id' => 'required',
+            'volunteer_id' => 'required',
+            'approve_event' => 'required'
+        ]);
+        $event = $this->formRepository->get($request->volunteer_id);
+        // insert the event into the accepted_events calendar
+        $result = $this->calendarRepository->create($event, 'accepted');
+        //$this->sendEmail($event);
+        // update the event's status in adoptameal data
+        $this->formRepository->approve($request->volunteer_id, $result->id);
+        // remove the event from the open_events calendar
+        $this->calendarRepository->delete($event->open_event_id, 'open');
+    }
+    private function cancelEvent(Request $request)
+    {
+        //TODO
     }
 
     public function reviewMealIdea(Request $request)
@@ -201,14 +217,5 @@ class AdminController extends Controller
         return redirect('admin/settings/change-messages');
     }
 
-    public function updateForm(Request $request)
-    {
-
-
-    }
-    public function cancelEvent(Request $request)
-    {
-
-    }
 
 }

@@ -25,7 +25,7 @@ class VolunteerFormTable extends Migration
             $table->smallInteger('form_status')->nullable()->comment('0=new,1=confirmed,2=rejected');
             $table->string('open_event_id');
             $table->dateTime('event_date_time')->nullable();
-            $table->dateTime('confirmed_event_id')->nullable();
+            $table->string('confirmed_event_id')->nullable();
             $table->timestamps();
             $table->unique('confirmed_event_id');
         });

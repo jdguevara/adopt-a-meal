@@ -1,4 +1,4 @@
-<form id="event-form" method="POST" action="/admin/settings/update-form">
+<form id="event-form" method="POST" action="/admin/form/review">
     {{ csrf_field() }}
     <div class="modal fade" id="event-modal" role="dialog">
         <div class="modal-dialog">
@@ -59,6 +59,7 @@
                         </div>
                         <input type="text" id="approve-event" name="approve_event" hidden>
                         <input type="text" id="open-event-id" name="open_event_id" hidden>
+                        <input type="text" id="confirmed-event-id" name="confirmed_event_id" hidden>
                         <input type="number" id="volunteer-id" name="volunteer_id" hidden>
                     </div>
                 </div>
