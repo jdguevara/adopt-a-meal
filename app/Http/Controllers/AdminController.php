@@ -45,7 +45,8 @@ class AdminController extends Controller
 
     public function viewVolunteerFormsTable()
     {
-        return view('admin-volunteerforms-table', ['volunteerforms' => $this->formRepository->all()]);
+        $allVolunteerForms = $this->formRepository->all(); //asort(, function($date1, $date2) {} );
+        return view('admin-volunteerforms-table', ['volunteerforms' => $allVolunteerForms ]);
     }
 
     public function viewMealIdeas()
@@ -60,31 +61,59 @@ class AdminController extends Controller
 
     public function reviewVolunteerForm(Request $request)
     {
-
         $this->validate($request, [
             'open_event_id' => 'required',
             'volunteer_id' => 'required',
-            'approve_event' => 'required'
+            'form_status' => 'required'
         ]);
-
         // Approved
-        if ($request->approve_event) {
+        if ($request->form_status == 1) {
+            
+            $event = $this->formRepository->get($request->volunteer_id); // Get the current volunteer information
+            
+            $result = $this->calendarRepository->createConfirmedVolunteerEvent($event);// insert the event into the accepted_events calendar
+            $this->calendarRepository->deleteOpenEvent($event->open_event_id); // remove the event from the open_events calendar
 
-            $event = $this->formRepository->get($request->volunteer_id);
-            // update the event's status in adoptameal data
-            $this->formRepository->approve($request->volunteer_id, $request->open_event_id);
-            $this->sendEmail($event);
-            // insert the event into the accepted_events calendar
-            $result = $this->calendarRepository->create($event, 'accepted');
-            // remove the event from the open_events calendar
+            $this->sendApprovedEmail($event); // Notify the volunteers and the admins that the volunteer form has been approved
 
-            $this->calendarRepository->delete($event->open_event_id, 'open');
-
+            // finalize the approval by updating the event's status in adoptameal database. If it fails before this post they will be able to redo it easily
+            $this->formRepository->approve($request->volunteer_id, $result->id);
         } // Denied
         else {
             $this->formRepository->deny($request->volunteer_id);
         }
         return redirect('/admin');
+    }
+
+    public function updateVolunteerForm(Request $request)
+    {
+        // Fix the paper_goods field
+        strtolower($request['paper_goods'][0]) == 'y' ? $request->merge(['paper_goods' => 1]) : $request->merge(['paper_goods' => 0]);
+
+        if ($request->form_status == 1) {
+            $this->validate($request, [
+                'organization_name' => 'required',
+                'phone' => 'required',
+                'email' => 'required',
+                'meal_description' => 'required',
+                'open_event_id' => 'required',
+                'event_date_time' => 'required',
+                'paper_goods' => 'required',
+                'volunteer_id' => 'required',
+                'confirmed_event_id' => 'required'
+            ]);
+
+            $this->calendarRepository->updateVolunteerEvent($request);
+            $this->formRepository->update($request->all(), 1);
+            flash( "Form Updated Succesfully")->success();
+
+        } else {
+            $this->calendarRepository->cancelVolunteerEvent($request);
+            $this->formRepository->cancelled($request->volunteer_id);
+            flash( "Volunteer Event Cancelled Succesfully")->success();
+        }
+
+        return redirect('/admin/form/all');
     }
 
     public function reviewMealIdea(Request $request)
@@ -112,7 +141,7 @@ class AdminController extends Controller
     }
 
 
-    public function sendEmail($form)
+    public function sendApprovedEmail($form)
     {
         $messages = $this->messagesRepository->allContent();
         $admin_emails = explode(',', INTERFAITH_ADMINS);
@@ -162,7 +191,6 @@ class AdminController extends Controller
         // get the user id and save the message
         if(Auth::check()) {
             $userId = Auth::id();
-
             $input = [
                 'id' => $request['id'],
                 'content' => $request['message-content'],
@@ -172,14 +200,12 @@ class AdminController extends Controller
                 $this->messagesRepository->update($input);
                 flash( "Your message was saved successfully!")->success();
             }
-
             catch(Exception $e) {
                 flash("There was a problem saving your message. Please try again later.")->error();
             }
-
         }
-
         return redirect('admin/settings/change-messages');
     }
+
 
 }

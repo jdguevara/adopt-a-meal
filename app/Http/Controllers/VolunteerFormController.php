@@ -31,7 +31,6 @@ class VolunteerFormController extends Controller
         $request['paper_goods'] = $request['paper_goods'] == "on" ? true : false;
 
         $this->validate($request, [
-            'title' => 'required',
             'organization_name' => 'required',
             'phone' => 'required',
             'email' => 'required',

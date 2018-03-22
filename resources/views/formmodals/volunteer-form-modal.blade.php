@@ -38,7 +38,7 @@
                                 <span class="input-group-addon">Email</span>
                                 <input id="email" name="email" type="text" class="form-control" placeholder="Email">
                             </div>
-                            <span id="email-validation" class="help-block hidden alert-danger">Required: Please enter a valid email address</span>
+                            <div id="email-validation" class="hidden alert-danger">Required: Please enter a valid email address</div>
                         </div>
 
                         <div class="form-group">
@@ -85,7 +85,7 @@
                         <!-- rendered from event id stored in calendar -->
                         <input id="event-id" name="open_event_id" type="text" hidden />
                         <input id="event-time" name="open_event_date_time" type="text" hidden />
-                        <input id="event-title" name="title" type="text" hidden />
+
                     </div> <!-- end inputs -->
 
                     <!-- loading spinner -->

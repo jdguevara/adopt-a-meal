@@ -1,14 +1,9 @@
 @extends('layouts.app')
 
 @section('scripts')
-@component('formmodals.admin-review-meal-idea-modaljs') @endcomponent
+@component('formmodals.admin-review-volunteer-form-modaljs') @endcomponent
 <script>
-var volunteerforms = @json($volunteerforms);
-
-$(document).ready(function () {
-    setupMealIdeaReviewValidation();    
-});
-
+var volunteerForms = @json($volunteerforms);
 </script>
 @endsection
 
@@ -43,25 +38,45 @@ $(document).ready(function () {
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Meal Name</th>
-                        <th>Description</th>
-                        <th>Website</th>
-                        <th>Submitter Name</th>
-                        <th>Submitter Email</th>
-                        <th>Displayed</th>
+                        <th>Organization Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Meal Description</th>
+                        <th>Notes</th>
+                        <th>Bringing Paper Goods</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($volunteerforms as $volunteerform)
                     <tr>
-                        <td>{{ $volunteerform->title }}</td>
-                        <td>{{ $volunteerform->title }}</td>
-                        <td>{{ $volunteerform->description }}</td>
-                        <td>{{ $volunteerform->name }}</td>
+                        <td>{{ $volunteerform->organization_name }}</td>
                         <td>{{ $volunteerform->email }}</td>
+                        <td>{{ $volunteerform->phone }}</td>
+                        <td>{{ $volunteerform->meal_description }}</td>
+                        <td>{{ $volunteerform->notes }}</td>
                         <td>{{ $volunteerform->paper_goods ? "Yes" : "No" }}</td>
-                        <td><button onclick="loadVolunteerFormReviewModal('{{ $volunteerform['id'] }}');" class="btn btn-warning">Edit</button></td>
+
+                        <td>
+                        @switch($volunteerform->form_status)
+                            @case(0)
+                                <i>Pending Review</i>
+                                @break
+
+                            @case(1)
+                                <button onclick="loadAdminReviewVolunteerFormModal('{{ $volunteerform['id'] }}');" class="btn btn-warning">Edit</button>
+                                @break
+
+                            @case(2)
+                                <i>Denied</i>
+                                @break
+                            @case(3)
+                                <i>Cancelled</i>
+                                @break
+                            @default
+                                <i>LostInSpace</i>
+                        @endswitch
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -70,5 +85,5 @@ $(document).ready(function () {
     </div>
 </div>
 
-@component('formmodals.admin-review-meal-idea-modal', ['editMode' => true]) @endcomponent
+@component('formmodals.admin-review-volunteer-form-modal', ['editMode' => true]) @endcomponent
 @endsection
