@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Carbon\Carbon;
 
 
-class VolunteerFormEmail extends Mailable
+class VolunteerApprovedEmail extends Mailable
 {
     use Queueable, SerializesModels;
     /**
@@ -30,7 +30,7 @@ class VolunteerFormEmail extends Mailable
      */
     public function build()
     {
-        $this->form['open_event_date_time'] = Carbon::parse($this->form['open_event_date_time'])->format('Y-m-d');
-        return $this->view('emails.volunteerformemail', ['form' => $this->form, 'messages' => $this->messages ]);
+        $this->form['event_date_time'] = Carbon::parse($this->form['event_date_time'])->format('Y-m-d');
+        return $this->view('emails.volunteerapprovedemail', [ 'form' => $this->form, 'messages' => $this->messages ]);
     }
 }

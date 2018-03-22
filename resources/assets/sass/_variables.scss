@@ -23,7 +23,7 @@ $brand-primary:         black !default;
 $brand-success:         $interfaith-blue !default;
 $brand-info:            $interfaith-red !default;
 $brand-warning:         $interfaith-yellow !default;
-$brand-danger:          $interfaith-blue !default;
+$brand-danger:          $interfaith-red !default;
 
 
 // Borders
@@ -92,7 +92,7 @@ $btn-danger-bg:                  $brand-danger !default;
 $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
 
 
-#body-padding{
+#app{
   padding-top:82px;
 }
 #nav-shadow{
@@ -115,18 +115,29 @@ $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
   font-weight: 700;
   color:white;
 }
-#jumbotron-header{
+#jumbotron-header > * {
   padding-top:30px;
   font-size:110px;
   font-family: $interfaith-jumbotron-font;
 }
-#jumbotron-footer-header{
+#jumbotron-header {
+  padding-top:30px;
+  font-size:110px;
+  font-family: $interfaith-jumbotron-font;
+}
+#jumbotron-footer-header > * {
   font-family:$interfaith-decorative;
   font-weight:700;
 }
-.jumbotron-footer{
+.jumbotron-footer {
   margin-top:200px;
   margin-bottom:0px;
+}
+.thank-you-list-item{
+  font-family:$interfaith-decorative;
+  background-color: black;
+  border-width: 0px;
+  color:$interfaith-yellow;
 }
 
 

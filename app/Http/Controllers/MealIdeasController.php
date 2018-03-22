@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 use App\Contracts\IMealIdeaRepository;
 use App\Calendar;
+use App\Contracts\IMessagesRepository;
 use Illuminate\Http\Request;
 
 class MealIdeasController extends Controller
 {
     protected $mealIdeaRepository;
+    protected $messagesRepository;
 
-    public function __construct(IMealIdeaRepository $repository)
+    public function __construct(IMealIdeaRepository $repository, IMessagesRepository $messagesRepository)
     {
         $this->mealIdeaRepository = $repository;
+        $this->messagesRepository = $messagesRepository;
     }
 
     /**
@@ -19,19 +22,24 @@ class MealIdeasController extends Controller
      */
     public function index()
     {
-        $recipes = $this->mealIdeaRepository->getConfirmedMealIdeas();
+        $recipes = $this->mealIdeaRepository->getPublicMealIdeas();
         foreach($recipes as $recipe){
             $recipe->ingredients = json_decode($recipe->ingredients_json);
         }
-        return view('mealideas', ['mealideas' => $recipes, ]);
+
+        $messages = $this->messagesRepository->allContent();
+        return view('mealideas', ['mealideas' => $recipes, 'messages' => $messages ]);
 
     }
 
     public function submit(Request $request)
     {
+        $request['display'] = $request['display'] == "on" ? true : false;
         $this->validate($request, [
-            'meal_name' => 'required',
+            'title' => 'required',
             'description' => 'required',
+            'instructions' => 'required',
+            'display' => 'required',
             'ingredient' => 'required',
         ]);
         $this->mealIdeaRepository->create($request->all());

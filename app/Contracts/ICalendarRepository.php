@@ -5,44 +5,45 @@ namespace App\Contracts;
 
 interface ICalendarRepository
 {
+    /**
+     * Get all events from the open events calendar
+     * @param $eventType Open event or Accepted event
+     * @return mixed
+     */
+    public function getVolunteerEvents();
+
+    /**
+     * Get all events from the confirmed events calendar
+     * @param $eventType Open event or Accepted event
+     * @return mixed
+     */
+    public function getConfirmedEvents();
 
     /**
      * Get all events from the desired calendar (open or accepted)
      * @param $eventType Open event or Accepted event
      * @return mixed
      */
-    public function all($eventType);
+    public function createConfirmedVolunteerEvent($event);
 
     /**
-     * Get a single event from the desired calendar (open or accepted)
-     * @param $id google calendar event id
-     * @param $eventType Open event or Accepted Event
+     * Get all events from the desired calendar (open or accepted)
+     * @param $eventType Open event or Accepted event
      * @return mixed
      */
-    public function get($id, $eventType);
+    public function updateVolunteerEvent($details);
 
     /**
-     * Delete a single event from the desired calendar (open or accepted)
-     * @param $id google calendar event id
-     * @param $eventType Open event or Accepted Event
+     * Get all events from the desired calendar (open or accepted)
+     * @param $eventType Open event or Accepted event
      * @return mixed
      */
-    public function delete($id, $eventType);
+    public function cancelVolunteerEvent($event);
 
     /**
-     * Updated a single event from the desired calendar (open or accepted)
-     * @param $id google calendar event id
-     * @param $eventType Open event or Accepted Event
+     * Get all events from the desired calendar (open or accepted)
+     * @param $eventType Open event or Accepted event
      * @return mixed
      */
-    public function update($id, $eventType);
-
-    /**
-     * Create an event of the desired type (open or accepted)
-     * @param $event event information
-     * @param $eventType Open event or Accepted Event
-     * @return mixed
-     */
-    public function create($event, $eventType);
-
+    public function deleteOpenEvent($id);
 }

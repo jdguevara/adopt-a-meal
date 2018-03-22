@@ -14,7 +14,7 @@ class MealIdea extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'ingredients_json',
-        'external_link', 'name', 'email', 'meal_idea_status'
+        'title', 'description', 'instructions', 'ingredients_json',
+        'external_link', 'name', 'email', 'display', 'meal_idea_status'
     ];
 }

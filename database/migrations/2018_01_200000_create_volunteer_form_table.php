@@ -15,17 +15,16 @@ class VolunteerFormTable extends Migration
     {
         Schema::create('volunteer_forms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
             $table->string('organization_name');
             $table->string('email');
             $table->string('phone');
             $table->text('meal_description');
             $table->text('notes');
             $table->boolean('paper_goods');
-            $table->smallInteger('form_status')->nullable()->comment('0=new,1=confirmed,2=rejected');
+            $table->smallInteger('form_status')->nullable()->comment('0=new,1=confirmed,2=rejected,3=cancelled');
             $table->string('open_event_id');
             $table->dateTime('event_date_time')->nullable();
-            $table->dateTime('confirmed_event_id')->nullable();
+            $table->string('confirmed_event_id')->nullable();
             $table->timestamps();
             $table->unique('confirmed_event_id');
         });

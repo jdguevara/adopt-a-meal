@@ -6,9 +6,9 @@
 
 // Variables
 @import "checkbox";
-@import "volunteer-form";
-@import "event-form";
+@import "form";
 @import "loading-spinner";
+@import "quill";
 
 //
 @import "~fullcalendar/dist/fullcalendar.min.css";
@@ -25,7 +25,45 @@
     }
 }
 
+html::-webkit-scrollbar {
+    display: none;
+}
+
 .navbar-brand > .brand {
     max-height: 50px;
     max-width: 50px;
+}
+.event-info-details {
+    float: right;
+    position: relative;
+    margin-top: -13px;
+}
+
+.text-yellow {
+    color: $interfaith-yellow;
+}
+
+.text-light {
+    color: $text-muted;
+}
+
+.row-padding {
+    margin: 0;
+}
+
+.messages-list {
+    height: 65vh;
+    overflow-y: scroll;
+}
+
+.messages-search-bar {
+    width: 50%;
+    margin: 15px auto;
+}
+
+@media screen and (max-width: 991px) {
+    .messages-search-bar {
+        width: 100%;
+        margin: 15px 0;
+    }
 }

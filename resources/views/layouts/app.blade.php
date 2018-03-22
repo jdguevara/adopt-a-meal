@@ -23,16 +23,33 @@
         </button>
         <div class="collapse navbar-collapse pull-right" id="navigation">
             <ul class="nav navbar-nav">
+                @guest
                 <li class="nav-item "><a class="navbar-link" href="/">Calendar View</a></li>
                 <li class="nav-item "><a class="navbar-link" href="/meal-ideas">Meal Ideas</a></li>
+                @endguest
                 @auth
-                    <li><a href="/admin/meal-ideas">Review Meal Ideas</a></li>
-                    <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Settings<span class="caret"></span></a>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Adopt-A-Meal Volunteers<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('home') }}">Volunteer Calendar</a></li>
+                        <li><a href="{{ route('admin-home') }}">Review Pending Volunteers</a></li>
+                        <li><a href="{{ route('admin-volunteerforms-table') }}">Past Volunteer Requests</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Meal Ideas<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('mealideas') }}">Public Meal Ideas</a></li>
+                        <li><a href="{{ route('admin-mealideas') }}">Review Pending Meal Ideas</a></li>
+                        <li><a href="{{ route('admin-mealideas-table') }}">Meal Ideas Table</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Settings<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="">
-                                Change Site Wording
+                            <a href="/admin/settings/change-messages">
+                                Change Messages
                             </a>
                         </li>
                     </ul>
@@ -51,9 +68,8 @@
             </ul>
         </div>
     </nav>
-    <div id="app" class="container">
-        </div>
-        <div class="container" id ="body-padding">
+    <div id="app">
+        <div class="container" >
             @if(isset($errors) && $errors->any())
                 <div class="alert alert-danger">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -62,8 +78,9 @@
             @endif
             @include('flash::message')
         </div>
+        <div class="fluid-container">
         @yield('content')
-
+        </div>
     </div>
     {{--<div class="footer">--}}
         {{--<p>Created by: Boise State Merge Conflicts</p>--}}
@@ -73,7 +90,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
     <script>
-      $('div.alert').not('.alert-important').delay(1500).fadeOut(350);
+      $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
       $('#flash-overlay-modal').modal();
     </script>
 </body>

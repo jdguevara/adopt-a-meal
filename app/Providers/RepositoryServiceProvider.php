@@ -39,5 +39,9 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Contracts\IMealIdeaRepository',
             'App\Services\MealIdeaRepository'
         );
+        $this->app->bind(
+            'App\Contracts\IMessagesRepository',
+            'App\Services\MessagesRepository'
+        );
     }
 }

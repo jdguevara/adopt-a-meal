@@ -19,10 +19,11 @@ class VolunteerRequestEmail extends Mailable
      *
      * @return void
      */
-    public function __construct($form)
+    public function __construct($form, $messages)
     {
         $this->appURL = env("APP_URL") . env('URL_ADMIN', '/error');
         $this->form = $form;
+        $this->messages = $messages;
     }
 
     /**
@@ -32,7 +33,7 @@ class VolunteerRequestEmail extends Mailable
      */
     public function build()
     {
-        $this->form['open_event_date_time'] =  Carbon::parse($this->form['open_event_date_time'])->format('F jS Y, H:ia');
-        return $this->view('emails.volunteerrequestemail', ['appUrl' => $this->appURL, 'form' => $this->form]);
+        $this->form['open_event_date_time'] = Carbon::parse($this->form['open_event_date_time'])->format('Y-m-d');
+        return $this->view('emails.volunteerrequestemail', ['appUrl' => $this->appURL, 'form' => $this->form, 'messages' => $this->messages ]);
     }
 }
