@@ -16,5 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/form/submit', 'VolunteerFormController@submit');
+Route::post('/form/volunteer', 'VolunteerFormController@volunteer');
 Route::post('/meal-ideas/submit', 'MealIdeasController@submit');

@@ -77,6 +77,7 @@ class CalendarService implements ICalendarService {
             'maxResults' => 100,
             'orderBy' => 'startTime',
             'singleEvents' => TRUE,
+            'timeMin' => Carbon::now()->toIso8601String(),
             'timeMax' => Carbon::now()->addMonths(12)->toIso8601String()
         );
         $results = $this->googleCalendarService->events->listEvents($calendarId, $optParams)->getItems();

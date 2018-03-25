@@ -1,5 +1,5 @@
 <!-- Volunteer form modal that is displayed when an event is clicked -->
-<form id="volunteer-form" class="volunteer-form" method="POST" action="/api/form/submit">
+<form id="volunteer-form" class="volunteer-form" method="POST" action="/api/form/volunteer">
     <div class="modal fade" id="volunteer-modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
