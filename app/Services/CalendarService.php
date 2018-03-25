@@ -1,7 +1,7 @@
 <?php
 namespace App\Services;
 
-use App\Contracts\ICalendarRepository;
+use App\Contracts\ICalendarService;
 use Carbon\Carbon;
 use Google_Client;
 use Google_Service_Calendar;
