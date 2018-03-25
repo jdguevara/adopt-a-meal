@@ -29,4 +29,10 @@ interface ICalendarService
      * @return calendar event
      */
     public function patch($calendarId, $eventId, $status);
+
+    /**
+     * Fetches all events for the calendar with not cancelled status
+     * @param $calendarId calendar to get evemnts from
+     */
+    public function fetchEvents($calendarId);
 }

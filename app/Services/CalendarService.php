@@ -71,4 +71,16 @@ class CalendarService implements ICalendarService {
         $this->googleCalendarService->events->patch($calendarId, $eventId, $calendarEvent);
     }
 
+    public function fetchEvents($calendarId) {
+        $optParams = array(
+            'maxResults' => 100,
+            'orderBy' => 'startTime',
+            'singleEvents' => TRUE,
+            'timeMax' => Carbon::now()->addMonths(12)->toIso8601String()
+        );
+        $results = $this->googleCalendarService->events->listEvents($calendarId, $optParams)->getItems();
+        return $results;
+    }
+
+
 }

@@ -5,6 +5,9 @@ use App\Contracts\ICalendarService;
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\IMessagesRepository;
 
+define('OPEN_EVENT_CALENDAR', env('CALENDAR_ID'));
+define('CONFIRMED_EVENT_CALENDAR', env('CONFIRMED_CALENDAR_ID'));
+
 class LandingPageController extends Controller
 {
     /**
@@ -12,13 +15,12 @@ class LandingPageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ICalendarService $calendarRepository, IVolunteerFormRepository $volunteerFormRepository, IMessagesRepository $messagesRepository)
+    public function index(ICalendarService $calendarService, IVolunteerFormRepository $volunteerFormRepository, IMessagesRepository $messagesRepository)
     {
-        $volunteerEvents = $calendarRepository->getVolunteerEvents();
-        $acceptedEvents = $calendarRepository->getConfirmedEvents();
+        $volunteerEvents = $calendarService->fetchEvents(OPEN_EVENT_CALENDAR);
+        $acceptedEvents = $calendarService->fetchEvents(CONFIRMED_EVENT_CALENDAR);
         $completedEvents = $volunteerFormRepository->getAllPreviousAcceptedOrganizationNames();
         $messages = $messagesRepository->allContent();
-
 
         return view('welcome', [
             'volunteerEvents' => $volunteerEvents,
