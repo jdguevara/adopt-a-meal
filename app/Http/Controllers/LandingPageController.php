@@ -19,13 +19,13 @@ class LandingPageController extends Controller
     {
         $volunteerEvents = $calendarService->fetchEvents(OPEN_EVENT_CALENDAR);
         $acceptedEvents = $calendarService->fetchEvents(CONFIRMED_EVENT_CALENDAR);
-        $completedEvents = $volunteerFormRepository->getAllPreviousAcceptedOrganizationNames();
+        $organizations = $volunteerFormRepository->getAllPreviousAcceptedOrganizationNames();
         $messages = $messagesRepository->allContent();
 
         return view('welcome', [
             'volunteerEvents' => $volunteerEvents,
             'acceptedEvents' => $acceptedEvents,
-            'completedEvents' => $completedEvents,
+            'organizations' => $organizations,
             'messages' => $messages
         ]);
 

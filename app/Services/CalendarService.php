@@ -71,6 +71,7 @@ class CalendarService implements ICalendarService {
         $this->googleCalendarService->events->patch($calendarId, $eventId, $calendarEvent);
     }
 
+    //Fetches events with confirmed status'
     public function fetchEvents($calendarId) {
         $optParams = array(
             'maxResults' => 100,
