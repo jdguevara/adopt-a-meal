@@ -16,11 +16,9 @@ class MealIdeaRequest extends FormRequest
         $rules = [
             'title' => 'required',
             'description' => 'required',
-            'ingredients_json' => 'nullable',
-            'external_link' => 'nullable',
-            'name' => 'nullable',
-            'email' => 'nullable',
-            'meal_idea_status' => 'required',
+            'instructions' => 'required',
+            'display' => 'required',
+            'ingredient' => 'required',
         ];
         return $rules;
     }

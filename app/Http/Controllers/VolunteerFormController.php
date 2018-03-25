@@ -25,7 +25,7 @@ class VolunteerFormController extends Controller
     public function volunteer(VolunteerFormRequest $request)
     {
         $request['paper_goods'] = $request['paper_goods'] == "on" ? true : false;
-        $this->emailService->sendRegistraitonEmail($request->all());
+        $this->emailService->sendRegistrationEmail($request->all());
         $this->formRepository->create($request->all());
         flash('Volunteer form submitted successfully')->success();
         return redirect('/');

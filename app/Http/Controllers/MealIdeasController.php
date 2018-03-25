@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Contracts\IMealIdeaRepository;
 use App\Contracts\IMessagesRepository;
+use App\Http\Requests\MealIdeaRequest;
 use Illuminate\Http\Request;
 
 class MealIdeasController extends Controller
@@ -31,16 +32,9 @@ class MealIdeasController extends Controller
 
     }
 
-    public function submit(Request $request)
+    public function submit(MealIdeaRequest $request)
     {
         $request['display'] = $request['display'] == "on" ? true : false;
-        $this->validate($request, [
-            'title' => 'required',
-            'description' => 'required',
-            'instructions' => 'required',
-            'display' => 'required',
-            'ingredient' => 'required',
-        ]);
         $this->mealIdeaRepository->create($request->all());
         flash('Meal suggestion sent successfully')->success();
         return redirect('/meal-ideas');
