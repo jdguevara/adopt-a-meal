@@ -6,44 +6,27 @@ namespace App\Contracts;
 interface ICalendarService
 {
     /**
-     * Get all events from the open events calendar
-     * @param $eventType Open event or Accepted event
-     * @return mixed
+     * Updates calendar event with event properties
+     * @param $event Object properties to updated
+     * @param $calendarId calendar to be updated
+     * @return calendar event
      */
-    public function getVolunteerEvents();
+    public function update($calendarId, $event);
 
     /**
-     * Get all events from the confirmed events calendar
-     * @param $eventType Open event or Accepted event
-     * @return mixed
+     * Creates calendar event with event properties
+     * @param $event Object properties to be created
+     * @param $calendarId calendar to be updated
+     * @return calendar event
      */
-    public function getConfirmedEvents();
+    public function create($calendarId, $event);
 
     /**
-     * Get all events from the desired calendar (open or accepted)
-     * @param $eventType Open event or Accepted event
-     * @return mixed
+     * Changes event status calendar event with event properties
+     * @param $eventId event whose status needs to be changed
+     * @param $calendarId calendar to be updated
+     * @param $status status to chenge event to
+     * @return calendar event
      */
-    public function createConfirmedVolunteerEvent($event);
-
-    /**
-     * Get all events from the desired calendar (open or accepted)
-     * @param $eventType Open event or Accepted event
-     * @return mixed
-     */
-    public function updateVolunteerEvent($details);
-
-    /**
-     * Get all events from the desired calendar (open or accepted)
-     * @param $eventType Open event or Accepted event
-     * @return mixed
-     */
-    public function cancelVolunteerEvent($event);
-
-    /**
-     * Get all events from the desired calendar (open or accepted)
-     * @param $eventType Open event or Accepted event
-     * @return mixed
-     */
-    public function deleteOpenEvent($id);
+    public function patch($calendarId, $eventId, $status);
 }

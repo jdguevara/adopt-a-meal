@@ -9,8 +9,6 @@ use DateTime;
 use DateInterval;
 use Google_Service_Calendar_Event;
 
-
-
 define('APPLICATION_NAME', env('APP_NAME'));
 define('CREDENTIALS_PATH', storage_path('app/service_account_creds.json'));
 define('SCOPES', implode(' ', array(Google_Service_Calendar::CALENDAR)));
