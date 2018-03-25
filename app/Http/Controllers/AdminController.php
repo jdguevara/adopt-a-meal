@@ -14,25 +14,26 @@ use http\Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Utils;
 
-define('INTERFAITH_ADMINS', env('INTERFAITH_ADMINS'));
+define('CALENDAR_ID', env('CALENDAR_ID'));
+define('CONFIRMED_CALENDAR_ID', env('CONFIRMED_CALENDAR_ID'));
 
 class AdminController extends Controller
 {
 
     protected $formRepository;
-    protected $calendarRepository;
+    protected $calendarService;
     protected $mealRepository;
     protected $messagesRepository;
 
-    public function __construct(IVolunteerFormRepository $formRepository, ICalendarService $calendarRepository, IMealIdeaRepository $mealRepository, IMessagesRepository $messagesRepository)
+    public function __construct(IVolunteerFormRepository $formRepository, ICalendarService $calendarService, IMealIdeaRepository $mealRepository, IMessagesRepository $messagesRepository)
     {
-
-        $this->calendarRepository = $calendarRepository;
+        $this->calendarService = $calendarService;
         $this->formRepository = $formRepository;
         $this->mealRepository = $mealRepository;
         $this->messagesRepository = $messagesRepository;
         $this->middleware('auth');
     }
+
 
     /**
      * Show the application dashboard.
@@ -60,35 +61,42 @@ class AdminController extends Controller
         return view('admin-mealideas-table', ['mealideas' => $this->mealRepository->getConfirmedMealIdeas()]);
     }
 
-    public function reviewVolunteerForm(Request $request)
-    {
+    public function approveVolunteer(Request $request){
         $this->validate($request, [
             'open_event_id' => 'required',
             'volunteer_id' => 'required',
             'form_status' => 'required'
         ]);
-        // Approved
-        if ($request->form_status == 1) {
-            
-            $event = $this->formRepository->get($request->volunteer_id); // Get the current volunteer information
-            $result = $this->calendarRepository->createConfirmedVolunteerEvent($event);// insert the event into the accepted_events calendar
-            // $this->calendarRepository->deleteOpenEvent($event->open_event_id); // remove the event from the open_events calendar
-            $this->calendarRepository->cancelOpenEvent($event->open_event_id);
-            // $this->sendApprovedEmail($event); // Notify the volunteers and the admins that the volunteer form has been approved
-            // finalize the approval by updating the event's status in adoptameal database. If it fails before this post they will be able to redo it easily
-            $this->formRepository->approve($request->volunteer_id, $result->id);
-        } // Denied
-        else {
-            $this->formRepository->deny($request->volunteer_id);
-        }
+        $event = $this->formRepository->get($request->volunteer_id);
+        $this->calendarService->create(CONFIRMED_CALENDAR_ID, $event);
+        $this->calendarService->patch(CALENDAR_ID, $event->open_event_id, 'cancelled');   
+        $this->formRepository->approve($request->volunteer_id, $result->id);
+        // Send Approval email
+        return redirect('/admin');
+
+    }
+    public function denyVolunteer(equest $request){
+        $this->validate($request, [
+            'open_event_id' => 'required',
+            'volunteer_id' => 'required',
+            'form_status' => 'required'
+        ]);
+        $this->formRepository->deny($request->volunteer_id);
         return redirect('/admin');
     }
 
-    public function updateVolunteerForm(Request $request)
-    {
-        // Fix the paper_goods field
+    public function cancelConfirmedEvent(Request $request){
+        $this->calendarService->patch(CONFIRMED_CALENDAR_ID, $request->confirmed_event_id, 'cancelled');
+        if($this->formRepository->getOpenEventCount($request->open_event_id) == 1) {
+            $this->calendarRepository->patch(CALENDAR_ID, $request->open_event_id, 'confirmed');
+        } 
+        $this->formRepository->cancelled($request->volunteer_id);
+        flash( "Volunteer Event Cancelled Succesfully")->success();
+        return redirect('/admin/form/all');
+    }
+    
+    public function updateVolunteerForm(){
         strtolower($request['paper_goods'][0]) == 'y' ? $request->merge(['paper_goods' => 1]) : $request->merge(['paper_goods' => 0]);
-
         $this->validate($request, [
             'organization_name' => 'required',
             'phone' => 'required',
@@ -100,23 +108,16 @@ class AdminController extends Controller
             'volunteer_id' => 'required',
             'confirmed_event_id' => 'required'
         ]);
-        
-        if ($request->form_status == 1) {
-            $this->calendarRepository->updateVolunteerEvent($request);
-            $this->formRepository->update($request->all(), 1);
-            flash( "Form Updated Succesfully")->success();
 
-        } else {
-            $this->calendarRepository->cancelVolunteerEvent($request->all());
-            if($this->formRepository->getOpenEventCount($request->open_event_id) == 1) {
-                $this->calendarRepository->reopenEvent($request->open_event_id);
-            } 
-            $this->formRepository->cancelled($request->volunteer_id);
-            flash( "Volunteer Event Cancelled Succesfully")->success();
-        }
-
+        $this->calendarRepository->updateVolunteerEvent($request);
+        $this->formRepository->update($request->all(), 1);
+        flash( "Form Updated Succesfully")->success();
         return redirect('/admin/form/all');
     }
+
+
+
+
 
     public function reviewMealIdea(Request $request)
     {
@@ -124,6 +125,7 @@ class AdminController extends Controller
         $request['ingredients'] = json_encode(array_map(function ($val) {
             return trim($val);
         }, explode(",", $request->ingredients)));
+        
         $this->validate($request, [
             'id' => 'required',
             'description' => 'required',
