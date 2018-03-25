@@ -13,9 +13,6 @@ use http\Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Utils;
 
-define('CALENDAR_ID', env('CALENDAR_ID'));
-define('CONFIRMED_CALENDAR_ID', env('CONFIRMED_CALENDAR_ID'));
-
 class AdminController extends Controller
 {
 
