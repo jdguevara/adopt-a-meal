@@ -1,26 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Calendar;
-use App\Mail\VolunteerFormEmail;
-use App\Mail\VolunteerRequestEmail;
-use App\Services\CalendarRepository;
-use App\Services\VolunteerFormRepository;
-use App\Services\MessagesRepository;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use App\Contracts\ICalendarRepository;
+use App\Contracts\IVolunteerFormRepository;
+use App\Contracts\IMessagesRepository;
+
 class LandingPageController extends Controller
 {
-
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index( CalendarRepository $calendarRepository, VolunteerFormRepository $volunteerFormRepository, MessagesRepository $messagesRepository)
+    public function index(ICalendarRepository $calendarRepository, IVolunteerFormRepository $volunteerFormRepository, IMessagesRepository $messagesRepository)
     {
-       // $events = array_merge($calendar->findVolunteerEvents(), $calendar->findAllAccepted());
-
         $volunteerEvents = $calendarRepository->getVolunteerEvents();
         $acceptedEvents = $calendarRepository->getConfirmedEvents();
         $completedEvents = $volunteerFormRepository->getAllPreviousAcceptedOrganizationNames();
@@ -35,8 +28,5 @@ class LandingPageController extends Controller
         ]);
 
     }
-
-    /**
-     */
 }
 

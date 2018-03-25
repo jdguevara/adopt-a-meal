@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Repositories;
 
 use App\Contracts\ICalendarRepository;
 use App\Contracts\IVolunteerFormRepository;
@@ -12,7 +12,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
 {
     private $form;
 
-    public function __construct(VolunteerForm $form, ICalendarRepository $ICalendarRepository) // TODO REMOVE CALENDAR REPOSITORY
+    public function __construct(VolunteerForm $form)
     {
         $this->form = $form;
     }

@@ -10,10 +10,11 @@ use App\Mail\AdminApproveEmail;
 use App\Mail\VolunteerApprovedEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-define('INTERFAITH_ADMINS', env('INTERFAITH_ADMINS'));
 use http\Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Utils;
+
+define('INTERFAITH_ADMINS', env('INTERFAITH_ADMINS'));
 
 class AdminController extends Controller
 {

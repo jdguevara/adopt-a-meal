@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Repositories;
 
 use App\Contracts\IMealIdeaRepository;
 use App\MealIdea;
@@ -36,7 +36,7 @@ class MealIdeaRepository implements IMealIdeaRepository
     }
 
     public function getPublicMealIdeas() {
-        return $this->mealidea->where('meal_idea_status', '=',1)->where('display', '=', '1')->get();
+        return $this->mealidea->where('meal_idea_status', '=', 1)->where('display', '=', '1')->get();
     }
 
     public function create($input)
@@ -56,9 +56,21 @@ class MealIdeaRepository implements IMealIdeaRepository
 
         return $this->mealidea->id;
     }
+
     public function update($form, $input)
     {
-        $form = $this->mealidea->find($form->id);
+        $meal = $this->mealidea->find($form->id);
+        $meal->fill([
+            'title' => $input['title'],
+            'description' => $input['description'],
+            'instructions' => $input['instructions'],
+            'ingredients_json' => $input['ingredients'],
+            'external_link' => $input['external_link'],
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'display' => $input['display'],
+        ]);
+        $meal->save();
     }
 
     public function delete($id)
