@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Contracts\IMealIdeaRepository;
 use App\MealIdea;
+use App\Models\MealIdeaStatus;
 use DateTime;
 
 class MealIdeaRepository implements IMealIdeaRepository
@@ -27,16 +28,16 @@ class MealIdeaRepository implements IMealIdeaRepository
 
     public function getNewMealIdeas()
     {
-        return $this->mealidea->where('meal_idea_status', '=', 0)->get();
+        return $this->mealidea->where('meal_idea_status', '=', MealIdeaStatus::NEW)->get();
     }
 
     public function getConfirmedMealIdeas()
     {
-        return $this->mealidea->where('meal_idea_status', '=', 1)->get();
+        return $this->mealidea->where('meal_idea_status', '=', MealIdeaStatus::APPROVED)->get();
     }
 
     public function getPublicMealIdeas() {
-        return $this->mealidea->where('meal_idea_status', '=', 1)->where('display', '=', '1')->get();
+        return $this->mealidea->where('meal_idea_status', '=', MealIdeaStatus::APPROVED)->where('display', '=', '1')->get();
     }
 
     public function create($input)
@@ -50,7 +51,7 @@ class MealIdeaRepository implements IMealIdeaRepository
             'name' => $input['name'],
             'email' => $input['email'],
             'display' => 1,
-            'meal_idea_status' => 0
+            'meal_idea_status' => MealIdeaStatus::NEW
         ]);
         $this->mealidea->save();
 
@@ -91,13 +92,13 @@ class MealIdeaRepository implements IMealIdeaRepository
             'name' => $newMealIdea['name'],
             'email' => $newMealIdea['email'],
             'display' => $newMealIdea['display'],
-            'meal_idea_status' => 1,
+            'meal_idea_status' => MealIdeaStatus::APPROVED,
         ]);
         $this->mealidea->save();
     }
 
     public function deny($mealIdeaId){
-        $this->mealidea->where('id', $mealIdeaId)->update(['meal_idea_status' => 2]);
+        $this->mealidea->where('id', $mealIdeaId)->update(['meal_idea_status' => MealIdeaStatus::DENIED]);
     }
 
 }

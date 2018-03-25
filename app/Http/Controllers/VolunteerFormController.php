@@ -3,9 +3,7 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Contracts\IMessagesRepository;
-use App\Http\Requests;
 use App\Contracts\IVolunteerFormRepository;
 use Illuminate\Http\Request;
 use App\Mail\VolunteerFormEmail;

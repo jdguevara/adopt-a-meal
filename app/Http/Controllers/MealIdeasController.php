@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Contracts\IMealIdeaRepository;
-use App\Calendar;
 use App\Contracts\IMessagesRepository;
 use Illuminate\Http\Request;
 

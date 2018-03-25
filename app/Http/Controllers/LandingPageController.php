@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Contracts\ICalendarRepository;
+use App\Contracts\ICalendarService;
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\IMessagesRepository;
 
@@ -12,7 +12,7 @@ class LandingPageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ICalendarRepository $calendarRepository, IVolunteerFormRepository $volunteerFormRepository, IMessagesRepository $messagesRepository)
+    public function index(ICalendarService $calendarRepository, IVolunteerFormRepository $volunteerFormRepository, IMessagesRepository $messagesRepository)
     {
         $volunteerEvents = $calendarRepository->getVolunteerEvents();
         $acceptedEvents = $calendarRepository->getConfirmedEvents();

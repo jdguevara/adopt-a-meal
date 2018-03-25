@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\IMessagesRepository;
 use App\Contracts\IVolunteerFormRepository;
-use App\Contracts\ICalendarRepository;
+use App\Contracts\ICalendarService;
 use App\Contracts\IMealIdeaRepository;
 use App\Mail\AdminApproveEmail;
 use App\Mail\VolunteerApprovedEmail;
@@ -24,7 +24,7 @@ class AdminController extends Controller
     protected $mealRepository;
     protected $messagesRepository;
 
-    public function __construct(IVolunteerFormRepository $formRepository, ICalendarRepository $calendarRepository, IMealIdeaRepository $mealRepository, IMessagesRepository $messagesRepository)
+    public function __construct(IVolunteerFormRepository $formRepository, ICalendarService $calendarRepository, IMealIdeaRepository $mealRepository, IMessagesRepository $messagesRepository)
     {
 
         $this->calendarRepository = $calendarRepository;

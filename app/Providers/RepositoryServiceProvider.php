@@ -32,8 +32,8 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\VolunteerFormRepository'
         );
         $this->app->bind(
-            'App\Contracts\ICalendarRepository',
-            'App\Services\CalendarRepository'
+            'App\Contracts\ICalendarService',
+            'App\Services\CalendarService'
         );
         $this->app->bind(
             'App\Contracts\IMealIdeaRepository',
