@@ -1,7 +1,4 @@
-@if($editMode) <form id="event-form" method="POST" action="/admin/form/update">
-@else <form id="event-form" method="POST" action="/admin/form/review">
-@endif
-
+<form id="event-form" method="POST">
     {{ csrf_field() }}
     <div class="modal fade" id="event-modal" role="dialog">
         <div class="modal-dialog">
@@ -71,17 +68,17 @@
                 <div class="modal-footer">
                     <div class="input-group pull-right">
                         @if($editMode)
-                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm(1);">
+                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm('/admin/form/update');">
                             Update
                         </button>
-                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm(2);">
+                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm('/admin/form/cancel');">
                             Cancel Volunteer Event
                         </button> 
                         @else
-                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm(1);">
+                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm('admin/form/approve');">
                             Approve
                         </button>
-                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm(2);">
+                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm('/admin/form/deny');">
                             Deny
                         </button>        
                         @endif

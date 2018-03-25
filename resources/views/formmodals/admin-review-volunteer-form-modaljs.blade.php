@@ -17,9 +17,8 @@ function loadAdminReviewVolunteerFormModal (eventId) {
     $("#event-modal").modal();
 }
 
-function submitAdminReviewVolunteerForm (submit) {
-    $('#form-status').val(submit);
-    $('#event-form').submit();
+function submitAdminReviewVolunteerForm (action) {
+    $('#event-form').attr('action', action).submit();
 }
 
 </script>

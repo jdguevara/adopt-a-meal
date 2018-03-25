@@ -130,7 +130,6 @@ class AdminController extends Controller
             'id' => 'required',
             'description' => 'required',
             'ingredients' => 'required',
-            'new_status' => 'required'
         ]);
 
         // Check the new status on the request
@@ -142,6 +141,39 @@ class AdminController extends Controller
             $this->mealRepository->deny($request->id);
         }
         return redirect()->back();
+    }
+
+    public function approveMealIdea(Request $request)
+    {
+        $request['display'] = $request['display'] == "on" ? true : false;
+        $request['ingredients'] = json_encode(array_map(function ($val) {
+            return trim($val);
+        }, explode(",", $request->ingredients)));
+
+        $this->validate($request, [
+            'id' => 'required',
+            'description' => 'required',
+            'ingredients' => 'required',
+        ]);
+        $this->mealRepository->approve($request->id, $request);
+        return redirect()->back();
+    }
+
+    public function denyMealIdea(Request $request)
+    {
+        $request['display'] = $request['display'] == "on" ? true : false;
+        $request['ingredients'] = json_encode(array_map(function ($val) {
+            return trim($val);
+        }, explode(",", $request->ingredients)));
+
+        $this->validate($request, [
+            'id' => 'required',
+            'description' => 'required',
+            'ingredients' => 'required',
+        ]);
+        $this->mealRepository->deny($request->id);
+        return redirect()->back();
+
     }
 
 
