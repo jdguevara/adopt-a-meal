@@ -1,6 +1,15 @@
 <?php
 
-class EmailService {
+namespace App\Services;
+
+use App\Contracts\IEmailService;
+use App\Contracts\IMessagesRepository;
+use App\Contracts\IVolunteerFormRepository;
+use App\Mail\VolunteerFormEmail;
+use App\Mail\VolunteerRequestEmail;
+use Illuminate\Support\Facades\Mail;
+
+class EmailService implements IEmailService {
 
     protected $volunteerFormRepository;
     protected $messagesRepository;
@@ -9,7 +18,6 @@ class EmailService {
     {
         $this->messagesRepository = $messagesRepository;
         $this->volunteerFormRepository = $volunteerFormRepository;
-        $this->middleware('guest');
     }
 
     public function sendRegistrationEmail($form){
