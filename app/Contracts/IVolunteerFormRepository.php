@@ -23,4 +23,6 @@ interface IVolunteerFormRepository
     public function deny($volunteerId);
 
     public function cancelled($volunteerId);
+    
+    public function getOpenEventCount($openEventId);
 }

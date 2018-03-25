@@ -39,9 +39,6 @@ class CalendarRepository implements ICalendarRepository {
 
     public function getVolunteerEvents()
     {
-        $time = new DateTime();
-        $time->sub(new DateInterval('P1M'));
-
         $optParams = array(
             'maxResults' => 100,
             'orderBy' => 'startTime',
@@ -104,20 +101,26 @@ class CalendarRepository implements ICalendarRepository {
 
     public function cancelVolunteerEvent($event)
     {
-        $this->googleCalendarService->events->delete($this->acceptedCalendarId, $event->confirmed_event_id);
-
-        $calendar_event = new Google_Service_Calendar_Event(array(
-            'summary' => "Click to Adopt-A-Meal!",
-            'status' => "confirmed",
-            'start' => array(
-                'date' => Carbon::parse($event->event_date_time)->format('Y-m-d')
-            ),
-            'end' => array(
-                'date' => Carbon::parse($event->event_date_time)->format('Y-m-d')
-            )
+        $updateEvent = new Google_Service_Calendar_Event(array(
+            'status' => 'cancelled'
         ));
+        $this->googleCalendarService->events->patch($this->acceptedCalendarId, $event['confirmed_event_id'], $updateEvent);
+    }
 
-        return $this->googleCalendarService->events->update($this->openCalendarId, $event->open_event_id, $calendar_event);
+    public function cancelOpenEvent($openEventId)
+    {
+        $updateEvent = new Google_Service_Calendar_Event(array(
+            'status' => 'cancelled'
+        ));
+        $this->googleCalendarService->events->patch($this->openCalendarId, $openEventId, $updateEvent);
+    }
+
+    public function reopenEvent($eventId)
+    {
+        $openEvent = new Google_Service_Calendar_Event(array(
+            'status' => 'confirmed'
+        ));
+        $this->googleCalendarService->events->patch($this->openCalendarId, $eventId, $openEvent);
     }
 
     public function deleteOpenEvent($id)

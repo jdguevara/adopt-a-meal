@@ -98,5 +98,9 @@ class VolunteerFormRepository implements IVolunteerFormRepository
     public function cancelled($volunteerId){
         $this->form->where('id', $volunteerId)->update(['form_status' => 3]);
     }
+    public function getOpenEventCount($openEventId)
+    {
+        return $this->form->where('open_event_id', $openEventId)->count();
+    }
 
 }
