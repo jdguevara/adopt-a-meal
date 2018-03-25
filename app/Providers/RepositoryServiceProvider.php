@@ -43,5 +43,9 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Contracts\IMessagesRepository',
             'App\Repositories\MessagesRepository'
         );
+        $this->app->bind(
+            'App\Contracts\IEmailService',
+            'App\Services\EmailService'
+        );
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\IMessagesRepository;
 use App\Contracts\IVolunteerFormRepository;
+use App\Contracts\IEmailService;
 use Illuminate\Http\Request;
 use App\Mail\VolunteerFormEmail;
 use App\Mail\VolunteerRequestEmail;
@@ -15,13 +16,13 @@ define('INTERFAITH_ADMINS', env('INTERFAITH_ADMINS'));
 class VolunteerFormController extends Controller
 {
     protected $formRepository;
-    protected $messagesRepository;
+    protected $emailService;
 
-    public function __construct(IVolunteerFormRepository $formRepository, IMessagesRepository $messagesRepository)
+    public function __construct(IVolunteerFormRepository $formRepository, IEmailService $emailService)
     {
-        $this->messagesRepository = $messagesRepository;
         $this->formRepository = $formRepository;
         $this->middleware('guest');
+        $this->emailService = $emailService;
     }
 
     public function submit(Request $request)
@@ -36,29 +37,10 @@ class VolunteerFormController extends Controller
             'open_event_id' => 'required',
             'open_event_date_time' => 'required'
         ]);
-         
-        //$this->sendEmail($request->all());
+        $this->emailService->sendRegistraitonEmail($request->all());
         $this->formRepository->create($request->all());
         flash('Volunteer form submitted successfully')->success();
         return redirect('/');
     }
     
-    public function sendEmail($form)
-    {
-        $admin_emails = explode(',', INTERFAITH_ADMINS);
-
-        $messages = $this->messagesRepository->allContent();
-
-        // To Interfaith
-        foreach($admin_emails as $email){
-            Mail::to($email)
-            ->send(new VolunteerRequestEmail($form, $messages));
-        }
-        
-        // To the Volunteer
-        Mail::to($form["email"])
-        ->send(new VolunteerFormEmail($form, $messages));
-
-        return redirect('/');
-    }
 }
