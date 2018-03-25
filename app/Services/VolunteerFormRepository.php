@@ -100,7 +100,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
     }
     public function getOpenEventCount($openEventId)
     {
-        return $this->form->where('open_event_id', $openEventId)->count();
+        return $this->form->where(['open_event_id'=> $openEventId, 'form_status' => 1])->count();
     }
 
 }
