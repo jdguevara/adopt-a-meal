@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\AdminApproveEmail;
 use App\Mail\VolunteerApprovedEmail;
 
+define('INTERFAITH_ADMINS', env('INTERFAITH_ADMINS'));
+
 class EmailService implements IEmailService {
 
     protected $volunteerFormRepository;
