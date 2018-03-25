@@ -3,7 +3,7 @@
 namespace App\Contracts;
 
 
-interface ICalendarRepository
+interface ICalendarService
 {
     /**
      * Get all events from the open events calendar
