@@ -63,18 +63,18 @@ class AdminController extends Controller
         $this->validate($request, [
             'open_event_id' => 'required',
             'volunteer_id' => 'required',
-            'form_status' => 'required'
+//            'form_status' => 'required'
         ]);
         $event = $this->formRepository->get($request->volunteer_id);
-        $this->calendarService->create(CONFIRMED_CALENDAR_ID, $event);
+        $newEvent = $this->calendarService->create(CONFIRMED_CALENDAR_ID, $event);
         $this->calendarService->patch(CALENDAR_ID, $event->open_event_id, 'cancelled');   
-        $this->formRepository->approve($request->volunteer_id, $result->id);
+        $this->formRepository->approve($request->volunteer_id, $newEvent->id);
         $this->emailService->sendApprovalEmail($event);
         // Send Approval email
         return redirect('/admin');
 
     }
-    public function denyVolunteer(equest $request){
+    public function denyVolunteer(Request $request){
         $this->validate($request, [
             'open_event_id' => 'required',
             'volunteer_id' => 'required',
@@ -87,14 +87,14 @@ class AdminController extends Controller
     public function cancelConfirmedEvent(Request $request){
         $this->calendarService->patch(CONFIRMED_CALENDAR_ID, $request->confirmed_event_id, 'cancelled');
         if($this->formRepository->getOpenEventCount($request->open_event_id) == 1) {
-            $this->calendarRepository->patch(CALENDAR_ID, $request->open_event_id, 'confirmed');
+            $this->calendarService->patch(CALENDAR_ID, $request->open_event_id, 'confirmed');
         } 
         $this->formRepository->cancelled($request->volunteer_id);
         flash( "Volunteer Event Cancelled Succesfully")->success();
         return redirect('/admin/form/all');
     }
     
-    public function updateVolunteerForm(){
+    public function updateVolunteerForm(Request $request){
         strtolower($request['paper_goods'][0]) == 'y' ? $request->merge(['paper_goods' => 1]) : $request->merge(['paper_goods' => 0]);
         $this->validate($request, [
             'organization_name' => 'required',
@@ -108,7 +108,7 @@ class AdminController extends Controller
             'confirmed_event_id' => 'required'
         ]);
 
-        $this->calendarRepository->updateVolunteerEvent($request);
+        $this->calendarService->updateVolunteerEvent($request);
         $this->formRepository->update($request->all(), 1);
         flash( "Form Updated Succesfully")->success();
         return redirect('/admin/form/all');

@@ -36,7 +36,7 @@ function setupMealIdeaReviewValidation() {
 }
 
 function submitMealIdeaReview (action) {
-    let baseUrl = '/admin/meal-ideas';
+    let baseUrl = '/admin/meal-ideas/';
     let valid = true;
     $.each(inputIds, function(index, value) {
         valid = simpleJQueryValidity(value + '-validation');

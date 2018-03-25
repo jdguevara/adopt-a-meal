@@ -24,9 +24,10 @@ Route::post('/admin/form/update', 'AdminController@updateVolunteer');
 
 Route::get('/admin/meal-ideas', 'AdminController@viewMealIdeas')->name('admin-mealideas');
 Route::get('/admin/meal-ideas/all', 'AdminController@viewMealIdeasTable')->name('admin-mealideas-table');
-Route::post('/admin/meal-ideas/review', 'AdminController@updateMealIdea');
+Route::post('/admin/meal-ideas/update', 'AdminController@updateMealIdea');
 Route::post('/admin/meal-ideas/approve', 'AdminController@approveMealIdea');
 Route::post('/admin/meal-ideas/deny', 'AdminController@denyMealIdea');
+Route::post('/admin/meal-ideas/delete', 'AdminController@deleteMealIdea');
 
 Route::get('/admin/settings/change-messages', 'AdminController@getMessages');
 Route::post('/admin/settings/update-message', 'AdminController@updateMessage');

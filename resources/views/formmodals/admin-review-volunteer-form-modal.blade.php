@@ -68,17 +68,17 @@
                 <div class="modal-footer">
                     <div class="input-group pull-right">
                         @if($editMode)
-                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm('/admin/form/update');">
+                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm('update');">
                             Update
                         </button>
-                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm('/admin/form/cancel');">
+                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm('cancel');">
                             Cancel Volunteer Event
                         </button> 
                         @else
-                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm('admin/form/approve');">
+                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm('approve');">
                             Approve
                         </button>
-                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm('/admin/form/deny');">
+                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm('deny');">
                             Deny
                         </button>        
                         @endif
