@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\IEmailService;
 use App\Contracts\IMessagesRepository;
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\ICalendarService;
 use App\Contracts\IMealIdeaRepository;
-use App\Mail\AdminApproveEmail;
-use App\Mail\VolunteerApprovedEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use http\Exception;
@@ -24,13 +23,15 @@ class AdminController extends Controller
     protected $calendarService;
     protected $mealRepository;
     protected $messagesRepository;
+    protected $emailService;
 
-    public function __construct(IVolunteerFormRepository $formRepository, ICalendarService $calendarService, IMealIdeaRepository $mealRepository, IMessagesRepository $messagesRepository)
+    public function __construct(IVolunteerFormRepository $formRepository, ICalendarService $calendarService, IMealIdeaRepository $mealRepository, IMessagesRepository $messagesRepository, IEmailService $emailService)
     {
         $this->calendarService = $calendarService;
         $this->formRepository = $formRepository;
         $this->mealRepository = $mealRepository;
         $this->messagesRepository = $messagesRepository;
+        $this->emailService = $emailService;
         $this->middleware('auth');
     }
 
@@ -71,6 +72,7 @@ class AdminController extends Controller
         $this->calendarService->create(CONFIRMED_CALENDAR_ID, $event);
         $this->calendarService->patch(CALENDAR_ID, $event->open_event_id, 'cancelled');   
         $this->formRepository->approve($request->volunteer_id, $result->id);
+        $this->emailService->sendApprovalEmail($event);
         // Send Approval email
         return redirect('/admin');
 
@@ -114,10 +116,6 @@ class AdminController extends Controller
         flash( "Form Updated Succesfully")->success();
         return redirect('/admin/form/all');
     }
-
-
-
-
 
     public function reviewMealIdea(Request $request)
     {
@@ -174,25 +172,6 @@ class AdminController extends Controller
         $this->mealRepository->deny($request->id);
         return redirect()->back();
 
-    }
-
-
-    public function sendApprovedEmail($form)
-    {
-        $messages = $this->messagesRepository->allContent();
-        $admin_emails = explode(',', INTERFAITH_ADMINS);
-
-        // To Interfaith
-        foreach($admin_emails as $email){
-            Mail::to($email)
-                ->send(new AdminApproveEmail($form, $messages));
-        }
-
-        // To the Volunteer
-        Mail::to($form["email"])
-            ->send(new VolunteerApprovedEmail($form, $messages));
-
-        return redirect('/');
     }
 
     public function getMessages(Request $request)

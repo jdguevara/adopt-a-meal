@@ -8,6 +8,8 @@ use App\Contracts\IVolunteerFormRepository;
 use App\Mail\VolunteerFormEmail;
 use App\Mail\VolunteerRequestEmail;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\AdminApproveEmail;
+use App\Mail\VolunteerApprovedEmail;
 
 class EmailService implements IEmailService {
 
@@ -36,5 +38,21 @@ class EmailService implements IEmailService {
         ->send(new VolunteerFormEmail($form, $messages));
 
         return redirect('/');
+    }
+
+    public function sendApprovalEmail($form){
+        $messages = $this->messagesRepository->allContent();
+        $admin_emails = explode(',', INTERFAITH_ADMINS);
+
+        // To Interfaith
+        foreach($admin_emails as $email){
+            Mail::to($email)
+                ->send(new AdminApproveEmail($form, $messages));
+        }
+
+        // To the Volunteer
+        Mail::to($form["email"])
+            ->send(new VolunteerApprovedEmail($form, $messages));
+   
     }
 }
