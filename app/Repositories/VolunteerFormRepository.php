@@ -30,7 +30,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
      */
     public function all()
     {
-        return $this->form->all();
+        return $this->form->orderBy('created_at')->get();
     }
 
     /**
@@ -76,6 +76,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
      */
     public function create($input)
     {
+
         $this->form->fill([
             'organization_name' => $input['organization_name'],
             'phone' => $input['phone'],
@@ -86,6 +87,7 @@ class VolunteerFormRepository implements IVolunteerFormRepository
             'open_event_id' => $input['open_event_id'],
             'event_date_time' => new DateTime($input['open_event_date_time']),
             'form_status' => VolunteerFormStatus::NEW,
+            'event_summary' => $input['event_summary']
         ]);
 
         $this->form->save();

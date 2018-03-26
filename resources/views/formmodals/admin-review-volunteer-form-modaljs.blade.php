@@ -3,6 +3,7 @@ function loadAdminReviewVolunteerFormModal (eventId) {
 
     var event = volunteerForms.find(function(event) { return event.id == eventId; });
 
+    $('#event-summary').text(event.event_summary || "");
     $('#meal-description').val(event.meal_description);
     $('#organization-name').val(event.organization_name);
     $('#event-date-time').val(event.event_date_time);

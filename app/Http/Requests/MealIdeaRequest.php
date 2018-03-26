@@ -17,7 +17,6 @@ class MealIdeaRequest extends FormRequest
             'title' => 'required',
             'description' => 'required',
             'instructions' => 'required',
-            'display' => 'required',
             'ingredient' => 'required',
         ];
         return $rules;

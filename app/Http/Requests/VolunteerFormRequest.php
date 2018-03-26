@@ -19,7 +19,8 @@ class VolunteerFormRequest extends FormRequest
             'email' => 'required',
             'meal_description' => 'required',
             'open_event_id' => 'required',
-            'open_event_date_time' => 'required'
+            'open_event_date_time' => 'required',
+            'event_summary' => 'required',
         ];
         return $rules;
     }

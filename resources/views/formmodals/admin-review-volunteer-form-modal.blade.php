@@ -4,7 +4,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 id="title" style="margin-top: 15px;"></h3>
+                    <h3 id="event-summary" style="margin-top: 15px;"></h3>
                 </div>
                 <!-- list of text field inputs and check boxes  -->
                 <div class="modal-body">

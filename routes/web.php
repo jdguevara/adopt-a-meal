@@ -14,6 +14,9 @@
 Route::get('/', 'LandingPageController@index')->name('home');
 Route::get('/meal-ideas', 'MealIdeasController@index')->name('mealideas');
 
+Route::post('/volunteer/submit', 'VolunteerFormController@volunteer');
+Route::post('/meal-ideas/submit', 'MealIdeasController@submit');
+
 Auth::routes();
 Route::get('/admin', 'AdminController@index')->name('admin-home');
 Route::get('/admin/form/all', 'AdminController@viewVolunteerFormsTable')->name('admin-volunteerforms-table');

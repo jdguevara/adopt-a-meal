@@ -32,68 +32,97 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-
     /**
      * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         return view('admin', ['volunteerForms' => $this->formRepository->getAllNewForms()]);
     }
 
+    /**
+     * Show the volunteers so that the admin can edit or cancel them.
+     */
     public function viewVolunteerFormsTable()
     {
-        $allVolunteerForms = $this->formRepository->all(); //asort(, function($date1, $date2) {} );
+        $allVolunteerForms = $this->formRepository->all();
         return view('admin-volunteerforms-table', ['volunteerforms' => $allVolunteerForms ]);
     }
 
+    /**
+     * Show the meal ideas that are in pending status and haven't been approved yet.
+     */
     public function viewMealIdeas()
     {
         return view('admin-mealideas', ['mealideas' => $this->mealRepository->getNewMealIdeas()]);
     }
 
+    /**
+     * Show the meal ideas that are in the database so the admin can edit or delete them.
+     */
     public function viewMealIdeasTable()
     {
         return view('admin-mealideas-table', ['mealideas' => $this->mealRepository->getConfirmedMealIdeas()]);
     }
 
+    /**
+     * Confirm a volunteer for an Adopt-A-Meal event. Create a new event in the confirmed events
+     * calendar, hide the open event by setting its status to cancelled, and update the volunteer's
+     * status in the database. Send an email letting the volunteer know they were approved.
+     */
     public function approveVolunteer(Request $request){
         $this->validate($request, [
             'open_event_id' => 'required',
             'volunteer_id' => 'required',
-//            'form_status' => 'required'
         ]);
         $event = $this->formRepository->get($request->volunteer_id);
         $newEvent = $this->calendarService->create(CONFIRMED_CALENDAR_ID, $event);
         $this->calendarService->patch(CALENDAR_ID, $event->open_event_id, 'cancelled');   
         $this->formRepository->approve($request->volunteer_id, $newEvent->id);
         $this->emailService->sendApprovalEmail($event);
-        // Send Approval email
-        return redirect('/admin');
 
+        return redirect('/admin');
     }
+
+    /**
+     * Deny a volunteer's request to adopt a meal. This will change their volunteer form status
+     * to "denied", but won't change anything in the google calendars.
+     */
     public function denyVolunteer(Request $request){
         $this->validate($request, [
             'open_event_id' => 'required',
             'volunteer_id' => 'required',
             'form_status' => 'required'
         ]);
-        $this->formRepository->deny($request->volunteer_id);
+
+        try {
+            $this->formRepository->deny($request->volunteer_id);
+            flash( "Volunteer denied.")->success();
+        } catch(\Exception $e) {
+            flash( "An error occured. Please try again.")->success();
+        }
+
         return redirect('/admin');
     }
 
-    public function cancelConfirmedEvent(Request $request){
+    /**
+     * Cancel a confirmed volunteer event. This will remove their event from the confirmed calendar.
+     * If the volunteer is the only one confirmed for that event, the open event will be "un-cancelled"
+     * in the open event calendar, or "re-opened".
+     */
+    public function cancelConfirmedEvent(Request $request) {
         $this->calendarService->patch(CONFIRMED_CALENDAR_ID, $request->confirmed_event_id, 'cancelled');
         if($this->formRepository->getOpenEventCount($request->open_event_id) == 1) {
             $this->calendarService->patch(CALENDAR_ID, $request->open_event_id, 'confirmed');
         } 
         $this->formRepository->cancelled($request->volunteer_id);
-        flash( "Volunteer Event Cancelled Succesfully")->success();
+        flash( "Volunteer cancelled succesfully.")->success();
         return redirect('/admin/form/all');
     }
-    
+
+    /**
+     * Update a volunteer's information with edits from an administrator.
+     */
     public function updateVolunteerForm(Request $request){
         strtolower($request['paper_goods'][0]) == 'y' ? $request->merge(['paper_goods' => 1]) : $request->merge(['paper_goods' => 0]);
         $this->validate($request, [
@@ -108,36 +137,20 @@ class AdminController extends Controller
             'confirmed_event_id' => 'required'
         ]);
 
-        $this->calendarService->updateVolunteerEvent($request);
-        $this->formRepository->update($request->all(), 1);
-        flash( "Form Updated Succesfully")->success();
+        try {
+            $this->formRepository->update($request->all(), 1);
+            flash( "Volunteer updated successfully.")->success();
+        } catch(\Exception $e) {
+            flash( "Unable to update volunteer. Please try again.")->error();
+        }
+
         return redirect('/admin/form/all');
     }
 
-    public function reviewMealIdea(Request $request)
-    {
-        $request['display'] = $request['display'] == "on" ? true : false;
-        $request['ingredients'] = json_encode(array_map(function ($val) {
-            return trim($val);
-        }, explode(",", $request->ingredients)));
-        
-        $this->validate($request, [
-            'id' => 'required',
-            'description' => 'required',
-            'ingredients' => 'required',
-        ]);
-
-        // Check the new status on the request
-        if ($request->new_status == 1) {
-            // Update the meal idea with any changes and approve
-            $this->mealRepository->approve($request->id, $request);
-        } // Denied
-        else if ($request->new_status == 2) {
-            $this->mealRepository->deny($request->id);
-        }
-        return redirect()->back();
-    }
-
+    /**
+     * Approve a meal idea - this will display it with the other publicly available
+     * meal ideas.
+     */
     public function approveMealIdea(Request $request)
     {
         $request['display'] = $request['display'] == "on" ? true : false;
@@ -150,10 +163,20 @@ class AdminController extends Controller
             'description' => 'required',
             'ingredients' => 'required',
         ]);
-        $this->mealRepository->approve($request->id, $request);
+
+        try {
+            $this->mealRepository->approve($request->id, $request);
+            flash("Meal Idea approved.")->success();
+        } catch(\Exception $e) {
+            flash("Unable to approve Meal Idea. Please try again.")->success();
+        }
+
         return redirect()->back();
     }
 
+    /**
+     * Do not allow a meal idea to be posted with the other meal ideas.
+     */
     public function denyMealIdea(Request $request)
     {
         $request['display'] = $request['display'] == "on" ? true : false;
@@ -166,11 +189,60 @@ class AdminController extends Controller
             'description' => 'required',
             'ingredients' => 'required',
         ]);
-        $this->mealRepository->deny($request->id);
-        return redirect()->back();
 
+        try {
+            $this->mealRepository->deny($request->id);
+            flash("Meal Idea denied.")->success();
+        } catch(\Exception $e) {
+            flash("Unable to deny Meal Idea. Please try again.")->success();
+        }
+
+        return redirect()->back();
     }
 
+    /**
+     * Update a meal idea with an admin's changes.
+     */
+    public function updateMealIdea(Request $request)
+    {
+        $request['display'] = $request['display'] == "on" ? true : false;
+        $request['ingredients'] = json_encode(array_map(function ($val) {
+            return trim($val);
+        }, explode(",", $request->ingredients)));
+
+        $this->validate($request, [
+            'id' => 'required',
+            'description' => 'required',
+            'ingredients' => 'required',
+        ]);
+
+        try {
+            $this->mealRepository->update($request->id, $request);
+            flash( "Meal Idea updated.")->success();
+
+        } catch(\Exception $e) {
+            flash("Unable to update Meal Idea. Please try again.")->error();
+        }
+
+        return redirect()->back();
+    }
+
+
+    public function deleteMealIdea(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required'
+        ]);
+
+        $this->mealRepository->delete($request->id);
+        flash( "Meal Idea deleted.")->success();
+        return redirect()->back();
+    }
+
+    /**
+     * Get a list of content for admins to view and edit. Convert titles to human-readable
+     * format so they can be displayed in a list.
+     */
     public function getMessages(Request $request)
     {
         // get all message objects
@@ -192,6 +264,9 @@ class AdminController extends Controller
         return view('messages', ['messages' => $messages]);
     }
 
+    /**
+     * Change a message's content with an admin's edits
+     */
     public function updateMessage(Request $request)
     {
         // validate inputs
@@ -212,12 +287,11 @@ class AdminController extends Controller
                 $this->messagesRepository->update($input);
                 flash( "Your message was saved successfully!")->success();
             }
-            catch(Exception $e) {
+            catch(\Exception $e) {
                 flash("There was a problem saving your message. Please try again later.")->error();
             }
         }
         return redirect('admin/settings/change-messages');
     }
-
 
 }

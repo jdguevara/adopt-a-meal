@@ -1,5 +1,7 @@
 <!-- Meal Idea modal that is displayed when Share is clicked-->
-<form id="meal-idea-form" method="POST" action="api/meal-ideas/submit">
+<form id="meal-idea-form" method="POST" action="/meal-ideas/submit">
+
+    {{ csrf_field() }}
     <div class="modal fade" id="meal-idea-modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">

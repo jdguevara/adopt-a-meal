@@ -58,9 +58,9 @@ class MealIdeaRepository implements IMealIdeaRepository
         return $this->mealidea->id;
     }
 
-    public function update($form, $input)
+    public function update($id, $input)
     {
-        $meal = $this->mealidea->find($form->id);
+        $meal = $this->mealidea->find($id);
         $meal->fill([
             'title' => $input['title'],
             'description' => $input['description'],
