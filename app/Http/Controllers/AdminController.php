@@ -99,7 +99,7 @@ class AdminController extends Controller
             $this->formRepository->deny($request->volunteer_id);
             flash( "Volunteer denied.")->success();
         } catch(\Exception $e) {
-            flash( "An error occured. Please try again.")->success();
+            flash( "An error occured. Please try again.")->error();
         }
 
         return redirect('/admin');
@@ -168,7 +168,7 @@ class AdminController extends Controller
             $this->mealRepository->approve($request->id, $request);
             flash("Meal Idea approved.")->success();
         } catch(\Exception $e) {
-            flash("Unable to approve Meal Idea. Please try again.")->success();
+            flash("Unable to approve Meal Idea. Please try again.")->error();
         }
 
         return redirect()->back();
@@ -194,7 +194,7 @@ class AdminController extends Controller
             $this->mealRepository->deny($request->id);
             flash("Meal Idea denied.")->success();
         } catch(\Exception $e) {
-            flash("Unable to deny Meal Idea. Please try again.")->success();
+            flash("Unable to deny Meal Idea. Please try again.")->error();
         }
 
         return redirect()->back();
