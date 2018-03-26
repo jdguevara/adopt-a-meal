@@ -71,15 +71,24 @@ class AdminController extends Controller
      * status in the database. Send an email letting the volunteer know they were approved.
      */
     public function approveVolunteer(Request $request){
+
         $this->validate($request, [
             'open_event_id' => 'required',
             'volunteer_id' => 'required',
         ]);
-        $event = $this->formRepository->get($request->volunteer_id);
-        $newEvent = $this->calendarService->create(CONFIRMED_CALENDAR_ID, $event);
-        $this->calendarService->patch(CALENDAR_ID, $event->open_event_id, 'cancelled');   
-        $this->formRepository->approve($request->volunteer_id, $newEvent->id);
-        $this->emailService->sendApprovalEmail($event);
+
+        try {
+
+            $event = $this->formRepository->get($request->volunteer_id);
+            $newEvent = $this->calendarService->create(CONFIRMED_CALENDAR_ID, $event);
+            $this->calendarService->patch(CALENDAR_ID, $event->open_event_id, 'cancelled');
+            $this->emailService->sendApprovalEmail($event);
+            $this->formRepository->approve($request->volunteer_id, $newEvent->id);
+            flash('Volunteer ' . $event->organization_name . ' was approved!')->success();
+
+        } catch(\Exception $e) {
+            flash('Couldn\'t approve volunteer. Please try again.');
+        }
 
         return redirect('/admin');
     }
@@ -110,7 +119,7 @@ class AdminController extends Controller
      * If the volunteer is the only one confirmed for that event, the open event will be "un-cancelled"
      * in the open event calendar, or "re-opened".
      */
-    public function cancelConfirmedEvent(Request $request) {
+    public function cancelVolunteer(Request $request) {
         $this->calendarService->patch(CONFIRMED_CALENDAR_ID, $request->confirmed_event_id, 'cancelled');
         if($this->formRepository->getOpenEventCount($request->open_event_id) == 1) {
             $this->calendarService->patch(CALENDAR_ID, $request->open_event_id, 'confirmed');
@@ -123,7 +132,7 @@ class AdminController extends Controller
     /**
      * Update a volunteer's information with edits from an administrator.
      */
-    public function updateVolunteerForm(Request $request){
+    public function updateVolunteer(Request $request){
         strtolower($request['paper_goods'][0]) == 'y' ? $request->merge(['paper_goods' => 1]) : $request->merge(['paper_goods' => 0]);
         $this->validate($request, [
             'organization_name' => 'required',
@@ -138,6 +147,7 @@ class AdminController extends Controller
         ]);
 
         try {
+            $this->calendarService->update(CONFIRMED_CALENDAR_ID, $request);
             $this->formRepository->update($request->all(), 1);
             flash( "Volunteer updated successfully.")->success();
         } catch(\Exception $e) {

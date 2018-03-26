@@ -19,7 +19,7 @@ function loadAdminReviewVolunteerFormModal (eventId) {
 }
 
 function submitAdminReviewVolunteerForm (action) {
-    let baseUrl = '/admin/form/'
+    var baseUrl = '/admin/form/';
     $('#event-form').attr('action', baseUrl+action).submit();
 }
 

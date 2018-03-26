@@ -22,7 +22,7 @@ Route::get('/admin', 'AdminController@index')->name('admin-home');
 Route::get('/admin/form/all', 'AdminController@viewVolunteerFormsTable')->name('admin-volunteerforms-table');
 Route::post('/admin/form/approve', 'AdminController@approveVolunteer');
 Route::post('/admin/form/deny', 'AdminController@denyVolunteer');
-Route::post('/admin/form/cancel', 'AdminController@cancelConfirmedEvent');
+Route::post('/admin/form/cancel', 'AdminController@cancelVolunteer');
 Route::post('/admin/form/update', 'AdminController@updateVolunteer');
 
 Route::get('/admin/meal-ideas', 'AdminController@viewMealIdeas')->name('admin-mealideas');

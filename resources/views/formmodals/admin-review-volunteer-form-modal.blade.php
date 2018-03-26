@@ -1,4 +1,4 @@
-<form id="event-form" method="POST">
+<form id="event-form" method="POST" action="">
     {{ csrf_field() }}
     <div class="modal fade" id="event-modal" role="dialog">
         <div class="modal-dialog">
