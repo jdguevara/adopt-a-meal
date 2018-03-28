@@ -4,9 +4,13 @@
 namespace App\Contracts;
 
 
+use Illuminate\Support\Carbon;
+
 interface IVolunteerFormRepository
 {
     public function all();
+
+    public function allByMonth($month);
 
     public function get($id);
 

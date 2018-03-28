@@ -16,43 +16,38 @@ class VolunteerFormRepository implements IVolunteerFormRepository
 {
     private $form;
 
-    /**
-     * Default constructor. We are injecting our db model so we can use it.
-     * @param $form - Db model that is being injected.
-     */
     public function __construct(VolunteerForm $form)
     {
         $this->form = $form;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
     public function all()
     {
         return $this->form->orderBy('created_at')->get();
     }
 
-    /**
-     * @param $id
-     * @return mixed
-     */
+    public function allByMonth($month)
+    {
+        $start = new Carbon($month->startOfMonth());
+        $end = new Carbon($month->endOfMonth());
+
+        return $this->form
+            ->where('event_date_time', '>=', $start)
+            ->where('event_date_time', '<=', $end)
+            ->orderBy('event_date_time', 'DESC')
+            ->get();
+    }
+
     public function get($id)
     {
         return $this->form->find($id);
     }
 
-    /**
-     * @return mixed
-     */
     public function getAllNewForms()
     {
         return $this->form->where('form_status', '=', VolunteerFormStatus::NEW)->get();
     }
 
-    /**
-     * @return array
-     */
     public function getAllPreviousAcceptedOrganizationNames()
     {
 
@@ -70,10 +65,6 @@ class VolunteerFormRepository implements IVolunteerFormRepository
 
     }
 
-    /**
-     * @param $input
-     * @return mixed
-     */
     public function create($input)
     {
 
@@ -95,10 +86,6 @@ class VolunteerFormRepository implements IVolunteerFormRepository
         return $this->form->id;
     }
 
-    /**
-     * @param $input
-     * @param $status
-     */
     public function update($input, $status)
     {
         $this->form->where('id',$input['volunteer_id'])->update([
@@ -112,42 +99,25 @@ class VolunteerFormRepository implements IVolunteerFormRepository
         ]);
     }
 
-    /**
-     * @param $id
-     */
     public function delete($id)
     {
         $form = $this->form->find($id);
         $form->delete();
     }
 
-    /**
-     * @param $volunteerId
-     * @param $confirmedEventId
-     */
     public function approve($volunteerId, $confirmedEventId)
     {
         $this->form->where('id', $volunteerId)->update(['form_status' => VolunteerFormStatus::APPROVED, 'confirmed_event_id' => $confirmedEventId]);
     }
 
-    /**
-     * @param $volunteerId
-     */
     public function deny($volunteerId){
         $this->form->where('id', $volunteerId)->update(['form_status' => VolunteerFormStatus::DENIED]);
     }
 
-    /**
-     * @param $volunteerId
-     */
     public function cancelled($volunteerId){
         $this->form->where('id', $volunteerId)->update(['form_status' => VolunteerFormStatus::CANCELLED]);
     }
 
-    /**
-     * @param $openEventId
-     * @return
-     */
     public function getOpenEventCount($openEventId)
     {
         return $this->form->where(['open_event_id'=> $openEventId, 'form_status' => VolunteerFormStatus::APPROVED])->count();

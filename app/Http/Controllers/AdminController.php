@@ -7,11 +7,14 @@ use App\Contracts\IMessagesRepository;
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\ICalendarService;
 use App\Contracts\IMealIdeaRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use http\Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Utils;
+use Illuminate\Support\Facades\Route;
 
 class AdminController extends Controller
 {
@@ -45,8 +48,25 @@ class AdminController extends Controller
      */
     public function viewVolunteerFormsTable()
     {
-        $allVolunteerForms = $this->formRepository->all();
-        return view('admin-volunteerforms-table', ['volunteerforms' => $allVolunteerForms ]);
+
+        try {
+            $month = Carbon::createFromFormat('m-Y', Input::get('month'))->startOfMonth();
+        } catch(\Exception $e) {
+            $month = Carbon::now();
+        }
+
+        $allVolunteerForms = $this->formRepository->allByMonth(new Carbon($month));
+        $prevRoute = '/' . Route::current()->uri . '?month=' . (new Carbon($month))->addMonths(-1)->format('m-Y');
+        $nextRoute = '/' . Route::current()->uri . '?month=' . (new Carbon($month))->addMonths(1)->format('m-Y');
+
+        return view(
+            'admin-volunteerforms-table',
+            [
+                'volunteerforms' => $allVolunteerForms,
+                'month' => $month,
+                'prevRoute' => $prevRoute,
+                'nextRoute' => $nextRoute
+            ]);
     }
 
     /**
