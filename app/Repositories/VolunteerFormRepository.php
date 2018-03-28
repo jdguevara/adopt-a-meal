@@ -105,9 +105,9 @@ class VolunteerFormRepository implements IVolunteerFormRepository
         $form->delete();
     }
 
-    public function approve($volunteerId, $confirmedEventId)
+    public function approve($volunteerVolunteerId, $confirmedConfirmedEventId)
     {
-        $this->form->where('id', $volunteerId)->update(['form_status' => VolunteerFormStatus::APPROVED, 'confirmed_event_id' => $confirmedEventId]);
+        $this->form->where('id', $volunteerVolunteerId)->update(['form_status' => VolunteerFormStatus::APPROVED, 'confirmed_event_id' => $confirmedConfirmedEventId]);
     }
 
     public function deny($volunteerId){
