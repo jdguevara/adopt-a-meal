@@ -69,17 +69,17 @@
                     <div class="input-group pull-right">
                         @if($editMode)
                         <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm('update');">
-                            Update
+                            Update Volunteer
                         </button>
                         <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm('cancel');">
-                            Cancel Volunteer Event
+                            Cancel Volunteer
                         </button> 
                         @else
                         <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm('approve');">
-                            Approve
+                            Approve Volunteer
                         </button>
                         <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm('deny');">
-                            Deny
+                            Deny Volunteer
                         </button>        
                         @endif
                         <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
