@@ -64,6 +64,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>Event</th>
                         <th>Organization Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
@@ -76,6 +77,7 @@
                 <tbody>
                     @foreach($volunteerforms as $volunteerform)
                     <tr>
+                        <td>{{ $volunteerform->event_summary }}</td>
                         <td>{{ $volunteerform->organization_name }}</td>
                         <td>{{ $volunteerform->email }}</td>
                         <td>{{ $volunteerform->phone }}</td>

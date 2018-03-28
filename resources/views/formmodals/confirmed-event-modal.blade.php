@@ -17,7 +17,7 @@
 
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-addon">Title</span>
+                            <span class="input-group-addon">Organization</span>
                             <input id="confirmed-title" name="title" type="text"
                                     class="form-control" placeholder="Title" disabled>
                         </div>
