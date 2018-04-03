@@ -13,7 +13,6 @@
 //
 @import "~fullcalendar/dist/fullcalendar.min.css";
 
-
 @media screen and (max-width: 600px) {
     .desktop {
         display: none !important;
@@ -66,4 +65,18 @@ html::-webkit-scrollbar {
         width: 100%;
         margin: 15px 0;
     }
+}
+
+
+.list-group-container {
+    height: 100px;
+    line-height: 100px;
+}
+
+.list-group-container > button {
+    position: absolute;
+    top: 32px;
+    right: 0;
+    margin-right: 15px;
+
 }
