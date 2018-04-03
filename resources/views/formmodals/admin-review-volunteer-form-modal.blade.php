@@ -1,13 +1,10 @@
-@if($editMode) <form id="event-form" method="POST" action="/admin/form/update">
-@else <form id="event-form" method="POST" action="/admin/form/review">
-@endif
-
+<form id="event-form" method="POST" action="">
     {{ csrf_field() }}
     <div class="modal fade" id="event-modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 id="title" style="margin-top: 15px;"></h3>
+                    <h3 id="event-summary" style="margin-top: 15px;"></h3>
                 </div>
                 <!-- list of text field inputs and check boxes  -->
                 <div class="modal-body">
@@ -71,18 +68,18 @@
                 <div class="modal-footer">
                     <div class="input-group pull-right">
                         @if($editMode)
-                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm(1);">
-                            Update
+                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm('update');">
+                            Update Volunteer
                         </button>
-                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm(2);">
-                            Cancel Volunteer Event
+                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm('cancel');">
+                            Cancel Volunteer
                         </button> 
                         @else
-                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm(1);">
-                            Approve
+                        <button id="approve" type="button" class="btn btn-success" onClick="submitAdminReviewVolunteerForm('approve');">
+                            Approve Volunteer
                         </button>
-                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm(2);">
-                            Deny
+                        <button id="deny" type="button" class="btn btn-warning" onClick="submitAdminReviewVolunteerForm('deny');">
+                            Deny Volunteer
                         </button>        
                         @endif
                         <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>

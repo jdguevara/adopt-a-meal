@@ -32,16 +32,16 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Adopt-A-Meal Volunteers<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('home') }}">Volunteer Calendar</a></li>
-                        <li><a href="{{ route('admin-home') }}">Review Pending Volunteers</a></li>
-                        <li><a href="{{ route('admin-volunteerforms-table') }}">Past Volunteer Requests</a></li>
+                        <li><a href="{{ route('admin-home') }}">Pending Volunteers</a></li>
+                        <li><a href="{{ route('admin-volunteerforms-table') }}">Past Volunteers</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Meal Ideas<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('mealideas') }}">Public Meal Ideas</a></li>
-                        <li><a href="{{ route('admin-mealideas') }}">Review Pending Meal Ideas</a></li>
-                        <li><a href="{{ route('admin-mealideas-table') }}">Meal Ideas Table</a></li>
+                        <li><a href="{{ route('admin-mealideas') }}">Pending Meal Ideas</a></li>
+                        <li><a href="{{ route('admin-mealideas-table') }}">Edit Meal Ideas</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

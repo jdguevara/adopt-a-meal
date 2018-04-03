@@ -18,7 +18,7 @@ interface IMealIdeaRepository
 
     public function create($input);
 
-    public function update($form, $input);
+    public function update($id, $input);
 
     public function delete($id);
 

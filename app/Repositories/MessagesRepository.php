@@ -1,12 +1,10 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Repositories;
 
 use App\Contracts\IMessagesRepository;
 use App\Message;
-use App\MessageType;
-use Illuminate\Support\Facades\DB;
 
 class MessagesRepository implements IMessagesRepository
 {
