@@ -3,7 +3,12 @@
 @section('scripts')
 @component('formmodals.admin-review-volunteer-form-modaljs') @endcomponent
 <script>
-var volunteerForms = @json($volunteerforms);
+    var volunteerForms = @json($volunteerforms);
+
+    function loading() {
+        $('#volunteer-table').hide();
+        $('#loading').show();
+    }
 </script>
 @endsection
 
@@ -26,18 +31,40 @@ var volunteerForms = @json($volunteerforms);
             </div>
         </div>
 
+
         <nav aria-label="...">
             <ul class="pager">
-                <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> Previous Month</a></li>
-                <li class="next"><a href="#">Next Month <span aria-hidden="true">&rarr;</span></a></li>
+
+                <li class="previous">
+                    <a href="{{ $prevRoute }}" onclick="loading()">
+                        <span aria-hidden="true">&larr;</span> Previous Month
+                    </a>
+                </li>
+
+                <li class="month-title">
+                    <span>{{ $month->format('F Y') }}</span>
+                </li>
+
+                <li class="next">
+                    <a href="{{ $nextRoute }}" onclick="loading()">Next Month
+                        <span aria-hidden="true">&rarr;</span>
+                    </a>
+                </li>
             </ul>
         </nav>
 
-        <div class="table-responsive">
-            <h3 class="text-center">Current Month</h3>
+        <div id="loading" class="text-center" style="margin-left: 35px;" hidden>
+            <div id="loading-spinner" class="spinner">
+                <div class="dot1"></div>
+                <div class="dot2"></div>
+            </div>
+        </div>
+
+        <div id="volunteer-table" class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>Event</th>
                         <th>Organization Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
@@ -50,6 +77,7 @@ var volunteerForms = @json($volunteerforms);
                 <tbody>
                     @foreach($volunteerforms as $volunteerform)
                     <tr>
+                        <td>{{ $volunteerform->event_summary }}</td>
                         <td>{{ $volunteerform->organization_name }}</td>
                         <td>{{ $volunteerform->email }}</td>
                         <td>{{ $volunteerform->phone }}</td>

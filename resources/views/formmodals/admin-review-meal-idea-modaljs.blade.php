@@ -1,7 +1,7 @@
 <script>
 function loadMealIdeaReviewModal (id) {
     // find the particular meal idea in our meal idea list
-    var idea = mealIdeas.find(function(event) { return event.id == id; });
+    let idea = mealIdeas.find(function(event) { return event.id == id; });
 
     $("#meal-title").val(idea.title);
     $('#instructions').val(idea.instructions);
@@ -11,14 +11,14 @@ function loadMealIdeaReviewModal (id) {
     $('#external-link').val(idea.external_link);
     $('#meal-id').val(idea.id);
 
-    var ingredients = JSON.parse(idea.ingredients_json);
+    let ingredients = JSON.parse(idea.ingredients_json);
     $('#ingredients').val(ingredients.join(', '));
 
     resetJQueryValidation(inputIds, true);
     $("#modal").modal();
 }
 
-var inputIds = ['#meal-title', '#instructions', '#description', '#ingredients'];
+const inputIds = ['#meal-title', '#instructions', '#description', '#ingredients'];
 
 function setupMealIdeaReviewValidation() {
     $('#meal-title').on('input', function () {
@@ -35,18 +35,17 @@ function setupMealIdeaReviewValidation() {
     });
 }
 
-function submitMealIdeaReview (status) {
-    $('#new-status').val(status);
-
+function submitMealIdeaReview (action) {
+    var baseUrl = '/admin/meal-ideas/';
     var valid = true;
     $.each(inputIds, function(index, value) {
-        valid = simpleJQueryValidity(value + '-validation') ? valid ? true : false : false;
+        valid = simpleJQueryValidity(value + '-validation');
     });
     if(valid) {
         $("#inputs").hide();
         $("#input-buttons").hide();
         $("#loading-info").show();
-        $('#meal-idea-review-form').submit();
+        $('#meal-idea-review-form').attr('action', baseUrl + action).submit();
     }
 }
 </script>

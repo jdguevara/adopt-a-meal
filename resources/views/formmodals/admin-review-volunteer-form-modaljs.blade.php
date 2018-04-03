@@ -3,6 +3,7 @@ function loadAdminReviewVolunteerFormModal (eventId) {
 
     var event = volunteerForms.find(function(event) { return event.id == eventId; });
 
+    $('#event-summary').text(event.event_summary || "");
     $('#meal-description').val(event.meal_description);
     $('#organization-name').val(event.organization_name);
     $('#event-date-time').val(event.event_date_time);
@@ -17,9 +18,9 @@ function loadAdminReviewVolunteerFormModal (eventId) {
     $("#event-modal").modal();
 }
 
-function submitAdminReviewVolunteerForm (submit) {
-    $('#form-status').val(submit);
-    $('#event-form').submit();
+function submitAdminReviewVolunteerForm (action) {
+    var baseUrl = '/admin/form/';
+    $('#event-form').attr('action', baseUrl+action).submit();
 }
 
 </script>

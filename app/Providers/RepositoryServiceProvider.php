@@ -29,19 +29,23 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             'App\Contracts\IVolunteerFormRepository',
-            'App\Services\VolunteerFormRepository'
+            'App\Repositories\VolunteerFormRepository'
         );
         $this->app->bind(
-            'App\Contracts\ICalendarRepository',
-            'App\Services\CalendarRepository'
+            'App\Contracts\ICalendarService',
+            'App\Services\CalendarService'
         );
         $this->app->bind(
             'App\Contracts\IMealIdeaRepository',
-            'App\Services\MealIdeaRepository'
+            'App\Repositories\MealIdeaRepository'
         );
         $this->app->bind(
             'App\Contracts\IMessagesRepository',
-            'App\Services\MessagesRepository'
+            'App\Repositories\MessagesRepository'
+        );
+        $this->app->bind(
+            'App\Contracts\IEmailService',
+            'App\Services\EmailService'
         );
     }
 }

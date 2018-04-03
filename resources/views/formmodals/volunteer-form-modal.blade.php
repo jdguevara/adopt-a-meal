@@ -1,5 +1,7 @@
 <!-- Volunteer form modal that is displayed when an event is clicked -->
-<form id="volunteer-form" class="volunteer-form" method="POST" action="/api/form/submit">
+<form id="volunteer-form" class="volunteer-form" method="POST" action="/volunteer/submit">
+
+    {{ csrf_field() }}
     <div class="modal fade" id="volunteer-modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -85,7 +87,7 @@
                         <!-- rendered from event id stored in calendar -->
                         <input id="event-id" name="open_event_id" type="text" hidden />
                         <input id="event-time" name="open_event_date_time" type="text" hidden />
-
+                        <input id="event-title" name="event_summary" type="text" hidden />
                     </div> <!-- end inputs -->
 
                     <!-- loading spinner -->

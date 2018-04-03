@@ -25,6 +25,7 @@ class VolunteerFormTable extends Migration
             $table->string('open_event_id');
             $table->dateTime('event_date_time')->nullable();
             $table->string('confirmed_event_id')->nullable();
+            $table->string('event_summary');
             $table->timestamps();
             $table->unique('confirmed_event_id');
         });

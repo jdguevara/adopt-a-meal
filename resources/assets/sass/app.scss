@@ -33,11 +33,6 @@ html::-webkit-scrollbar {
     max-height: 50px;
     max-width: 50px;
 }
-.event-info-details {
-    float: right;
-    position: relative;
-    margin-top: -13px;
-}
 
 .text-yellow {
     color: $interfaith-yellow;
@@ -66,4 +61,10 @@ html::-webkit-scrollbar {
         width: 100%;
         margin: 15px 0;
     }
+}
+
+.month-title {
+    font-weight: 700;
+    text-align: center;
+    margin: 0px auto;
 }

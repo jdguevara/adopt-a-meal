@@ -1,4 +1,4 @@
-<form id="meal-idea-review-form" method="POST" action="/admin/meal-ideas/review">
+<form id="meal-idea-review-form" method="POST" action="">
     {{ csrf_field() }}
     <div class="modal fade" id="modal" role="dialog">
         <div class="modal-dialog">
@@ -86,17 +86,17 @@
                 <div id="input-buttons" class="modal-footer">
                     <div class="input-group pull-right">
                         @if(!$editMode)
-                        <button id="approve" type="button" class="btn btn-success" onClick="submitMealIdeaReview(1);">
+                        <button id="approve" type="button" class="btn btn-success" onClick="submitMealIdeaReview('approve');">
                             Approve
                         </button>
-                        <button id="deny" type="button" class="btn btn-warning" onClick="submitMealIdeaReview(2);">
+                        <button id="deny" type="button" class="btn btn-warning" onClick="submitMealIdeaReview('deny');">
                             Deny
                         </button>
                         @else
-                        <button id="update" type="button" class="btn btn-success" onClick="submitMealIdeaReview(1);">
+                        <button id="update" type="button" class="btn btn-success" onClick="submitMealIdeaReview('update');">
                             Update
                         </button>
-                        <button id="delete" type="button" class="btn btn-danger" onClick="submitMealIdeaReview(2);">
+                        <button id="delete" type="button" class="btn btn-danger" onClick="submitMealIdeaReview('delete');">
                             Delete
                         </button> 
                         @endif

@@ -16,7 +16,7 @@ class VolunteerForm extends Model
     protected $fillable = [
         'organization_name', 'phone', 'email', 'meal_description',
         'notes', 'paper_goods', 'form_status', 'open_event_id', 
-        'event_date_time', 'confirmed_event_id'
+        'event_date_time', 'confirmed_event_id', 'event_summary'
     ];
 
 
