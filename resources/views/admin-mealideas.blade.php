@@ -28,7 +28,6 @@ $(document).ready(function () {
                     <h5>{{$mealidea->title}}</h5>
                     <h5>From: {{$mealidea->name}}</h5>
                     <button onclick="loadMealIdeaReviewModal('{{$mealidea['id']}}');" class="btn btn-warning pull-right">Details</button>
->>>>>>> Stashed changes
                 </li>
             </ul>
         @endforeach
