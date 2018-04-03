@@ -67,7 +67,6 @@ class VolunteerFormRepository implements IVolunteerFormRepository
 
     public function create($input)
     {
-
         $this->form->fill([
             'organization_name' => $input['organization_name'],
             'phone' => $input['phone'],
@@ -80,9 +79,8 @@ class VolunteerFormRepository implements IVolunteerFormRepository
             'form_status' => VolunteerFormStatus::NEW,
             'event_summary' => $input['event_summary']
         ]);
-
+        
         $this->form->save();
-
         return $this->form->id;
     }
 
