@@ -131,9 +131,9 @@ $(document).ready(function () {
         {!! $messages['volunteer_thank_you'] or
             '<h1>Thank you for adopting a meal!</h1>
              <p>We would like to thank all the organizations who have volunteered for their wonderful contributions!</p>' !!}
-        <div class="row">
+        <div class="row thank-you-wrapper">
             @foreach($organizations as $organization)
-                <div class="list-group-item thank-you-list-item col-md-2 md-col-3 lg-col-4" >
+                <div class="list-group-item thank-you-list-item" >
                     <h3>
                         {{$organization}}
                     </h3>
