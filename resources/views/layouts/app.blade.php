@@ -14,7 +14,7 @@
             <a class="navbar-brand"  id="navbar-brand-padding" href="{{url('http://interfaithsanctuary.org/')}}">
                 <img class="brand" alt="Brand" id="navbar-brand-size" src="/images/Interfaith-Temp-Logo.png">
             </a>
-            <a class="navbar-brand" id="navbar-brand-font" href="/">Adopt a Meal</a>
+            <a class="navbar-brand" id="navbar-brand-font" href="{{url('/')}}">Adopt a Meal</a>
         </div>
         <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navigation">
             <span class="icon-bar"></span>
@@ -24,8 +24,8 @@
         <div class="collapse navbar-collapse pull-right" id="navigation">
             <ul class="nav navbar-nav">
                 @guest
-                <li class="nav-item "><a class="navbar-link" href="/">Calendar View</a></li>
-                <li class="nav-item "><a class="navbar-link" href="/meal-ideas">Meal Ideas</a></li>
+                <li class="nav-item "><a class="navbar-link" href="{{url('/')}}">Calendar View</a></li>
+                <li class="nav-item "><a class="navbar-link" href="{{url('/meal-ideas')}}">Meal Ideas</a></li>
                 @endguest
                 @auth
                 <li class="dropdown">
@@ -48,8 +48,11 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">Settings<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="/admin/settings/change-messages">
+                            <a href="{{url('/admin/settings/change-messages')}}">
                                 Change Messages
+                            </a>
+                            <a href="{{url('/admin/manageusers')}}">
+                                Manage Users
                             </a>
                         </li>
                     </ul>

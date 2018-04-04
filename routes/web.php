@@ -35,3 +35,7 @@ Route::post('/admin/meal-ideas/delete', 'AdminController@deleteMealIdea');
 Route::get('/admin/settings/change-messages', 'AdminController@getMessages');
 Route::post('/admin/settings/update-message', 'AdminController@updateMessage');
 
+Route::get('/admin/manageusers', 'AdminController@viewUsersTable')->name('admin-manageusers-table');
+Route::post('/admin/users/add', 'AdminController@addUser');
+Route::post('/admin/users/delete', 'AdminController@deleteUser');
+

@@ -7,11 +7,10 @@ use App\Contracts\IMessagesRepository;
 use App\Contracts\IVolunteerFormRepository;
 use App\Contracts\ICalendarService;
 use App\Contracts\IMealIdeaRepository;
+use App\Contracts\IUserRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Mail;
-use http\Exception;
 use Illuminate\Support\Facades\Auth;
 use App\Utils;
 use Illuminate\Support\Facades\Route;
@@ -24,14 +23,23 @@ class AdminController extends Controller
     protected $mealRepository;
     protected $messagesRepository;
     protected $emailService;
+    protected $userRepository;
 
-    public function __construct(IVolunteerFormRepository $formRepository, ICalendarService $calendarService, IMealIdeaRepository $mealRepository, IMessagesRepository $messagesRepository, IEmailService $emailService)
+    public function __construct(
+        IVolunteerFormRepository $formRepository,
+        ICalendarService $calendarService, IMealIdeaRepository
+        $mealRepository,
+        IMessagesRepository $messagesRepository,
+        IEmailService $emailService,
+        IUserRepository $userRepository
+    )
     {
         $this->calendarService = $calendarService;
         $this->formRepository = $formRepository;
         $this->mealRepository = $mealRepository;
         $this->messagesRepository = $messagesRepository;
         $this->emailService = $emailService;
+        $this->userRepository = $userRepository;
         $this->middleware('auth');
     }
 
@@ -84,6 +92,15 @@ class AdminController extends Controller
     {
         return view('admin-mealideas-table', ['mealideas' => $this->mealRepository->getConfirmedMealIdeas()]);
     }
+
+    public function viewUsersTable()
+    {
+        return view('admin-manageusers-table', ['users' => $this->userRepository->getAll()]);
+    }
+
+    //=============================================================
+    // VOLUNTEER FORM RELATED ENDPOINTS
+    //=============================================================
 
     /**
      * Confirm a volunteer for an Adopt-A-Meal event. Create a new event in the confirmed events
@@ -177,6 +194,10 @@ class AdminController extends Controller
         return redirect('/admin/form/all');
     }
 
+    //=============================================================
+    // MEAL IDEA RELATED ENDPOINTS
+    //=============================================================
+
     /**
      * Approve a meal idea - this will display it with the other publicly available
      * meal ideas.
@@ -269,6 +290,10 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    //=============================================================
+    // MESSAGE RELATED ENDPOINTS
+    //=============================================================
+
     /**
      * Get a list of content for admins to view and edit. Convert titles to human-readable
      * format so they can be displayed in a list.
@@ -323,5 +348,4 @@ class AdminController extends Controller
         }
         return redirect('admin/settings/change-messages');
     }
-
 }
