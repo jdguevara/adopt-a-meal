@@ -127,6 +127,18 @@ $(document).ready(function () {
             </div>
         </div>
     </div>
+    <style>
+        .jumbotron {
+            background-image:  url("/images/jumbotron_background_image.jpg");
+            background-color: #17234E;
+            margin-bottom: 0;
+            min-height: 50%;
+            background-repeat: no-repeat;
+            background-position: center;
+            -webkit-background-size: cover;
+            background-size: cover;
+        }
+    </style>
     <div class="text-center jumbotron jumbotron-footer">
         {!! $messages['volunteer_thank_you'] or
             '<h1>Thank you for adopting a meal!</h1>
