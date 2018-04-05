@@ -28,14 +28,13 @@ var volunteerForms = @json($volunteerForms);
         </div>
         @foreach($volunteerForms as $form)
         <ul class="list-group">
-            <li class="list-group-item ">
-                <h5>{{$form->title}}</h5>
-                <h6>From: {{$form->organization_name}}
-                    <button id="view-event" onclick="loadAdminReviewVolunteerFormModal({{ $form['id'] }});" class="btn btn-warning event-info-details pull-right">
-                            Details
-                    </button>
-                </h6>
+            <li class="list-group-item list-group-container">
+                <h5>{{$form->event_summary}}</h5>
+                <h6>From: {{$form->organization_name}}</h6>
                 <h6>Date: {{date('m-d-Y', strtotime($form->event_date_time))}} </h6>
+                <button id="view-event" onclick="loadAdminReviewVolunteerFormModal({{ $form['id'] }});" class="btn btn-warning pull-right">
+                        Details
+                </button>
             </li>
         </ul>
         @endforeach

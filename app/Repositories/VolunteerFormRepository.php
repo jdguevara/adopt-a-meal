@@ -54,13 +54,13 @@ class VolunteerFormRepository implements IVolunteerFormRepository
         $items = $this->form
             ->where('form_status', '=', VolunteerFormStatus::APPROVED)
             ->where('event_date_time', '<', Carbon::now())
-            ->get();
+            ->distinct()
+            ->get(['organization_name']);
+        
         $results = array();
-
         foreach($items as $item){
             array_push($results, $item['organization_name']);
         }
-        $results = array_unique($results);
         return $results;
 
     }
@@ -80,9 +80,8 @@ class VolunteerFormRepository implements IVolunteerFormRepository
             'form_status' => VolunteerFormStatus::NEW,
             'event_summary' => $input['event_summary']
         ]);
-
+        
         $this->form->save();
-
         return $this->form->id;
     }
 

@@ -24,13 +24,10 @@ $(document).ready(function () {
 
         @foreach($mealideas as $mealidea)
             <ul class="list-group">
-                <li class="list-group-item ">
+                <li class="list-group-item list-group-container">
                     <h5>{{$mealidea->title}}</h5>
-                    <h6>From: {{$mealidea->name}}
-                    <button onclick="loadMealIdeaReviewModal('{{$mealidea['id']}}');" class="btn btn-warning event-info-details pull-right">
-                        Details
-                    </button> 
-                    </h6>
+                    <h5>From: {{$mealidea->name}}</h5>
+                    <button onclick="loadMealIdeaReviewModal('{{$mealidea['id']}}');" class="btn btn-warning pull-right">Details</button>
                 </li>
             </ul>
         @endforeach
