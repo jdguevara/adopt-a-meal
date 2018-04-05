@@ -31,6 +31,10 @@ $(document).ready(function () {
                         @endforeach
                     </ul>
                 @endif
+                <div class="panel-body">
+                    <h5>Instructions</h5>
+                    <h6>{{$mealidea->instructions}}</h6>
+                </div>
             </div>
         </div>
         @endforeach
