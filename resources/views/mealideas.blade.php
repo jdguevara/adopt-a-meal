@@ -32,7 +32,8 @@ $(document).ready(function () {
                     </ul>
                 @endif
                 <div class="panel-body">
-                    <h6>{{$mealidea->instructions}}</h6>
+                    <h4>Instructions</h4>
+                    <h5>{{$mealidea->instructions}}</h5>
                 </div>
             </div>
         </div>
