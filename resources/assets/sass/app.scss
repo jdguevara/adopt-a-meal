@@ -20,13 +20,13 @@
 }
 @media screen and (min-width: 600px) {
     .mobile {
-    http://interfaith.adoptameal.com/    display: none !important;
+      display: none !important;
     }
 }
 
-html::-webkit-scrollbar {
-    display: none;
-}
+//html::-webkit-scrollbar {
+//    display: none;
+//}
 
 .navbar-brand > .brand {
     max-height: 50px;
