@@ -21,8 +21,13 @@ class MasterAdminSeeder extends Seeder
                 'name' => $user,
                 'email' => $email,
                 'password' => bcrypt($pass),
-                'roleId' => 1,
             ]);
         }
+
+        DB::table('users')->insert([
+            'name' => 'Tyler Wigington',
+            'email' => 'tylerwigington@boisestate.edu',
+            'password' => bcrypt('password1234')
+        ]);
     }
 }
