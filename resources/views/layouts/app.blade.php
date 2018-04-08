@@ -51,9 +51,12 @@
                             <a href="{{url('/admin/settings/change-messages')}}">
                                 Change Messages
                             </a>
+                            @if(Auth::user()->isAdmin())
                             <a href="{{url('/admin/settings/manage-users')}}">
                                 Manage Users
                             </a>
+                            @endif
+
                         </li>
                     </ul>
                 </li>
@@ -93,7 +96,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
     <script>
-      $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+      $('div.alert').not('.alert-important').delay(1500).fadeOut(350);
       $('#flash-overlay-modal').modal();
     </script>
 </body>
