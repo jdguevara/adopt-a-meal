@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\IUserRepository;
 use App\Http\Requests\UserRequest;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -39,20 +40,25 @@ class UserController extends Controller
             $this->userRepository->add($userRequest->all());
         } catch (\Exception $e) {
             flash( "There was a problem creating this user. Please try again later.")->error();
+            return redirect('admin/settings/manage-users');
         }
         flash( "User created successfully!")->success();
-        return redirect('admin/manageusers');
+        return redirect('admin/settings/manage-users');
     }
 
-    public function update($userId, UserRequest $userRequest)
+    public function update($id, Request $userRequest)
     {
+        $this->validate($userRequest, [
+            'name' => 'required|string|max:100',
+        ]);
         try {
-            $this->userRepository->update($userId, $userRequest->all());
+            $this->userRepository->update($id, $userRequest->all());
         } catch(\Exception $e) {
             flash('There was a problem updating this user. Please try again later.')->error();
+            return redirect('admin/settings/manage-users');
         }
         flash('User updated successfully.')->success();
-        return redirect('admin/manageusers');
+        return redirect('admin/settings/manage-users');
     }
 
     public function delete($id)
@@ -61,8 +67,9 @@ class UserController extends Controller
             $this->userRepository->delete($id);
         } catch(\Exception $e) {
             flash('There was a problem deleting this user. Please try again later.')->error();
+            return redirect('admin/settings/manage-users');
         }
         flash('User deleted successfully.')->success();
-        return redirect('admin/manageusers');
+        return redirect('admin/settings/manage-users');
     }
 }

@@ -30,8 +30,8 @@ class UserRepository implements IUserRepository
             'name' => $user['name'],
             'email' => $user['email'],
             'password' => bcrypt($user['password']),
-        ]);
-        $this->user->save();
+            'is_admin' => $user['is_admin'] == 'on' ? 1 : 0,
+        ])->save();
     }
 
     public function delete($id)
@@ -42,6 +42,10 @@ class UserRepository implements IUserRepository
 
     public function update($userId, $userData)
     {
-        // TODO: Implement update() method.
+        $user = $this->user->findOrFail($userId);
+        $user->fill([
+            'name' => $userData['name'],
+            'is_admin' => $userData['is_admin'] == 'on' ? 1 : 0,
+        ])->save();
     }
 }

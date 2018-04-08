@@ -42,7 +42,12 @@
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <div class="form-group {{ $errors->has('is_admin') ? 'has-error' : '' }}">
+                <input type="hidden" name="is_admin" value="off">
+                <input type="checkbox" class="checkbox" name="is_admin" id="isAdmin">
+                <label for="is_admin">Is An Admin?</label>
+            </div>
+            <button class="btn btn-success" type="submit">Submit</button>
         </form>
     </div>
 @endsection

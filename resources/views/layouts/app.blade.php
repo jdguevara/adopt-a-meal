@@ -51,7 +51,7 @@
                             <a href="{{url('/admin/settings/change-messages')}}">
                                 Change Messages
                             </a>
-                            <a href="{{url('/admin/manageusers')}}">
+                            <a href="{{url('/admin/settings/manage-users')}}">
                                 Manage Users
                             </a>
                         </li>
