@@ -32,6 +32,8 @@ class UserRepository implements IUserRepository
             'password' => bcrypt($user['password']),
             'is_admin' => $user['is_admin'] == 'on' ? 1 : 0,
         ])->save();
+
+        return $this->user->id;
     }
 
     public function delete($id)
