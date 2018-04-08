@@ -27,8 +27,8 @@ class AdminController extends Controller
 
     public function __construct(
         IVolunteerFormRepository $formRepository,
-        ICalendarService $calendarService, IMealIdeaRepository
-        $mealRepository,
+        ICalendarService $calendarService,
+        IMealIdeaRepository $mealRepository,
         IMessagesRepository $messagesRepository,
         IEmailService $emailService,
         IUserRepository $userRepository
@@ -91,11 +91,6 @@ class AdminController extends Controller
     public function viewMealIdeasTable()
     {
         return view('admin-mealideas-table', ['mealideas' => $this->mealRepository->getConfirmedMealIdeas()]);
-    }
-
-    public function viewUsersTable()
-    {
-        return view('admin-manageusers-table', ['users' => $this->userRepository->getAll()]);
     }
 
     //=============================================================

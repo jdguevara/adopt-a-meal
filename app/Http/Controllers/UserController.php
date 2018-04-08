@@ -20,7 +20,12 @@ class UserController extends Controller
     public function __construct(IUserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
-        $this->middleware('auth');
+        $this->middleware(['auth', 'admin']);
+    }
+
+    public function index()
+    {
+        return view('admin-manageusers-table', ['users' => $this->userRepository->getAll()]);
     }
 
     public function create()
