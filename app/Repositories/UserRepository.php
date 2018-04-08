@@ -19,6 +19,11 @@ class UserRepository implements IUserRepository
         return $this->user->all();
     }
 
+    public function get($id)
+    {
+        return $this->user->findOrFail($id);
+    }
+
     public function add($user)
     {
         $this->user->fill([
@@ -31,8 +36,8 @@ class UserRepository implements IUserRepository
 
     public function delete($id)
     {
-        $this->user = $this->user->find('id', '=', $id);
-        $this->user->delete();
+        $user = $this->user->findOrFail($id);
+        $user->delete();
     }
 
     public function update($userId, $userData)

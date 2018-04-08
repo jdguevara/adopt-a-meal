@@ -22,7 +22,18 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function createUser(UserRequest $userRequest)
+    public function create()
+    {
+        return view('auth.users.create');
+    }
+
+    public function edit($id)
+    {
+        $user = $this->userRepository->get($id);
+        return view('auth.users.edit', ['user' => $user]);
+    }
+
+    public function store(UserRequest $userRequest)
     {
         try {
             $this->userRepository->add($userRequest->all());
@@ -33,7 +44,7 @@ class UserController extends Controller
         return redirect('admin/manageusers');
     }
 
-    public function updateUser($userId, UserRequest $userRequest)
+    public function update($userId, UserRequest $userRequest)
     {
         try {
             $this->userRepository->update($userId, $userRequest->all());
@@ -44,13 +55,14 @@ class UserController extends Controller
         return redirect('admin/manageusers');
     }
 
-    public function deleteUser($id)
+    public function delete($id)
     {
         try {
             $this->userRepository->delete($id);
         } catch(\Exception $e) {
-
+            flash('There was a problem deleting this user. Please try again later.')->error();
         }
         flash('User deleted successfully.')->success();
+        return redirect('admin/manageusers');
     }
 }

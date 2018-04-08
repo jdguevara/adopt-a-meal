@@ -22,11 +22,11 @@
                         <tr>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td class="pull-right">
-                                <a href="{{url('/user/'.$user->id.'/edit')}}" class="btn btn-primary">
+                            <td>
+                                <a href="{{url('/users/'.$user->id.'/edit')}}" class="btn btn-warning">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </a>
-                                <a href="{{url('/user/'.$user->id.'/delete')}}" class="btn btn-warning">
+                                <a href="{{url('/users/'.$user->id.'/delete')}}" class="btn btn-primary">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
                             </td>
