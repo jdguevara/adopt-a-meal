@@ -25,11 +25,20 @@
                 </div>
             </div>
             <div class="form-group {{ $errors->has('isAdmin') ? 'has-error' : '' }}">
-                <input type="hidden" name="is_admin" value="off">
-                <input type="checkbox" class="checkbox" name="is_admin" id="isAdmin" @if($user->is_admin === 1) checked @endif>
+                <input type="hidden"
+                       name="is_admin"
+                       value="off">
+                <input type="checkbox"
+                       class="checkbox"
+                       name="is_admin"
+                       id="isAdmin"
+                       @if($user->is_admin === 1) checked @endif>
+
                 <label for="is_admin">Is An Admin</label>
             </div>
+            <hr>
             <button class="btn btn-success" type="submit">Submit</button>
         </form>
+        <span class="change-message-warning-text"> *To change password for this user, use the "Forgot Password" functionality located on the login page. </span>
     </div>
 @endsection
