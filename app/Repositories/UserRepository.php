@@ -17,7 +17,7 @@ class UserRepository implements IUserRepository
     public function getAll()
     {
         // exclude super admin record from being deleted/modified.
-        return $this->user->whereNotIn('email', array('admin@adoptameal.com'))->get();
+        return $this->user->whereNotIn('name', array(env('MASTER_USER')))->get();
     }
 
     public function get($id)
