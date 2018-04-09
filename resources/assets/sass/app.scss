@@ -20,12 +20,8 @@
 }
 @media screen and (min-width: 600px) {
     .mobile {
-        display: none !important;
+      display: none !important;
     }
-}
-
-html::-webkit-scrollbar {
-    display: none;
 }
 
 .navbar-brand > .brand {
@@ -71,6 +67,7 @@ html::-webkit-scrollbar {
 #app{
   padding-top:82px;
 }
+
 #nav-shadow{
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
 }
@@ -114,4 +111,18 @@ html::-webkit-scrollbar {
   background-color: black;
   border-width: 0px;
   color:$interfaith-yellow;
+}
+
+
+.list-group-container > button {
+    position: absolute;
+    top: 32px;
+    right: 0;
+    margin-right: 15px;
+
+}
+
+.fc-day-grid-event {
+    padding-top: 8px;
+    padding-bottom: 8px
 }

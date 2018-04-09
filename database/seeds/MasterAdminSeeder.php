@@ -20,7 +20,8 @@ class MasterAdminSeeder extends Seeder
             DB::table('users')->insert([
                 'name' => $user,
                 'email' => $email,
-                'password' => bcrypt($pass)
+                'password' => bcrypt($pass),
+                'is_admin' => 1
             ]);
         }
     }
