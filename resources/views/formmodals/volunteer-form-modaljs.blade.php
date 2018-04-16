@@ -25,7 +25,7 @@ function setupVolunteerFormValidation() {
         simpleJQueryValidation(this, '#email-validation', new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/));
     });
     $('#phone').on('input', function () {
-        simpleJQueryValidation(this, '#phone-validation', new RegExp(/^([0-9]{10})|(\\(\\d{3}\\) \\d{3}-\\d{4})$/));
+        simpleJQueryValidation(this, '#phone-validation', new RegExp(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/));
     });
     $('#meal_description').on('input', function () {
         simpleJQueryValidation(this, '#meal_description-validation');

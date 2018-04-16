@@ -48,7 +48,7 @@
                                 <span class="input-group-addon">Phone Number</span>
                                 <input id="phone" name="phone" type="text" class="form-control" placeholder="Phone Number" >
                             </div>
-                            <div id="phone-validation" class="hidden alert-danger">Required: Please enter a valid phone number</div>
+                            <div id="phone-validation" class="hidden alert-danger">Required: Please enter a valid phone number: (123)123-1234, 1231231234</div>
                         </div>
 
                         <div class="form-group">
