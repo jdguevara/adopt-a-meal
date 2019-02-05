@@ -1,3 +1,5 @@
+# This is a fork of the original Adopt-A-Meal codebase done by the team below for the sake of development
+
 # CS471-F17-MergeConflicts
 
 ## Team Name: MergeConflicts
